@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 21, 2013 8:59:42 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="g3.hibernate.entity.Member" table="Member" schema="dbo" catalog="DVDStore">
+        <id name="id" type="int">
+            <column name="Id" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="serializable">
+            <column name="Name" />
+        </property>
+        <property name="email" type="serializable">
+            <column name="Email" />
+        </property>
+        <property name="password" type="serializable">
+            <column name="Password" />
+        </property>
+        <property name="joinedDate" type="timestamp">
+            <column name="JoinedDate" length="23" />
+        </property>
+        <property name="modifiedDate" type="timestamp">
+            <column name="ModifiedDate" length="23" />
+        </property>
+        <property name="isLock" type="boolean">
+            <column name="IsLock" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
