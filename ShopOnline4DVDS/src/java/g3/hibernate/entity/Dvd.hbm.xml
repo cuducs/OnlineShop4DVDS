@@ -11,16 +11,16 @@
         <property name="releaseDate" type="timestamp">
             <column name="ReleaseDate" length="23" />
         </property>
-        <property name="genres" type="string">
+        <property name="genres" type="java.lang.String">
             <column name="Genres" />
         </property>
-        <property name="description" type="string">
+        <property name="description" type="java.lang.String">
             <column name="Description" />
         </property>
         <property name="price" type="java.lang.Double">
             <column name="Price" precision="53" scale="0" />
         </property>
-        <property name="imageCoverUrl" type="string">
+        <property name="imageCoverUrl" type="java.lang.String">
             <column name="ImageCoverUrl" />
         </property>
         <property name="author" type="string">
@@ -38,7 +38,7 @@
         <property name="rateCount" type="java.lang.Integer">
             <column name="RateCount" />
         </property>
-        <property name="type" type="string">
+        <property name="type" type="java.lang.String">
             <column name="Type" length="50" />
         </property>
         <property name="createdDate" type="timestamp">
