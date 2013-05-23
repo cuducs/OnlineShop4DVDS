@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 2:18:11 PM by Hibernate Tools 3.2.1.GA
+// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -15,7 +15,7 @@ public class Feedback  implements java.io.Serializable {
      private Integer customerId;
      private Date submittedDate;
      private Serializable feedbackText;
-     private Boolean status;
+     private Boolean isRead;
      private Serializable replyText;
      private Date createdDate;
      private Date modifiedDate;
@@ -29,12 +29,12 @@ public class Feedback  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Feedback(int id, Integer customerId, Date submittedDate, Serializable feedbackText, Boolean status, Serializable replyText, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Feedback(int id, Integer customerId, Date submittedDate, Serializable feedbackText, Boolean isRead, Serializable replyText, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.customerId = customerId;
        this.submittedDate = submittedDate;
        this.feedbackText = feedbackText;
-       this.status = status;
+       this.isRead = isRead;
        this.replyText = replyText;
        this.createdDate = createdDate;
        this.modifiedDate = modifiedDate;
@@ -69,12 +69,12 @@ public class Feedback  implements java.io.Serializable {
     public void setFeedbackText(Serializable feedbackText) {
         this.feedbackText = feedbackText;
     }
-    public Boolean getStatus() {
-        return this.status;
+    public Boolean getIsRead() {
+        return this.isRead;
     }
     
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsRead(Boolean isRead) {
+        this.isRead = isRead;
     }
     public Serializable getReplyText() {
         return this.replyText;

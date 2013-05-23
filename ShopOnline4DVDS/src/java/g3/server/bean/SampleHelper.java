@@ -4,11 +4,9 @@
  */
 package g3.server.bean;
 
-import g3.hibernate.entity.File;
+import g3.hibernate.entity.FileData;
 import g3.hibernate.entity.Genre;
 import java.util.Date;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
@@ -30,32 +28,31 @@ public class SampleHelper extends BaseHelper {
     }
 
     void generate() {
-        generateTableGenre();
+        generateTableFile();
     }
 
     private void generateTableFile() {
         Transaction beginTransaction = session.beginTransaction();
 
-        File f1 = new File();
-        f1.setTitle("File1");
-        f1.setType(AppConstant.FILE_TYPE_SOUND);
-        f1.setUrl("Url1");
-        f1.setViewCount(0);
-        f1.setCreatedDate(new Date());
-        f1.setModifiedDate(new Date());
-        f1.setIsDeleted(false);
+        FileData f1 = new FileData(0, "Title1", "Url1", AppConstant.FILE_TYPE_SOUND, 0, new Date(), null, false);
+        session.save(f1);
+
+        f1 = new FileData(0, "Title2", "Url2", AppConstant.FILE_TYPE_VIDEO, 0, new Date(), null, false);
+        session.save(f1);
+
+        f1 = new FileData(0, "Title3", "Url3", AppConstant.FILE_TYPE_SOUND, 0, new Date(), null, false);
+        session.save(f1);
+
+        f1 = new FileData(0, "Title4", "Url4", AppConstant.FILE_TYPE_SOUND, 0, new Date(), null, false);
+        session.save(f1);
+
+        f1 = new FileData(0, "Title5", "Url5", AppConstant.FILE_TYPE_VIDEO, 0, new Date(), null, false);
         session.save(f1);
 
         beginTransaction.commit();
     }
-    
-    private void generateTableGenre() {
-        Transaction beginTransaction = session.beginTransaction();
 
-        Genre g=new Genre();
-        g.setName("Test2");
-        g.setType("test3");
-        session.save(g);
-        beginTransaction.commit();
+    private void generateTableGenre() {
+        
     }
 }

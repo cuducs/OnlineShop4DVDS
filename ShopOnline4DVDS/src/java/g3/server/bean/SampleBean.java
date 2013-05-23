@@ -4,12 +4,9 @@
  */
 package g3.server.bean;
 
-import g3.hibernate.entity.Genre;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
@@ -42,11 +39,7 @@ public class SampleBean {
         mes = "";
     }
     public String testvarchar(){
-        Session session=DvdStoreHibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction beginTransaction = session.beginTransaction();
-        
-        Genre genre=(Genre) session.get(Genre.class, 2);
-        return String.valueOf(genre.getName());
+        return "no co gi";
     }
     public String generate() {
         helper.generate();

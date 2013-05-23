@@ -4,15 +4,12 @@
   <session-factory>
     <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
     <property name="hibernate.connection.url">jdbc:sqlserver://Loog:1433;databaseName=DVDStore</property>
-    <property name="hibernate.connection.username">sa</property>
+    <property name="hibernate.connection.username">Loog</property>
     <property name="hibernate.connection.password">123456</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="g3/hibernate/entity/Comment.hbm.xml"/>
-    <mapping resource="g3/hibernate/entity/OrderDetail.hbm.xml"/>
-    <mapping resource="g3/hibernate/entity/Order.hbm.xml"/>
-    <mapping resource="g3/hibernate/entity/File.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/Member.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/Album.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/Game.hbm.xml"/>
@@ -24,5 +21,8 @@
     <mapping resource="g3/hibernate/entity/Movie.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/AlbumMusicMapping.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/Genre.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/BillDetail.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Bill.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/FileData.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 2:18:11 PM by Hibernate Tools 3.2.1.GA
+// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
