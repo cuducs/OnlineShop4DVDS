@@ -12,13 +12,13 @@ public class Movie  implements java.io.Serializable {
 
 
      private int id;
-     private Serializable title;
-     private Serializable studio;
-     private Serializable cast;
-     private Serializable crew;
+     private String title;
+     private String studio;
+     private String cast;
+     private String crew;
      private Integer trailerId;
      private byte[] runtime;
-     private Serializable language;
+     private String language;
      private Date createdDate;
      private Date modifiedDate;
      private boolean isDeleted;
@@ -31,7 +31,7 @@ public class Movie  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Movie(int id, Serializable title, Serializable studio, Serializable cast, Serializable crew, Integer trailerId, byte[] runtime, Serializable language, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Movie(int id, String title, String studio, String cast, String crew, Integer trailerId, byte[] runtime, String language, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.title = title;
        this.studio = studio;
@@ -52,32 +52,32 @@ public class Movie  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Serializable getTitle() {
+    public String getTitle() {
         return this.title;
     }
     
-    public void setTitle(Serializable title) {
+    public void setTitle(String title) {
         this.title = title;
     }
-    public Serializable getStudio() {
+    public String getStudio() {
         return this.studio;
     }
     
-    public void setStudio(Serializable studio) {
+    public void setStudio(String studio) {
         this.studio = studio;
     }
-    public Serializable getCast() {
+    public String getCast() {
         return this.cast;
     }
     
-    public void setCast(Serializable cast) {
+    public void setCast(String cast) {
         this.cast = cast;
     }
-    public Serializable getCrew() {
+    public String getCrew() {
         return this.crew;
     }
     
-    public void setCrew(Serializable crew) {
+    public void setCrew(String crew) {
         this.crew = crew;
     }
     public Integer getTrailerId() {
@@ -94,11 +94,11 @@ public class Movie  implements java.io.Serializable {
     public void setRuntime(byte[] runtime) {
         this.runtime = runtime;
     }
-    public Serializable getLanguage() {
+    public String getLanguage() {
         return this.language;
     }
     
-    public void setLanguage(Serializable language) {
+    public void setLanguage(String language) {
         this.language = language;
     }
     public Date getCreatedDate() {

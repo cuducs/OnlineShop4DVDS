@@ -11,19 +11,19 @@
         <property name="releaseDate" type="timestamp">
             <column name="ReleaseDate" length="23" />
         </property>
-        <property name="genres" type="serializable">
+        <property name="genres" type="string">
             <column name="Genres" />
         </property>
-        <property name="description" type="serializable">
+        <property name="description" type="string">
             <column name="Description" />
         </property>
         <property name="price" type="java.lang.Double">
             <column name="Price" precision="53" scale="0" />
         </property>
-        <property name="imageCoverUrl" type="serializable">
+        <property name="imageCoverUrl" type="string">
             <column name="ImageCoverUrl" />
         </property>
-        <property name="author" type="serializable">
+        <property name="author" type="string">
             <column name="Author" />
         </property>
         <property name="discNumber" type="java.lang.Integer">

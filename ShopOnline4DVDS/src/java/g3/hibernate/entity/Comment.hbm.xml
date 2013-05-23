@@ -17,7 +17,7 @@
         <property name="submittedDate" type="timestamp">
             <column name="SubmittedDate" length="23" />
         </property>
-        <property name="commentText" type="serializable">
+        <property name="commentText" type="string">
             <column name="CommentText" />
         </property>
         <property name="createdDate" type="timestamp">

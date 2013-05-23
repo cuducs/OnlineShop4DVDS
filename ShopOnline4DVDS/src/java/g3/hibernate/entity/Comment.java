@@ -15,7 +15,7 @@ public class Comment  implements java.io.Serializable {
      private int memberId;
      private int productId;
      private Date submittedDate;
-     private Serializable commentText;
+     private String commentText;
      private Date createdDate;
      private Date modifiedDate;
      private boolean isDeleted;
@@ -30,7 +30,7 @@ public class Comment  implements java.io.Serializable {
         this.productId = productId;
         this.isDeleted = isDeleted;
     }
-    public Comment(int id, int memberId, int productId, Date submittedDate, Serializable commentText, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Comment(int id, int memberId, int productId, Date submittedDate, String commentText, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.memberId = memberId;
        this.productId = productId;
@@ -69,11 +69,11 @@ public class Comment  implements java.io.Serializable {
     public void setSubmittedDate(Date submittedDate) {
         this.submittedDate = submittedDate;
     }
-    public Serializable getCommentText() {
+    public String getCommentText() {
         return this.commentText;
     }
     
-    public void setCommentText(Serializable commentText) {
+    public void setCommentText(String commentText) {
         this.commentText = commentText;
     }
     public Date getCreatedDate() {

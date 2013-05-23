@@ -8,7 +8,7 @@
             <column name="Id" />
             <generator class="identity" />
         </id>
-        <property name="title" type="serializable">
+        <property name="title" type="string">
             <column name="Title" />
         </property>
         <property name="singerId" type="java.lang.Integer">
@@ -20,7 +20,7 @@
         <property name="runtime" type="binary">
             <column name="Runtime" />
         </property>
-        <property name="lyrics" type="serializable">
+        <property name="lyrics" type="string">
             <column name="Lyrics" />
         </property>
         <property name="isFree" type="boolean">

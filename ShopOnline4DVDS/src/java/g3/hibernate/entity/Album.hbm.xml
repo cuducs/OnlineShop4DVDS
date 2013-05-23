@@ -8,10 +8,10 @@
             <column name="Id" />
             <generator class="identity" />
         </id>
-        <property name="title" type="serializable">
+        <property name="title" type="string">
             <column name="Title" />
         </property>
-        <property name="owner" type="serializable">
+        <property name="owner" type="string">
             <column name="Owner" />
         </property>
         <property name="viewCount" type="java.lang.Integer">

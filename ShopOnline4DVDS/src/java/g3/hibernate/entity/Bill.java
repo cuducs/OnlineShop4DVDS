@@ -16,10 +16,10 @@ public class Bill  implements java.io.Serializable {
      private Date orderDate;
      private BigDecimal total;
      private Short status;
-     private Serializable customerName;
-     private Serializable deliveryAddress;
+     private String customerName;
+     private String deliveryAddress;
      private String phone;
-     private Serializable message;
+     private String message;
      private Integer memberId;
      private boolean isDeleted;
 
@@ -31,7 +31,7 @@ public class Bill  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Bill(int id, Date orderDate, BigDecimal total, Short status, Serializable customerName, Serializable deliveryAddress, String phone, Serializable message, Integer memberId, boolean isDeleted) {
+    public Bill(int id, Date orderDate, BigDecimal total, Short status, String customerName, String deliveryAddress, String phone, String message, Integer memberId, boolean isDeleted) {
        this.id = id;
        this.orderDate = orderDate;
        this.total = total;
@@ -72,18 +72,18 @@ public class Bill  implements java.io.Serializable {
     public void setStatus(Short status) {
         this.status = status;
     }
-    public Serializable getCustomerName() {
+    public String getCustomerName() {
         return this.customerName;
     }
     
-    public void setCustomerName(Serializable customerName) {
+    public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
-    public Serializable getDeliveryAddress() {
+    public String getDeliveryAddress() {
         return this.deliveryAddress;
     }
     
-    public void setDeliveryAddress(Serializable deliveryAddress) {
+    public void setDeliveryAddress(String deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
     }
     public String getPhone() {
@@ -93,11 +93,11 @@ public class Bill  implements java.io.Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public Serializable getMessage() {
+    public String getMessage() {
         return this.message;
     }
     
-    public void setMessage(Serializable message) {
+    public void setMessage(String message) {
         this.message = message;
     }
     public Integer getMemberId() {

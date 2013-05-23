@@ -13,11 +13,11 @@ public class Dvd  implements java.io.Serializable {
 
      private int id;
      private Date releaseDate;
-     private Serializable genres;
-     private Serializable description;
+     private String genres;
+     private String description;
      private Double price;
-     private Serializable imageCoverUrl;
-     private Serializable author;
+     private String imageCoverUrl;
+     private String author;
      private Integer discNumber;
      private Integer detailId;
      private Integer ratePoint;
@@ -35,7 +35,7 @@ public class Dvd  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Dvd(int id, Date releaseDate, Serializable genres, Serializable description, Double price, Serializable imageCoverUrl, Serializable author, Integer discNumber, Integer detailId, Integer ratePoint, Integer rateCount, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Dvd(int id, Date releaseDate, String genres, String description, Double price, String imageCoverUrl, String author, Integer discNumber, Integer detailId, Integer ratePoint, Integer rateCount, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.releaseDate = releaseDate;
        this.genres = genres;
@@ -67,18 +67,18 @@ public class Dvd  implements java.io.Serializable {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
-    public Serializable getGenres() {
+    public String getGenres() {
         return this.genres;
     }
     
-    public void setGenres(Serializable genres) {
+    public void setGenres(String genres) {
         this.genres = genres;
     }
-    public Serializable getDescription() {
+    public String getDescription() {
         return this.description;
     }
     
-    public void setDescription(Serializable description) {
+    public void setDescription(String description) {
         this.description = description;
     }
     public Double getPrice() {
@@ -88,18 +88,18 @@ public class Dvd  implements java.io.Serializable {
     public void setPrice(Double price) {
         this.price = price;
     }
-    public Serializable getImageCoverUrl() {
+    public String getImageCoverUrl() {
         return this.imageCoverUrl;
     }
     
-    public void setImageCoverUrl(Serializable imageCoverUrl) {
+    public void setImageCoverUrl(String imageCoverUrl) {
         this.imageCoverUrl = imageCoverUrl;
     }
-    public Serializable getAuthor() {
+    public String getAuthor() {
         return this.author;
     }
     
-    public void setAuthor(Serializable author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
     public Integer getDiscNumber() {

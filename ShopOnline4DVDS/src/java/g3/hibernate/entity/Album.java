@@ -12,8 +12,8 @@ public class Album  implements java.io.Serializable {
 
 
      private int id;
-     private Serializable title;
-     private Serializable owner;
+     private String title;
+     private String owner;
      private Integer viewCount;
      private Date createdDate;
      private Integer numberItem;
@@ -29,7 +29,7 @@ public class Album  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Album(int id, Serializable title, Serializable owner, Integer viewCount, Date createdDate, Integer numberItem, String type, Date modifiedDate, boolean isDeleted) {
+    public Album(int id, String title, String owner, Integer viewCount, Date createdDate, Integer numberItem, String type, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.title = title;
        this.owner = owner;
@@ -48,18 +48,18 @@ public class Album  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Serializable getTitle() {
+    public String getTitle() {
         return this.title;
     }
     
-    public void setTitle(Serializable title) {
+    public void setTitle(String title) {
         this.title = title;
     }
-    public Serializable getOwner() {
+    public String getOwner() {
         return this.owner;
     }
     
-    public void setOwner(Serializable owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
     public Integer getViewCount() {

@@ -12,9 +12,9 @@ public class Member  implements java.io.Serializable {
 
 
      private int id;
-     private Serializable name;
-     private Serializable email;
-     private Serializable password;
+     private String name;
+     private String email;
+     private String password;
      private Date joinedDate;
      private Date modifiedDate;
      private boolean isLock;
@@ -27,7 +27,7 @@ public class Member  implements java.io.Serializable {
         this.id = id;
         this.isLock = isLock;
     }
-    public Member(int id, Serializable name, Serializable email, Serializable password, Date joinedDate, Date modifiedDate, boolean isLock) {
+    public Member(int id, String name, String email, String password, Date joinedDate, Date modifiedDate, boolean isLock) {
        this.id = id;
        this.name = name;
        this.email = email;
@@ -44,25 +44,25 @@ public class Member  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Serializable getName() {
+    public String getName() {
         return this.name;
     }
     
-    public void setName(Serializable name) {
+    public void setName(String name) {
         this.name = name;
     }
-    public Serializable getEmail() {
+    public String getEmail() {
         return this.email;
     }
     
-    public void setEmail(Serializable email) {
+    public void setEmail(String email) {
         this.email = email;
     }
-    public Serializable getPassword() {
+    public String getPassword() {
         return this.password;
     }
     
-    public void setPassword(Serializable password) {
+    public void setPassword(String password) {
         this.password = password;
     }
     public Date getJoinedDate() {

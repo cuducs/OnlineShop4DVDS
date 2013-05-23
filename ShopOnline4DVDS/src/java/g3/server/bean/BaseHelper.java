@@ -11,8 +11,19 @@ import org.hibernate.Session;
  * @author Administrator
  */
 public class BaseHelper {
-    protected Session session=null;
-    protected BaseHelper(){
-        session=DvdStoreHibernateUtil.getSessionFactory().getCurrentSession();
+
+    protected Session session = null;
+
+    protected BaseHelper() {
+        session = DvdStoreHibernateUtil.getSessionFactory().openSession();
+    }
+
+    public void close() {
+        if (session != null) {
+            if (session.isOpen()) {
+                session.close();
+            }
+        }
+
     }
 }

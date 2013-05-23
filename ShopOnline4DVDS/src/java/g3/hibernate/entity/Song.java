@@ -12,11 +12,11 @@ public class Song  implements java.io.Serializable {
 
 
      private int id;
-     private Serializable title;
+     private String title;
      private Integer singerId;
      private Integer composerId;
      private byte[] runtime;
-     private Serializable lyrics;
+     private String lyrics;
      private boolean isFree;
      private int fileId;
      private Date createdDate;
@@ -33,7 +33,7 @@ public class Song  implements java.io.Serializable {
         this.fileId = fileId;
         this.isDeleted = isDeleted;
     }
-    public Song(int id, Serializable title, Integer singerId, Integer composerId, byte[] runtime, Serializable lyrics, boolean isFree, int fileId, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Song(int id, String title, Integer singerId, Integer composerId, byte[] runtime, String lyrics, boolean isFree, int fileId, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.title = title;
        this.singerId = singerId;
@@ -54,11 +54,11 @@ public class Song  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Serializable getTitle() {
+    public String getTitle() {
         return this.title;
     }
     
-    public void setTitle(Serializable title) {
+    public void setTitle(String title) {
         this.title = title;
     }
     public Integer getSingerId() {
@@ -82,11 +82,11 @@ public class Song  implements java.io.Serializable {
     public void setRuntime(byte[] runtime) {
         this.runtime = runtime;
     }
-    public Serializable getLyrics() {
+    public String getLyrics() {
         return this.lyrics;
     }
     
-    public void setLyrics(Serializable lyrics) {
+    public void setLyrics(String lyrics) {
         this.lyrics = lyrics;
     }
     public boolean isIsFree() {

@@ -12,9 +12,9 @@ public class Artist  implements java.io.Serializable {
 
 
      private int id;
-     private Serializable name;
-     private Serializable details;
-     private Serializable workAs;
+     private String name;
+     private String details;
+     private String workAs;
      private Date createdDate;
      private Date modifiedDate;
      private boolean isDeleted;
@@ -27,7 +27,7 @@ public class Artist  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Artist(int id, Serializable name, Serializable details, Serializable workAs, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Artist(int id, String name, String details, String workAs, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.name = name;
        this.details = details;
@@ -44,25 +44,25 @@ public class Artist  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Serializable getName() {
+    public String getName() {
         return this.name;
     }
     
-    public void setName(Serializable name) {
+    public void setName(String name) {
         this.name = name;
     }
-    public Serializable getDetails() {
+    public String getDetails() {
         return this.details;
     }
     
-    public void setDetails(Serializable details) {
+    public void setDetails(String details) {
         this.details = details;
     }
-    public Serializable getWorkAs() {
+    public String getWorkAs() {
         return this.workAs;
     }
     
-    public void setWorkAs(Serializable workAs) {
+    public void setWorkAs(String workAs) {
         this.workAs = workAs;
     }
     public Date getCreatedDate() {

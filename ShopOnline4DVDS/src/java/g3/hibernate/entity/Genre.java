@@ -12,7 +12,7 @@ public class Genre  implements java.io.Serializable {
 
 
      private int id;
-     private Serializable name;
+     private String name;
      private String type;
      private Date createdDate;
      private Date modifiedDate;
@@ -26,7 +26,7 @@ public class Genre  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Genre(int id, Serializable name, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Genre(int id, String name, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.name = name;
        this.type = type;
@@ -42,11 +42,11 @@ public class Genre  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Serializable getName() {
+    public String getName() {
         return this.name;
     }
     
-    public void setName(Serializable name) {
+    public void setName(String name) {
         this.name = name;
     }
     public String getType() {

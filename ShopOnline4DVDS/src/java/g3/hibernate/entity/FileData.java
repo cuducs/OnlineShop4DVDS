@@ -12,8 +12,8 @@ public class FileData  implements java.io.Serializable {
 
 
      private int id;
-     private Serializable title;
-     private Serializable url;
+     private String title;
+     private String url;
      private String type;
      private Integer viewCount;
      private Date createdDate;
@@ -28,7 +28,7 @@ public class FileData  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public FileData(int id, Serializable title, Serializable url, String type, Integer viewCount, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public FileData(int id, String title, String url, String type, Integer viewCount, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.title = title;
        this.url = url;
@@ -46,18 +46,18 @@ public class FileData  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Serializable getTitle() {
+    public String getTitle() {
         return this.title;
     }
     
-    public void setTitle(Serializable title) {
+    public void setTitle(String title) {
         this.title = title;
     }
-    public Serializable getUrl() {
+    public String getUrl() {
         return this.url;
     }
     
-    public void setUrl(Serializable url) {
+    public void setUrl(String url) {
         this.url = url;
     }
     public String getType() {

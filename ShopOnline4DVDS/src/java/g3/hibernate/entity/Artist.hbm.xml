@@ -8,13 +8,13 @@
             <column name="Id" />
             <generator class="identity" />
         </id>
-        <property name="name" type="serializable">
+        <property name="name" type="string">
             <column name="Name" />
         </property>
-        <property name="details" type="serializable">
+        <property name="details" type="string">
             <column name="Details" />
         </property>
-        <property name="workAs" type="serializable">
+        <property name="workAs" type="string">
             <column name="WorkAs" />
         </property>
         <property name="createdDate" type="timestamp">

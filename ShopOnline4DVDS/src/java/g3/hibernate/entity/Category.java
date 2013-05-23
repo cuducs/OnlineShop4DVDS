@@ -12,9 +12,9 @@ public class Category  implements java.io.Serializable {
 
 
      private int id;
-     private Serializable name;
-     private Serializable query;
-     private Serializable description;
+     private String name;
+     private String query;
+     private String description;
      private Integer categoryParentId;
      private Date createdDate;
      private Date modifiedDate;
@@ -28,7 +28,7 @@ public class Category  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Category(int id, Serializable name, Serializable query, Serializable description, Integer categoryParentId, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Category(int id, String name, String query, String description, Integer categoryParentId, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.name = name;
        this.query = query;
@@ -46,25 +46,25 @@ public class Category  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Serializable getName() {
+    public String getName() {
         return this.name;
     }
     
-    public void setName(Serializable name) {
+    public void setName(String name) {
         this.name = name;
     }
-    public Serializable getQuery() {
+    public String getQuery() {
         return this.query;
     }
     
-    public void setQuery(Serializable query) {
+    public void setQuery(String query) {
         this.query = query;
     }
-    public Serializable getDescription() {
+    public String getDescription() {
         return this.description;
     }
     
-    public void setDescription(Serializable description) {
+    public void setDescription(String description) {
         this.description = description;
     }
     public Integer getCategoryParentId() {

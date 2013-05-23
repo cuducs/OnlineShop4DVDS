@@ -8,7 +8,7 @@
             <column name="Id" />
             <generator class="identity" />
         </id>
-        <property name="name" type="serializable">
+        <property name="name" type="string">
             <column name="Name" />
         </property>
         <property name="type" type="string">

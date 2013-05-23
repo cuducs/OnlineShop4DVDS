@@ -8,13 +8,13 @@
             <column name="Id" />
             <generator class="identity" />
         </id>
-        <property name="name" type="serializable">
+        <property name="name" type="string">
             <column name="Name" />
         </property>
-        <property name="query" type="serializable">
+        <property name="query" type="string">
             <column name="Query" />
         </property>
-        <property name="description" type="serializable">
+        <property name="description" type="string">
             <column name="Description" />
         </property>
         <property name="categoryParentId" type="java.lang.Integer">

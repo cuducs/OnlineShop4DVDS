@@ -17,16 +17,16 @@
         <property name="status" type="java.lang.Short">
             <column name="Status" />
         </property>
-        <property name="customerName" type="serializable">
+        <property name="customerName" type="string">
             <column name="CustomerName" />
         </property>
-        <property name="deliveryAddress" type="serializable">
+        <property name="deliveryAddress" type="string">
             <column name="DeliveryAddress" />
         </property>
         <property name="phone" type="string">
             <column name="Phone" length="50" />
         </property>
-        <property name="message" type="serializable">
+        <property name="message" type="string">
             <column name="Message" />
         </property>
         <property name="memberId" type="java.lang.Integer">

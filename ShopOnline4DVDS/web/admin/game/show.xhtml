@@ -9,6 +9,26 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
             <ui:define name="content">
+                <h:form>
+                    <h:commandButton value="Create New" action="#{gameManagedBean.create}"></h:commandButton>
+                    <table>
+                        <tr>
+                            <th>Title</th>
+                            <th>Details</th>
+                            <th>Command</th>
+                        </tr>
+                    <ui:repeat var="item" varStatus="stt" value="#{gameManagedBean.allGames}">
+                        <tr>
+                            <td>#{item.title}</td>
+                            <td><h:commandButton value="Details" action="#{gameManagedBean.details(item)}"></h:commandButton></td>
+                            <td>
+                                <h:commandButton value="Edit" action="#{gameManagedBean.edit(item)}"></h:commandButton>
+                                <h:commandButton value="Del" action="#{gameManagedBean.del(item)}"></h:commandButton>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                    </table>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

@@ -14,9 +14,9 @@ public class Feedback  implements java.io.Serializable {
      private int id;
      private Integer customerId;
      private Date submittedDate;
-     private Serializable feedbackText;
+     private String feedbackText;
      private Boolean isRead;
-     private Serializable replyText;
+     private String replyText;
      private Date createdDate;
      private Date modifiedDate;
      private boolean isDeleted;
@@ -29,7 +29,7 @@ public class Feedback  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Feedback(int id, Integer customerId, Date submittedDate, Serializable feedbackText, Boolean isRead, Serializable replyText, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Feedback(int id, Integer customerId, Date submittedDate, String feedbackText, Boolean isRead, String replyText, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.customerId = customerId;
        this.submittedDate = submittedDate;
@@ -62,11 +62,11 @@ public class Feedback  implements java.io.Serializable {
     public void setSubmittedDate(Date submittedDate) {
         this.submittedDate = submittedDate;
     }
-    public Serializable getFeedbackText() {
+    public String getFeedbackText() {
         return this.feedbackText;
     }
     
-    public void setFeedbackText(Serializable feedbackText) {
+    public void setFeedbackText(String feedbackText) {
         this.feedbackText = feedbackText;
     }
     public Boolean getIsRead() {
@@ -76,11 +76,11 @@ public class Feedback  implements java.io.Serializable {
     public void setIsRead(Boolean isRead) {
         this.isRead = isRead;
     }
-    public Serializable getReplyText() {
+    public String getReplyText() {
         return this.replyText;
     }
     
-    public void setReplyText(Serializable replyText) {
+    public void setReplyText(String replyText) {
         this.replyText = replyText;
     }
     public Date getCreatedDate() {
