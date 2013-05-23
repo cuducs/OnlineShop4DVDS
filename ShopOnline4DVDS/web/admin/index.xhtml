@@ -9,6 +9,11 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
             <ui:define name="content">
+                <h:form>
+                    <h:commandButton value="Generate" action="#{sampleBean.generate()}"></h:commandButton>
+                    #{sampleBean.mes}
+                    #{sampleBean.testvarchar()}
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
