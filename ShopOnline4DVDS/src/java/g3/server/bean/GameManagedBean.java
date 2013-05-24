@@ -26,11 +26,40 @@ public class GameManagedBean {
     private int mode;
     private GameManageHelper helper;
     private String returnFromDetails;
+    private Game searchGame;
+    private List<Game> resustSearch;
 
     /**
      * Creates a new instance of GameManageBean
      */
     public GameManagedBean() {
+    }
+
+    public List<Game> getResustSearch() {
+        return resustSearch;
+    }
+
+    public void setResustSearch(List<Game> resustSearch) {
+        this.resustSearch = resustSearch;
+    }
+
+    public Game getSearchGame() {
+        if (searchGame == null) {
+            searchGame = new Game();
+        }
+        return searchGame;
+    }
+
+    public String search() {
+
+        if (searchGame != null) {
+            resustSearch = helper.search(searchGame);
+        }
+        return "search";
+    }
+
+    public void setSearchGame(Game searchGame) {
+        this.searchGame = searchGame;
     }
 
     public int getMode() {
@@ -73,13 +102,15 @@ public class GameManagedBean {
 
     public String details(Game item) {
         curGame = item;
-        Map<String, String> params =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         returnFromDetails = params.get("from");
         return "details";
     }
-    public String back(){
+
+    public String back() {
         return returnFromDetails;
     }
+
     public String save() {
         curGame.setCreatedDate(new Date());
         helper.save(curGame);
