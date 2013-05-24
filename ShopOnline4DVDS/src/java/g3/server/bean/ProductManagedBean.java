@@ -4,8 +4,9 @@
  */
 package g3.server.bean;
 
-import g3.hibernate.entity.Game;
+import g3.hibernate.entity.Dvd;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -20,56 +21,56 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class GameManagedBean {
+public class ProductManagedBean {
 
-    private Game curGame;
+    private ProductManagedHelper helper;
+    private Dvd curDvd;
     private int formMode;
-    private GameManageHelper helper;
     private String returnFromDetails;
-    private Game searchGame;
-    private List<Game> resustSearch;
-
+    private Dvd searchDvd;
+    private List<Dvd> resustSearch;
     /**
-     * Creates a new instance of GameManageBean
+     * Creates a new instance of ProductManagedBean
      */
-    public GameManagedBean() {
+    public ProductManagedBean() {
     }
-
+    
     @PostConstruct
     public void init() {
-        helper = GameManageHelper.getInstance();
+        helper = ProductManagedHelper.getInstance();
     }
 
     @PreDestroy
     public void end() {
         helper.close();
     }
-
-    public List<Game> getResustSearch() {
+    
+    
+    public List<Dvd> getResustSearch() {
         return resustSearch;
     }
 
-    public void setResustSearch(List<Game> resustSearch) {
+    public void setResustSearch(List<Dvd> resustSearch) {
         this.resustSearch = resustSearch;
     }
 
-    public Game getSearchGame() {
-        if (searchGame == null) {
-            searchGame = new Game();
+    public Dvd getSearchDvd() {
+        if (searchDvd == null) {
+            searchDvd = new Dvd();
         }
-        return searchGame;
+        return searchDvd;
     }
 
     public String search() {
 
-        if (searchGame != null) {
-            resustSearch = helper.search(searchGame);
+        if (searchDvd != null) {
+            resustSearch = helper.search(searchDvd);
         }
         return "search";
     }
 
-    public void setSearchGame(Game searchGame) {
-        this.searchGame = searchGame;
+    public void setSearchDvd(Dvd searchDvd) {
+        this.searchDvd = searchDvd;
     }
 
     public int getMode() {
@@ -80,28 +81,28 @@ public class GameManagedBean {
         this.formMode = mode;
     }
 
-    public Game getCurGame() {
-        return curGame;
+    public Dvd getCurDvd() {
+        return curDvd;
     }
 
-    public void setCurGame(Game curGame) {
-        this.curGame = curGame;
+    public void setCurDvd(Dvd curDvd) {
+        this.curDvd = curDvd;
     }
 
     public String create() {
-        curGame = new Game(0, false);
+        curDvd = new Dvd(0, false);
         formMode = AppConstant.FORM_MODE_CREATE;
         return "form";
     }
 
-    public String edit(Game item) {
-        curGame = item;
+    public String edit(Dvd item) {
+        curDvd = item;
         formMode = AppConstant.FORM_MODE_EDIT;
         return "form";
     }
 
-    public String details(Game item) {
-        curGame = item;
+    public String details(Dvd item) {
+        curDvd = item;
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         returnFromDetails = params.get("from");
         return "details";
@@ -112,13 +113,13 @@ public class GameManagedBean {
     }
 
     public String save() {
-        curGame.setCreatedDate(new Date());
-        helper.save(curGame);
-        curGame = null;
+        curDvd.setCreatedDate(new Date());
+        helper.save(curDvd);
+        curDvd = null;
         return "show";
     }
 
-    public String del(Game item) {
+    public String del(Dvd item) {
         item.setIsDeleted(true);
         item.setModifiedDate(new Date());
         helper.update(item);
@@ -126,20 +127,26 @@ public class GameManagedBean {
     }
 
     public String update() {
-        curGame.setModifiedDate(new Date());
-        helper.update(curGame);
+        curDvd.setModifiedDate(new Date());
+        helper.update(curDvd);
         return "show";
     }
 
-    public List<Game> getAllGames() {
-        return helper.getAllGames();
+    public List<Dvd> getAllDvds() {
+        return helper.getAllDvds();
     }
 
-    public List<Game> getAllGamesDeleted() {
-        return helper.getAllGamesDeleted();
+    public List<Dvd> getAllDvdsDeleted() {
+        return helper.getAllDvdsDeleted();
     }
-
-    public String recovery(Game item) {
+    public Map<String,Object> getListType(){
+        Map<String,Object> map=new HashMap<String, Object>();
+        map.put(AppConstant.DVD_TYPE_MUSIC, AppConstant.DVD_TYPE_MUSIC);
+        map.put(AppConstant.DVD_TYPE_MOVIE, AppConstant.DVD_TYPE_MOVIE);
+        map.put(AppConstant.DVD_TYPE_GAME, AppConstant.DVD_TYPE_GAME);
+        return map;
+    }
+    public String recovery(Dvd item) {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
         helper.update(item);

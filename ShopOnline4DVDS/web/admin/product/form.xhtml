@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <label>Title :</label><h:inputText value="#{productManagedBean.curDvd.title}"></h:inputText><br/>
+                    <label>Release Date :</label><h:inputText value="#{productManagedBean.curDvd.releaseDate}">
+                        <f:convertDateTime pattern="d-M-yyyy" />
+                    </h:inputText>d-M-yyyy<br/>
+                    <label>Genres :</label><h:inputText value="#{productManagedBean.curDvd.genres}"></h:inputText><br/>
+                    <label>Description :</label><h:inputText value="#{productManagedBean.curDvd.description}"></h:inputText><br/>
+                    <label>Price :</label><h:inputText value="#{productManagedBean.curDvd.price}"></h:inputText><br/>
+                    <label>Image Cover Url :</label><h:inputText value="#{productManagedBean.curDvd.imageCoverUrl}"></h:inputText><br/>
+                    <label>Author :</label><h:inputText value="#{productManagedBean.curDvd.author}"></h:inputText><br/>
+                    <label>Number of Disc :</label><h:inputText value="#{productManagedBean.curDvd.discNumber}"></h:inputText><br/>
+                    <label>Type :</label><h:selectOneMenu value="#{productManagedBean.curDvd.type}">
+                        <f:selectItems var="item" value="#{productManagedBean.listType}" ></f:selectItems>
+                    </h:selectOneMenu><br/>
+                    <h:panelGroup rendered="#{productManagedBean.mode eq appConstant.modeCreate}">
+                        <h:commandButton value="Create" action="#{productManagedBean.save()}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{productManagedBean.mode eq appConstant.modeEdit}">
+                        <h:commandButton value="Edit" action="#{productManagedBean.update()}"></h:commandButton>
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

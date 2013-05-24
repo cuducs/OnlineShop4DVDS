@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+// Generated May 24, 2013 5:41:42 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -12,6 +12,7 @@ public class Dvd  implements java.io.Serializable {
 
 
      private int id;
+     private String title;
      private Date releaseDate;
      private String genres;
      private String description;
@@ -35,8 +36,9 @@ public class Dvd  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Dvd(int id, Date releaseDate, String genres, String description, Double price, String imageCoverUrl, String author, Integer discNumber, Integer detailId, Integer ratePoint, Integer rateCount, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Dvd(int id, String title, Date releaseDate, String genres, String description, Double price, String imageCoverUrl, String author, Integer discNumber, Integer detailId, Integer ratePoint, Integer rateCount, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
+       this.title = title;
        this.releaseDate = releaseDate;
        this.genres = genres;
        this.description = description;
@@ -59,6 +61,13 @@ public class Dvd  implements java.io.Serializable {
     
     public void setId(int id) {
         this.id = id;
+    }
+    public String getTitle() {
+        return this.title;
+    }
+    
+    public void setTitle(String title) {
+        this.title = title;
     }
     public Date getReleaseDate() {
         return this.releaseDate;
