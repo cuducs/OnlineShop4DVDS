@@ -31,9 +31,10 @@ public class GameManageHelper extends BaseHelper{
         return instance;
     }
     public List<Game> getAllGames() {
-        session.beginTransaction();
+        Transaction beginTransaction = session.beginTransaction();
         String hql="FROM Game g WHERE g.isDeleted=0";
         Query query=session.createQuery(hql);
+        beginTransaction.commit();
         return query.list();
     }
 
@@ -56,5 +57,13 @@ public class GameManageHelper extends BaseHelper{
     void update(Game item){
         Transaction beginTransaction = session.beginTransaction();
         session.update(item);
+    }
+
+    List<Game> getAllGamesDeleted() {
+        Transaction beginTransaction = session.beginTransaction();
+        String hql="FROM Game g WHERE g.isDeleted=1";
+        Query query=session.createQuery(hql);
+        beginTransaction.commit();
+        return query.list();
     }
 }
