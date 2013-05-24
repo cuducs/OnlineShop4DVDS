@@ -11,6 +11,8 @@
             <ui:define name="content">
                 <h:form>
                     <h:link value="Return List" outcome="show"></h:link><br/>
+                    <h:link value="Recovery" outcome="recovery"></h:link><br/>
+                    <h:commandLink value="Back" action="#{gameManagedBean.back}"></h:commandLink><br/>
                     ID : #{gameManagedBean.curGame.id}<br/>
                     Title : #{gameManagedBean.curGame.title}<br/>
                     Language : #{gameManagedBean.curGame.language}<br/>

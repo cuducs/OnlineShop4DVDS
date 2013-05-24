@@ -18,7 +18,7 @@ public class SampleBean {
 
     private SampleHelper helper;
     private String mes;
-
+    
     /**
      * Creates a new instance of SampleBean
      */
