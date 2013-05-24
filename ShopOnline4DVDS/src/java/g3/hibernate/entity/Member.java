@@ -17,17 +17,26 @@ public class Member  implements java.io.Serializable {
      private String password;
      private Date joinedDate;
      private Date modifiedDate;
-     private boolean isLock;
+     private int isLock;
 
     public Member() {
     }
 
 	
-    public Member(int id, boolean isLock) {
+    public Member(int id, int isLock) {
         this.id = id;
         this.isLock = isLock;
     }
-    public Member(int id, String name, String email, String password, Date joinedDate, Date modifiedDate, boolean isLock) {
+    public Member(int id, String name, String email, String password, Date joinedDate, Date modifiedDate, int isLock) {
+       this.id = id;
+       this.name = name;
+       this.email = email;
+       this.password = password;
+       this.joinedDate = joinedDate;
+       this.modifiedDate = modifiedDate;
+       this.isLock = isLock;
+    }
+    public Member(String name, String email, String password, Date joinedDate, Date modifiedDate, int isLock) {
        this.id = id;
        this.name = name;
        this.email = email;
@@ -79,12 +88,17 @@ public class Member  implements java.io.Serializable {
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-    public boolean isIsLock() {
+    public int isIsLock() {
         return this.isLock;
     }
     
-    public void setIsLock(boolean isLock) {
+    public void setIsLock(int isLock) {
         this.isLock = isLock;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", joinedDate=" + joinedDate + ", modifiedDate=" + modifiedDate + ", isLock=" + isLock + '}';
     }
 
 

@@ -4,6 +4,11 @@
  */
 package g3.server.bean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -37,5 +42,10 @@ public class DvdStoreHibernateUtil {
     
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+    public static String currenrTime() {
+        Date d = new Date();
+        String s = (d.getMonth() + 1) + "/" + d.getDate() + "/" + (d.getYear() + 1900);
+        return s;
     }
 }
