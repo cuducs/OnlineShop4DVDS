@@ -8,13 +8,13 @@
             <column name="Id" />
             <generator class="identity" />
         </id>
-        <property name="name" type="string">
+        <property name="name" type="java.lang.String">
             <column name="Name" />
         </property>
-        <property name="email" type="string">
+        <property name="email" type="java.lang.String">
             <column name="Email" />
         </property>
-        <property name="password" type="string">
+        <property name="password" type="java.lang.String">
             <column name="Password" />
         </property>
         <property name="joinedDate" type="timestamp">
@@ -23,7 +23,7 @@
         <property name="modifiedDate" type="timestamp">
             <column name="ModifiedDate" length="23" />
         </property>
-        <property name="isLock" type="boolean">
+        <property name="isLock" type="java.lang.Integer">
             <column name="IsLock" not-null="true" />
         </property>
     </class>
