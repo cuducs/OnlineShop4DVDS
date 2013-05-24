@@ -4,6 +4,7 @@
  */
 package g3.server.bean;
 
+import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.Game;
 import java.util.Date;
 import java.util.List;
@@ -65,7 +66,7 @@ public class GameManagedBean {
         if (searchGame != null) {
             resustSearch = helper.search(searchGame);
         }
-        return "search";
+        return null;
     }
 
     public void setSearchGame(Game searchGame) {
@@ -144,5 +145,9 @@ public class GameManagedBean {
         item.setModifiedDate(new Date());
         helper.update(item);
         return "recovery";
+    }
+    public String cancel(){
+        curGame=new Game();
+        return "show";
     }
 }

@@ -24,6 +24,24 @@
             <to-view-id>/admin/game/show.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        
     </navigation-rule>
-    
+    <navigation-rule>
+        <from-view-id>/admin/product/mappinggame.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>details</from-outcome>
+            <to-view-id>/admin/game/details.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>productdetails</from-outcome>
+            <to-view-id>/admin/product/details.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/game/details.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>mappinggame</from-outcome>
+            <to-view-id>/admin/product/mappinggame.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

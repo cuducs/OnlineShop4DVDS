@@ -11,6 +11,7 @@
         <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
             <ui:define name="content">
                 <h:form>
+                    <h:commandButton value="Cancel" action="#{productManagedBean.cancel()}"></h:commandButton>
                     <label>Title :</label><h:inputText value="#{productManagedBean.curDvd.title}"></h:inputText><br/>
                     <label>Release Date :</label><h:inputText value="#{productManagedBean.curDvd.releaseDate}">
                         <f:convertDateTime pattern="d-M-yyyy" />

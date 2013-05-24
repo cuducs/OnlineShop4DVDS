@@ -23,6 +23,13 @@
                     Author : #{productManagedBean.curDvd.author}<br/>
                     Number of Disc : #{productManagedBean.curDvd.discNumber}<br/>
                     Type : #{productManagedBean.curDvd.type}<br/>
+                    Detail ID : 
+                    <h:outputText value="No ID" rendered="#{empty productManagedBean.curDvd.detailId}"></h:outputText>
+                    <h:panelGroup rendered="#{not empty productManagedBean.curDvd.detailId}">
+                        <h:outputText value="#{productManagedBean.curDvd.detailId}" ></h:outputText>
+                        <h:commandButton value="Remove Details" action="#{productManagedBean.removeDetails}"></h:commandButton>
+                    </h:panelGroup>
+                    <br/>
                     Created Date : #{productManagedBean.curDvd.createdDate}<br/>
                     Modified Date : #{productManagedBean.curDvd.modifiedDate}<br/>
                     Is Deleted : #{productManagedBean.curDvd.isDeleted}<br/>

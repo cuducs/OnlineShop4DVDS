@@ -5,6 +5,7 @@
 package g3.server.bean;
 
 import g3.hibernate.entity.Dvd;
+import g3.hibernate.entity.Game;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -66,7 +67,7 @@ public class ProductManagedBean {
         if (searchDvd != null) {
             resustSearch = helper.search(searchDvd);
         }
-        return "search";
+        return null;
     }
 
     public void setSearchDvd(Dvd searchDvd) {
@@ -151,5 +152,29 @@ public class ProductManagedBean {
         item.setModifiedDate(new Date());
         helper.update(item);
         return "recovery";
+    }
+    public String cancel(){
+        curDvd=new Dvd();
+        return "show";
+    }
+    public String prepareMap(Dvd item){
+        if(item.getDetailId()!=null){
+            return "details";
+        }
+        curDvd=item;
+        
+        return "mappinggame";
+    }
+    public String removeDetails(){
+        curDvd.setDetailId(null);
+        curDvd.setModifiedDate(new Date());
+        helper.save(curDvd);
+        return null;
+    }
+    public String mappingGame(Game item){
+        curDvd.setDetailId(item.getId());
+        curDvd.setModifiedDate(new Date());
+        helper.save(curDvd);
+        return "productdetails";
     }
 }

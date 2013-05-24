@@ -33,6 +33,7 @@
                                 <td>
                                     <h:commandButton value="Edit" action="#{productManagedBean.edit(item)}"></h:commandButton>
                                     <h:commandButton value="Del" action="#{productManagedBean.del(item)}"></h:commandButton>
+                                    <h:commandButton value="Map" action="#{productManagedBean.prepareMap(item)}" rendered="#{item.detailId eq null}"></h:commandButton>
                                 </td>
                             </tr>
                         </ui:repeat>
