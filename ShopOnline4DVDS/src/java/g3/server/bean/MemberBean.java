@@ -4,6 +4,7 @@
  */
 package g3.server.bean;
 
+import g3.hibernate.entity.Bill;
 import g3.hibernate.entity.Member;
 import java.lang.reflect.Constructor;
 import java.text.SimpleDateFormat;

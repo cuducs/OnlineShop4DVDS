@@ -17,22 +17,22 @@
         <property name="status" type="java.lang.Short">
             <column name="Status" />
         </property>
-        <property name="customerName" type="string">
+        <property name="customerName" type="java.lang.String">
             <column name="CustomerName" />
         </property>
-        <property name="deliveryAddress" type="string">
+        <property name="deliveryAddress" type="java.lang.String">
             <column name="DeliveryAddress" />
         </property>
-        <property name="phone" type="string">
+        <property name="phone" type="java.lang.String">
             <column name="Phone" length="50" />
         </property>
-        <property name="message" type="string">
+        <property name="message" type="java.lang.String">
             <column name="Message" />
         </property>
         <property name="memberId" type="java.lang.Integer">
             <column name="MemberId" />
         </property>
-        <property name="isDeleted" type="boolean">
+        <property name="isDeleted" type="java.lang.Integer">
             <column name="IsDeleted" not-null="true" />
         </property>
     </class>

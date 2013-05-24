@@ -21,17 +21,17 @@ public class Bill  implements java.io.Serializable {
      private String phone;
      private String message;
      private Integer memberId;
-     private boolean isDeleted;
+     private int isDeleted;
 
     public Bill() {
     }
 
 	
-    public Bill(int id, boolean isDeleted) {
+    public Bill(int id, int isDeleted) {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Bill(int id, Date orderDate, BigDecimal total, Short status, String customerName, String deliveryAddress, String phone, String message, Integer memberId, boolean isDeleted) {
+    public Bill(int id, Date orderDate, BigDecimal total, Short status, String customerName, String deliveryAddress, String phone, String message, Integer memberId, int isDeleted) {
        this.id = id;
        this.orderDate = orderDate;
        this.total = total;
@@ -107,11 +107,11 @@ public class Bill  implements java.io.Serializable {
     public void setMemberId(Integer memberId) {
         this.memberId = memberId;
     }
-    public boolean isIsDeleted() {
+    public int isIsDeleted() {
         return this.isDeleted;
     }
     
-    public void setIsDeleted(boolean isDeleted) {
+    public void setIsDeleted(int isDeleted) {
         this.isDeleted = isDeleted;
     }
 
