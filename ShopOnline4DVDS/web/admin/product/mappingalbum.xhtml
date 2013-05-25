@@ -26,12 +26,15 @@
                         <tr>
                             <th>Title</th>
                             <th>Details</th>
+                            <th>Command</th>
                         </tr>
                         <ui:repeat var="item" varStatus="stt" value="#{albumManagedBean.resustSearch}">
                             <tr>
                                 <td>#{item.title}</td>
                                 <td><h:commandButton value="Details" action="#{albumManagedBean.details(item)}">
-                                        <f:param name="from" value="search"></f:param>
+                                        <f:param name="from" value="mappingmovie"></f:param>
+                                    </h:commandButton></td>
+                                <td><h:commandButton value="Mapping" action="#{productManagedBean.mappingAlbum(item)}">
                                     </h:commandButton></td>
                             </tr>
                         </ui:repeat>

@@ -4,8 +4,10 @@
  */
 package g3.server.bean;
 
+import g3.hibernate.entity.Album;
 import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.Game;
+import g3.hibernate.entity.Movie;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -30,12 +32,13 @@ public class ProductManagedBean {
     private String returnFromDetails;
     private Dvd searchDvd;
     private List<Dvd> resustSearch;
+
     /**
      * Creates a new instance of ProductManagedBean
      */
     public ProductManagedBean() {
     }
-    
+
     @PostConstruct
     public void init() {
         helper = ProductManagedHelper.getInstance();
@@ -45,8 +48,7 @@ public class ProductManagedBean {
     public void end() {
         helper.close();
     }
-    
-    
+
     public List<Dvd> getResustSearch() {
         return resustSearch;
     }
@@ -141,38 +143,61 @@ public class ProductManagedBean {
     public List<Dvd> getAllDvdsDeleted() {
         return helper.getAllDvdsDeleted();
     }
-    public Map<String,Object> getListType(){
-        Map<String,Object> map=new HashMap<String, Object>();
+
+    public Map<String, Object> getListType() {
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put(AppConstant.DVD_TYPE_MUSIC, AppConstant.DVD_TYPE_MUSIC);
         map.put(AppConstant.DVD_TYPE_MOVIE, AppConstant.DVD_TYPE_MOVIE);
         map.put(AppConstant.DVD_TYPE_GAME, AppConstant.DVD_TYPE_GAME);
         return map;
     }
+
     public String recovery(Dvd item) {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
         helper.update(item);
         return "recovery";
     }
-    public String cancel(){
-        curDvd=new Dvd();
+
+    public String cancel() {
+        curDvd = new Dvd();
         return "show";
     }
-    public String prepareMap(Dvd item){
-        if(item.getDetailId()!=null){
+
+    public String prepareMap(Dvd item) {
+        if (item.getDetailId() != null) {
             return "details";
         }
-        curDvd=item;
-        
-        return "mappinggame";
+        curDvd = item;
+        if (curDvd.getType().equals(AppConstant.DVD_TYPE_GAME)) {
+            return "mappinggame";
+        }
+        if (curDvd.getType().equals(AppConstant.DVD_TYPE_MOVIE)) {
+            return "mappingmovie";
+        }
+        return "mappingalbum";
     }
-    public String removeDetails(){
+
+    public String removeDetails() {
         curDvd.setDetailId(null);
         curDvd.setModifiedDate(new Date());
         helper.save(curDvd);
         return null;
     }
-    public String mappingGame(Game item){
+
+    public String mappingGame(Game item) {
+        curDvd.setDetailId(item.getId());
+        curDvd.setModifiedDate(new Date());
+        helper.save(curDvd);
+        return "productdetails";
+    }
+    public String mappingMovie(Movie item) {
+        curDvd.setDetailId(item.getId());
+        curDvd.setModifiedDate(new Date());
+        helper.save(curDvd);
+        return "productdetails";
+    }
+    public String mappingAlbum(Album item) {
         curDvd.setDetailId(item.getId());
         curDvd.setModifiedDate(new Date());
         helper.save(curDvd);

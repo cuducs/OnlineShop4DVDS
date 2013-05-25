@@ -37,6 +37,44 @@
                             </tr>
                         </ui:repeat>
                     </table>
+                    <br/>
+                    <br/>
+                    Song Can Add:<br/>
+                    <table>
+                        <tr>
+                            <th>Title</th>
+                            <th>Details</th>
+                            <th>Command</th>
+                        </tr>
+                        <ui:repeat var="item" varStatus="stt" value="#{albumManagedBean.songCanAdd}">
+                            <tr>
+                                <td>#{item.title}</td>
+                                <td><h:commandButton value="Details" action="#{songManagedBean.details(item)}">
+                                        <f:param name="from" value="search"></f:param>
+                                    </h:commandButton></td>
+                                <td><h:commandButton value="Add" action="#{albumManagedBean.addSong(item)}"></h:commandButton></td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                    <br/>
+                    <br/>
+                    Song Added:<br/>
+                    <table>
+                        <tr>
+                            <th>Title</th>
+                            <th>Details</th>
+                            <th>Command</th>
+                        </tr>
+                        <ui:repeat var="item" varStatus="stt" value="#{albumManagedBean.songAdded}">
+                            <tr>
+                                <td>#{item.title}</td>
+                                <td><h:commandButton value="Details" action="#{songManagedBean.details(item)}">
+                                        <f:param name="from" value="search"></f:param>
+                                    </h:commandButton></td>
+                                <td><h:commandButton value="Remove" action="#{albumManagedBean.removeSong(item)}"></h:commandButton></td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
                 </h:form>
             </ui:define>
         </ui:composition>

@@ -12,15 +12,13 @@
                 <h:form>
                     <h:link value="Return List" outcome="show"></h:link><br/>
                     <h:link value="Recovery" outcome="recovery"></h:link><br/>
-                    <h:commandLink value="Back" action="#{gameManagedBean.back}"></h:commandLink><br/>
-                    ID : #{gameManagedBean.curGame.id}<br/>
-                    Title : #{gameManagedBean.curGame.title}<br/>
-                    Language : #{gameManagedBean.curGame.language}<br/>
-                    Platform : #{gameManagedBean.curGame.platform}<br/>
-                    Brand : #{gameManagedBean.curGame.brand}<br/>
-                    Created Date : #{gameManagedBean.curGame.createdDate}<br/>
-                    Modified Date : #{gameManagedBean.curGame.modifiedDate}<br/>
-                    Is Deleted : #{gameManagedBean.curGame.isDeleted}<br/>
+                    <h:commandLink value="Back" action="#{albumManagedBean.back}"></h:commandLink><br/>
+                    ID : #{albumManagedBean.curAlbum.id}<br/>
+                    Title : #{albumManagedBean.curAlbum.title}<br/>
+                    Owner : #{albumManagedBean.curAlbum.owner}<br/>
+                    Created Date : #{albumManagedBean.curAlbum.createdDate}<br/>
+                    Modified Date : #{albumManagedBean.curAlbum.modifiedDate}<br/>
+                    Is Deleted : #{albumManagedBean.curAlbum.isDeleted}<br/>
                 </h:form>
             </ui:define>
         </ui:composition>

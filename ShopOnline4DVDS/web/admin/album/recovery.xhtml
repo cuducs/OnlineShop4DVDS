@@ -18,14 +18,14 @@
                             <th>Details</th>
                             <th>Command</th>
                         </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{gameManagedBean.allGamesDeleted}">
+                        <ui:repeat var="item" varStatus="stt" value="#{albumManagedBean.allAlbumsDeleted}">
                             <tr>
                                 <td>#{item.title}</td>
-                                <td><h:commandButton value="Details" action="#{gameManagedBean.details(item)}">
+                                <td><h:commandButton value="Details" action="#{albumManagedBean.details(item)}">
                                         <f:param name="from" value="recovery"></f:param>
                                     </h:commandButton></td>
                                 <td>
-                                    <h:commandButton value="Recovery" action="#{gameManagedBean.recovery(item)}"></h:commandButton>
+                                    <h:commandButton value="Recovery" action="#{albumManagedBean.recovery(item)}"></h:commandButton>
                                 </td>
                             </tr>
                         </ui:repeat>

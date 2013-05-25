@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -10,17 +11,18 @@
         <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <h:commandButton value="Cancel" action="#{gameManagedBean.cancel()}"></h:commandButton>
-                    <label>Title</label><h:inputText value="#{gameManagedBean.curGame.title}">
+                    <h:commandButton value="Cancel" action="#{songManagedBean.cancel()}"></h:commandButton>
+                    <label>Title</label><h:inputText value="#{songManagedBean.curSong.title}"></h:inputText><br/>
+                    <label>Runtime</label><h:inputText value="#{songManagedBean.curSong.runtime}">
+                        <f:converter converterId="TimeConverter"></f:converter>
                     </h:inputText><br/>
-                    <label>Language</label><h:inputText value="#{gameManagedBean.curGame.language}"></h:inputText><br/>
-                    <label>Platform</label><h:inputText value="#{gameManagedBean.curGame.platform}"></h:inputText><br/>
-                    <label>Brand</label><h:inputText value="#{gameManagedBean.curGame.brand}"></h:inputText><br/>
-                    <h:panelGroup rendered="#{gameManagedBean.mode eq appConstant.modeCreate}">
-                        <h:commandButton value="Create" action="#{gameManagedBean.save()}"></h:commandButton>
+                    <label>Lyrics</label><h:inputText value="#{songManagedBean.curSong.lyrics}"></h:inputText><br/>
+                    <label>Free</label><h:selectBooleanCheckbox value="#{songManagedBean.curSong.isFree}"></h:selectBooleanCheckbox><br/>
+                    <h:panelGroup rendered="#{songManagedBean.mode eq appConstant.modeCreate}">
+                        <h:commandButton value="Create" action="#{songManagedBean.save()}"></h:commandButton>
                     </h:panelGroup>
-                    <h:panelGroup rendered="#{gameManagedBean.mode eq appConstant.modeEdit}">
-                        <h:commandButton value="Edit" action="#{gameManagedBean.update()}"></h:commandButton>
+                    <h:panelGroup rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
+                        <h:commandButton value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
                     </h:panelGroup>
                 </h:form>
             </ui:define>

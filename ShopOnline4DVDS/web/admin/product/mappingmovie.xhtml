@@ -13,25 +13,30 @@
                 <h:form>
                     <h:link value="Return List" outcome="show"></h:link><br/>
                     Input Search:<br/>
-                    <label>ID</label><h:inputText value="#{albumManagedBean.searchAlbum.id}">
+                    <label>ID</label><h:inputText value="#{movieManagedBean.searchMovie.id}">
                         <f:converter converterId="ZeroConverter"></f:converter>
                     </h:inputText><br/>
-                    <label>Title</label><h:inputText value="#{albumManagedBean.searchAlbum.title}">
-                    </h:inputText><br/>
-                    <label>Owner</label><h:inputText value="#{albumManagedBean.searchAlbum.owner}"></h:inputText><br/>
-                    <h:commandButton value="Search" action="#{albumManagedBean.search()}"></h:commandButton><br/>
+                    <label>Title</label><h:inputText value="#{movieManagedBean.searchMovie.title}"></h:inputText><br/>
+                    <label>Studio</label><h:inputText value="#{movieManagedBean.searchMovie.studio}"></h:inputText><br/>
+                    <label>Cast</label><h:inputText value="#{movieManagedBean.searchMovie.cast}"></h:inputText><br/>
+                    <label>Crew</label><h:inputText value="#{movieManagedBean.searchMovie.crew}"></h:inputText><br/>
+                    <label>Language</label><h:inputText value="#{movieManagedBean.searchMovie.language}"></h:inputText><br/>
+                    <h:commandButton value="Search" action="#{movieManagedBean.search()}"></h:commandButton><br/>
 
                     Result :<br/>
                     <table>
                         <tr>
                             <th>Title</th>
                             <th>Details</th>
+                            <th>Command</th>
                         </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{albumManagedBean.resustSearch}">
+                        <ui:repeat var="item" varStatus="stt" value="#{movieManagedBean.resustSearch}">
                             <tr>
                                 <td>#{item.title}</td>
-                                <td><h:commandButton value="Details" action="#{albumManagedBean.details(item)}">
-                                        <f:param name="from" value="search"></f:param>
+                                <td><h:commandButton value="Details" action="#{movieManagedBean.details(item)}">
+                                        <f:param name="from" value="mappingmovie"></f:param>
+                                    </h:commandButton></td>
+                                <td><h:commandButton value="Mapping" action="#{productManagedBean.mappingMovie(item)}">
                                     </h:commandButton></td>
                             </tr>
                         </ui:repeat>

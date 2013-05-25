@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -12,15 +13,18 @@
                 <h:form>
                     <h:link value="Return List" outcome="show"></h:link><br/>
                     <h:link value="Recovery" outcome="recovery"></h:link><br/>
-                    <h:commandLink value="Back" action="#{gameManagedBean.back}"></h:commandLink><br/>
-                    ID : #{gameManagedBean.curGame.id}<br/>
-                    Title : #{gameManagedBean.curGame.title}<br/>
-                    Language : #{gameManagedBean.curGame.language}<br/>
-                    Platform : #{gameManagedBean.curGame.platform}<br/>
-                    Brand : #{gameManagedBean.curGame.brand}<br/>
-                    Created Date : #{gameManagedBean.curGame.createdDate}<br/>
-                    Modified Date : #{gameManagedBean.curGame.modifiedDate}<br/>
-                    Is Deleted : #{gameManagedBean.curGame.isDeleted}<br/>
+                    <h:commandLink value="Back" action="#{songManagedBean.back}"></h:commandLink><br/>
+                    ID : #{songManagedBean.curSong.id}<br/>
+                    Title : #{songManagedBean.curSong.title}<br/>
+                    Runtime : 
+                    <h:outputText value="#{songManagedBean.curSong.runtime}">
+                        <f:converter converterId="TimeConverter"></f:converter>
+                    </h:outputText><br/>
+                    Lyrics : #{songManagedBean.curSong.lyrics}<br/>
+                    Free : #{songManagedBean.curSong.isFree}<br/>
+                    Created Date : #{songManagedBean.curSong.createdDate}<br/>
+                    Modified Date : #{songManagedBean.curSong.modifiedDate}<br/>
+                    Is Deleted : #{songManagedBean.curSong.isDeleted}<br/>
                 </h:form>
             </ui:define>
         </ui:composition>
