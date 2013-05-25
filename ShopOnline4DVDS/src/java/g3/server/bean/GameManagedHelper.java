@@ -5,28 +5,25 @@
 package g3.server.bean;
 
 import g3.hibernate.entity.Game;
-import java.beans.Expression;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
  *
  * @author Administrator
  */
-public class GameManageHelper extends BaseHelper {
+public class GameManagedHelper extends BaseHelper {
 
-    private static GameManageHelper instance;
+    private static GameManagedHelper instance;
 
-    private GameManageHelper() {
+    private GameManagedHelper() {
     }
 
-    public static GameManageHelper getInstance() {
+    public static GameManagedHelper getInstance() {
         if (instance == null) {
-            instance = new GameManageHelper();
+            instance = new GameManagedHelper();
         }
         return instance;
     }

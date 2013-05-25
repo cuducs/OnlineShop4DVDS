@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:link value="Return List" outcome="show"></h:link><br/>
+                    Input Search:<br/>
+                    <label>ID</label><h:inputText value="#{movieManagedBean.searchMovie.id}">
+                        <f:converter converterId="ZeroConverter"></f:converter>
+                    </h:inputText><br/>
+                    <label>Title</label><h:inputText value="#{movieManagedBean.searchMovie.title}"></h:inputText><br/>
+                    <label>Studio</label><h:inputText value="#{movieManagedBean.searchMovie.studio}"></h:inputText><br/>
+                    <label>Cast</label><h:inputText value="#{movieManagedBean.searchMovie.cast}"></h:inputText><br/>
+                    <label>Crew</label><h:inputText value="#{movieManagedBean.searchMovie.crew}"></h:inputText><br/>
+                    <label>Language</label><h:inputText value="#{movieManagedBean.searchMovie.language}"></h:inputText><br/>
+                    <h:commandButton value="Search" action="#{movieManagedBean.search()}"></h:commandButton><br/>
+
+                    Result :<br/>
+                    <table>
+                        <tr>
+                            <th>Title</th>
+                            <th>Details</th>
+                        </tr>
+                        <ui:repeat var="item" varStatus="stt" value="#{movieManagedBean.resustSearch}">
+                            <tr>
+                                <td>#{item.title}</td>
+                                <td><h:commandButton value="Details" action="#{movieManagedBean.details(item)}">
+                                        <f:param name="from" value="search"></f:param>
+                                    </h:commandButton></td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

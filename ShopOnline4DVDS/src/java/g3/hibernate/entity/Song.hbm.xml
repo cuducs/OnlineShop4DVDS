@@ -17,8 +17,8 @@
         <property name="composerId" type="java.lang.Integer">
             <column name="ComposerId" />
         </property>
-        <property name="runtime" type="binary">
-            <column name="Runtime" />
+        <property name="runtime" type="time">
+            <column name="Runtime" length="16" />
         </property>
         <property name="lyrics" type="string">
             <column name="Lyrics" />

@@ -17,7 +17,7 @@ public class Movie  implements java.io.Serializable {
      private String cast;
      private String crew;
      private Integer trailerId;
-     private byte[] runtime;
+     private Date runtime;
      private String language;
      private Date createdDate;
      private Date modifiedDate;
@@ -31,7 +31,7 @@ public class Movie  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Movie(int id, String title, String studio, String cast, String crew, Integer trailerId, byte[] runtime, String language, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Movie(int id, String title, String studio, String cast, String crew, Integer trailerId, Date runtime, String language, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.title = title;
        this.studio = studio;
@@ -87,11 +87,11 @@ public class Movie  implements java.io.Serializable {
     public void setTrailerId(Integer trailerId) {
         this.trailerId = trailerId;
     }
-    public byte[] getRuntime() {
+    public Date getRuntime() {
         return this.runtime;
     }
     
-    public void setRuntime(byte[] runtime) {
+    public void setRuntime(Date runtime) {
         this.runtime = runtime;
     }
     public String getLanguage() {

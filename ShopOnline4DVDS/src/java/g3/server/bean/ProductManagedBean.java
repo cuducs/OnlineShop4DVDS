@@ -115,6 +115,7 @@ public class ProductManagedBean {
 
     public String save() {
         curDvd.setCreatedDate(new Date());
+        curDvd.setModifiedDate(new Date());
         helper.save(curDvd);
         curDvd = null;
         return "show";

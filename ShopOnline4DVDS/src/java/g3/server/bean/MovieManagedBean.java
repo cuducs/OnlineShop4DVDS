@@ -4,8 +4,13 @@
  */
 package g3.server.bean;
 
-import g3.hibernate.entity.Game;
+import g3.hibernate.entity.Movie;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -20,24 +25,23 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class GameManagedBean {
+public class MovieManagedBean {
 
-    private Game curGame;
+    private Movie curMovie;
     private int formMode;
-    private GameManagedHelper helper;
+    private MovieManagedHelper helper;
     private String returnFromDetails;
-    private Game searchGame;
-    private List<Game> resustSearch;
-
+    private Movie searchMovie;
+    private List<Movie> resustSearch;
     /**
-     * Creates a new instance of GameManageBean
+     * Creates a new instance of MovieManagedBean
      */
-    public GameManagedBean() {
+    public MovieManagedBean() {
     }
 
     @PostConstruct
     public void init() {
-        helper = GameManagedHelper.getInstance();
+        helper = MovieManagedHelper.getInstance();
     }
 
     @PreDestroy
@@ -45,31 +49,31 @@ public class GameManagedBean {
         helper.close();
     }
 
-    public List<Game> getResustSearch() {
+    public List<Movie> getResustSearch() {
         return resustSearch;
     }
 
-    public void setResustSearch(List<Game> resustSearch) {
+    public void setResustSearch(List<Movie> resustSearch) {
         this.resustSearch = resustSearch;
     }
 
-    public Game getSearchGame() {
-        if (searchGame == null) {
-            searchGame = new Game();
+    public Movie getSearchMovie() {
+        if (searchMovie == null) {
+            searchMovie = new Movie();
         }
-        return searchGame;
+        return searchMovie;
     }
 
     public String search() {
 
-        if (searchGame != null) {
-            resustSearch = helper.search(searchGame);
+        if (searchMovie != null) {
+            resustSearch = helper.search(searchMovie);
         }
         return null;
     }
 
-    public void setSearchGame(Game searchGame) {
-        this.searchGame = searchGame;
+    public void setSearchMovie(Movie searchMovie) {
+        this.searchMovie = searchMovie;
     }
 
     public int getMode() {
@@ -80,28 +84,28 @@ public class GameManagedBean {
         this.formMode = mode;
     }
 
-    public Game getCurGame() {
-        return curGame;
+    public Movie getCurMovie() {
+        return curMovie;
     }
 
-    public void setCurGame(Game curGame) {
-        this.curGame = curGame;
+    public void setCurMovie(Movie curMovie) {
+        this.curMovie = curMovie;
     }
 
     public String create() {
-        curGame = new Game(0, false);
+        curMovie = new Movie(0, false);
         formMode = AppConstant.FORM_MODE_CREATE;
         return "form";
     }
 
-    public String edit(Game item) {
-        curGame = item;
+    public String edit(Movie item) {
+        curMovie = item;
         formMode = AppConstant.FORM_MODE_EDIT;
         return "form";
     }
 
-    public String details(Game item) {
-        curGame = item;
+    public String details(Movie item) {
+        curMovie = item;
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         returnFromDetails = params.get("from");
         return "details";
@@ -112,14 +116,15 @@ public class GameManagedBean {
     }
 
     public String save() {
-        curGame.setCreatedDate(new Date());
-        curGame.setModifiedDate(new Date());
-        helper.save(curGame);
-        curGame = null;
+        
+        curMovie.setCreatedDate(new Date());
+        curMovie.setModifiedDate(new Date());
+        helper.save(curMovie);
+        curMovie = null;
         return "show";
     }
 
-    public String del(Game item) {
+    public String del(Movie item) {
         item.setIsDeleted(true);
         item.setModifiedDate(new Date());
         helper.update(item);
@@ -127,27 +132,28 @@ public class GameManagedBean {
     }
 
     public String update() {
-        curGame.setModifiedDate(new Date());
-        helper.update(curGame);
+        curMovie.setModifiedDate(new Date());
+        helper.update(curMovie);
         return "show";
     }
 
-    public List<Game> getAllGames() {
-        return helper.getAllGames();
+    public List<Movie> getAllMovies() {
+        return helper.getAllMovies();
     }
 
-    public List<Game> getAllGamesDeleted() {
-        return helper.getAllGamesDeleted();
+    public List<Movie> getAllMoviesDeleted() {
+        return helper.getAllMoviesDeleted();
     }
 
-    public String recovery(Game item) {
+    public String recovery(Movie item) {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
         helper.update(item);
         return "recovery";
     }
-    public String cancel(){
-        curGame=new Game();
+
+    public String cancel() {
+        curMovie = new Movie();
         return "show";
     }
 }
