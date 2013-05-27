@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Products</title>
+    </h:head>
+    <h:body>
+        <c:if test="#{param['type']==null}">
+            <h2>Music</h2>
+            <table>
+                <tr>
+                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
+                </tr>
+                <c:forEach var="m" items="#{showProductBean.dvdmusic}">
+                    <tr>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                    </tr>
+                </c:forEach>
+                <tr><td colspan="4"><a href="showproduct.xhtml?type=music">More</a></td></tr>
+            </table>
+            <h2>Movie</h2>
+            <table>
+                <tr>
+                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
+                </tr>
+                <c:forEach var="m" items="#{showProductBean.dvdvideo}">
+                    <tr>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                    </tr>
+                </c:forEach>
+                <tr><td colspan="4"><a href="showproduct.xhtml?type=movie">More</a></td></tr>
+            </table>
+            <h2>Game</h2>
+            <table>
+                <tr>
+                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
+                </tr>
+                <c:forEach var="m" items="#{showProductBean.dvdgame}">
+                    <tr>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                    </tr>
+                </c:forEach>
+                <tr><td colspan="4"><a href="showproduct.xhtml?type=game">More</a></td></tr>
+            </table>
+        </c:if>
+        <c:if test="#{param['type']=='music'}">
+            <h2>Music</h2>
+            <table>
+                <tr>
+                    <th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
+                </tr>
+                <c:forEach var="m" items="#{showProductBean.dvdmusic}">
+                    <tr>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                    </tr>
+                </c:forEach>
+                <tr><td colspan="4">
+                        Pages: <c:forEach items="#{showProductBean.pageLinks}" var="p">
+                            <c:if test="#{param['page']==p.id}">
+                                <a style="color: red; font-weight: bold">#{p.id}</a> |
+                            </c:if>
+                            <c:if test="#{param['page']!=p.id}">
+                                <a href="#{p.link}">#{p.id}</a> |
+                            </c:if>
+                        </c:forEach>
+                    </td></tr>
+            </table>
+        </c:if>
+        <c:if test="#{param['type']=='movie'}">
+            <h2>Movie</h2>
+            <table>
+                <tr>
+                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
+                </tr>
+                <c:forEach var="m" items="#{showProductBean.dvdvideo}">
+                    <tr>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                    </tr>
+                </c:forEach>
+                <tr><td colspan="5">
+                        Pages: <c:forEach items="#{showProductBean.pageLinks}" var="p">
+                            <c:if test="#{param['page']==p.id}">
+                                <a style="color: red; font-weight: bold">#{p.id}</a> |
+                            </c:if>
+                            <c:if test="#{param['page']!=p.id}">
+                                <a href="#{p.link}">#{p.id}</a> |
+                            </c:if>
+                        </c:forEach>
+                    </td></tr>
+            </table>
+        </c:if>
+        <c:if test="#{param['type']=='game'}">
+            <h2>Game</h2>
+            <table>
+                <tr>
+                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
+                </tr>
+                <c:forEach var="m" items="#{showProductBean.dvdgame}">
+                    <tr>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                    </tr>
+                </c:forEach>
+                <tr><td colspan="4">
+                        Pages: <c:forEach items="#{showProductBean.pageLinks}" var="p">
+                            <c:if test="#{param['page']==p.id}">
+                                <a style="color: red; font-weight: bold">#{p.id}</a> |
+                            </c:if>
+                            <c:if test="#{param['page']!=p.id}">
+                                <a href="#{p.link}">#{p.id}</a> |
+                            </c:if>
+                        </c:forEach>
+                    </td></tr>
+            </table>
+        </c:if>
+        <a href="showproduct.xhtml">All Products</a>
+    </h:body>
+</html>

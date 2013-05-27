@@ -32,7 +32,7 @@
         <property name="memberId" type="java.lang.Integer">
             <column name="MemberId" />
         </property>
-        <property name="isDeleted" type="java.lang.Integer">
+        <property name="isDeleted" type="boolean">
             <column name="IsDeleted" not-null="true" />
         </property>
     </class>

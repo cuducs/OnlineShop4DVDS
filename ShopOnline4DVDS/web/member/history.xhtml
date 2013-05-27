@@ -39,7 +39,10 @@ and open the template in the editor.
                     </tr>
                 </c:forEach>
             </table><h:form>
-            Search by date (dd/mm/yyyy): <h:inputText value="#{billBean.orderedDate}"/><br/>
+            Search by date (dd/mm/yyyy): <h:inputText value="#{billBean.orderedDate}"/>
+            <br/>
+            <b style="color: red">#{billBean.result}</b>
+            <br/>
             <h:commandButton value="Search" action="#{billBean.search()}"/></h:form>
         </c:if>
         <c:if test="#{billBean.billSearch.size()!=0}">
