@@ -188,7 +188,7 @@ public class MemberBean {
                 String sql = "update Member set name = '" + name + "', password = '" + password + "', modifiedDate = '" + modified + "' where email = '" + mail + "'";
                 getSession().createSQLQuery(sql).executeUpdate();
                 getSession().beginTransaction().commit();
-                FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("resultok", "Change info successful!");
+                FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("result ok", "Change info successful!");
                 ss.setAttribute("member", loginCode(mail, password));
             } catch (Exception ex) {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("result", "Can not change profile at this time.");
