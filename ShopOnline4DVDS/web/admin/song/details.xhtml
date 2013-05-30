@@ -22,6 +22,14 @@
                     </h:outputText><br/>
                     Lyrics : #{songManagedBean.curSong.lyrics}<br/>
                     Free : #{songManagedBean.curSong.isFree}<br/>
+                    File :
+                    <h:panelGroup rendered="#{not (songManagedBean.curSong.fileId eq null)}">
+                        #{songManagedBean.curSong.fileId}
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{songManagedBean.curSong.fileId eq null}" >
+                        <h:commandLink value="Map File" action="mappingfile"></h:commandLink>
+                    </h:panelGroup>
+                    <br/>
                     Created Date : #{songManagedBean.curSong.createdDate}<br/>
                     Modified Date : #{songManagedBean.curSong.modifiedDate}<br/>
                     Is Deleted : #{songManagedBean.curSong.isDeleted}<br/>

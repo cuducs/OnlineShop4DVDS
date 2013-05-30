@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -14,25 +15,7 @@
                     <h:commandButton value="Create New" action="#{gameManagedBean.create}"></h:commandButton><br/>
                     <h:link value="Recovery" outcome="recovery"></h:link><br/>
                     <h:link value="Search" outcome="search"></h:link><br/>
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Details</th>
-                            <th>Command</th>
-                        </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{gameManagedBean.allGames}">
-                            <tr>
-                                <td>#{item.title}</td>
-                                <td><h:commandButton value="Details" action="#{gameManagedBean.details(item)}">
-                                        <f:param name="from" value="show"></f:param>
-                                    </h:commandButton></td>
-                                <td>
-                                    <h:commandButton value="Edit" action="#{gameManagedBean.edit(item)}"></h:commandButton>
-                                    <h:commandButton value="Del" action="#{gameManagedBean.del(item)}"></h:commandButton>
-                                </td>
-                            </tr>
-                        </ui:repeat>
-                    </table>
+                    <gct:common-list  from="show" list="#{gameManagedBean.allGames}" for="show" controller="#{gameManagedBean}"></gct:common-list>
                 </h:form>
             </ui:define>
         </ui:composition>

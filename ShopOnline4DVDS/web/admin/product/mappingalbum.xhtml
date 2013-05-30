@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -22,23 +23,7 @@
                     <h:commandButton value="Search" action="#{albumManagedBean.search()}"></h:commandButton><br/>
 
                     Result :<br/>
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Details</th>
-                            <th>Command</th>
-                        </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{albumManagedBean.resustSearch}">
-                            <tr>
-                                <td>#{item.title}</td>
-                                <td><h:commandButton value="Details" action="#{albumManagedBean.details(item)}">
-                                        <f:param name="from" value="mappingmovie"></f:param>
-                                    </h:commandButton></td>
-                                <td><h:commandButton value="Mapping" action="#{productManagedBean.mappingAlbum(item)}">
-                                    </h:commandButton></td>
-                            </tr>
-                        </ui:repeat>
-                    </table>
+                    <gct:common-list for="mappingalbum" from="mappingalbum" list="#{albumManagedBean.resustSearch}" controller="#{albumManagedBean}"></gct:common-list>
                 </h:form>
             </ui:define>
         </ui:composition>

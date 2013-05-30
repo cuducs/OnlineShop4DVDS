@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -23,58 +24,16 @@
                     <h:commandButton value="Search" action="#{songManagedBean.search()}"></h:commandButton><br/>
 
                     Result :<br/>
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Details</th>
-                        </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{songManagedBean.resustSearch}">
-                            <tr>
-                                <td>#{item.title}</td>
-                                <td><h:commandButton value="Details" action="#{songManagedBean.details(item)}">
-                                        <f:param name="from" value="search"></f:param>
-                                    </h:commandButton></td>
-                            </tr>
-                        </ui:repeat>
-                    </table>
+                    <gct:common-list controller="#{songManagedBean}" list="#{songManagedBean.resustSearch}" from="addsong" for="addsong"></gct:common-list>
+                    
                     <br/>
                     <br/>
                     Song Can Add:<br/>
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Details</th>
-                            <th>Command</th>
-                        </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{albumManagedBean.songCanAdd}">
-                            <tr>
-                                <td>#{item.title}</td>
-                                <td><h:commandButton value="Details" action="#{songManagedBean.details(item)}">
-                                        <f:param name="from" value="search"></f:param>
-                                    </h:commandButton></td>
-                                <td><h:commandButton value="Add" action="#{albumManagedBean.addSong(item)}"></h:commandButton></td>
-                            </tr>
-                        </ui:repeat>
-                    </table>
+                    <gct:common-list controller="#{songManagedBean}" list="#{albumManagedBean.songCanAdd}" from="addsong" for="addsong" target="addsong"></gct:common-list>
                     <br/>
                     <br/>
                     Song Added:<br/>
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Details</th>
-                            <th>Command</th>
-                        </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{albumManagedBean.songAdded}">
-                            <tr>
-                                <td>#{item.title}</td>
-                                <td><h:commandButton value="Details" action="#{songManagedBean.details(item)}">
-                                        <f:param name="from" value="search"></f:param>
-                                    </h:commandButton></td>
-                                <td><h:commandButton value="Remove" action="#{albumManagedBean.removeSong(item)}"></h:commandButton></td>
-                            </tr>
-                        </ui:repeat>
-                    </table>
+                    <gct:common-list controller="#{songManagedBean}" list="#{albumManagedBean.songAdded}" from="addsong" for="addsong" target="removesong"></gct:common-list>
                 </h:form>
             </ui:define>
         </ui:composition>

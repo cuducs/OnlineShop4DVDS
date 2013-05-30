@@ -18,6 +18,14 @@
                     Language : #{gameManagedBean.curGame.language}<br/>
                     Platform : #{gameManagedBean.curGame.platform}<br/>
                     Brand : #{gameManagedBean.curGame.brand}<br/>
+                    Trailer :
+                    <h:panelGroup rendered="#{not (gameManagedBean.curGame.trailerId eq null)}">
+                        #{gameManagedBean.curGame.trailerId}
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{gameManagedBean.curGame.trailerId eq null}" >
+                        <h:commandLink value="Map File" action="mappingfile"></h:commandLink>
+                    </h:panelGroup>
+                    <br/>
                     Created Date : #{gameManagedBean.curGame.createdDate}<br/>
                     Modified Date : #{gameManagedBean.curGame.modifiedDate}<br/>
                     Is Deleted : #{gameManagedBean.curGame.isDeleted}<br/>

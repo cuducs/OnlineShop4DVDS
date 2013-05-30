@@ -4,6 +4,7 @@
  */
 package g3.server.bean;
 
+import g3.hibernate.entity.FileData;
 import g3.hibernate.entity.Song;
 import java.util.Date;
 import java.util.List;
@@ -21,19 +22,20 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class SongManagedBean {
-private Song curSong;
+
+    private Song curSong;
     private int formMode;
     private SongManagedHelper helper;
     private String returnFromDetails;
     private Song searchSong;
     private List<Song> resustSearch;
+
     /**
      * Creates a new instance of MusicManagedBean
      */
     public SongManagedBean() {
     }
-    
-    
+
     @PostConstruct
     public void init() {
         helper = SongManagedHelper.getInstance();
@@ -145,8 +147,16 @@ private Song curSong;
         helper.update(item);
         return "recovery";
     }
-    public String cancel(){
-        curSong=new Song();
+
+    public String cancel() {
+        curSong = new Song();
         return "show";
+    }
+
+    public String addFile(FileData file) {
+        curSong.setFileId(file.getId());
+        curSong.setModifiedDate(new Date());
+        helper.update(curSong);
+        return "details";
     }
 }

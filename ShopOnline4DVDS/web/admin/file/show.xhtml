@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -14,25 +15,8 @@
                     <h:commandButton value="Create New" action="#{fileDataManagedBean.create}"></h:commandButton><br/>
                     <h:link value="Recovery" outcome="recovery"></h:link><br/>
                     <h:link value="Search" outcome="search"></h:link><br/>
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Details</th>
-                            <th>Command</th>
-                        </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{fileDataManagedBean.allFileDatas}">
-                            <tr>
-                                <td>#{item.title}</td>
-                                <td><h:commandButton value="Details" action="#{fileDataManagedBean.details(item)}">
-                                        <f:param name="from" value="show"></f:param>
-                                    </h:commandButton></td>
-                                <td>
-                                    <h:commandButton value="Edit" action="#{fileDataManagedBean.edit(item)}"></h:commandButton>
-                                    <h:commandButton value="Del" action="#{fileDataManagedBean.del(item)}"></h:commandButton>
-                                </td>
-                            </tr>
-                        </ui:repeat>
-                    </table>
+                    <gct:common-list controller="#{fileDataManagedBean}" list="#{fileDataManagedBean.allFileDatas}" for="show" from="show"></gct:common-list>
+                    
                 </h:form>
             </ui:define>
         </ui:composition>
