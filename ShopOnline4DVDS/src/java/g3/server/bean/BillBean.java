@@ -245,10 +245,6 @@ public class BillBean {
         return DvdStoreHibernateUtil.currenrTime();
     }
 
-    public String getCurrentTime() {
-        return DvdStoreHibernateUtil.currenrTime();
-    }
-
     public int sortLength(String s) {
         return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status = " + s).list().size();
     }
