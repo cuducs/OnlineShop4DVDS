@@ -130,7 +130,7 @@ public class BillBean {
     }
 
     public int getLength() {
-        return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0  and b.status != 2").list().size();
+        return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status != 2").list().size();
     }
 
     public List<Page> getPageLinks() {
@@ -239,6 +239,10 @@ public class BillBean {
 
     public int getDone() {
         return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status = 2").list().size();
+    }
+    
+    public String getCurrentTime(){
+        return DvdStoreHibernateUtil.currenrTime();
     }
 
     public String getCurrentTime() {

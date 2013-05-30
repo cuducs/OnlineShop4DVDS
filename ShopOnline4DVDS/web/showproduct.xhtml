@@ -5,8 +5,10 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Products</title>
     </h:head>
@@ -19,7 +21,7 @@ and open the template in the editor.
                 </tr>
                 <c:forEach var="m" items="#{showProductBean.dvdmusic}">
                     <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
                     </tr>
                 </c:forEach>
                 <tr><td colspan="4"><a href="showproduct.xhtml?type=music">More</a></td></tr>
@@ -31,7 +33,7 @@ and open the template in the editor.
                 </tr>
                 <c:forEach var="m" items="#{showProductBean.dvdvideo}">
                     <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
                     </tr>
                 </c:forEach>
                 <tr><td colspan="4"><a href="showproduct.xhtml?type=movie">More</a></td></tr>
@@ -43,7 +45,7 @@ and open the template in the editor.
                 </tr>
                 <c:forEach var="m" items="#{showProductBean.dvdgame}">
                     <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
                     </tr>
                 </c:forEach>
                 <tr><td colspan="4"><a href="showproduct.xhtml?type=game">More</a></td></tr>
@@ -57,7 +59,7 @@ and open the template in the editor.
                 </tr>
                 <c:forEach var="m" items="#{showProductBean.dvdmusic}">
                     <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
                     </tr>
                 </c:forEach>
                 <tr><td colspan="4">
@@ -80,7 +82,7 @@ and open the template in the editor.
                 </tr>
                 <c:forEach var="m" items="#{showProductBean.dvdvideo}">
                     <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
                     </tr>
                 </c:forEach>
                 <tr><td colspan="5">
@@ -103,7 +105,7 @@ and open the template in the editor.
                 </tr>
                 <c:forEach var="m" items="#{showProductBean.dvdgame}">
                     <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td>#{m.title}</td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
+                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
                     </tr>
                 </c:forEach>
                 <tr><td colspan="4">
