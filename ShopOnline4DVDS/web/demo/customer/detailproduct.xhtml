@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/customerTemplate.xhtml">
+            <ui:define name="content">
+
+                <!--main content of product detail-->
+                <div id="divCatalogueContainer" class="product-department" style="margin-right: 0px;">
+                    <div class="product-page">
+                        <div class="product">
+                            <h3 id="h3ProductName">
+                                Fennel (1 head)</h3>
+                            <div id="divProductImgStatic">
+                                <div class="img">
+                                    <img src="/ShopOnline4DVDS/resources/customer/images/COF03_XL.jpg" id="imgProduct" class="product-image" alt="no image"/>
+                                </div>
+                            </div>
+                            <div class="product-text">
+                                <h4 id="h4ProductPrice">
+                                    £1.65</h4>
+                                <div id="pdStandardUP">
+                                    <div>
+                                        <p class="in-basket">
+                                        </p>
+                                        <p>
+                                            <span id="lblqty" class="lblqty">qty</span>
+                                            <input name="txtQuantity" type="text" value="1" maxlength="2" id="txtQuantity" class="qty"/>
+                                        </p>
+                                        <p>
+                                            <input type="button" name="ibAddToBasket" value="add" id="ibAddToBasket" class="btn"
+                                                   onclick=""/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <h5 id="h5PricePerKg">
+                                </h5>
+                            </div>
+                            <div class="product-icons">
+                                <div id="imgOrganic">
+                                    <img src="/ShopOnline4DVDS/resources/customer/images/icon-organic-l.gif" title="Organic" alt="Organic Icon"/>
+                                    <div class="orange">
+                                        - organic</div>
+                                </div>
+                                <div id="imgVegetarian">
+                                    <img src="/ShopOnline4DVDS/resources/customer/images/icon-vegetarian-l.gif" title="Vegetarian" alt="Vegetarian Icon"/>
+                                    <div>
+                                        - vegetarian</div>
+                                </div>
+                            </div>
+                            <div id="pnlProductTabs">
+                                <div class="product-tabs">
+                                    <ul>
+                                        <li id="description" class="single-tab-closed"><a id="a_description" class="current-active"
+                                                                                          href="">description</a> </li>
+                                        <li id="producer" class="single-tab-closed"><a id="a_producer" class="" href="">
+                                                producer</a> </li>
+                                        <li id="ingredients" class="single-tab-open"><a id="a_ingredients" class="" href="">
+                                                ingredients</a> </li>
+                                        <li id="nutrition" class="single-tab-closed"><a id="a_nutrition" class="" href="">
+                                                nutrition</a> </li>
+                                        <li id="storageprep" class="double-tab-closed"><a id="a_storageprep" class="" href="">
+                                                storageprep</a> </li>
+                                    </ul>
+                                    <div id="ulTabsDivs" class="tabs">
+                                        <div id="divdescription" style="display: block;" class="description">
+                                        </div>
+                                        <div id="divproducer" style="display: none;" class="producer">
+                                        </div>
+                                        <div id="divingredients" style="display: none;" class="ingredients">
+                                        </div>
+                                        <div id="divnutrition" style="display: none;" class="nutrition">
+                                        </div>
+                                        <div id="divstorageprep" style="display: none;" class="storageprep">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

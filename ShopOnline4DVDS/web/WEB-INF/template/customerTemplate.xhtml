@@ -5,15 +5,76 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Customer</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
+        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/customer/css/product_page_style.css"/>
+
+        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/customer/css/delivery_order_style.css"/>
+        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/customer/css/base_style.css"/>
+        <script type="text/javascript" src="/ShopOnline4DVDS/resources/customer/js/jquery-1.7.js"></script>
+        <script type="text/javascript" src="/ShopOnline4DVDS/resources/customer/js/jquery.tools.min.js"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+    
+            function loadJquery()
+            {
+                $('img.help').tooltip({tip: '#tooltip-help', position: 'center right', offset: [6, 5], delay: 500, effect: 'fade' });
+                $(document).ready(function(){
+                    $('#future-delivery img.edit, #next-delivery img.edit').tooltip({tip: '#tooltip-edit', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
+                    $('#future-delivery img.skip, #next-delivery img.skip').tooltip({tip: '#tooltip-skip', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
+                    $('#future-delivery img.delete, #next-delivery img.delete').tooltip({tip: '#tooltip-delete', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
+                    $('#next-delivery img.edit-packed').tooltip({tip: '#tooltip-edit-packed', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
+                });
+            }
+            //]]>
+        </script>
+        <title>Product</title>
     </h:head>
-    <h:body>
-        Customer Template
-        <ui:insert name="content" >
+    <h:body onload="loadJquery()">
+        <div id="container">
+            <ui:insert name="customertopmenu">
+                <ui:include src="fragment/customertopmenu.xhtml">
 
-        </ui:insert>
+                </ui:include>
+            </ui:insert>
+            <div id="main">
 
+
+                <ui:insert name="customerlogo">
+                    <ui:include src="fragment/customerlogo.xhtml">
+
+                    </ui:include>
+                </ui:insert>
+                <!--main inner-->
+                <div id="main-inner">
+                    <ui:insert name="customerrightbar">
+                        <ui:include src="fragment/customerrightbar.xhtml">
+
+                        </ui:include>
+                    </ui:insert>
+                    <!--right menu-->
+
+
+                    <!--main content-->
+                    <div id="maincol">
+                        <ui:insert name="content_wrapcategory">
+                            <ui:insert name="category">
+                                <ui:include src="fragment/category.xhtml"></ui:include>
+                            </ui:insert>
+                            <ui:insert name="content" >
+                                here is main display
+                            </ui:insert>
+                        </ui:insert>
+                    </div>
+                </div>
+            </div>
+            <ui:insert name="customerfooter">
+                <ui:include src="fragment/customerfooter.xhtml">
+
+                </ui:include>
+            </ui:insert>
+
+        </div>
     </h:body>
 </html>
 

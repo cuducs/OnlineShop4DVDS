@@ -1,0 +1,357 @@
+﻿/*===================================
+	ACCOUNT PAGES
+===================================*/
+.my-account
+{
+	margin: 0 278px 0 190px;
+	font-size: 1.2em;
+}
+
+.unsubscribe
+{
+	font-size: 1.2em;
+}
+
+.my-account .start-shopping
+{
+	margin: 0 0 0 20px;
+}
+
+.my-account .grid
+{
+	font-size: 0.857em;
+}
+
+.my-account.delivery-address .work-address label, .my-account.delivery-address .work-address input
+{
+	float: left;
+}
+
+.my-account.delivery-address .work-address label
+{
+	margin-right: 60px;
+	padding-top: 5px;
+}
+
+.my-account.delivery-address .item
+{
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+.my-account.delivery-address .btn
+{
+	float: right; /*	font-size: 1.166em;*/
+}
+
+.my-account.delivery-address textarea
+{
+	width: 400px;
+}
+
+.my-account .btn-back
+{
+	float: left;
+	border: none;
+}
+
+.my-account .btn-submit
+{
+	float: right;
+	border: none;
+}
+
+.my-account.change-address p
+{
+	margin-bottom: 20px;
+}
+
+.my-account.change-address textarea
+{
+	width: 100%;
+	height: 80px;
+}
+
+.my-account.change-address .progress
+{
+	margin-bottom: 30px;
+}
+
+.my-account.change-address.step1 label, .my-account.change-address.step3 label
+{
+	display: inline;
+}
+
+.my-account.change-address .form-multi-select
+{
+	width: 100%;
+	height: 80px;
+}
+
+.my-account.change-address.step3 dl
+{
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.my-account.change-address.step3 dl dt
+{
+	float: left;
+	margin-right: 20px;
+}
+.my-account.change-address.step3 dl dd
+{
+	float: left;
+}
+
+
+
+h3.blue
+{
+color:#1677DA;
+margin-top:5px;
+}
+
+
+.my-account-deliveries p, .my-account-confirm-order p, .my-account-order-placed p
+{
+	margin-bottom: 20px;
+}
+
+.my-account-deliveries .order-sum, .my-account-order-placed .order-sum, .my-account-confirm-order .order-sum
+{
+	font-size: .9em;
+}
+
+.my-account-deliveries .order-sum a, .my-account-order-placed .order-sum a
+{
+	color: #000000;
+}
+
+.my-account-deliveries .order-sum a:hover, .my-account-order-placed .order-sum a:hover
+{
+	color: #597D39;
+}
+
+.my-account-deliveries
+{
+	margin-bottom: 20px;
+}
+
+.my-account-order-placed
+{
+	position: relative;
+}
+
+.my-account-order-placed .col-description
+{
+	width: 300px;
+}
+.my-account-order-placed .col-qty
+{
+	width: 64px;
+	text-align: center;
+}
+.my-account-order-placed .col-qty .add
+{
+	margin-right: 25px;
+	text-align: center;
+}
+.my-account-order-placed .col-frequency
+{
+	text-align: left;
+	width: 95px;
+}
+.my-account-order-placed .col-promotions
+{
+	width: 95%;
+}
+.my-account-order-placed .col-ends
+{
+	text-align: right;
+}
+
+.my-account-confirm-order .basket, .my-account-order-placed .basket
+{
+	padding-bottom: 10px;
+	right: 0px;
+}
+
+.my-account-confirm-order
+{
+}
+
+h3.forgotten-something, h3.price-changes
+{
+	margin-bottom: 0px;
+}
+
+.order-sum.no-change
+{
+	margin-bottom: 30px;
+}
+
+.my-account-deliveries .sign-browse-shop
+{
+	float: right;
+}
+
+h3.place-your-order
+{
+	background: url("../images/layout/place-your-order.gif") no-repeat 0 0;
+	width: 261px;
+	height: 34px;
+	padding-bottom: 10px;
+}
+
+h3.you-havent-finished-yet
+{
+	background: url("../images/layout/you-havent-finished-yet.gif") no-repeat 0 0;
+	width: 401px;
+	height: 44px;
+}
+
+h3.order-placed
+{
+	background: url("../images/layout/thank-you-placed-order.gif") no-repeat 0 0;
+	width: 428px;
+	height: 80px;
+	padding-bottom: 10px;
+}
+
+h3.some-failed
+{
+	background: url("../images/layout/items-could-not-be-placed.gif") no-repeat 0 0;
+	width: 428px;
+	height: 80px;
+}
+
+h3.all-failed
+{
+	background: url("../images/layout/could-not-place-order.gif") no-repeat 0 0;
+	width: 410px;
+	height: 80px;
+}
+
+h3.promotions
+{
+	background: url("../images/layout/promotions.gif") no-repeat 0 0;
+	width: 86px;
+	height: 33px;
+}
+
+.my-account-deliveries .sign-browse-shop a, .my-account-order-placed .sign-browse-shop a, .my-account-order-placed .view-deliveries a
+{
+	margin: 0 0 0 30px;
+	display: block;
+	width: 150px;
+	height: 131px;
+	text-indent: -1000em;
+	background: url("../images/promo/sign-browse-the-shop.gif") no-repeat 0 0;
+}
+.my-account-order-placed .sign-browse-shop a
+{
+	margin: 10px 0 0 500px;
+}
+.my-account-deliveries .sign-browse-shop a:hover, .my-account-order-placed .sign-browse-shop a:hover
+{
+	background-position: 0 100%;
+}
+.my-account-order-placed .view-deliveries a
+{
+	background: url("../images/layout/btn-view-deliveries.gif") no-repeat 0 0;
+	width: 117px;
+	height: 37px;
+	margin: 10px 0 0 530px;
+	padding: 0;
+}
+.my-account-order-placed .view-deliveries a:hover
+{
+	background-position: 0 100%;
+}
+
+.my-account-order-placed .order-sum.no-change
+{
+	margin-bottom: 0;
+}
+
+.main-col.my-account-likes
+{
+	margin: 0 278px 0 190px;
+}
+
+.my-account-likes .image
+{
+	float: right;
+	margin-bottom: 20px;
+}
+
+.my-account-likes .note-more-boxes
+{
+	margin-top: 20px;
+	display: block;
+	width: 162px;
+	height: 113px;
+	text-indent: -1000em;
+	background: url("../images/promo/more-about-boxes.gif") no-repeat 0 0;
+}
+.my-account-likes .note-more-boxes:hover
+{
+	background-position: 0 -113px;
+}
+
+.my-account-likes .copy
+{
+	width: 270px;
+	line-height: 1.3em;
+}
+
+.my-account-likes .copy p
+{
+	margin-bottom: 1.4em;
+}
+
+.my-account-likes .letters
+{
+	margin-bottom: 10px;
+	list-style: none;
+	-size: 1.6em;
+	text-align: left;
+	font-size: 18px;
+}
+
+.my-account-likes .letters li
+{
+	display: inline;
+}
+
+.my-account-likes .letters a
+{
+	color: #000;
+}
+
+.my-account-likes .letters a:hover, .my-account-likes .letters a.active
+{
+	color: #DC8E3A;
+}
+
+.my-account-likes .settings th.col-desc
+{
+	font-size: 1em;
+}
+
+.my-account-likes p, .my-account-likes a.boxname
+{
+	font-size: 1.2em;
+}
+
+.my-account-likes select
+{
+	font-size: 1.2em;
+}
+
+.my-account-likes option
+{
+	padding-right: 20px;
+}
+
+
