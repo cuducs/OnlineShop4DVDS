@@ -98,7 +98,7 @@ public class BillBean {
     }
 
     public List<Bill> getBillAdmin() {
-        String sqlQuery = "FROM Bill b where b.isDeleted = 0 and b.status != 2";
+        String sqlQuery = "FROM Bill b where b.isDeleted = 0";
         return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
     }
 
@@ -130,7 +130,7 @@ public class BillBean {
     }
 
     public int getLength() {
-        return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status != 2").list().size();
+        return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0").list().size();
     }
 
     public List<Page> getPageLinks() {
@@ -161,8 +161,6 @@ public class BillBean {
             if (detailId == 0) {
                 detailId = 1;
             }
-            HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-            ss.setAttribute("bId", detailId);
         } catch (Exception ex) {
             detailId = 1;
         }
@@ -240,10 +238,6 @@ public class BillBean {
     public int getDone() {
         return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status = 2").list().size();
     }
-    
-    public String getCurrentTime(){
-        return DvdStoreHibernateUtil.currenrTime();
-    }
 
     /**
      * **********************FUNCTIONS************************************************
@@ -264,6 +258,12 @@ public class BillBean {
             }
             setAdminSearch(l);
         }
+    }
+
+    public String view(Bill b) {
+        HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        ss.setAttribute("bId", b.getId());
+        return "detail.xhtml?faces-redirect=true&detail=" + b.getId();
     }
 
     public String update() {

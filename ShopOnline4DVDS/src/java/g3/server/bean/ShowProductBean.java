@@ -5,14 +5,12 @@
 package g3.server.bean;
 
 import g3.hibernate.entity.Dvd;
-import g3.hibernate.entity.FileData;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 
 /**
@@ -35,13 +33,6 @@ public class ShowProductBean {
     private int length = 0;
     private String sort;
     private List<Page> pageLinks;//paging links
-    private String detailId;//for view detail
-    private String detailType;//for view detail relation with
-    private Dvd detail;
-    private List<Dvd> others;
-    private String query;
-    private String trailerUrl;
-
     public ShowProductBean() {
     }
 
@@ -86,7 +77,7 @@ public class ShowProductBean {
     public List<Page> getPageLinks() {
         HttpServletRequest rq = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String s = "";
-        if (rq.getParameter("type") != null) {
+        if(rq.getParameter("type")!=null){
             s = rq.getParameter("type");
         }
         int number = getLength(s) / itemsPerPage;
@@ -95,7 +86,7 @@ public class ShowProductBean {
         }
         pageLinks = new ArrayList<Page>();
         for (int i = 1; i < number + 1; i++) {
-            pageLinks.add(new Page(i, "showproduct.xhtml?type=" + s + "&page=" + i));
+            pageLinks.add(new Page(i, "showproduct.xhtml?type="+s+"&page=" + i));
         }
         return pageLinks;
     }
@@ -103,9 +94,9 @@ public class ShowProductBean {
     public void setPageLinks(List<Page> pageLinks) {
         this.pageLinks = pageLinks;
     }
-
-    public int getLength(String type) {
-        return getSession().createQuery("FROM Dvd d WHERE d.isDeleted = 0 and d.type = '" + type + "'").list().size();
+    
+    public int getLength(String type){
+        return getSession().createQuery("FROM Dvd d WHERE d.isDeleted = 0 and d.type = '"+type+"'").list().size();
     }
 
     public String getSort() {
@@ -121,59 +112,6 @@ public class ShowProductBean {
         }
         return sort;
     }
-
-    public String getDetailId() {
-        HttpServletRequest rq = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        String so = "";
-        try {
-            so = rq.getParameter("detail");
-            if (detailId != "") {
-                detailId = so.split("/")[0];
-                setDetailType(so.split("/")[1]);
-            } else {
-                detailId = "1";
-                setDetailType("music");
-            }
-        } catch (Exception ex) {
-            detailId = "1";
-            setDetailType("music");
-        }
-        return detailId;
-    }
-
-    public void setDetailId(String detailId) {
-        this.detailId = detailId;
-    }
-
-    public Dvd getDetail() {
-        String q = "FROM Dvd d WHERE d.isDeleted = 0 and d.id = " + getDetailId();
-        Dvd d = (Dvd) getSession().createQuery(q).uniqueResult();
-        return d;
-    }
-
-    public List<Dvd> getOthers() {
-        String q = "FROM Dvd d WHERE d.isDeleted = 0 and d.type = '" + getDetailType() + "'";
-        List<Dvd> d = getSession().createQuery(q).list();
-        return d;
-    }
-
-    public String getDetailType() {
-        return detailType;
-    }
-
-    public void setDetailType(String detailType) {
-        this.detailType = detailType;
-    }
-
-    public String getTrailerUrl() {
-        try {
-            Dvd d = getDetail();
-            String q = "FROM FileData f WHERE f.isDeleted = 0 and f.id = " + d.getDetailId();
-            FileData f = (FileData) getSession().createQuery(q).uniqueResult();
-            trailerUrl = f.getUrl();
-        } catch (Exception ex) {
-            trailerUrl = "";
-        }
-        return trailerUrl;
-    }
+    
+    
 }
