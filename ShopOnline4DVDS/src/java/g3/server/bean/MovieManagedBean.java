@@ -4,6 +4,7 @@
  */
 package g3.server.bean;
 
+import g3.hibernate.entity.FileData;
 import g3.hibernate.entity.Movie;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -155,5 +156,11 @@ public class MovieManagedBean {
     public String cancel() {
         curMovie = new Movie();
         return "show";
+    }
+    public String addFile(FileData file){
+        curMovie.setTrailerId(file.getId());
+        curMovie.setModifiedDate(new Date());
+        helper.update(curMovie);
+        return "details";
     }
 }

@@ -4,6 +4,7 @@
  */
 package g3.server.bean;
 
+import g3.hibernate.entity.FileData;
 import g3.hibernate.entity.Game;
 import java.util.Date;
 import java.util.List;
@@ -149,5 +150,12 @@ public class GameManagedBean {
     public String cancel(){
         curGame=new Game();
         return "show";
+    }
+    
+    public String addFile(FileData file){
+        curGame.setTrailerId(file.getId());
+        curGame.setModifiedDate(new Date());
+        helper.update(curGame);
+        return "details";
     }
 }

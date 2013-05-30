@@ -152,6 +152,15 @@ public class ProductManagedBean {
         return map;
     }
 
+    public Map<String, Object> getListTypeSearch() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("All", null);
+        map.put(AppConstant.DVD_TYPE_MUSIC, AppConstant.DVD_TYPE_MUSIC);
+        map.put(AppConstant.DVD_TYPE_MOVIE, AppConstant.DVD_TYPE_MOVIE);
+        map.put(AppConstant.DVD_TYPE_GAME, AppConstant.DVD_TYPE_GAME);
+        return map;
+    }
+
     public String recovery(Dvd item) {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
@@ -191,12 +200,14 @@ public class ProductManagedBean {
         helper.save(curDvd);
         return "productdetails";
     }
+
     public String mappingMovie(Movie item) {
         curDvd.setDetailId(item.getId());
         curDvd.setModifiedDate(new Date());
         helper.save(curDvd);
         return "productdetails";
     }
+
     public String mappingAlbum(Album item) {
         curDvd.setDetailId(item.getId());
         curDvd.setModifiedDate(new Date());

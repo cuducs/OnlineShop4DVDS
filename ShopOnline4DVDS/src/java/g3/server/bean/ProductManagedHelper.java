@@ -97,7 +97,7 @@ public class ProductManagedHelper extends BaseHelper {
         if(searchDvd.getDiscNumber()!=null){
             criteria.add(Expression.eq("discNumber", searchDvd.getDiscNumber()));
         }
-        if(searchDvd.getType()!=""){
+        if(searchDvd.getType()!=null){
             criteria.add(Expression.eq("type", searchDvd.getType()));
         }
         return criteria.list();

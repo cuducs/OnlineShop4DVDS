@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Details</th>
+                    <th>Command</th>
+                </tr>
+                <ui:repeat var="item" varStatus="stt" value="#{list}">
+                    <tr>
+                        <td>#{item.title}</td>
+                        <td><h:selectOneMenu value="#{item.type}">
+                                <f:selectItems var="item" value="#{productManagedBean.listType}" ></f:selectItems>
+                            </h:selectOneMenu>
+                        </td>
+                        <td><h:commandButton value="Details" action="#{controller.details(item)}">
+                                <f:param name="from" value="#{from}"></f:param>
+                            </h:commandButton></td>
+                        <td>
+                            <h:panelGroup rendered="#{for eq 'show'}">
+                                <h:commandButton value="Edit" action="#{controller.edit(item)}"></h:commandButton>
+                                <h:commandButton value="Del" action="#{controller.del(item)}"></h:commandButton>
+                                <h:commandButton value="Map" action="#{productManagedBean.prepareMap(item)}" rendered="#{item.detailId eq null}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{for eq 'recovery'}">
+                                <h:commandButton value="Recovery" action="#{controller.recovery(item)}"></h:commandButton>
+                            </h:panelGroup>
+
+
+
+                        </td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </ui:composition>
+    </h:body>
+</html>
+

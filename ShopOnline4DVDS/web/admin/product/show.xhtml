@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -14,30 +15,8 @@
                     <h:commandButton value="Create New" action="#{productManagedBean.create}"></h:commandButton><br/>
                     <h:link value="Recovery" outcome="recovery"></h:link><br/>
                     <h:link value="Search" outcome="search"></h:link><br/>
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Type</th>
-                            <th>Details</th>
-                            <th>Command</th>
-                        </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{productManagedBean.allDvds}">
-                            <tr>
-                                <td>#{item.title}</td>
-                                <td><h:selectOneMenu value="#{item.type}">
-                                        <f:selectItems var="item" value="#{productManagedBean.listType}" ></f:selectItems>
-                                    </h:selectOneMenu></td>
-                                <td><h:commandButton value="Details" action="#{productManagedBean.details(item)}">
-                                        <f:param name="from" value="show"></f:param>
-                                    </h:commandButton></td>
-                                <td>
-                                    <h:commandButton value="Edit" action="#{productManagedBean.edit(item)}"></h:commandButton>
-                                    <h:commandButton value="Del" action="#{productManagedBean.del(item)}"></h:commandButton>
-                                    <h:commandButton value="Map" action="#{productManagedBean.prepareMap(item)}" rendered="#{item.detailId eq null}"></h:commandButton>
-                                </td>
-                            </tr>
-                        </ui:repeat>
-                    </table>
+                    <gct:product-list controller="#{productManagedBean}" list="#{productManagedBean.allDvds}" for="show" from="show"></gct:product-list>
+                    
                 </h:form>
             </ui:define>
         </ui:composition>

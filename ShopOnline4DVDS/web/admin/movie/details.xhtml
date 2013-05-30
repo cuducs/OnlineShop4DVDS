@@ -24,6 +24,14 @@
                         <f:converter converterId="TimeConverter"></f:converter>
                     </h:outputText><br/>
                     Language : #{movieManagedBean.curMovie.language}<br/>
+                    Trailer :
+                    <h:panelGroup rendered="#{not (movieManagedBean.curMovie.trailerId eq null)}">
+                        #{movieManagedBean.curMovie.trailerId}
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{movieManagedBean.curMovie.trailerId eq null}" >
+                        <h:commandLink value="Map File" action="mappingfile"></h:commandLink>
+                    </h:panelGroup>
+                    <br/>
                     Created Date : #{movieManagedBean.curMovie.createdDate}<br/>
                     Modified Date : #{movieManagedBean.curMovie.modifiedDate}<br/>
                     Is Deleted : #{movieManagedBean.curMovie.isDeleted}<br/>
