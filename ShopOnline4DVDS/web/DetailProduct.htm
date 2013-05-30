@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css/base_style.css" />
+    <link rel="stylesheet" type="text/css" href="css/product_page_style.css"/>
+    <title>Detail</title>
+</head>
+<body onload="loadJquery()">
+    <div id="container">
+        <div id="top">
+            <ul class="nav">
+                <li class="nav-home"><a href="">Homes</a></li>
+                <li class="nav-start"><a href="">Start Shopping</a></li>
+                <li class="nav-pay"><a href="">Payment</a></li>
+                <li class="nav-help"><a href="">help</a></li>
+                <li class="nav-about"><a href="">About us</a></li>
+            </ul>
+            <p id="callus">
+                <a href=""></a>
+            </p>
+        </div>
+        <div id="main">
+            <div id="head">
+                <div id="logo">
+                    <a href=""></a>Abel &amp; Cole good food, the right way
+                </div>
+                <div style="position: absolute; right: 20px; bottom: 22px;">
+                    <div onkeypress="">
+                        <input name="txtSearch" type="text" id="txtSearch" autocomplete="off" />
+                        <input type="submit" name="btnSearch" id="btnSearch" value="search" class="btn" />
+                    </div>
+                </div>
+                <div id="log-btns">
+                    <div style="position: absolute; right: 180px; top: -1px;" class="BoldChatIE">
+                    </div>
+                    <div class="signup-button">
+                        <a id="a_signup" href="" class="signup"></a>
+                    </div>
+                    <a id="a_login" href="" class="login"></a>
+                </div>
+            </div>
+            <!--main inner-->
+            <div id="main-inner">
+                <!--right menu-->
+                <div id="sidecol" class="sidecol">
+                    <div class="notepad">
+                        <div class="inner">
+                            <h2 class="heading info-for-all">
+                                <span></span>information for all new customers...</h2>
+                            <p>
+                                To order with Abel &amp; Cole you will need to create an account...</p>
+                            <p class="list-intro">
+                                For this, you'll need</p>
+                            <ol class="info-for-new">
+                                <li>A valid email address</li>
+                                <li>A valid delivery address</li>
+                            </ol>
+                            <p>
+                                Please have to hand your credit/debit card, full address and contact details.</p>
+                            <p>
+                                <a href="">Need more help? Click here.</a></p>
+                        </div>
+                    </div>
+                    <div style="overflow: hidden;">
+                    </div>
+                    <div id="box-basket">
+                        <div class="notepad shopping-basket">
+                            <div class="inner">
+                                <h2 class="heading">
+                                    <span></span>shopping basket
+                                </h2>
+                                <div class="totals">
+                                    <span class="items"><span>0 items in basket' </span></span><span class="cost"><span>
+                                        Total = £ 0.0 </span></span>
+                                </div>
+                                <table class="tbl-basket">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="3" class="head">
+                                                <span id="LblEmpty" class="items">There's nothing in your basket!</span>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <p class="checkout">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div style="height: 10px">
+                    </div>
+                </div>
+                <!--main content-->
+                <div id="maincol">
+                     <!--content of category-->
+                    <div id="dvBrowseByCategory" class="Refine-nav">
+                        <h3 class="RefineHeading">
+                            Browse by Category</h3>
+                        <a href=""></a>
+                        <div id="tvBrowseByCategoryFilters">
+                            <table cellpadding="0" cellspacing="0" style="border-width: 0;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a class="tvBrowseByCategoryFilters_0" href="">
+                                                <h4 class="trigger">
+                                                    Fruit &amp; veg</h4>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table cellpadding="0" cellspacing="0" style="border-width: 0;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a class="tvBrowseByCategoryFilters_0" href="">
+                                                <h4 class="trigger">
+                                                    Dairy &amp; eggs</h4>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table cellpadding="0" cellspacing="0" style="border-width: 0;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a class="tvBrowseByCategoryFilters_0" href="">
+                                                <h4 class="trigger">
+                                                    Bakery</h4>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table cellpadding="0" cellspacing="0" style="border-width: 0;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a class="tvBrowseByCategoryFilters_0" href="">
+                                                <h4 class="trigger">
+                                                    Meat</h4>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <a id="SkipLink"></a>
+                        <h3 class="RefineHeading">
+                            Only Show Me</h3>
+                        <a href="" id="lnkFilter"><span id="lbFilter" class="OnlyShowMeLabel">Fruit &amp; veg</span>
+                        </a>
+                        <br>
+                        <a href="" id="lnkFilter"><span id="lbFilter" class="OnlyShowMeLabel">Dairy &amp; eggs</span>
+                        </a>
+                        <br>
+                        <a href="" id="lnkFilter"><span id="lbFilter" class="OnlyShowMeLabel">Bakery</span>
+                        </a>
+                        <br>
+                        <a href="" id="lnkFilter"><span id="lbFilter" class="OnlyShowMeLabel">Meat</span>
+                        </a>
+                        <br>
+                        <div id="dvOnlyShowMeFilters" class="ShopOnlyShowMe">
+                        </div>
+                    </div>
+                    
+                    <!--main content of product detail-->
+                    <div id="divCatalogueContainer" class="product-department" style="margin-right: 0px;">
+                        <div class="product-page">
+                            <div class="product">
+                                <h3 id="h3ProductName">
+                                    Fennel (1 head)</h3>
+                                <div id="divProductImgStatic">
+                                    <div class="img">
+                                        <img src="images/COF03_XL.jpg" id="imgProduct" class="product-image" alt="no image">
+                                    </div>
+                                </div>
+                                <div class="product-text">
+                                    <h4 id="h4ProductPrice">
+                                        £1.65</h4>
+                                    <div id="pdStandardUP">
+                                        <div>
+                                            <p class="in-basket">
+                                            </p>
+                                            <p>
+                                                <span id="lblqty" class="lblqty">qty</span>
+                                                <input name="txtQuantity" type="text" value="1" maxlength="2" id="txtQuantity" class="qty">
+                                            </p>
+                                            <p>
+                                                <input type="button" name="ibAddToBasket" value="add" id="ibAddToBasket" class="btn"
+                                                    onclick="">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <h5 id="h5PricePerKg">
+                                    </h5>
+                                </div>
+                                <div class="product-icons">
+                                    <div id="imgOrganic">
+                                        <img src="images/icon-organic-l.gif" title="Organic" alt="Organic Icon">
+                                        <div class="orange">
+                                            - organic</div>
+                                    </div>
+                                    <div id="imgVegetarian">
+                                        <img src="images/icon-vegetarian-l.gif" title="Vegetarian" alt="Vegetarian Icon">
+                                        <div>
+                                            - vegetarian</div>
+                                    </div>
+                                </div>
+                                <div id="pnlProductTabs">
+                                    <div class="product-tabs">
+                                        <ul>
+                                            <li id="description" class="single-tab-closed"><a id="a_description" class="current-active"
+                                                href="">description</a> </li>
+                                            <li id="producer" class="single-tab-closed"><a id="a_producer" class="" href="">
+                                                producer</a> </li>
+                                            <li id="ingredients" class="single-tab-open"><a id="a_ingredients" class="" href="">
+                                                ingredients</a> </li>
+                                            <li id="nutrition" class="single-tab-closed"><a id="a_nutrition" class="" href="">
+                                                nutrition</a> </li>
+                                            <li id="storageprep" class="double-tab-closed"><a id="a_storageprep" class="" href="">
+                                                storageprep</a> </li>
+                                        </ul>
+                                        <div id="ulTabsDivs" class="tabs">
+                                            <div id="divdescription" style="display: block;" class="description">
+                                            </div>
+                                            <div id="divproducer" style="display: none;" class="producer">
+                                            </div>
+                                            <div id="divingredients" style="display: none;" class="ingredients">
+                                            </div>
+                                            <div id="divnutrition" style="display: none;" class="nutrition">
+                                            </div>
+                                            <div id="divstorageprep" style="display: none;" class="storageprep">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div style="float: left;">
+                <ul class="nav-image">
+                    <li id="foot-why" class="first"><a href="http://localhost:8080/why-shop">why shop with
+                        us?</a> </li>
+                    <li id="foot-school"><a href="http://localhost:8080/farmers-choice">school fundraising</a>
+                    </li>
+                    <li id="foot-officebox" class="last"><a href="">office box scheme</a> </li>
+                </ul>
+            </div>
+            <div class="logos">
+                <img src="images/logo3.gif" alt="National Organic Awards">
+                <img src="images/logo2.gif" alt="Zero air miles">
+                <a href="http://www.facebook.com/" rel="nofollow" target="_blank">
+                    <img alt="" src="images/footer-facebook.gif" title="facebook">
+                </a><a href="http://www.twitter.com/" rel="nofollow" target="_blank">
+                    <img alt="" src="images/footer-twitter.gif" title="twitter">
+                </a><a href="http://www.youtube.com/" rel="nofollow" target="_blank">
+                    <img alt="" src="images/footer-youtube.gif" title="youtube">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

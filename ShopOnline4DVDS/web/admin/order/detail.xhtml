@@ -108,7 +108,17 @@ and open the template in the editor.
                                         <td>Member: </td><td>#{billBean.detail.memberId}<br/></td>
                                     </tr>
                                     <tr><th>Create date: </th><td>#{billBean.currentTime}</td></tr>
+                                    <tr>
+                                        <td>Price: </td><td>#{billBean.billdetail.price}<br/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quantity: </td><td>#{billBean.billdetail.quantity}<br/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Product name: </td><td>#{billBean.dvddetail.title}<br/></td>
+                                    </tr>
                                 </table>
+                                
                                 <table>
                                     <tr>
                                         <th>Change Status: </th>

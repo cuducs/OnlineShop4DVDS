@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="css/base_style.css"/>
+     <link rel="stylesheet" type="text/css" href="css/delivery_order_style.css"/>
+     <script type="text/javascript" src="js/jquery-1.7.js"></script>
+    <script type="text/javascript" src="js/jquery.tools.min.js"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    
+    function loadJquery()
+    {
+        $('img.help').tooltip({tip: '#tooltip-help', position: 'center right', offset: [6, 5], delay: 500, effect: 'fade' });
+        $(document).ready(function(){
+            $('#future-delivery img.edit, #next-delivery img.edit').tooltip({tip: '#tooltip-edit', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
+            $('#future-delivery img.skip, #next-delivery img.skip').tooltip({tip: '#tooltip-skip', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
+            $('#future-delivery img.delete, #next-delivery img.delete').tooltip({tip: '#tooltip-delete', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
+            $('#next-delivery img.edit-packed').tooltip({tip: '#tooltip-edit-packed', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
+        });
+    }
+    //]]>
+    </script>
+    <title>Delivery</title>
+</head>
+<body onload="loadJquery()">
+    <div id="container">
+        <div id="top">
+            <ul class="nav">
+                <li class="nav-home"><a href="">
+                    Homes</a></li>
+                <li class="nav-start"><a href="">
+                    Start Shopping</a></li>
+                <li class="nav-pay"><a href="">
+                    Payment</a></li>
+                <li class="nav-help"><a href="">help</a></li>
+                <li class="nav-about"><a href="">About us</a></li>
+            </ul>
+            <p id="callus">
+                <a href=""></a>
+            </p>
+        </div>
+        <div id="main">
+            <div id="head">
+                <div id="logo">
+                    <a href=""></a>Abel &amp; Cole good food, the right way
+                </div>
+                <div style="position: absolute; right: 20px; bottom: 22px;">
+                    <div onkeypress="">
+                        <input name="txtSearch" type="text" id="txtSearch" autocomplete="off"/>
+                        <input type="submit" name="btnSearch" id="btnSearch" value="search" class="btn"/>
+                    </div>
+                </div>
+                <div id="log-btns">
+                    <div style="position: absolute; right: 180px; top: -1px;" class="BoldChatIE">
+                    </div>
+                    <div class="signup-button">
+                        <a id="a_signup" href=""
+                            class="signup"></a>
+                    </div>
+                    <a id="a_login" href=""
+                        class="login"></a>
+                </div>
+            </div>
+            
+            <!--main inner-->
+            <div id="main-inner">
+            
+                <!--right menu-->
+                <div id="sidecol" class="sidecol">
+                    <div class="notepad">
+                        <div class="inner">
+                            <h2 class="heading info-for-all">
+                                <span></span>information for all new customers...</h2>
+                            <p>
+                                To order with Abel &amp; Cole you will need to create an account...</p>
+                            <p class="list-intro">
+                                For this, you'll need</p>
+                            <ol class="info-for-new">
+                                <li>A valid email address</li>
+                                <li>A valid delivery address</li>
+                            </ol>
+                            <p>
+                                Please have to hand your credit/debit card, full address and contact details.</p>
+                            <p>
+                                <a href="">Need more help? Click here.</a></p>
+                        </div>
+                    </div>
+                    <div style="overflow: hidden;">
+                    </div>
+                    <div id="box-basket">
+                        <div class="notepad shopping-basket">
+                            <div class="inner">
+                                <h2 class="heading">
+                                    <span></span>shopping basket
+                                </h2>
+                                <div class="totals">
+                                    <span class="items"><span>0 items in basket' </span></span><span class="cost"><span>
+                                        Total = £ 0.0 </span></span>
+                                </div>
+                                <table class="tbl-basket">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="3" class="head">
+                                                <span id="LblEmpty" class="items">There's nothing in your basket!</span>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <p class="checkout">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div style="height: 10px">
+                    </div>
+                </div>
+              
+                <!--main content-->
+                <div id="maincol">
+                
+                    <!--main content of delivery-->
+                    <div class="main-col my-account-deliveries">
+                        <div id="upOrders">
+                            <div id="divVan" class="van-right-large"></div>
+                            <h3 class="heading your-next-delivery">
+                                <span></span>your next delivery
+                            </h3>
+                            <table class="order-sum" id="next-delivery">
+                                <thead>
+                                    <tr>
+                                        <th class="col-description">
+                                            <span style="font-weight: bold;">Order Description</span>
+                                        </th>
+                                        <th class="col-frequency">
+                                            <span style="font-weight: bold;"></span>
+                                        </th>
+                                        <th class="col-delivery">
+                                            <span style="font-weight: bold;">Date</span>
+                                        </th>
+                                        <th class="col-qty">
+                                            <span style="font-weight: bold;">Quantity</span>
+                                        </th>
+                                        <th class="col-price">
+                                            <span style="font-weight: bold;">Price</span>
+                                        </th>
+                                        <th class="col-single-button">
+
+                                        </th>
+                                        <th class="col-single-button">
+                                            <span style="font-weight: bold;">Edit</span>
+                                        </th>
+                                        <th class="col-single-button">
+                                            <span style="font-weight: bold;">Remove</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    
+                                        <tr id="trDataRow1" class="edit">
+                                            <td class="border col-description">
+                                                <a href="">Fennel (1 head)</a>
+                                                <br>
+                                            </td>
+                                            <td class="border col-frequency">
+
+                                            </td>
+                                            <td class="border">
+                                                <a id="lbDeliveryDate">27 May 13</a>
+                                            </td>
+                                            <td class="border col-qty">
+                                                <div id="DivCounter">
+                                                    <a onclick="" id="DecreaseProduct" href="" class="minus">-</a> 
+                                                    <span id="lblQuantity1">1</span> 
+                                                    <a onclick="" id="IncreaseProduct" href="" class="add">+</a>
+                                                </div>
+                                                
+                                            </td>
+                                            <td class="border col-price">
+                                                £1.65
+                                            </td>
+                                            <td class="border col-single-button">
+
+                                            </td>
+                                            <td class="border col-single-button">
+                                                <a id="btnEditOrder" href="">
+                                                    <img id="imgEdit" class="edit" src="images/btn_edit.png" style="border-width: 0px;">
+                                                </a>
+                                            </td>
+                                            <td class="border col-single-button">
+                                                <a onclick="" id="btnRemove" href="">
+                                                    <img id="imgDelete" class="delete" src="images/btn_delete.png" style="border-width: 0px;">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr id="trDataRow2" class="edit">
+                                            <td class="border col-description">
+                                                <a href="">Potatoes, Salad (1kg)</a>
+                                                <br>
+                                            </td>
+                                            <td class="border col-frequency">
+
+                                            </td>
+                                            <td class="border">
+                                                <a id="lbDeliveryDate">27 May 13</a>
+                                            </td>
+                                            <td class="border col-qty">
+                                                <div id="DivCounter">
+                                                    <a onclick="" id="DecreaseProduct" href="" class="minus">-</a> 
+                                                    <span id="lblQuantity2">1</span> 
+                                                    <a onclick="" id="IncreaseProduct" href="" class="add">+</a>
+                                                </div>
+                                                
+                                            </td>
+                                            <td class="border col-price">
+                                                £1.35
+                                            </td>
+                                            <td class="border col-single-button">
+
+                                            </td>
+                                            <td class="border col-single-button">
+                                                <a id="btnEditOrder" href="">
+                                                    <img id="imgEdit" class="edit" src="images/btn_edit.png" style="border-width: 0px;">
+                                                </a>
+                                            </td>
+                                            <td class="border col-single-button">
+                                                <a onclick="" id="btnRemove" href="">
+                                                    <img id="imgDelete" class="delete" src="images/btn_delete.png" style="border-width: 0px;">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr id="trDataRow3" class="edit">
+                                            <td class="border col-description">
+                                                <a href="">Mature Cheddar, Abel &amp; Cole (360g)</a>
+                                                <br>
+                                            </td>
+                                            <td class="border col-frequency">
+
+                                            </td>
+                                            <td class="border">
+                                                <a id="lbDeliveryDate">27 May 13</a>
+                                            </td>
+                                            <td class="border col-qty">
+                                                <div id="DivCounter">
+                                                    <a onclick="" id="DecreaseProduct" href="" class="minus">-</a> 
+                                                    <span id="lblQuantity3">1</span> 
+                                                    <a onclick="" id="IncreaseProduct" href="" class="add">+</a>
+                                                </div>
+                                                
+                                            </td>
+                                            <td class="border col-price">
+                                                £3.36
+                                            </td>
+                                            <td class="border col-single-button">
+
+                                            </td>
+                                            <td class="border col-single-button">
+                                                <a id="btnEditOrder" href="">
+                                                    <img id="imgEdit" class="edit" src="images/btn_edit.png" style="border-width: 0px;">
+                                                </a>
+                                            </td>
+                                            <td class="border col-single-button">
+                                                <a onclick="" id="btnRemove" href="">
+                                                    <img id="imgDelete" class="delete" src="images/btn_delete.png" style="border-width: 0px;">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <div id="tooltip-edit">
+                                <div class="tooltip-container">
+                                    <div class="tooltip-top">
+                                    </div>
+                                    <div class="tooltip-arrow">
+                                    </div>
+                                    <div class="tooltip-mid">
+                                        <img src="images/btn_edit.png" class="tooltip-img">
+                                        <p>
+                                            This button allows you to edit the quantity of an item.
+                                        </p>
+                                        <p>
+                                            When an item has been successfully updated, it will be highlighted in green.</p>
+                                        <p>
+                                            <a id="lbEdit">
+                                                I've read this, don't show it again
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="tooltip-bottom">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tooltip-delete">
+                                <div class="tooltip-container">
+                                    <div class="tooltip-top">
+                                    </div>
+                                    <div class="tooltip-arrow">
+                                    </div>
+                                    <div class="tooltip-mid">
+                                        <img src="images/btn_delete.png" class="tooltip-img">
+                                        <p>
+                                            This button allows you to remove an item.</p>
+                                        <p>
+                                            <a id="lbDelete">
+                                                I've read this, don't show it again
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="tooltip-bottom">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tooltip-edit-packed">
+                                <div class="tooltip-container">
+                                    <div class="tooltip-top">
+                                    </div>
+                                    <div class="tooltip-arrow">
+                                    </div>
+                                    <div class="tooltip-mid">
+                                        <img src="images/btn_edit.png" class="tooltip-img">
+                                        <p>
+                                            This button allows you to edit the quantity of an item.
+                                            <br>
+                                        </p>
+                                        <p>
+                                            Because your order is being packed, you cannot edit the delivery date.
+                                        </p>
+                                        <p>
+                                            When your item has been successfully updated, it will be highlighted in green.</p>
+                                        <p>
+                                            <a id="lbEditPacked">
+                                                I've read this, don't show it again
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="tooltip-bottom">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tooltip-show">
+                                <div class="tooltip-container">
+                                    <div class="tooltip-top">
+                                    </div>
+                                    <div class="tooltip-arrow">
+                                    </div>
+                                    <div class="tooltip-mid">
+                                        <p>
+                                            Click here to display friendly help messages explaining what each button does.
+                                            <br>
+                                        </p>
+                                        <p>
+                                            These will appear when you place your mouse cursor over a button.
+                                        </p>
+                                    </div>
+                                    <div class="tooltip-bottom">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div style="float: left;">
+                <ul class="nav-image">
+                    <li id="foot-why" class="first"><a href="http://localhost:8080/why-shop">why shop with
+                        us?</a> </li>
+                    <li id="foot-school"><a href="http://localhost:8080/farmers-choice">school fundraising</a>
+                    </li>
+                    <li id="foot-officebox" class="last"><a href="">office box scheme</a> </li>
+                </ul>
+            </div>
+            <div class="logos">
+                <img src="images/logo3.gif" alt="National Organic Awards">
+                <img src="images/logo2.gif" alt="Zero air miles">
+                <a href="http://www.facebook.com/" rel="nofollow" target="_blank">
+                    <img alt="" src="images/footer-facebook.gif" title="facebook">
+                </a><a href="http://www.twitter.com/" rel="nofollow" target="_blank">
+                    <img alt="" src="images/footer-twitter.gif" title="twitter">
+                </a><a href="http://www.youtube.com/" rel="nofollow" target="_blank">
+                    <img alt="" src="images/footer-youtube.gif" title="youtube">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
