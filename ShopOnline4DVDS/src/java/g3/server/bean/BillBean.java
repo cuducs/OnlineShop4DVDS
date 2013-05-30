@@ -5,6 +5,8 @@
 package g3.server.bean;
 
 import g3.hibernate.entity.Bill;
+import g3.hibernate.entity.BillDetail;
+import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.Member;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -50,6 +52,8 @@ public class BillBean {
     private String result;
     private List<Bill> sortBills;
     private List<Page> sortLinks;//paging links sorted
+    private BillDetail billdetail;
+    private Dvd dvddetail;
 
     public BillBean() {
     }
@@ -146,7 +150,7 @@ public class BillBean {
     }
 
     public Bill getDetail() {
-        Bill b = (Bill) getSession().createQuery("FROM Bill b WHERE b.id = " + getDetailId()).uniqueResult();
+        Bill b = (Bill) getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.id = " + getDetailId()).uniqueResult();
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         ss.setAttribute("detail", b);
         return b;
@@ -249,6 +253,19 @@ public class BillBean {
         return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status = " + s).list().size();
     }
 
+    public BillDetail getBilldetail() {
+        HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Bill b = (Bill) ss.getAttribute("detail");
+        billdetail =  (BillDetail) getSession().createQuery("FROM BillDetail b WHERE b.id.billId = "+b.getId()).uniqueResult();
+        return billdetail;
+    }
+
+    public Dvd getDvddetail() {
+        dvddetail =  (Dvd) getSession().createQuery("FROM Dvd d WHERE d.id = "+getBilldetail().getId().getProductId()).uniqueResult();
+        return dvddetail;
+    }
+    
+/*********ME THODS*********************************************************/
     public void searchAdmin() {
         if (searchField != null && searchQuery != null) {
             List<Bill> l = new ArrayList<Bill>();
