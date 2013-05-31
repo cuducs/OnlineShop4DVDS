@@ -1,35 +1,85 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <ui:insert name="top">
-        <ui:include src="../template/top.xhtml"/>
-    </ui:insert>
-    <title>DVD Store FPT Aptech C1007L_G3_S4</title>
-    <body>
-        <div id="main_container">
-            <ui:insert name="welcome">
-                <ui:include src="../template/welcome.xhtml"/>
-            </ui:insert>
-            <div class="main_content">
-                <ui:insert name="vmenu">
-                    <ui:include src="../template/hmenu.xhtml"/>
-                </ui:insert>
-                <div class="center_content">  
-                    <ui:insert name="vmenu">
-                        <ui:include src="../template/vmenu.xhtml"/>
-                    </ui:insert>
-                    <div class="right_content"> 
-                        <h2>Orders</h2>
-                        <h:form>
-                        <h:commandLink value="Canceled" action="#{billBean.currentSort('0')}"/>(#{billBean.canceled}) --- <h:commandLink value="Waiting" action="#{billBean.currentSort('1')}"/>(#{billBean.waiting}) --- <h:commandLink value="Done (Invoice)" action="#{billBean.currentSort('2')}"/>(#{billBean.done})
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Orders and Invoices</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+            <ui:define name="content">
+                <h2>Orders</h2>
+                <h:form>
+                    <h:commandLink value="Canceled" action="#{billBean.currentSort('0')}"/>(#{billBean.canceled}) --- <h:commandLink value="Waiting" action="#{billBean.currentSort('1')}"/>(#{billBean.waiting}) --- <h:commandLink value="Done (Invoice)" action="#{billBean.currentSort('2')}"/>(#{billBean.done})
+                    <table id="rounded-corner" summary="DVD Store">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="rounded-company"></th>
+                                <th scope="col" class="rounded">Status</th>
+                                <th scope="col" class="rounded">Name</th>
+                                <th scope="col" class="rounded">Address receive</th>
+                                <th scope="col" class="rounded">Order date</th>
+                                <th scope="col" class="rounded">Detail</th>
+                                <th scope="col" class="rounded-q4">Function</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="b" items="#{billBean.billAdmin}">
+                                <tr>
+                                    <td><input type="checkbox" name="" /></td>
+                                    <td>#{b.orderDate.toString()}</td><td>#{b.customerName}</td><td>#{b.deliveryAddress}</td><td>
+                                        <c:if test="#{b.status==0}">
+                                            Canceled
+                                        </c:if>
+                                        <c:if test="#{b.status==1}">
+                                            Waiting
+                                        </c:if>
+                                        <c:if test="#{b.status==2}">
+                                            Done
+                                        </c:if>
+                                    </td>
+                                    <td><a href="detail.xhtml?detail=#{b.id}">Detail</a></td>
+                                    <td><h:commandLink onclick="return confirm('Do you want to delete this?');" value="Delete" action="#{billBean.delete(b)}"/></td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </h:form>
+                <div class="pagination">
+                    <c:forEach items="#{billBean.pageLinks}" var="p">
+                        <c:if test="#{param['page']==p.id}">
+                            <a class="current" href="#">#{p.id}</a>
+                        </c:if>
+                        <c:if test="#{param['page']!=p.id}">
+                            <a href="#{p.link}">#{p.id}</a>
+                        </c:if>
+                    </c:forEach>
+                </div> 
+                <h2>Searching:</h2>
+                <h:form>
+                    <table>
+                        <tr><td>
+                                <h:selectOneMenu value="#{billBean.searchField}">
+                                    <f:selectItem itemLabel="ID" itemValue="id"/>
+                                    <f:selectItem itemLabel="Name" itemValue="customerName"/>
+                                    <f:selectItem itemLabel="Phone" itemValue="phone"/>
+                                    <f:selectItem itemLabel="Member" itemValue="memberId"/>
+                                    <f:selectItem itemLabel="Order Date(mm/dd/yyyy)" itemValue="orderDate"/>
+                                </h:selectOneMenu>
+                            </td>
+                            <td>
+                                <h:inputText value="#{billBean.searchQuery}"/>
+                            </td>
+                            <td><h:commandButton value="Search" action="#{billBean.searchAdmin()}"/></td></tr>
+                    </table>
+                </h:form>
+                <c:if test="#{billBean.adminSearch.size()!=0}">
+                    <h3>Search Result</h3>
+                    <h:form>
                         <table id="rounded-corner" summary="DVD Store">
                             <thead>
                                 <tr>
@@ -43,7 +93,7 @@ and open the template in the editor.
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="b" items="#{billBean.billAdmin}">
+                                <c:forEach var="b" items="#{billBean.adminSearch}">
                                     <tr>
                                         <td><input type="checkbox" name="" /></td>
                                         <td>#{b.orderDate.toString()}</td><td>#{b.customerName}</td><td>#{b.deliveryAddress}</td><td>
@@ -63,83 +113,12 @@ and open the template in the editor.
                                 </c:forEach>
                             </tbody>
                         </table>
-                        </h:form>
-                        <div class="pagination">
-                            <c:forEach items="#{billBean.pageLinks}" var="p">
-                                <c:if test="#{param['page']==p.id}">
-                                    <a class="current" href="#">#{p.id}</a>
-                                </c:if>
-                                <c:if test="#{param['page']!=p.id}">
-                                    <a href="#{p.link}">#{p.id}</a>
-                                </c:if>
-                            </c:forEach>
-                        </div> 
-                        <h2>Searching:</h2>
-                        <h:form>
-                            <table>
-                                <tr><td>
-                                        <h:selectOneMenu value="#{billBean.searchField}">
-                                            <f:selectItem itemLabel="ID" itemValue="id"/>
-                                            <f:selectItem itemLabel="Name" itemValue="customerName"/>
-                                            <f:selectItem itemLabel="Phone" itemValue="phone"/>
-                                            <f:selectItem itemLabel="Member" itemValue="memberId"/>
-                                            <f:selectItem itemLabel="Order Date(mm/dd/yyyy)" itemValue="orderDate"/>
-                                        </h:selectOneMenu>
-                                    </td>
-                                    <td>
-                                        <h:inputText value="#{billBean.searchQuery}"/>
-                                    </td>
-                                    <td><h:commandButton value="Search" action="#{billBean.searchAdmin()}"/></td></tr>
-                            </table>
-                        </h:form>
-                        <c:if test="#{billBean.adminSearch.size()!=0}">
-                            <h3>Search Result</h3>
-                            <h:form>
-                                <table id="rounded-corner" summary="DVD Store">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="rounded-company"></th>
-                                            <th scope="col" class="rounded">Status</th>
-                                            <th scope="col" class="rounded">Name</th>
-                                            <th scope="col" class="rounded">Address receive</th>
-                                            <th scope="col" class="rounded">Order date</th>
-                                            <th scope="col" class="rounded">Detail</th>
-                                            <th scope="col" class="rounded-q4">Function</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="b" items="#{billBean.adminSearch}">
-                                            <tr>
-                                                <td><input type="checkbox" name="" /></td>
-                                                <td>#{b.orderDate.toString()}</td><td>#{b.customerName}</td><td>#{b.deliveryAddress}</td><td>
-                                                    <c:if test="#{b.status==0}">
-                                                        Canceled
-                                                    </c:if>
-                                                    <c:if test="#{b.status==1}">
-                                                        Waiting
-                                                    </c:if>
-                                                    <c:if test="#{b.status==2}">
-                                                        Done
-                                                    </c:if>
-                                                </td>
-                                                <td><a href="detail.xhtml?detail=#{b.id}">Detail</a></td>
-                                                <td><h:commandLink onclick="return confirm('Do you want to delete this?');" value="Delete" action="#{billBean.delete(b)}"/></td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </h:form>
-                        </c:if>
-                        <c:if test="#{billBean.adminSearch.size()==0}">
-                            <h3>No result</h3>
-                        </c:if>
-                    </div>         
-                </div> 
-                <div class="clear"></div>
-            </div>
-            <ui:insert name="footer">
-                <ui:include src="../template/footer.xhtml"/>
-            </ui:insert>
-        </div>
-    </body>
+                    </h:form>
+                </c:if>
+                <c:if test="#{billBean.adminSearch.size()==0}">
+                    <h3>No result</h3>
+                </c:if>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>

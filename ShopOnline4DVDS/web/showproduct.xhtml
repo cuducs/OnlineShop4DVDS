@@ -1,125 +1,501 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <title>Products</title>
     </h:head>
     <h:body>
-        <c:if test="#{param['type']==null}">
-            <h2>Music</h2>
-            <table>
-                <tr>
-                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
-                </tr>
-                <c:forEach var="m" items="#{showProductBean.dvdmusic}">
-                    <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
-                    </tr>
-                </c:forEach>
-                <tr><td colspan="4"><a href="showproduct.xhtml?type=music">More</a></td></tr>
-            </table>
-            <h2>Movie</h2>
-            <table>
-                <tr>
-                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
-                </tr>
-                <c:forEach var="m" items="#{showProductBean.dvdvideo}">
-                    <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
-                    </tr>
-                </c:forEach>
-                <tr><td colspan="4"><a href="showproduct.xhtml?type=movie">More</a></td></tr>
-            </table>
-            <h2>Game</h2>
-            <table>
-                <tr>
-                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
-                </tr>
-                <c:forEach var="m" items="#{showProductBean.dvdgame}">
-                    <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
-                    </tr>
-                </c:forEach>
-                <tr><td colspan="4"><a href="showproduct.xhtml?type=game">More</a></td></tr>
-            </table>
-        </c:if>
-        <c:if test="#{param['type']=='music'}">
-            <h2>Music</h2>
-            <table>
-                <tr>
-                    <th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
-                </tr>
-                <c:forEach var="m" items="#{showProductBean.dvdmusic}">
-                    <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
-                    </tr>
-                </c:forEach>
-                <tr><td colspan="4">
-                        Pages: <c:forEach items="#{showProductBean.pageLinks}" var="p">
-                            <c:if test="#{param['page']==p.id}">
-                                <a style="color: red; font-weight: bold">#{p.id}</a> |
-                            </c:if>
-                            <c:if test="#{param['page']!=p.id}">
-                                <a href="#{p.link}">#{p.id}</a> |
-                            </c:if>
-                        </c:forEach>
-                    </td></tr>
-            </table>
-        </c:if>
-        <c:if test="#{param['type']=='movie'}">
-            <h2>Movie</h2>
-            <table>
-                <tr>
-                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
-                </tr>
-                <c:forEach var="m" items="#{showProductBean.dvdvideo}">
-                    <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
-                    </tr>
-                </c:forEach>
-                <tr><td colspan="5">
-                        Pages: <c:forEach items="#{showProductBean.pageLinks}" var="p">
-                            <c:if test="#{param['page']==p.id}">
-                                <a style="color: red; font-weight: bold">#{p.id}</a> |
-                            </c:if>
-                            <c:if test="#{param['page']!=p.id}">
-                                <a href="#{p.link}">#{p.id}</a> |
-                            </c:if>
-                        </c:forEach>
-                    </td></tr>
-            </table>
-        </c:if>
-        <c:if test="#{param['type']=='game'}">
-            <h2>Game</h2>
-            <table>
-                <tr>
-                    <th>Image</th><th>Title</th><th>Price</th><th>Rating</th><th>Order</th>
-                </tr>
-                <c:forEach var="m" items="#{showProductBean.dvdgame}">
-                    <tr>
-                        <td><img src="#{m.imageCoverUrl}" title="No" alt="no"/></td><td><a href="detail.xhtml?detail=#{m.id}/#{m.type}">#{m.title}</a></td><td>#{m.price}</td><td>#{m.ratePoint}</td><td><a href="#">Order now</a></td>
-                    </tr>
-                </c:forEach>
-                <tr><td colspan="4">
-                        Pages: <c:forEach items="#{showProductBean.pageLinks}" var="p">
-                            <c:if test="#{param['page']==p.id}">
-                                <a style="color: red; font-weight: bold">#{p.id}</a> |
-                            </c:if>
-                            <c:if test="#{param['page']!=p.id}">
-                                <a href="#{p.link}">#{p.id}</a> |
-                            </c:if>
-                        </c:forEach>
-                    </td></tr>
-            </table>
-        </c:if>
-        <a href="showproduct.xhtml">All Products</a>
+        <ui:composition template="/WEB-INF/template/customerTemplate.xhtml">
+            <ui:define name="content">
+
+                <!--main content of product-->
+                <div id="divCatalogueContainer" class="product-department" style="margin-right: 0px;">
+                    <div id="divCatalogue" class="Catalogue">
+                        <!-- category feature -->
+                        <div style="width: 460px; height: 188px; background-image: url('/ShopOnline4DVDS/resources/customer/images/SHOP-dairy-banner.jpg');
+                             margin-bottom: 10px;">
+                        </div>
+                        <!-- end of feature -->
+                    </div>
+                    <div id="upProducts">
+                        <!--<div class="Shopfilter-header">
+                            Sort by:
+                            <select name="ddlProductSortCriteria" onchange="" id="ddlProductSortCriteria" title="Sort products"
+                                    class="Shop-sort-search">
+                                <option selected="selected" value="Featured asc">Featured</option>
+                                <option value="Price_asc">Price: Low - High</option>
+                                <option value="Price_desc">Price: High - Low</option>
+                                <option value="Name_asc">Product name: A - Z</option>
+                                <option value="Name_desc">Product name: Z - A</option>
+                            </select>
+                        </div>-->
+                        <br/>
+                        <c:if test="#{param['type']==null}">
+                            <table id="lvProductsList_Table1" class="list">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <a style="color: red; font-weight: bold; font-size: xx-large" href="showproduct.xhtml?type=music" title="Click to view all music DVD">Music</a> (click to view more)
+                                        </td>
+                                    </tr>
+                                    <c:forEach var="m" items="#{showProductBean.dvdmusic}">
+                                        <tr id="ctrl0_Tr1">
+                                            <td class="/ShopOnline4DVDS/resources/customer/images" rowspan="3">
+                                                <div class="thumbimage">
+                                                    <a id="LnkProduct1" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        <img src="#{m.imageCoverUrl}" alt="#{m.title}" />
+                                                        <span id="spnFlag" class="offer"></span></a>
+                                                </div>
+                                            </td>
+                                            <td colspan="2">
+                                                <h4>
+                                                    <a id="nkProduct2" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        #{m.title}</a>
+                                                </h4>
+                                            </td>
+                                            <td class="ProductPrice">
+                                                <h4>
+                                                    £ #{m.price}
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td colspan="2">
+                                                <!--                        <p id="pComment">
+                                                                            <font color="#af1023" id="free">15% off (normal price £3.95)</font>
+                                                                        </p>-->
+
+                                            </td>
+                                            <td>
+                                                <p class="product-code"> 
+                                                    Rate: #{m.ratePoint}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td class="product-icons">
+                                                <img id="imgOrganic" title="organic" src="/ShopOnline4DVDS/resources/customer/images/icon-organic.gif"
+                                                     style="border-width: 0px;"/>
+                                                <span id="spOrganic" class="orange organic">#{m.type}</span>
+                                                <img id="imgVegetarian" title="vegetarian" src="/ShopOnline4DVDS/resources/customer/images/icon-vegetarian.gif"
+                                                     style="border-width: 0px;"/>
+                                            </td>
+                                            <td>
+                                                <p class="in-basket">
+                                                    <span id="lbBasketText"></span>
+                                                </p>
+                                            </td>
+                                            <td class="add">
+                                                <div id="ctrl0_Div2" class="form-cont">
+                                                    <div id="divAdd">
+                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
+                                                               class="qty"/>
+                                                        <a id="lbAddToBasket" class="btn" href="">
+                                                            add</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <a style="font-weight: bold; font-size: xx-large" href="showproduct.xhtml?type=movie" title="Click to view all Movie DVD">Movie</a> (click to view more)
+                            <table id="lvProductsList_Table1" class="list">
+                                <tbody>
+                                    <c:forEach var="m" items="#{showProductBean.dvdvideo}">
+                                        <tr id="ctrl0_Tr1">
+                                            <td class="/ShopOnline4DVDS/resources/customer/images" rowspan="3">
+                                                <div class="thumbimage">
+                                                    <a id="LnkProduct1" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        <img src="#{m.imageCoverUrl}" alt="#{m.title}" />
+                                                        <span id="spnFlag" class="offer"></span></a>
+                                                </div>
+                                            </td>
+                                            <td colspan="2">
+                                                <h4>
+                                                    <a id="nkProduct2" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        #{m.title}</a>
+                                                </h4>
+                                            </td>
+                                            <td class="ProductPrice">
+                                                <h4>
+                                                    £ #{m.price}
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td colspan="2">
+                                                <!--                        <p id="pComment">
+                                                                            <font color="#af1023" id="free">15% off (normal price £3.95)</font>
+                                                                        </p>-->
+
+                                            </td>
+                                            <td>
+                                                <p class="product-code"> 
+                                                    Rate: #{m.ratePoint}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td class="product-icons">
+                                                <img id="imgOrganic" title="organic" src="/ShopOnline4DVDS/resources/customer/images/icon-organic.gif"
+                                                     style="border-width: 0px;"/>
+                                                <span id="spOrganic" class="orange organic">#{m.type}</span>
+                                                <img id="imgVegetarian" title="vegetarian" src="/ShopOnline4DVDS/resources/customer/images/icon-vegetarian.gif"
+                                                     style="border-width: 0px;"/>
+                                            </td>
+                                            <td>
+                                                <p class="in-basket">
+                                                    <span id="lbBasketText"></span>
+                                                </p>
+                                            </td>
+                                            <td class="add">
+                                                <div id="ctrl0_Div2" class="form-cont">
+                                                    <div id="divAdd">
+                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
+                                                               class="qty"/>
+                                                        <a id="lbAddToBasket" class="btn" href="">
+                                                            add</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <a style="color: violet; font-weight: bold; font-size: xx-large" href="showproduct.xhtml?type=game" title="Click to view all games DVD">Games</a> (click to view more)
+                            <table id="lvProductsList_Table1" class="list">
+                                <tbody>
+                                    <c:forEach var="m" items="#{showProductBean.dvdgame}">
+                                        <tr id="ctrl0_Tr1">
+                                            <td class="/ShopOnline4DVDS/resources/customer/images" rowspan="3">
+                                                <div class="thumbimage">
+                                                    <a id="LnkProduct1" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        <img src="#{m.imageCoverUrl}" alt="#{m.title}" />
+                                                        <span id="spnFlag" class="offer"></span></a>
+                                                </div>
+                                            </td>
+                                            <td colspan="2">
+                                                <h4>
+                                                    <a id="nkProduct2" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        #{m.title}</a>
+                                                </h4>
+                                            </td>
+                                            <td class="ProductPrice">
+                                                <h4>
+                                                    £ #{m.price}
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td colspan="2">
+                                                <!--                        <p id="pComment">
+                                                                            <font color="#af1023" id="free">15% off (normal price £3.95)</font>
+                                                                        </p>-->
+
+                                            </td>
+                                            <td>
+                                                <p class="product-code"> 
+                                                    Rate: #{m.ratePoint}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td class="product-icons">
+                                                <img id="imgOrganic" title="organic" src="/ShopOnline4DVDS/resources/customer/images/icon-organic.gif"
+                                                     style="border-width: 0px;"/>
+                                                <span id="spOrganic" class="orange organic">#{m.type}</span>
+                                                <img id="imgVegetarian" title="vegetarian" src="/ShopOnline4DVDS/resources/customer/images/icon-vegetarian.gif"
+                                                     style="border-width: 0px;"/>
+                                            </td>
+                                            <td>
+                                                <p class="in-basket">
+                                                    <span id="lbBasketText"></span>
+                                                </p>
+                                            </td>
+                                            <td class="add">
+                                                <div id="ctrl0_Div2" class="form-cont">
+                                                    <div id="divAdd">
+                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
+                                                               class="qty"/>
+                                                        <a id="lbAddToBasket" class="btn" href="">
+                                                            add</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </c:if>
+                        <c:if test="#{param['type']=='music'}">
+                            <table id="lvProductsList_Table1" class="list">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <h2>Music</h2>
+                                        </td>
+                                    </tr>
+                                    <c:forEach var="m" items="#{showProductBean.dvdmusic}">
+                                        <tr id="ctrl0_Tr1">
+                                            <td class="/ShopOnline4DVDS/resources/customer/images" rowspan="3">
+                                                <div class="thumbimage">
+                                                    <a id="LnkProduct1" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        <img src="#{m.imageCoverUrl}" alt="#{m.title}" />
+                                                        <span id="spnFlag" class="offer"></span></a>
+                                                </div>
+                                            </td>
+                                            <td colspan="2">
+                                                <h4>
+                                                    <a id="nkProduct2" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        #{m.title}</a>
+                                                </h4>
+                                            </td>
+                                            <td class="ProductPrice">
+                                                <h4>
+                                                    £ #{m.price}
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td colspan="2">
+                                                <!--                        <p id="pComment">
+                                                                            <font color="#af1023" id="free">15% off (normal price £3.95)</font>
+                                                                        </p>-->
+
+                                            </td>
+                                            <td>
+                                                <p class="product-code"> 
+                                                    Rate: #{m.ratePoint}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td class="product-icons">
+                                                <img id="imgOrganic" title="organic" src="/ShopOnline4DVDS/resources/customer/images/icon-organic.gif"
+                                                     style="border-width: 0px;"/>
+                                                <span id="spOrganic" class="orange organic">#{m.type}</span>
+                                                <img id="imgVegetarian" title="vegetarian" src="/ShopOnline4DVDS/resources/customer/images/icon-vegetarian.gif"
+                                                     style="border-width: 0px;"/>
+                                            </td>
+                                            <td>
+                                                <p class="in-basket">
+                                                    <span id="lbBasketText"></span>
+                                                </p>
+                                            </td>
+                                            <td class="add">
+                                                <div id="ctrl0_Div2" class="form-cont">
+                                                    <div id="divAdd">
+                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
+                                                               class="qty"/>
+                                                        <a id="lbAddToBasket" class="btn" href="">
+                                                            add</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+
+                            <div id="Shopfilter-header-Showing" class="Shopfilter-header">
+                                <a href="showproduct.xhtml">Return to show products page</a>
+                            </div>
+                            <div class="Shopfilter-header2">
+                                <span id="lvProductsDataPager2">
+                                    Pages: <c:forEach items="#{showProductBean.pageLinks}" var="p">
+                                        <c:if test="#{param['page']==p.id}">
+                                            <span class="CurrentPage">#{p.id}</span>&nbsp; 
+                                        </c:if>
+                                        <c:if test="#{param['page']!=p.id}">
+                                            <a href="">
+                                                #{p.id}</a>&nbsp; 
+                                        </c:if>
+                                    </c:forEach>
+                                </span>
+                            </div>
+                        </c:if>
+                        <c:if test="#{param['type']=='movie'}">
+                            <table id="lvProductsList_Table1" class="list">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <h2>Movie</h2>
+                                        </td>
+                                    </tr>
+                                    <c:forEach var="m" items="#{showProductBean.dvdvideo}">
+                                        <tr id="ctrl0_Tr1">
+                                            <td class="/ShopOnline4DVDS/resources/customer/images" rowspan="3">
+                                                <div class="thumbimage">
+                                                    <a id="LnkProduct1" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        <img src="#{m.imageCoverUrl}" alt="#{m.title}" />
+                                                        <span id="spnFlag" class="offer"></span></a>
+                                                </div>
+                                            </td>
+                                            <td colspan="2">
+                                                <h4>
+                                                    <a id="nkProduct2" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        #{m.title}</a>
+                                                </h4>
+                                            </td>
+                                            <td class="ProductPrice">
+                                                <h4>
+                                                    £ #{m.price}
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td colspan="2">
+                                                <!--                        <p id="pComment">
+                                                                            <font color="#af1023" id="free">15% off (normal price £3.95)</font>
+                                                                        </p>-->
+
+                                            </td>
+                                            <td>
+                                                <p class="product-code"> 
+                                                    Rate: #{m.ratePoint}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td class="product-icons">
+                                                <img id="imgOrganic" title="organic" src="/ShopOnline4DVDS/resources/customer/images/icon-organic.gif"
+                                                     style="border-width: 0px;"/>
+                                                <span id="spOrganic" class="orange organic">#{m.type}</span>
+                                                <img id="imgVegetarian" title="vegetarian" src="/ShopOnline4DVDS/resources/customer/images/icon-vegetarian.gif"
+                                                     style="border-width: 0px;"/>
+                                            </td>
+                                            <td>
+                                                <p class="in-basket">
+                                                    <span id="lbBasketText"></span>
+                                                </p>
+                                            </td>
+                                            <td class="add">
+                                                <div id="ctrl0_Div2" class="form-cont">
+                                                    <div id="divAdd">
+                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
+                                                               class="qty"/>
+                                                        <a id="lbAddToBasket" class="btn" href="">
+                                                            add</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+
+                            <div id="Shopfilter-header-Showing" class="Shopfilter-header">
+                                <a href="showproduct.xhtml">Return to show products page</a>
+                            </div>
+                            <div class="Shopfilter-header2">
+                                <span id="lvProductsDataPager2">
+                                    Pages: <c:forEach items="#{showProductBean.pageLinks}" var="p">
+                                        <c:if test="#{param['page']==p.id}">
+                                            <span class="CurrentPage">#{p.id}</span>&nbsp; 
+                                        </c:if>
+                                        <c:if test="#{param['page']!=p.id}">
+                                            <a href="">
+                                                #{p.id}</a>&nbsp; 
+                                        </c:if>
+                                    </c:forEach>
+                                </span>
+                            </div>
+                        </c:if>
+                        <c:if test="#{param['type']=='game'}">
+                            <table id="lvProductsList_Table1" class="list">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <h2>Game</h2>
+                                        </td>
+                                    </tr>
+                                    <c:forEach var="m" items="#{showProductBean.dvdgame}">
+                                        <tr id="ctrl0_Tr1">
+                                            <td class="/ShopOnline4DVDS/resources/customer/images" rowspan="3">
+                                                <div class="thumbimage">
+                                                    <a id="LnkProduct1" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        <img src="#{m.imageCoverUrl}" alt="#{m.title}" />
+                                                        <span id="spnFlag" class="offer"></span></a>
+                                                </div>
+                                            </td>
+                                            <td colspan="2">
+                                                <h4>
+                                                    <a id="nkProduct2" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                                        #{m.title}</a>
+                                                </h4>
+                                            </td>
+                                            <td class="ProductPrice">
+                                                <h4>
+                                                    £ #{m.price}
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td colspan="2">
+                                                <!--                        <p id="pComment">
+                                                                            <font color="#af1023" id="free">15% off (normal price £3.95)</font>
+                                                                        </p>-->
+
+                                            </td>
+                                            <td>
+                                                <p class="product-code"> 
+                                                    Rate: #{m.ratePoint}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="extra">
+                                            <td class="product-icons">
+                                                <img id="imgOrganic" title="organic" src="/ShopOnline4DVDS/resources/customer/images/icon-organic.gif"
+                                                     style="border-width: 0px;"/>
+                                                <span id="spOrganic" class="orange organic">#{m.type}</span>
+                                                <img id="imgVegetarian" title="vegetarian" src="/ShopOnline4DVDS/resources/customer/images/icon-vegetarian.gif"
+                                                     style="border-width: 0px;"/>
+                                            </td>
+                                            <td>
+                                                <p class="in-basket">
+                                                    <span id="lbBasketText"></span>
+                                                </p>
+                                            </td>
+                                            <td class="add">
+                                                <div id="ctrl0_Div2" class="form-cont">
+                                                    <div id="divAdd">
+                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
+                                                               class="qty"/>
+                                                        <a id="lbAddToBasket" class="btn" href="">
+                                                            add</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+
+                            <div id="Shopfilter-header-Showing" class="Shopfilter-header">
+                                <a href="showproduct.xhtml">Return to show products page</a>
+                            </div>
+                            <div class="Shopfilter-header2">
+                                <span id="lvProductsDataPager2">
+                                    Pages: <c:forEach items="#{showProductBean.pageLinks}" var="p">
+                                        <c:if test="#{param['page']==p.id}">
+                                            <span class="CurrentPage">#{p.id}</span>&nbsp; 
+                                        </c:if>
+                                        <c:if test="#{param['page']!=p.id}">
+                                            <a href="">
+                                                #{p.id}</a>&nbsp; 
+                                        </c:if>
+                                    </c:forEach>
+                                </span>
+                            </div>
+                        </c:if>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
+

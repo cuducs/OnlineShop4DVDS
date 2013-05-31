@@ -244,8 +244,8 @@ public class BillBean {
     public int getDone() {
         return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status = 2").list().size();
     }
-    
-    public String getCurrentTime(){
+
+    public String getCurrentTime() {
         return DvdStoreHibernateUtil.currenrTime();
     }
 
@@ -256,16 +256,23 @@ public class BillBean {
     public BillDetail getBilldetail() {
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Bill b = (Bill) ss.getAttribute("detail");
-        billdetail =  (BillDetail) getSession().createQuery("FROM BillDetail b WHERE b.id.billId = "+b.getId()).uniqueResult();
+        billdetail = (BillDetail) getSession().createQuery("FROM BillDetail b WHERE b.id.billId = " + b.getId()).uniqueResult();
         return billdetail;
     }
 
     public Dvd getDvddetail() {
-        dvddetail =  (Dvd) getSession().createQuery("FROM Dvd d WHERE d.id = "+getBilldetail().getId().getProductId()).uniqueResult();
+        try {
+            dvddetail = (Dvd) getSession().createQuery("FROM Dvd d WHERE d.id = " + getBilldetail().getId().getProductId()).uniqueResult();
+
+        } catch (Exception ex) {
+            dvddetail = null;
+        }
         return dvddetail;
     }
-    
-/*********ME THODS*********************************************************/
+
+    /**
+     * *******ME THODS********************************************************
+     */
     public void searchAdmin() {
         if (searchField != null && searchQuery != null) {
             List<Bill> l = new ArrayList<Bill>();

@@ -1,34 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <ui:insert name="top">
-        <ui:include src="../template/top.xhtml"/>
-    </ui:insert>
-    <title>DVD Store FPT Aptech C1007L_G3_S4</title>
-    <body>
-        <div id="main_container">
-            <ui:insert name="welcome">
-                <ui:include src="../template/welcome.xhtml"/>
-            </ui:insert>
-            <div class="main_content">
-                <ui:insert name="vmenu">
-                    <ui:include src="../template/hmenu.xhtml"/>
-                </ui:insert>
-                <div class="center_content">  
-                    <ui:insert name="vmenu">
-                        <ui:include src="../template/vmenu.xhtml"/>
-                    </ui:insert>
-                    <div class="right_content"> 
-                        <!---Mọi người viết nội dung vào trong DIV này nhé: Nếu không hiển thị được CSS thì đừng lo, các bác cứ ném nó vào thư mục của mình là OK, vì nó trỏ sai folder thôi.-->
-                        <c:if test="#{sessionScope.currentSort==null}">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Orders and Invoices</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+            <ui:define name="content">
+                <c:if test="#{sessionScope.currentSort==null}">
                             #{facesContext.externalContext.redirect("order.xhtml")}
                         </c:if>
                         <h2>Sorted by 
@@ -148,15 +132,8 @@ and open the template in the editor.
                         <c:if test="#{billBean.adminSearch.size()==0}">
                             <h3>No result</h3>
                         </c:if>
-                        <a href="order.xhtml">Return to order</a>           
-                    </div>         
-                </div> 
-                <div class="clear"></div>
-            </div>
-            <ui:insert name="footer">
-                <ui:include src="../template/footer.xhtml"/>
-            </ui:insert>
-        </div>
-    </body>
+                        <a href="order.xhtml">Return to order</a>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
-

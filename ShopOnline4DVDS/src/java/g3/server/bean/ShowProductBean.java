@@ -46,17 +46,17 @@ public class ShowProductBean {
     }
 
     public List<Dvd> getDvdvideo() {
-        String sqlQuery = "FROM Dvd d WHERE d.type = 'movie' and d.isDeleted = 0";
+        String sqlQuery = "FROM Dvd d WHERE d.type = 'movie' and d.isDeleted = 0 ORDER BY d.id DESC";
         return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
     }
 
     public List<Dvd> getDvdmusic() {
-        String sqlQuery = "FROM Dvd d WHERE d.type = 'music' and d.isDeleted = 0";
+        String sqlQuery = "FROM Dvd d WHERE d.type = 'music' and d.isDeleted = 0 ORDER BY d.id DESC";
         return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
     }
 
     public List<Dvd> getDvdgame() {
-        String sqlQuery = "FROM Dvd d WHERE d.type = 'game' and d.isDeleted = 0";
+        String sqlQuery = "FROM Dvd d WHERE d.type = 'game' and d.isDeleted = 0 ORDER BY d.id DESC";
         return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
     }
 
