@@ -8,4 +8,61 @@
         <tag-name>example</tag-name>
         <source>tags/example.xhtml</source>
     </tag>
+    <tag>
+        <tag-name>product-list</tag-name>
+        <source>tags/product-list.xhtml</source>
+        <attribute>
+            <name>from</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>list</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>for</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>target</name>
+        </attribute>
+        <attribute>
+            <name>controller</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+    
+    
+    <tag>
+        <tag-name>common-list</tag-name>
+        <source>tags/common-list.xhtml</source>
+        <attribute>
+            <name>from</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>list</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>for</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>target</name>
+        </attribute>
+        <attribute>
+            <name>controller</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <tag-name>mapping-file</tag-name>
+        <source>tags/mapping-file.xhtml</source>
+        <attribute>
+            <name>objectmapfile</name>
+            <required>true</required>
+        </attribute>
+    </tag>
 </facelet-taglib>

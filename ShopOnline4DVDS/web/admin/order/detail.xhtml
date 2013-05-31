@@ -1,74 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>Order detail</title>
-    </h:head>
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:body>
-        <div>Detail</div>
-        <h3>#{billBean.result}</h3>
-        <h:form>
-            <table>
-                <tr>
-                    <td>ID</td><td>#{billBean.detail.id}</td>
-                </tr>
-                <tr>
-                    <td>Order date</td><td>#{billBean.detail.orderDate.toLocaleString()}</td>
-                </tr>
-                <tr>
-                    <td>Total</td><td>#{billBean.detail.total}</td>
-                </tr>
-                <tr>
-                    <td>Status</td><td>
-                        <c:if test="#{billBean.detail.status==0}">
-                            Canceled
-                            </c:if>
-                            <c:if test="#{billBean.detail.status==1}">
-                            Waiting
-                            </c:if>
-                        <c:if test="#{billBean.detail.status ==2}">
-                            Done
-                            </c:if>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Change Status: </th>
-                    <td>
-                        <h:selectOneMenu value="#{billBean.updateStatus}">
-                            <f:selectItem itemLabel="Cancelled" itemValue="0"/>
-                            <f:selectItem itemLabel="Waiting" itemValue="1"/>
-                            <f:selectItem itemLabel="Done" itemValue="2"/>
-                        </h:selectOneMenu>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Name</td><td>#{billBean.detail.customerName}</td>
-                </tr>
-                <tr>
-                    <td>Address</td><td>#{billBean.detail.deliveryAddress}</td>
-                </tr>
-                <tr>
-                    <td>Phone</td><td>#{billBean.detail.phone}</td>
-                </tr>
-                <tr>
-                    <td>Massage</td><td>#{billBean.detail.message}</td>
-                </tr>
-                <tr>
-                    <td>Member</td><td>#{billBean.detail.memberId}</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><h:commandButton value="Update" action="#{billBean.update()}"/></td>
-                </tr>
-            </table>
-        </h:form>
-        <br/>
-        <a href="order.xhtml">Orders</a>
+        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+            <ui:define name="content">
+                <script type="text/javascript" src="resources/js/jquery-1.3.1.min.js" > </script>
+                <script type="text/javascript">
+                    function PrintElem(elem)
+                    {
+                        Popup($(elem).html());
+                    }
+
+                    function Popup(data) 
+                    {
+                        var mywindow = window.open('', 'print', 'height=964,width=1024');
+                        mywindow.document.write('<html><head><title>Print Invoice</title>');
+                        /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+                        mywindow.document.write('</head><body >');
+                        mywindow.document.write(data);
+                        mywindow.document.write('</body></html>');
+
+                        mywindow.print();
+                        mywindow.close();
+
+                        return true;
+                    }
+
+                </script>
+                <c:if test="#{sessionScope.currentSort==null}">
+                    #{facesContext.externalContext.redirect("order.xhtml")}
+                </c:if>
+                <c:if test="#{sessionScope.currentSort==2}">
+                    <h2> 
+
+                        <b>Invoice</b> 
+                    </h2> -- <h1><a href="#" onclick="PrintElem('#print')">Print Invoice</a></h1>
+                </c:if>
+                <c:if test="#{sessionScope.currentSort!=2}">
+                    <h2><b>Order</b></h2>
+                </c:if>
+                <div>
+                    <b>#{billBean.result}</b>
+                    <h:form>
+                        <table id="print">
+                            <tr>
+                                <td>ID: </td><td>#{billBean.detail.id}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Order date: </td><td>#{billBean.detail.orderDate.toLocaleString()}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Total: </td><td>#{billBean.detail.total}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Status: </td><td>
+                                    <c:if test="#{billBean.detail.status==0}">
+                                        Canceled
+                                    </c:if>
+                                    <c:if test="#{billBean.detail.status==1}">
+                                        Waiting
+                                    </c:if>
+                                    <c:if test="#{billBean.detail.status ==2}">
+                                        Done
+                                    </c:if>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Name: </td><td>#{billBean.detail.customerName}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Address: </td><td>#{billBean.detail.deliveryAddress}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Phone: </td><td>#{billBean.detail.phone}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Massage: </td><td>#{billBean.detail.message}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Member: </td><td>#{billBean.detail.memberId}<br/></td>
+                            </tr>
+                            <tr><th>Create date: </th><td>#{billBean.currentTime}</td></tr>
+                            <tr>
+                                <td>Price: </td><td>#{billBean.billdetail.price}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Quantity: </td><td>#{billBean.billdetail.quantity}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Product name: </td><td>#{billBean.dvddetail.title}<br/></td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr>
+                                <th>Change Status: </th>
+                                <td>
+                                    <h:selectOneMenu value="#{billBean.updateStatus}">
+                                        <f:selectItem itemLabel="Cancelled" itemValue="0"/>
+                                        <f:selectItem itemLabel="Waiting" itemValue="1"/>
+                                        <f:selectItem itemLabel="Done" itemValue="2"/>
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><h:commandButton value="Update" action="#{billBean.update()}"/></td>
+                            </tr>
+                        </table>
+                    </h:form>
+                    <br/>
+                    <a href="order.xhtml">Orders</a>
+                </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>

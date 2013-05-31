@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <script>
+            function changetab(){
+                $('#divnutrition').toggle();
+                $('#divdescription').hide();
+            }
+        </script>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/customerTemplate.xhtml">
+            <ui:define name="content">
+
+                <!--main content of product detail-->
+                <div id="divCatalogueContainer" class="product-department" style="margin-right: 0px;">
+                    <div class="product-page">
+                        <div class="product">
+                            <c:if test="#{param['detail']!=null}">
+                            <c:if test="#{showProductBean.detail==null}">
+                                No result for DVD Id: #{param["detail"]}
+                                <title>No product found</title>
+                            </c:if>
+                            <c:if test="#{showProductBean.detail!=null}">
+                                <title>#{showProductBean.detail.title}</title>
+                            <h3 id="h3ProductName">
+                                #{showProductBean.detail.title}</h3>
+                            <div id="divProductImgStatic">
+                                <div class="img">
+                                    <img src="#{showProductBean.detail.imageCoverUrl}" id="imgProduct" class="product-image" alt="#{showProductBean.detail.title}"/>
+                                </div>
+                            </div>
+                            <div class="product-text">
+                                <h4 id="h4ProductPrice">
+                                    £#{showProductBean.detail.price}</h4>
+                                <div id="pdStandardUP">
+                                    <div>
+                                        <p class="in-basket">
+                                        </p>
+                                        <p>
+                                            <span id="lblqty" class="lblqty"></span>
+                                            <input name="txtQuantity" type="text" value="1" maxlength="2" id="txtQuantity" class="qty"/>
+                                        </p>
+                                        <p>
+                                            <input type="button" name="ibAddToBasket" value="add" id="ibAddToBasket" class="btn"
+                                                   onclick=""/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <h5 id="h5PricePerKg">
+                                </h5>
+                            </div>
+                            <div class="product-icons">
+                                <div id="imgOrganic">
+                                    <img src="/ShopOnline4DVDS/resources/customer/images/icon-organic-l.gif" title="Organic" alt="Organic Icon"/>
+                                    <div class="orange">
+                                        #{showProductBean.detail.type}</div>
+                                </div>
+                                <div id="imgVegetarian">
+                                    <img src="/ShopOnline4DVDS/resources/customer/images/icon-vegetarian-l.gif" title="Vegetarian" alt="Vegetarian Icon"/>
+                                    <div>
+                                        #{showProductBean.detail.author}</div>
+                                </div>
+                            </div>
+                            <div id="pnlProductTabs">
+                                <div class="product-tabs">
+                                    <ul>
+                                        <li id="description" class="single-tab-closed"><a id="a_description" class="current-active"
+                                                                                          href="">Trailer</a> </li>
+                                        <li id="producer" class="single-tab-closed"><a id="a_producer" class="" href="">
+                                                producer</a> </li>
+                                        <li id="ingredients" class="single-tab-open"><a id="a_ingredients" class="" href="">
+                                                songs number</a> </li>
+                                        <li id="nutrition" class="single-tab-closed"><a id="a_nutrition" onclick="changetab();" class="" href="">
+                                                description</a> </li>
+                                        <li id="storageprep" class="double-tab-closed"><a id="a_storageprep" class="" href="">
+                                                comment</a> </li>
+                                    </ul>
+                                    <div id="ulTabsDivs" class="tabs">
+                                        <div id="divdescription" style="display: block;" class="description">
+                                            <!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
+                                            <div id="mediaplayer">Have not file to view trailer</div>
+
+                                            <script type="text/javascript" src="resources/js/jwplayer.js"></script>
+                                            <script type="text/javascript">
+                                                jwplayer("mediaplayer").setup({
+                                                    flashplayer: "resources/js/player.swf",
+                                                    height: 230,
+                                                    width: 320,
+                                                    file: "#{showProductBean.trailerUrl}",
+                                                    image: "#{showProductBean.detail.imageCoverUrl}"
+                                                });
+                                            </script>
+                                            <!-- END OF THE PLAYER EMBEDDING -->
+                                            <br/>
+                                            <a href="#{showProductBean.trailerUrl}" title="Download">Download trailer for free</a>
+                                        </div>
+                                        <div id="divproducer" style="display: none;" class="producer">
+                                            #{showProductBean.detail.genres}
+                                        </div>
+                                        <div id="divingredients" style="display: none;" class="ingredients">
+                                        </div>
+                                        <div id="divnutrition" style="display: none;" class="nutrition">
+                                            #{showProductBean.detail.description}
+                                        </div>
+                                        <div id="divstorageprep" style="display: none;" class="storageprep">
+                                            No comment
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                </c:if>
+                                <h2>Others DVD:</h2>
+                                <ul>
+                                    <c:forEach var="o" items="#{showProductBean.others}">
+                                        <li><img src="#{o.imageCoverUrl}" alt="ok"/><a href="detail.xhtml?detail=#{o.id}/#{o.type}">#{o.title}</a></li>
+                                    </c:forEach>
+                                </ul>
+                            </c:if>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

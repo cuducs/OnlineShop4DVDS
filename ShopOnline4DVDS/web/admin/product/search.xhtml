@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -27,26 +28,12 @@
                     <label>Author :</label><h:inputText value="#{productManagedBean.searchDvd.author}"></h:inputText><br/>
                     <label>Number of Disc :</label><h:inputText value="#{productManagedBean.searchDvd.discNumber}"></h:inputText><br/>
                     <label>Type :</label><h:selectOneMenu value="#{productManagedBean.searchDvd.type}">
-                        <f:selectItems var="item" value="#{productManagedBean.listType}" ></f:selectItems>
+                        <f:selectItems var="item" value="#{productManagedBean.listTypeSearch}" ></f:selectItems>
                     </h:selectOneMenu><br/>
                     <h:commandButton value="Search" action="#{productManagedBean.search()}"></h:commandButton><br/>
-
+                    
                     Result :<br/>
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Details</th>
-                        </tr>
-                        <ui:repeat var="item" varStatus="stt" value="#{productManagedBean.resustSearch}">
-                            <tr>
-                                <td>#{item.title}</td>
-                                <td>#{item.type}</td>
-                                <td><h:commandButton value="Details" action="#{productManagedBean.details(item)}">
-                                        <f:param name="from" value="search"></f:param>
-                                    </h:commandButton></td>
-                            </tr>
-                        </ui:repeat>
-                    </table>
+                    <gct:product-list controller="#{productManagedBean}" list="#{productManagedBean.resustSearch}" for="search" from="search"></gct:product-list>
                 </h:form>
             </ui:define>
         </ui:composition>

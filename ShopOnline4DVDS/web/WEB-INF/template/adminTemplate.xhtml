@@ -4,21 +4,42 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
-        <title>Admin</title>
-
+        <!--add css, js-->
+        <ui:insert name="top">
+            <ui:include src="fragment/top.xhtml"/>
+        </ui:insert>
+        <title>DVD Store FPT Aptech C1007L_G3_S4</title>
     </h:head>
     <h:body>
-        Admin Template
-        <ul style="list-style-type: none">
-            <li style="float:left;padding: 10px;"><h:link outcome="game" value="Manage Game"></h:link></li>
-        </ul>
-        <br/>
-        <br/>
-        <br/>
-        <ui:insert name="content" >
+        <div id="main_container">
+            <!--clock, login,message-->
+            <ui:insert name="welcome">
+                <ui:include src="fragment/welcome.xhtml"/>
+            </ui:insert>
+            <div class="main_content">
+                <!--top menu-->
+                <ui:insert name="vmenu">
+                    <ui:include src="fragment/hmenu.xhtml"/>
+                </ui:insert>
+                <div class="center_content">  
+                    <!--left menu-->
+                    <ui:insert name="vmenu">
+                        <ui:include src="fragment/vmenu.xhtml"/>
+                    </ui:insert>
+                    <div class="right_content"> 
+                        <ui:insert name="content">
+                            <!--here is main display-->
+                        </ui:insert>
 
-        </ui:insert>
 
+                    </div>         
+                </div> 
+                <div class="clear"></div>
+            </div>
+            <ui:insert name="footer">
+                <ui:include src="fragment/footer.xhtml"/>
+            </ui:insert>
+        </div>
     </h:body>
 </html>
 

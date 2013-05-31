@@ -5,6 +5,8 @@
 package g3.server.bean;
 
 import g3.hibernate.entity.Bill;
+import g3.hibernate.entity.BillDetail;
+import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.Member;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -50,6 +52,8 @@ public class BillBean {
     private String result;
     private List<Bill> sortBills;
     private List<Page> sortLinks;//paging links sorted
+    private BillDetail billdetail;
+    private Dvd dvddetail;
 
     public BillBean() {
     }
@@ -98,7 +102,7 @@ public class BillBean {
     }
 
     public List<Bill> getBillAdmin() {
-        String sqlQuery = "FROM Bill b where b.isDeleted = 0";
+        String sqlQuery = "FROM Bill b where b.isDeleted = 0 and b.status != 2";
         return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
     }
 
@@ -130,7 +134,7 @@ public class BillBean {
     }
 
     public int getLength() {
-        return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0").list().size();
+        return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status != 2").list().size();
     }
 
     public List<Page> getPageLinks() {
@@ -146,7 +150,7 @@ public class BillBean {
     }
 
     public Bill getDetail() {
-        Bill b = (Bill) getSession().createQuery("FROM Bill b WHERE b.id = " + getDetailId()).uniqueResult();
+        Bill b = (Bill) getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.id = " + getDetailId()).uniqueResult();
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         ss.setAttribute("detail", b);
         return b;
@@ -161,6 +165,8 @@ public class BillBean {
             if (detailId == 0) {
                 detailId = 1;
             }
+            HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            ss.setAttribute("bId", detailId);
         } catch (Exception ex) {
             detailId = 1;
         }
@@ -239,13 +245,34 @@ public class BillBean {
         return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status = 2").list().size();
     }
 
-    /**
-     * **********************FUNCTIONS************************************************
-     */
+    public String getCurrentTime() {
+        return DvdStoreHibernateUtil.currenrTime();
+    }
+
     public int sortLength(String s) {
         return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status = " + s).list().size();
     }
 
+    public BillDetail getBilldetail() {
+        HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Bill b = (Bill) ss.getAttribute("detail");
+        billdetail = (BillDetail) getSession().createQuery("FROM BillDetail b WHERE b.id.billId = " + b.getId()).uniqueResult();
+        return billdetail;
+    }
+
+    public Dvd getDvddetail() {
+        try {
+            dvddetail = (Dvd) getSession().createQuery("FROM Dvd d WHERE d.id = " + getBilldetail().getId().getProductId()).uniqueResult();
+
+        } catch (Exception ex) {
+            dvddetail = null;
+        }
+        return dvddetail;
+    }
+
+    /**
+     * *******ME THODS********************************************************
+     */
     public void searchAdmin() {
         if (searchField != null && searchQuery != null) {
             List<Bill> l = new ArrayList<Bill>();
@@ -258,12 +285,6 @@ public class BillBean {
             }
             setAdminSearch(l);
         }
-    }
-
-    public String view(Bill b) {
-        HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        ss.setAttribute("bId", b.getId());
-        return "detail.xhtml?faces-redirect=true&detail=" + b.getId();
     }
 
     public String update() {
