@@ -102,4 +102,14 @@ public class ProductManagedHelper extends BaseHelper {
         }
         return criteria.list();
     }
+    Dvd getById(int id){
+        Transaction beginTransaction = session.beginTransaction();
+        String hql = "FROM Dvd d WHERE d.isDeleted=0 and d.id="+id;
+        Query query = session.createQuery(hql);
+        beginTransaction.commit();
+        if(query.list().size()>0){
+            return (Dvd)query.list().get(0);
+        }
+        return null;
+    }
 }
