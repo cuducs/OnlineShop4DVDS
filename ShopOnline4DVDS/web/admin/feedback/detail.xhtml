@@ -12,10 +12,10 @@
                 <title>Feedback detail</title>
                 <div>
                     <c:if test="#{feebackBean.result!='1'}">
-                        <b>Reply successful!</b>
+                        <b style="color: Green">Reply successful!</b>
                     </c:if>
                     <c:if test="#{feebackBean.result=='1'}">
-                        <b>Reply Error!</b>
+                        <b style="color: red">Reply Error!</b>
                     </c:if>
                     <h:form>
                         <table id="print">

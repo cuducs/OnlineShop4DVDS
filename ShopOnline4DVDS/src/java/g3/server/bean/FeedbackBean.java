@@ -9,9 +9,16 @@ import g3.hibernate.entity.Member;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
@@ -284,9 +291,9 @@ public class FeedbackBean {
                 qr = "FROM Feedback b WHERE b.isDeleted = 0 and b.isRead = 0";
             }
             if (qr != "") {
-                try{
-                l = getSession().createQuery(qr).list();
-                }catch(Exception ex){
+                try {
+                    l = getSession().createQuery(qr).list();
+                } catch (Exception ex) {
                     l = null;
                 }
             }
@@ -304,6 +311,28 @@ public class FeedbackBean {
             x = b.getId();
         }
         try {
+            final String username = "thelionasia@gmail.com";
+            final String password = "xxx";
+            String to = getCustomer().getEmail();
+            Properties props = new Properties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+
+            javax.mail.Session ssmail = javax.mail.Session.getInstance(props,
+                    new javax.mail.Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(username, password);
+                        }
+                    });
+            Message message = new MimeMessage(ssmail);
+            message.setFrom(new InternetAddress("thelionasia@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(to));
+            message.setSubject("Feedback from DVD Store Aptech");
+            message.setText(updateStatus);
+            Transport.send(message);
             String sql = "update Feedback set IsRead = 1, ReplyText = N'" + updateStatus + "', ModifiedDate = '" + DvdStoreHibernateUtil.currenrTime() + "' where id = " + x;
             getSession().createSQLQuery(sql).executeUpdate();
             getSession().beginTransaction().commit();
