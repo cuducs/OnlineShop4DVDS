@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+            <ui:define name="content">
+                <title>Feedback detail</title>
+                <div>
+                    <c:if test="#{feebackBean.result!='1'}">
+                        <b>Reply successful!</b>
+                    </c:if>
+                    <c:if test="#{feebackBean.result=='1'}">
+                        <b>Reply Error!</b>
+                    </c:if>
+                    <h:form>
+                        <table id="print">
+                            <tr>
+                                <td>ID: </td><td>#{feedbackBean.detailId}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Submit date: </td><td>#{feedbackBean.detail.submittedDate}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Customer: </td><td>#{feedbackBean.customer.name}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Status: </td><td>
+                                    <c:if test="#{feedbackBean.detail.isRead==false}">
+                                        <b style="color: red">Unread</b>
+                                    </c:if>
+                                    <c:if test="#{feedbackBean.detail.isRead==true}">
+                                        Read
+                                    </c:if>
+                                    
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Feedback content: </td><td>#{feedbackBean.detail.feedbackText}<br/></td>
+                            </tr>
+                            <tr>
+                                <td>Reply date: </td><td>#{feedbackBean.detail.modifiedDate}<br/></td>
+                            </tr>
+                            <c:if test="#{feedbackBean.detail.isRead!=false}">
+                                <tr>
+                                <th>Replied: </th>
+                                <td>#{feedbackBean.detail.replyText}</td>
+                                </tr>
+                            </c:if>
+                            <c:if test="#{feedbackBean.detail.isRead==false}">
+                                <tr><th>Reply: </th>
+                                    <td><h:inputTextarea cols="50" rows="20" value="#{feedbackBean.updateStatus}"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><h:commandButton value="Reply" action="#{feedbackBean.reply()}"/></td>
+                                </tr>
+                            </c:if>
+                        </table>
+                    </h:form>
+                    <br/>
+                    <a href="show.xhtml">Return to Feedbacks</a>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
