@@ -148,7 +148,7 @@ background:url(images/menu_bg.jpg) no-repeat center top #fff;
 /* style the level hovers */
 /* first */
 .menu a:hover {color:#fff;background:url(images/menu_bg.gif) repeat-x center;}
-.menu :hover > a {color:#fff;background:url(images/menu_bg.gif) repeat-x center;}
+.menu :hover > a,.menu .active {color:#fff;background:url(images/menu_bg.gif) repeat-x center;}
 /* second */
 .menu ul ul a:hover{color:#fff;background:url(images/menu_bg_a.gif) repeat-x center;}
 .menu ul ul :hover > a {color:#fff;background:url(images/menu_bg_a.gif) repeat-x center;}

@@ -15,7 +15,7 @@ public class Feedback  implements java.io.Serializable {
      private Integer customerId;
      private Date submittedDate;
      private String feedbackText;
-     private Boolean isRead;
+     private boolean isRead;
      private String replyText;
      private Date createdDate;
      private Date modifiedDate;
@@ -29,7 +29,7 @@ public class Feedback  implements java.io.Serializable {
         this.id = id;
         this.isDeleted = isDeleted;
     }
-    public Feedback(int id, Integer customerId, Date submittedDate, String feedbackText, Boolean isRead, String replyText, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Feedback(int id, Integer customerId, Date submittedDate, String feedbackText, boolean isRead, String replyText, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.customerId = customerId;
        this.submittedDate = submittedDate;
@@ -69,7 +69,7 @@ public class Feedback  implements java.io.Serializable {
     public void setFeedbackText(String feedbackText) {
         this.feedbackText = feedbackText;
     }
-    public Boolean getIsRead() {
+    public boolean getIsRead() {
         return this.isRead;
     }
     

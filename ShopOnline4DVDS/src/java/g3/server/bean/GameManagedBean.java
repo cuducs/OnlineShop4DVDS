@@ -92,7 +92,7 @@ public class GameManagedBean {
     public String create() {
         curGame = new Game(0, false);
         formMode = AppConstant.FORM_MODE_CREATE;
-        return "form";
+        return "gameform";
     }
 
     public String edit(Game item) {

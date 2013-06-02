@@ -10,23 +10,52 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h:commandButton value="Cancel" action="#{movieManagedBean.cancel()}"></h:commandButton>
-                    <label>Title</label><h:inputText value="#{movieManagedBean.curMovie.title}"></h:inputText><br/>
-                    <label>Studio</label><h:inputText value="#{movieManagedBean.curMovie.studio}"></h:inputText><br/>
-                    <label>Cast</label><h:inputText value="#{movieManagedBean.curMovie.cast}"></h:inputText><br/>
-                    <label>Crew</label><h:inputText value="#{movieManagedBean.curMovie.crew}"></h:inputText><br/>
-                    <label>Runtime</label><h:inputText value="#{movieManagedBean.curMovie.runtime}">
-                        <f:converter converterId="TimeConverter"/>
-                    </h:inputText>hh:mm:ss<br/>
-                    <label>Language</label><h:inputText value="#{movieManagedBean.curMovie.language}"></h:inputText><br/>
-                    <h:panelGroup rendered="#{movieManagedBean.mode eq appConstant.modeCreate}">
-                        <h:commandButton value="Create" action="#{movieManagedBean.save()}"></h:commandButton>
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{movieManagedBean.mode eq appConstant.modeEdit}">
-                        <h:commandButton value="Edit" action="#{movieManagedBean.update()}"></h:commandButton>
-                    </h:panelGroup>
-                </h:form>
+                <h2>Movie Form</h2>
+                <div class="form">
+                    <h:form class="niceform">
+                        <fieldset>
+                            <dl>
+                                <dt><label>Title :</label></dt>
+                                <dd><h:inputText value="#{movieManagedBean.curMovie.title}"></h:inputText></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Studio :</label></dt>
+                                <dd><h:inputText value="#{movieManagedBean.curMovie.studio}"></h:inputText></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Cast :</label></dt>
+                                <dd><h:inputText value="#{movieManagedBean.curMovie.cast}"></h:inputText></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Crew :</label></dt>
+                                <dd><h:inputText value="#{movieManagedBean.curMovie.crew}"></h:inputText></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Runtime :</label></dt>
+                                <dd><h:inputText value="#{movieManagedBean.curMovie.runtime}">
+                                        <f:converter converterId="TimeConverter"/>
+                                    </h:inputText>hh:mm:ss</dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Language :</label></dt>
+                                <dd><h:inputText value="#{movieManagedBean.curMovie.language}"></h:inputText></dd>
+                            </dl>
+                            <dl class="submit">
+                                <dt></dt>
+                                <dd>
+                                <h:panelGroup rendered="#{movieManagedBean.mode eq appConstant.modeCreate}">
+                                    <h:commandButton value="Create" action="#{movieManagedBean.save()}"></h:commandButton>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{movieManagedBean.mode eq appConstant.modeEdit}">
+                                    <h:commandButton value="Edit" action="#{movieManagedBean.update()}"></h:commandButton>
+                                </h:panelGroup>
+                                <h:commandButton value="Cancel" action="#{movieManagedBean.cancel()}"></h:commandButton>
+                                </dd>
+                            </dl>
+                        </fieldset>
+                    </h:form>
+                </div>
+
             </ui:define>
         </ui:composition>
     </h:body>

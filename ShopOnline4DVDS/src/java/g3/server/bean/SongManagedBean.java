@@ -92,7 +92,7 @@ public class SongManagedBean {
     public String create() {
         curSong = new Song();
         formMode = AppConstant.FORM_MODE_CREATE;
-        return "form";
+        return "songform";
     }
 
     public String edit(Song item) {

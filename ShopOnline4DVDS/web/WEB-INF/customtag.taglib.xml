@@ -9,6 +9,14 @@
         <source>tags/example.xhtml</source>
     </tag>
     <tag>
+        <tag-name>admin-horizotal-menu</tag-name>
+        <source>tags/admin-horizotal-menu.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>admin-vertical-menu</tag-name>
+        <source>tags/admin-vertical-menu.xhtml</source>
+    </tag>
+    <tag>
         <tag-name>product-list</tag-name>
         <source>tags/product-list.xhtml</source>
         <attribute>

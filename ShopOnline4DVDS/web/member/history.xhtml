@@ -1,73 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <h:head>
-        <title>History</title>
-    </h:head>
     <h:body>
-        <c:if test="#{sessionScope.member==null}">
-            #{facesContext.externalContext.redirect("login.xhtml")}
-        </c:if>
-        <c:if test="#{billBean.bills.size()==0}">
-            <h2>You have not order any product.</h2>
-        </c:if>
-        <c:if test="#{billBean.bills.size()!=0}">
-            <h2>Your history: </h2>
-            <table style="text-align: center">
-                <tr>
-                    <th>Order date</th><th>Name</th><th>Address receive</th><th>Status</th>
-                </tr>
-                <c:forEach var="b" items="#{billBean.bills}">
-                    <tr>
-                        <td>#{b.orderDate.toString()}</td><td>#{b.customerName}</td><td>#{b.deliveryAddress}</td><td>
-                            <c:if test="#{b.status==0}">
-                            Canceled
+        <ui:composition template="/WEB-INF/template/customerTemplate.xhtml">
+            <ui:define name="content_wrapcategory">
+                <title>History</title>
+                <c:if test="#{sessionScope.member==null}">
+                    #{facesContext.externalContext.redirect("login.xhtml")}
+                </c:if>
+                <c:if test="#{sessionScope.member!=null}">
+                    <div id="basket-content">
+                        <div id="divTitle" style="position: relative; margin-bottom: 25px;">
+                            <c:if test="#{billBean.bills.size()==0}">
+                                <h3 id="h3Title"  style="margin-top: 5px;">You have not order any product.</h3>
                             </c:if>
-                            <c:if test="#{b.status==1}">
-                            Waiting
-                            </c:if>
-                            <c:if test="#{b.status==2}">
-                            Done
-                            </c:if>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table><h:form>
-            Search by date (dd/mm/yyyy): <h:inputText value="#{billBean.orderedDate}"/>
-            <br/>
-            <b style="color: red">#{billBean.result}</b>
-            <br/>
-            <h:commandButton value="Search" action="#{billBean.search()}"/></h:form>
-        </c:if>
-        <c:if test="#{billBean.billSearch.size()!=0}">
-            <h2>Search Result: </h2>
-            <table style="text-align: center">
-                <tr>
-                    <th>Order date</th><th>Name</th><th>Address receive</th><th>Status</th>
-                </tr>
-                <c:forEach var="bs" items="#{billBean.billSearch}">
-                    <tr>
-                        <td>#{bs.orderDate.toString()}</td><td>#{bs.customerName}</td><td>#{bs.deliveryAddress}</td><td>
-                            <c:if test="#{bs.status==0}">
-                            Canceled
-                            </c:if>
-                            <c:if test="#{bs.status==1}">
-                            Waiting
-                            </c:if>
-                            <c:if test="#{bs.status==2}">
-                            Done
-                            </c:if>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </c:if>
-        <a href="profile.xhtml">Profile</a>
+                        </div>
+                        <span id="lbMessage"></span>
+                        <div id="boxdatagrid">
+                            <div>
+                                <c:if test="#{billBean.bills.size()!=0}">
+                                    <h3>Your history: </h3>
+                                    <table style="text-align: center">
+                                        <tr>
+                                            <th>Order date</th><th>Name</th><th>Address receive</th><th>Status</th>
+                                        </tr>
+                                        <c:forEach var="b" items="#{billBean.bills}">
+                                            <tr>
+                                                <td>#{b.orderDate.toString()}</td><td>#{b.customerName}</td><td>#{b.deliveryAddress}</td><td>
+                                                    <c:if test="#{b.status==0}">
+                                                        Canceled
+                                                    </c:if>
+                                                    <c:if test="#{b.status==1}">
+                                                        Waiting
+                                                    </c:if>
+                                                    <c:if test="#{b.status==2}">
+                                                        Done
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                    <h:form>
+                                        Search by date (dd/mm/yyyy): <h:inputText value="#{billBean.orderedDate}"/>
+                                        <br/>
+                                        <b style="color: red">#{billBean.result}</b>
+                                        <br/>
+                                        <h:commandButton value="Search" action="#{billBean.search()}"/>
+                                    </h:form>
+                                </c:if>
+                                <c:if test="#{billBean.billSearch.size()!=0}">
+                                    <h2>Search Result: </h2>
+                                    <table style="text-align: center">
+                                        <tr>
+                                            <th>Order date</th><th>Name</th><th>Address receive</th><th>Status</th>
+                                        </tr>
+                                        <c:forEach var="bs" items="#{billBean.billSearch}">
+                                            <tr>
+                                                <td>#{bs.orderDate.toString()}</td><td>#{bs.customerName}</td><td>#{bs.deliveryAddress}</td><td>
+                                                    <c:if test="#{bs.status==0}">
+                                                        Canceled
+                                                    </c:if>
+                                                    <c:if test="#{bs.status==1}">
+                                                        Waiting
+                                                    </c:if>
+                                                    <c:if test="#{bs.status==2}">
+                                                        Done
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                </c:if>
+                                <a href="profile.xhtml">Profile</a>
+                            </div>
+                            <div style="height: 20px;">
+                            </div>
+                            <div>
+                                <p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>

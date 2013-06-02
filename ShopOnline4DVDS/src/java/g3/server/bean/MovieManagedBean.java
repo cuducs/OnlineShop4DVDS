@@ -96,7 +96,7 @@ public class MovieManagedBean {
     public String create() {
         curMovie = new Movie(0, false);
         formMode = AppConstant.FORM_MODE_CREATE;
-        return "form";
+        return "movieform";
     }
 
     public String edit(Movie item) {

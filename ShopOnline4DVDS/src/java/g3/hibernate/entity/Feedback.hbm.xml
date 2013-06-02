@@ -14,13 +14,13 @@
         <property name="submittedDate" type="timestamp">
             <column name="SubmittedDate" length="23" />
         </property>
-        <property name="feedbackText" type="string">
+        <property name="feedbackText" type="java.lang.String">
             <column name="FeedbackText" />
         </property>
-        <property name="isRead" type="java.lang.Boolean">
+        <property name="isRead" type="boolean">
             <column name="IsRead" />
         </property>
-        <property name="replyText" type="string">
+        <property name="replyText" type="java.lang.String">
             <column name="ReplyText" />
         </property>
         <property name="createdDate" type="timestamp">

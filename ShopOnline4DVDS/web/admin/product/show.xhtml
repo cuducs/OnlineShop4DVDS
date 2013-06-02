@@ -15,6 +15,7 @@
                     <h:commandButton value="Create New" action="#{productManagedBean.create}"></h:commandButton><br/>
                     <h:link value="Recovery" outcome="recovery"></h:link><br/>
                     <h:link value="Search" outcome="search"></h:link><br/>
+                    <h2>Products</h2>
                     <gct:product-list controller="#{productManagedBean}" list="#{productManagedBean.allDvds}" for="show" from="show"></gct:product-list>
                     
                 </h:form>

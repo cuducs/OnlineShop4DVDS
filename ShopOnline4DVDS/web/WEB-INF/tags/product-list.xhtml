@@ -9,13 +9,15 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Type</th>
-                    <th>Details</th>
-                    <th>Command</th>
-                </tr>
+            <table id="rounded-corner" summary="DVD Store">
+                <thead>
+                    <tr>
+                        <th scope="col" class="rounded">Title</th>
+                        <th scope="col" class="rounded">Type</th>
+                        <th scope="col" class="rounded">Details</th>
+                        <th scope="col" class="rounded">Command</th>
+                    </tr>
+                </thead>
                 <ui:repeat var="item" varStatus="stt" value="#{list}">
                     <tr>
                         <td>#{item.title}</td>

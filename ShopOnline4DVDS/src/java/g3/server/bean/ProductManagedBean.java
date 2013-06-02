@@ -95,7 +95,7 @@ public class ProductManagedBean {
     public String create() {
         curDvd = new Dvd(0, false);
         formMode = AppConstant.FORM_MODE_CREATE;
-        return "form";
+        return "productform";
     }
 
     public String edit(Dvd item) {
