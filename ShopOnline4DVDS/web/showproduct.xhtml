@@ -4,13 +4,10 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <h:head>
-        <title>Products</title>
-    </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/customerTemplate.xhtml">
             <ui:define name="content">
-
+                <title>Products</title>
                 <!--main content of product-->
                 <div id="divCatalogueContainer" class="product-department" style="margin-right: 0px;">
                     <div id="divCatalogue" class="Catalogue">
@@ -91,10 +88,11 @@
                                             <td class="add">
                                                 <div id="ctrl0_Div2" class="form-cont">
                                                     <div id="divAdd">
-                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
-                                                               class="qty"/>
-                                                        <a id="lbAddToBasket" class="btn" href="">
-                                                            add</a>
+                                                        <h:form>
+                                                            <h:inputText value="#{cartManagedBean.count}" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px; margin-right:2px"
+                                                                         class="qty"></h:inputText>
+                                                            <h:commandButton id="lbAddToBasket" action="#{cartManagedBean.add(m.id)}" value="add" class="btn"></h:commandButton>
+                                                        </h:form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -155,10 +153,11 @@
                                             <td class="add">
                                                 <div id="ctrl0_Div2" class="form-cont">
                                                     <div id="divAdd">
-                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
-                                                               class="qty"/>
-                                                        <a id="lbAddToBasket" class="btn" href="">
-                                                            add</a>
+                                                        <h:form>
+                                                            <h:inputText value="#{cartManagedBean.count}" maxlength="2" id="txtQuantity1" styleClass="padding: 2px 4px 2px 4px; margin-right:2px"
+                                                                         class="qty"></h:inputText>
+                                                            <h:commandButton id="lbAddToBasket" action="#{cartManagedBean.add(m.id)}" value="add" class="btn"></h:commandButton>
+                                                        </h:form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -219,10 +218,11 @@
                                             <td class="add">
                                                 <div id="ctrl0_Div2" class="form-cont">
                                                     <div id="divAdd">
-                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
-                                                               class="qty"/>
-                                                        <a id="lbAddToBasket" class="btn" href="">
-                                                            add</a>
+                                                        <h:form>
+                                                            <h:inputText value="#{cartManagedBean.count}" maxlength="2" id="txtQuantity1"  style="padding: 2px 4px 2px 4px; margin-right:2px"
+                                                                         styleClass="qty"></h:inputText>
+                                                            <h:commandButton id="lbAddToBasket" value="add" action="#{cartManagedBean.add(m.id)}" class="btn"></h:commandButton>
+                                                        </h:form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -289,10 +289,11 @@
                                             <td class="add">
                                                 <div id="ctrl0_Div2" class="form-cont">
                                                     <div id="divAdd">
-                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
-                                                               class="qty"/>
-                                                        <a id="lbAddToBasket" class="btn" href="">
-                                                            add</a>
+                                                        <h:form>
+                                                            <h:inputText value="#{cartManagedBean.count}" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px; margin-right:2px"
+                                                                         class="qty"></h:inputText>
+                                                            <h:commandButton id="lbAddToBasket" action="#{cartManagedBean.add(m.id)}" value="add" class="btn"></h:commandButton>
+                                                        </h:form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -376,10 +377,11 @@
                                             <td class="add">
                                                 <div id="ctrl0_Div2" class="form-cont">
                                                     <div id="divAdd">
-                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
-                                                               class="qty"/>
-                                                        <a id="lbAddToBasket" class="btn" href="">
-                                                            add</a>
+                                                        <h:form>
+                                                            <h:inputText value="#{cartManagedBean.count}" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px; margin-right:2px"
+                                                                         class="qty"></h:inputText>
+                                                            <h:commandButton id="lbAddToBasket" value="add"  action="#{cartManagedBean.add(m.id)}" class="btn"></h:commandButton>
+                                                        </h:form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -463,10 +465,11 @@
                                             <td class="add">
                                                 <div id="ctrl0_Div2" class="form-cont">
                                                     <div id="divAdd">
-                                                        <input type="text" value="1" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px;"
-                                                               class="qty"/>
-                                                        <a id="lbAddToBasket" class="btn" href="">
-                                                            add</a>
+                                                        <h:form>
+                                                            <h:inputText value="#{cartManagedBean.count}" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px; margin-right:2px"
+                                                                         class="qty"></h:inputText>
+                                                            <h:commandButton id="lbAddToBasket" action="#{cartManagedBean.add(m.id)}" value="add" class="btn"></h:commandButton>
+                                                        </h:form>
                                                     </div>
                                                 </div>
                                             </td>

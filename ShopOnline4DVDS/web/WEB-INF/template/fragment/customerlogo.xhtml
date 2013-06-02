@@ -3,10 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
+      
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:body>
         <ui:composition>
             <div id="head">
@@ -21,6 +19,18 @@
                 </div>
                 <div id="log-btns">
                     <div style="position: absolute; right: 180px; top: -1px;" class="BoldChatIE">
+                    </div>
+                    <div class="signup-button">
+                        <c:if test="#{sessionScope.member==null}">
+                            <a id="a_signup" href="/ShopOnline4DVDS/faces/member/registry.xhtml"
+                           class="signup">Sign up</a>
+                            <a id="a_login" href="/ShopOnline4DVDS/faces/member/login.xhtml"
+                       class="login"></a>
+                        </c:if>
+                        <c:if test="#{sessionScope.member!=null}">
+                            <h2><a href="/ShopOnline4DVDS/faces/member/profile.xhtml" title="Profile" style="color: red">#{sessionScope.member.name}</a><h:form><h:commandLink value="Logout" action="#{memberBean.logout()}"/></h:form></h2>
+                            
+                        </c:if>
                     </div>
                     <div class="signup-button">
                         <a id="a_signup" href=""

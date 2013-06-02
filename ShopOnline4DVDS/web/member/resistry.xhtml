@@ -1,46 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <h:head>
-        <title>Registry</title>
-        <script>
-            function valid(){
-                
-            }
-        </script>
-    </h:head>
     <h:body>
-        <c:if test="#{sessionScope.member!=null}">
-            #{facesContext.externalContext.redirect("profile.xhtml")}
-        </c:if>
-        <h:form>
-        <table style="text-align: center;">
-            <tr>
-                <th>Name</th><td><h:inputText value="#{memberBean.name}" /></td>
-            </tr>
-            <tr>
-                <th>Email</th><td><h:inputText value="#{memberBean.email}"/></td>
-            </tr>
-            <tr>
-                <th>Password</th><td><h:inputSecret value="#{memberBean.password}"/></td>
-            </tr>
-            <tr>
-                <th>Retype password</th><td><h:inputSecret value="#{memberBean.repassword}"/></td>
-            </tr>
-            <tr>
-                <td colspan="2" style="color: red">#{requestScope.result}</td>
-            </tr>
-            <tr><td colspan="2"><h:commandButton value="Registry" action="#{memberBean.registry()}"/></td></tr>
-            <tr>
-                <td colspan="2"><a href="login.xhtml">Login here</a></td>
-            </tr>
-        </table>
-        </h:form>
+        <ui:composition template="/WEB-INF/template/customerTemplate.xhtml">
+            <ui:define name="content_wrapcategory">
+                <title>Registry</title>
+                <div id="basket-content">
+                    <div id="divTitle" style="position: relative; margin-bottom: 25px;">
+                        <h3 id="h3Title"  style="margin-top: 5px;">
+                            Registry for free
+                        </h3>
+                    </div>
+                    <span id="lbMessage"></span>
+                    <div id="boxdatagrid">
+                        <div>
+                            <c:if test="#{sessionScope.member!=null}">
+                                #{facesContext.externalContext.redirect("profile.xhtml")}
+                            </c:if>
+                            <h:form>
+                                <table style="text-align: center;">
+                                    <tr>
+                                        <th>Name</th><td><h:inputText value="#{memberBean.name}" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th><td><h:inputText value="#{memberBean.email}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Password</th><td><h:inputSecret value="#{memberBean.password}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Retype password</th><td><h:inputSecret value="#{memberBean.repassword}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="color: red">#{requestScope.result}</td>
+                                    </tr>
+                                    <tr><td colspan="2"><h:commandButton value="Registry" action="#{memberBean.registry()}"/></td></tr>
+                                    <tr>
+                                        <td colspan="2"><a href="login.xhtml">Login here</a></td>
+                                    </tr>
+                                </table>
+                            </h:form>
+                        </div>
+                        <div style="height: 20px;">
+                        </div>
+                        <div>
+                            <p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>

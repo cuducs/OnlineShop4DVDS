@@ -3,10 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
+
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:body>
         <ui:composition>
             <div id="sidecol" class="sidecol">
@@ -37,8 +35,8 @@
                                 <span></span>shopping basket
                             </h2>
                             <div class="totals">
-                                <span class="items"><span>0 items in basket' </span></span><span class="cost"><span>
-                                        Total = £ 0.0 </span></span>
+                                <span class="items"><span>#{cartManagedBean.totalItems} items in basket' </span></span><span class="cost"><span>
+                                        Total = £ #{cartManagedBean.total} </span></span>
                             </div>
                             <table class="tbl-basket">
                                 <thead>
@@ -48,50 +46,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="col-qty">
-                                            <a class="delete" href="">-</a>
-                                            <span class="qty">1</span>
-                                            <a class="add" href="">+</a>
-                                        </td>
-                                        <td class="col-item">
-                                            Fennel (1 head)
-                                        </td>
-                                        <td class="col-price">
-                                            <span class="price">£1.65</span>
-                                            <a class="remove" href="">remove</a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-qty">
-                                            <a class="delete" href="">-</a>
-                                            <span class="qty">1</span>
-                                            <a class="add" href="">+</a>
-                                        </td>
-                                        <td class="col-item">
-                                            Mature Cheddar, Abel &amp; Cole (360g)
-                                        </td>
-                                        <td class="col-price">
-                                            <span class="price">£3.36</span>
-                                            <a class="remove" href="">remove</a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-qty">
-                                            <a class="delete" href="">-</a>
-                                            <span class="qty">1</span>
-                                            <a class="add" href="">+</a>
-                                        </td>
-                                        <td class="col-item">
-                                            Blueberry Yoghurt, Brown Cow (500g)
-                                        </td>
-                                        <td class="col-price">
-                                            <span class="price">£1.8</span>
-                                            <a class="remove" href="">remove</a>
-                                        </td>
-                                    </tr>
+                                    <c:forEach items="#{cartManagedBean.listCart}" var="item">
+                                        <tr>
+                                            <td class="col-qty">
+                                                <h:form>
+                                                    <h:commandLink class="delete" value="-" action="#{cartManagedBean.removeOne(item.product.id)}"></h:commandLink>
+                                                    <span class="qty">${item.count}</span>
+                                                    <h:commandLink class="add" value="+" action="#{cartManagedBean.addOne(item.product.id)}"></h:commandLink>
+                                                </h:form>
+                                            </td>
+                                            <td class="col-item">
+                                                ${item.product.title}
+                                            </td>
+                                            <td class="col-price">
+                                                <span class="price">£ ${item.product.price}</span>
+                                                <h:form>
+                                                    <h:commandLink class="remove" value="remove" action="#{cartManagedBean.removeAll(item.product.id)}"></h:commandLink>
+                                                </h:form>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                             <p class="checkout">
