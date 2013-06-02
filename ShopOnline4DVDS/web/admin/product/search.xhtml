@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:gct="http://g3.com/tags">
+      xmlns:gct="http://g3.com/tags"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -14,24 +15,41 @@
                 <h:form>
                     <h:link value="Return List" outcome="show"></h:link><br/>
                     Input Search:<br/>
-                    <label>ID</label><h:inputText value="#{productManagedBean.searchDvd.id}">
+                    <p:inputText id="inputid" value="#{productManagedBean.searchDvd.id}">
                         <f:converter converterId="ZeroConverter"></f:converter>
-                    </h:inputText><br/>
-                    <label>Title :</label><h:inputText value="#{productManagedBean.searchDvd.title}"></h:inputText><br/>
-                    <label>Release Date :</label><h:inputText value="#{productManagedBean.searchDvd.releaseDate}">
+                    </p:inputText>
+                    <p:watermark for="inputid" value="ID"></p:watermark><br/>
+
+                    <p:inputText id="inputtitle" value="#{productManagedBean.searchDvd.title}"></p:inputText>
+                    <p:watermark for="inputtitle" value="Title"></p:watermark><br/>
+
+                    <p:inputText id="inputdate" value="#{productManagedBean.searchDvd.releaseDate}">
                         <f:convertDateTime pattern="d-M-yyyy" />
-                    </h:inputText>d-M-yyyy<br/>
-                    <label>Genres :</label><h:inputText value="#{productManagedBean.searchDvd.genres}"></h:inputText><br/>
-                    <label>Description :</label><h:inputText value="#{productManagedBean.searchDvd.description}"></h:inputText><br/>
-                    <label>Price :</label><h:inputText value="#{productManagedBean.searchDvd.price}"></h:inputText><br/>
-                    <label>Image Cover Url :</label><h:inputText value="#{productManagedBean.searchDvd.imageCoverUrl}"></h:inputText><br/>
-                    <label>Author :</label><h:inputText value="#{productManagedBean.searchDvd.author}"></h:inputText><br/>
-                    <label>Number of Disc :</label><h:inputText value="#{productManagedBean.searchDvd.discNumber}"></h:inputText><br/>
-                    <label>Type :</label><h:selectOneMenu value="#{productManagedBean.searchDvd.type}">
-                        <f:selectItems var="item" value="#{productManagedBean.listTypeSearch}" ></f:selectItems>
-                    </h:selectOneMenu><br/>
+                    </p:inputText>
+                    <p:watermark for="inputdate" value="Release Date(Format d-M-yyyy)"></p:watermark><br/>
+
+                    <p:inputText id="inputgenres" value="#{productManagedBean.searchDvd.genres}"></p:inputText>
+                    <p:watermark for="inputgenres" value="Genres"></p:watermark><br/>
+
+                    <p:inputText id="inputdes" value="#{productManagedBean.searchDvd.description}"></p:inputText>
+                    <p:watermark for="inputdes" value="Description"></p:watermark><br/>
+
+                    <p:inputText id="inputprice" value="#{productManagedBean.searchDvd.price}"></p:inputText>
+                    <p:watermark for="inputprice" value="Price"></p:watermark><br/>
+
+                    <p:inputText id="inputauthor" value="#{productManagedBean.searchDvd.author}"></p:inputText>
+                    <p:watermark for="inputauthor" value="Author"></p:watermark><br/>
+
+                    <p:inputText id="inputdisc" value="#{productManagedBean.searchDvd.discNumber}"></p:inputText>
+                    <p:watermark for="inputdisc" value="Number of Disc"></p:watermark><br/>
+
+                    <h:selectOneMenu id="selecttype" value="#{productManagedBean.searchDvd.type}">  
+                        <f:selectItem itemLabel="Select Type" itemValue="" />  
+                        <f:selectItems value="#{productManagedBean.listTypeSearch}" />  
+                    </h:selectOneMenu> 
+
                     <h:commandButton value="Search" action="#{productManagedBean.search()}"></h:commandButton><br/>
-                    
+
                     Result :<br/>
                     <gct:product-list controller="#{productManagedBean}" list="#{productManagedBean.resustSearch}" for="search" from="search"></gct:product-list>
                 </h:form>
