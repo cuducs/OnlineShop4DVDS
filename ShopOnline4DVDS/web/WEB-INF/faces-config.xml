@@ -12,6 +12,11 @@
             global navigation rules
         </description>
         <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>adminindex</from-outcome>
+            <to-view-id>/admin/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
@@ -20,12 +25,114 @@
         </description>
         <from-view-id>/admin/*</from-view-id>
         <navigation-case>
-            <from-outcome>game</from-outcome>
+            <from-outcome>productshow</from-outcome>
+            <to-view-id>/admin/product/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>productform</from-outcome>
+            <to-view-id>/admin/product/form.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>productrecovery</from-outcome>
+            <to-view-id>/admin/product/recovery.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>productsearch</from-outcome>
+            <to-view-id>/admin/product/search.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ordershow</from-outcome>
+            <to-view-id>/admin/order/order.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fileshow</from-outcome>
+            <to-view-id>/admin/file/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fileform</from-outcome>
+            <to-view-id>/admin/file/form.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>filerecovery</from-outcome>
+            <to-view-id>/admin/file/recovery.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>filesearch</from-outcome>
+            <to-view-id>/admin/file/search.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>gameshow</from-outcome>
             <to-view-id>/admin/game/show.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
-        
+        <navigation-case>
+            <from-outcome>gameform</from-outcome>
+            <to-view-id>/admin/game/form.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>gamerecovery</from-outcome>
+            <to-view-id>/admin/game/recovery.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>gamesearch</from-outcome>
+            <to-view-id>/admin/game/search.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>albumshow</from-outcome>
+            <to-view-id>/admin/album/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>albumform</from-outcome>
+            <to-view-id>/admin/album/form.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>albumrecovery</from-outcome>
+            <to-view-id>/admin/album/recovery.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>albumsearch</from-outcome>
+            <to-view-id>/admin/album/search.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>songshow</from-outcome>
+            <to-view-id>/admin/song/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>songform</from-outcome>
+            <to-view-id>/admin/song/form.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>songrecovery</from-outcome>
+            <to-view-id>/admin/song/recovery.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>songsearch</from-outcome>
+            <to-view-id>/admin/song/search.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movieshow</from-outcome>
+            <to-view-id>/admin/movie/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movieform</from-outcome>
+            <to-view-id>/admin/movie/form.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movierecovery</from-outcome>
+            <to-view-id>/admin/movie/recovery.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>moviesearch</from-outcome>
+            <to-view-id>/admin/movie/search.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
+    
     <navigation-rule>
         <from-view-id>/admin/product/mappinggame.xhtml</from-view-id>
         <navigation-case>

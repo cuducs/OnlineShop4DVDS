@@ -10,21 +10,47 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h:commandButton value="Cancel" action="#{songManagedBean.cancel()}"></h:commandButton>
-                    <label>Title</label><h:inputText value="#{songManagedBean.curSong.title}"></h:inputText><br/>
-                    <label>Runtime</label><h:inputText value="#{songManagedBean.curSong.runtime}">
-                        <f:converter converterId="TimeConverter"></f:converter>
-                    </h:inputText><br/>
-                    <label>Lyrics</label><h:inputText value="#{songManagedBean.curSong.lyrics}"></h:inputText><br/>
-                    <label>Free</label><h:selectBooleanCheckbox value="#{songManagedBean.curSong.isFree}"></h:selectBooleanCheckbox><br/>
-                    <h:panelGroup rendered="#{songManagedBean.mode eq appConstant.modeCreate}">
-                        <h:commandButton value="Create" action="#{songManagedBean.save()}"></h:commandButton>
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
-                        <h:commandButton value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
-                    </h:panelGroup>
-                </h:form>
+
+                <h2>Movie Form</h2>
+                <div class="form">
+                    <h:form class="niceform">
+                        <fieldset>
+                            <dl>
+                                <dt><label>Title :</label></dt>
+                                <dd><h:inputText value="#{songManagedBean.curSong.title}"></h:inputText></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Runtime :</label></dt>
+                                <dd><h:inputText value="#{songManagedBean.curSong.runtime}">
+                                        <f:converter converterId="TimeConverter"></f:converter>
+                                    </h:inputText></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Free :</label></dt>
+                                <dd><h:selectBooleanCheckbox value="#{songManagedBean.curSong.isFree}"></h:selectBooleanCheckbox></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Lyrics :</label></dt>
+                                <dd>
+                                    <h:inputTextarea value="#{songManagedBean.curSong.lyrics}" rows="5" cols="36"></h:inputTextarea>
+                                </dd>
+                            </dl>
+                            <dl class="submit">
+                                <dt></dt>
+                                <dd>
+                                <h:panelGroup rendered="#{songManagedBean.mode eq appConstant.modeCreate}">
+                                    <h:commandButton value="Create" action="#{songManagedBean.save()}"></h:commandButton>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
+                                    <h:commandButton value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
+                                </h:panelGroup>
+                                <h:commandButton value="Cancel" action="#{songManagedBean.cancel()}"></h:commandButton>
+                                </dd>
+                            </dl>
+                        </fieldset>
+                    </h:form>
+                </div>
+
             </ui:define>
         </ui:composition>
     </h:body>

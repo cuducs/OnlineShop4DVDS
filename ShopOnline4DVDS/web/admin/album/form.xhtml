@@ -9,18 +9,30 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h:commandButton value="Cancel" action="#{albumManagedBean.cancel()}"></h:commandButton>
-                    <label>Title</label><h:inputText value="#{albumManagedBean.curAlbum.title}">
-                    </h:inputText><br/>
-                    <label>Owner</label><h:inputText value="#{albumManagedBean.curAlbum.owner}"></h:inputText><br/>
-                    <h:panelGroup rendered="#{albumManagedBean.mode eq appConstant.modeCreate}">
-                        <h:commandButton value="Create" action="#{albumManagedBean.save()}"></h:commandButton>
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{albumManagedBean.mode eq appConstant.modeEdit}">
-                        <h:commandButton value="Edit" action="#{albumManagedBean.update()}"></h:commandButton>
-                    </h:panelGroup>
-                </h:form>
+                <h2>Movie Form</h2>
+                <div class="form">
+                    <h:form class="niceform">
+                        <fieldset>
+                            <dl>
+                                <dt><label>Title :</label></dt>
+                                <dd><h:inputText value="#{albumManagedBean.curAlbum.title}"></h:inputText></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Owner :</label></dt>
+                                <dd><h:inputText value="#{albumManagedBean.curAlbum.owner}"></h:inputText></dd>
+                            </dl>
+                            <dl class="submit">
+                                <h:panelGroup rendered="#{albumManagedBean.mode eq appConstant.modeCreate}">
+                                    <h:commandButton value="Create" action="#{albumManagedBean.save()}"></h:commandButton>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{albumManagedBean.mode eq appConstant.modeEdit}">
+                                    <h:commandButton value="Edit" action="#{albumManagedBean.update()}"></h:commandButton>
+                                </h:panelGroup>
+                                <h:commandButton value="Cancel" action="#{albumManagedBean.cancel()}"></h:commandButton>
+                            </dl>
+                        </fieldset>
+                    </h:form>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

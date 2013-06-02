@@ -93,7 +93,7 @@ public class AlbumManagedBean {
     public String create() {
         curAlbum = new Album(0, false);
         formMode = AppConstant.FORM_MODE_CREATE;
-        return "form";
+        return "albumform";
     }
 
     public String edit(Album item) {
