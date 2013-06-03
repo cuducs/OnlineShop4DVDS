@@ -29,6 +29,11 @@
                                 <h:commandButton value="Del" action="#{controller.del(item)}"></h:commandButton>
 
                             </h:panelGroup>
+                             <h:panelGroup rendered="#{for eq 'search'}">
+                                <h:commandButton value="Edit" action="#{controller.edit(item)}"></h:commandButton>
+                                <h:commandButton value="Del" action="#{controller.del(item)}"></h:commandButton>
+
+                            </h:panelGroup>
                             <h:panelGroup rendered="#{for eq 'recovery'}">
                                 <h:commandButton value="Recovery" action="#{controller.recovery(item)}"></h:commandButton>
                             </h:panelGroup>

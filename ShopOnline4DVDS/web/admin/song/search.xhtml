@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:gct="http://g3.com/tags">
+      xmlns:gct="http://g3.com/tags"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -14,18 +15,24 @@
                 <h:form>
                     <h:link value="Return List" outcome="show"></h:link><br/>
                     Input Search:<br/>
-                    <label>ID</label><h:inputText value="#{songManagedBean.searchSong.id}">
+                    <p:inputText id="inputid" value="#{songManagedBean.searchSong.id}" style="width:200px;">
                         <f:converter converterId="ZeroConverter"></f:converter>
-                    </h:inputText><br/>
-                    <label>Title</label><h:inputText value="#{songManagedBean.searchSong.title}">
-                    </h:inputText><br/>
-                    <label>Lyrics</label><h:inputText value="#{songManagedBean.searchSong.lyrics}"></h:inputText><br/>
-                    <label>Free</label><h:selectBooleanCheckbox value="#{songManagedBean.searchSong.isFree}"></h:selectBooleanCheckbox><br/>
+                    </p:inputText>
+                    <p:watermark for="inputid" value="ID"></p:watermark><br/>
+
+                    <p:inputText id="inputtitle" value="#{songManagedBean.searchSong.title}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputtitle" value="Title"></p:watermark><br/>
+
+                    <p:inputText id="inputlyrics" value="#{songManagedBean.searchSong.lyrics}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputlyrics" value="Lyrics"></p:watermark><br/>
+
+                    <label>Free</label><p:selectBooleanCheckbox value="#{songManagedBean.searchSong.isFree}" /><br/>
+
                     <h:commandButton value="Search" action="#{songManagedBean.search()}"></h:commandButton><br/>
 
                     Result :<br/>
                     <gct:common-list controller="#{songManagedBean}" list="#{songManagedBean.resustSearch}" for="search" from="search" ></gct:common-list>
-                    
+
                 </h:form>
             </ui:define>
         </ui:composition>

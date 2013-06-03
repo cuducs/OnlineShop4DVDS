@@ -71,13 +71,13 @@ function niceform(nf) {
 				case "radio": {this.add_inputRadio(allInputs[w]); break;}
 				case "checkbox": {this.add_inputCheck(allInputs[w]); break;}
 				case "submit": case "reset": case "button": {this.add_inputSubmit(allInputs[w]); break;}
-				case "file": {this.add_inputFile(allInputs[w]); break;}
+//				case "file": {this.add_inputFile(allInputs[w]); break;}
 			}
 		}
-		var allButtons = this.getElementsByTagName('button');
-		for(var w = 0; w < allButtons.length; w++) {
-			this.add_inputSubmit(allButtons[w]);
-		}
+//		var allButtons = this.getElementsByTagName('button');
+//		for(var w = 0; w < allButtons.length; w++) {
+//			this.add_inputSubmit(allButtons[w]);
+//		}
 		var allTextareas = this.getElementsByTagName('textarea');
 		for(var w = 0; w < allTextareas.length; w++) {
 			this.add_textarea(allTextareas[w]);
