@@ -4,8 +4,11 @@
  */
 package g3.other.admin.menu;
 
+import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -79,5 +82,64 @@ public class AdminNavigatorBean {
     public String navFile() {
         curMenu = FILE;
         return "fileshow";
+    }
+
+    public void loadSideMenu(int menuType, String outcome) {
+        boolean isReload = false;
+        switch (menuType) {
+            case HOME:
+                if (curMenu != HOME) {
+                    curMenu = HOME;
+                    isReload = true;
+                }
+                break;
+            case PRODUCT:
+                if (curMenu != PRODUCT) {
+                    curMenu = PRODUCT;
+                    isReload = true;
+                }
+                break;
+            case ORDER:
+                if (curMenu != ORDER) {
+                    curMenu = ORDER;
+                    isReload = true;
+                }
+                break;
+            case FILE:
+                if (curMenu != FILE) {
+                    curMenu = FILE;
+                    isReload = true;
+                }
+                break;
+            case USER:
+                if (curMenu != USER) {
+                    curMenu = USER;
+                    isReload = true;
+                }
+                break;
+            case REPORT:
+                if (curMenu != REPORT) {
+                    curMenu = REPORT;
+                    isReload = true;
+                }
+                break;
+        }
+        if (isReload) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.responseComplete();
+            context.getApplication().
+                    getNavigationHandler().handleNavigation(context, null, outcome);
+        }
+
+    }
+
+    public void redirect(String outcome, Object value, Object expect) {
+        if (value==expect) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.responseComplete();
+            context.getApplication().
+                    getNavigationHandler().handleNavigation(context, null, outcome);
+        }
+
     }
 }

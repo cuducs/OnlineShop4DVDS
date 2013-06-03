@@ -9,6 +9,26 @@
         <source>tags/example.xhtml</source>
     </tag>
     <tag>
+        <tag-name>load-side-menu</tag-name>
+        <source>tags/load-side-menu.xhtml</source>
+        <attribute>
+            <name>menuType</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>outcome</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+    <tag>
+        <tag-name>redirect</tag-name>
+        <source>tags/redirect.xhtml</source>
+        <attribute>
+            <name>outcome</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+    <tag>
         <tag-name>admin-horizotal-menu</tag-name>
         <source>tags/admin-horizotal-menu.xhtml</source>
     </tag>

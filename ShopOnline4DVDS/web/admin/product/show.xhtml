@@ -4,6 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
@@ -12,12 +13,13 @@
         <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
             <ui:define name="content">
                 <h:form>
+                    
                     <h:commandButton value="Create New" action="#{productManagedBean.create}"></h:commandButton><br/>
                     <h:link value="Recovery" outcome="recovery"></h:link><br/>
                     <h:link value="Search" outcome="search"></h:link><br/>
                     <h2>Products</h2>
                     <gct:product-list controller="#{productManagedBean}" list="#{productManagedBean.allDvds}" for="show" from="show"></gct:product-list>
-                    
+
                 </h:form>
             </ui:define>
         </ui:composition>

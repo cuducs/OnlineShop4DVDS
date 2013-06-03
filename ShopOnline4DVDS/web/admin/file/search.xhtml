@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:gct="http://g3.com/tags">
+      xmlns:gct="http://g3.com/tags"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -14,15 +15,20 @@
                 <h:form>
                     <h:link value="Return List" outcome="show"></h:link><br/>
                     Input Search:<br/>
-                    <label>ID</label><h:inputText value="#{fileDataManagedBean.searchFileData.id}">
+                    <p:inputText id="inputid" value="#{fileDataManagedBean.searchFileData.id}" style="width:200px;">
                         <f:converter converterId="ZeroConverter"></f:converter>
-                    </h:inputText><br/>
-                    <label>Title</label><h:inputText value="#{fileDataManagedBean.searchFileData.title}">
-                    </h:inputText><br/>
-                    <label>Url</label><h:inputText value="#{fileDataManagedBean.searchFileData.url}">
-                    </h:inputText><br/>
-                    <label>Type</label><h:inputText value="#{fileDataManagedBean.searchFileData.type}">
-                    </h:inputText><br/>
+                    </p:inputText>
+                    <p:watermark for="inputid" value="ID"></p:watermark><br/>
+
+                    <p:inputText id="inputtitle" value="#{fileDataManagedBean.searchFileData.title}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputtitle" value="Title"></p:watermark><br/>
+
+                    <p:inputText id="inputurl" value="#{fileDataManagedBean.searchFileData.url}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputurl" value="Url"></p:watermark><br/>
+
+                    <p:inputText id="inputtype" value="#{fileDataManagedBean.searchFileData.type}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputtype" value="Type"></p:watermark><br/>
+                    
                     <h:commandButton value="Search" action="#{fileDataManagedBean.search()}"></h:commandButton><br/>
 
                     Result :<br/>

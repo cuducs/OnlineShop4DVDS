@@ -28,18 +28,18 @@
                                                   sizeLimit="100000"   
                                                   allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
 
-                                    <p:messages id="messages" showDetail="true"/> </dd>
+                                    <p:messages id="messages" showDetail="true"/></dd>
                             </dl>
                             <dl class="submit">
                                 <dt></dt>
                                 <dd>
-                                <h:panelGroup rendered="#{fileDataManagedBean.mode eq appConstant.modeCreate}">
-                                    <h:commandButton value="Create" action="#{movieManagedBean.save()}"></h:commandButton>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{fileDataManagedBean.mode eq appConstant.modeEdit}">
-                                    <h:commandButton value="Edit" action="#{fileDataManagedBean.update()}"></h:commandButton>
-                                </h:panelGroup>
-                                <h:commandButton value="Cancel" action="#{fileDataManagedBean.cancel()}"></h:commandButton>
+                                    <h:panelGroup rendered="#{fileDataManagedBean.mode eq appConstant.modeCreate}">
+                                        <h:commandButton value="Create" action="#{movieManagedBean.save()}"></h:commandButton>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{fileDataManagedBean.mode eq appConstant.modeEdit}">
+                                        <h:commandButton value="Edit" action="#{fileDataManagedBean.update()}"></h:commandButton>
+                                    </h:panelGroup>
+                                    <h:commandButton value="Cancel" action="#{fileDataManagedBean.cancel()}"></h:commandButton>
                                 </dd>
                             </dl>
                         </fieldset>

@@ -15,39 +15,39 @@
                 <h:form>
                     <h:link value="Return List" outcome="show"></h:link><br/>
                     Input Search:<br/>
-                    <p:inputText id="inputid" value="#{productManagedBean.searchDvd.id}">
+                    <p:inputText id="inputid" value="#{productManagedBean.searchDvd.id}" style="width:200px;">
                         <f:converter converterId="ZeroConverter"></f:converter>
                     </p:inputText>
                     <p:watermark for="inputid" value="ID"></p:watermark><br/>
 
-                    <p:inputText id="inputtitle" value="#{productManagedBean.searchDvd.title}"></p:inputText>
+                    <p:inputText id="inputtitle" value="#{productManagedBean.searchDvd.title}" style="width:200px;"></p:inputText>
                     <p:watermark for="inputtitle" value="Title"></p:watermark><br/>
 
-                    <p:inputText id="inputdate" value="#{productManagedBean.searchDvd.releaseDate}">
+                    <p:inputText id="inputdate" value="#{productManagedBean.searchDvd.releaseDate}" style="width:200px;">
                         <f:convertDateTime pattern="d-M-yyyy" />
                     </p:inputText>
                     <p:watermark for="inputdate" value="Release Date(Format d-M-yyyy)"></p:watermark><br/>
 
-                    <p:inputText id="inputgenres" value="#{productManagedBean.searchDvd.genres}"></p:inputText>
+                    <p:inputText id="inputgenres" value="#{productManagedBean.searchDvd.genres}" style="width:200px;"></p:inputText>
                     <p:watermark for="inputgenres" value="Genres"></p:watermark><br/>
 
-                    <p:inputText id="inputdes" value="#{productManagedBean.searchDvd.description}"></p:inputText>
+                    <p:inputText id="inputdes" value="#{productManagedBean.searchDvd.description}" style="width:200px;"></p:inputText>
                     <p:watermark for="inputdes" value="Description"></p:watermark><br/>
 
-                    <p:inputText id="inputprice" value="#{productManagedBean.searchDvd.price}"></p:inputText>
+                    <p:inputText id="inputprice" value="#{productManagedBean.searchDvd.price}" style="width:200px;"></p:inputText>
                     <p:watermark for="inputprice" value="Price"></p:watermark><br/>
 
-                    <p:inputText id="inputauthor" value="#{productManagedBean.searchDvd.author}"></p:inputText>
+                    <p:inputText id="inputauthor" value="#{productManagedBean.searchDvd.author}" style="width:200px;"></p:inputText>
                     <p:watermark for="inputauthor" value="Author"></p:watermark><br/>
 
-                    <p:inputText id="inputdisc" value="#{productManagedBean.searchDvd.discNumber}"></p:inputText>
+                    <p:inputText id="inputdisc" value="#{productManagedBean.searchDvd.discNumber}" style="width:200px;"></p:inputText>
                     <p:watermark for="inputdisc" value="Number of Disc"></p:watermark><br/>
 
                     <h:selectOneMenu id="selecttype" value="#{productManagedBean.searchDvd.type}">  
                         <f:selectItem itemLabel="Select Type" itemValue="" />  
                         <f:selectItems value="#{productManagedBean.listTypeSearch}" />  
                     </h:selectOneMenu> 
-
+                    <br/>
                     <h:commandButton value="Search" action="#{productManagedBean.search()}"></h:commandButton><br/>
 
                     Result :<br/>

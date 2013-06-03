@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:gct="http://g3.com/tags">
+      xmlns:gct="http://g3.com/tags"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -14,12 +15,17 @@
                 <h:form>
                     <h:link value="Return List" outcome="show"></h:link><br/>
                     Input Search:<br/>
-                    <label>ID</label><h:inputText value="#{albumManagedBean.searchAlbum.id}">
+                    <p:inputText id="inputid" value="#{albumManagedBean.searchAlbum.id}" style="width:200px;">
                         <f:converter converterId="ZeroConverter"></f:converter>
-                    </h:inputText><br/>
-                    <label>Title</label><h:inputText value="#{albumManagedBean.searchAlbum.title}">
-                    </h:inputText><br/>
-                    <label>Owner</label><h:inputText value="#{albumManagedBean.searchAlbum.owner}"></h:inputText><br/>
+                    </p:inputText>
+                    <p:watermark for="inputid" value="ID"></p:watermark><br/>
+
+                    <p:inputText id="inputtitle" value="#{albumManagedBean.searchAlbum.title}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputtitle" value="Title"></p:watermark><br/>
+
+                    <p:inputText id="inputowner" value="#{albumManagedBean.searchAlbum.owner}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputowner" value="Owner"></p:watermark><br/>
+
                     <h:commandButton value="Search" action="#{albumManagedBean.search()}"></h:commandButton><br/>
 
                     Result :<br/>

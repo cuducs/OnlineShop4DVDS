@@ -3,13 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
             <ui:define name="content">
+                <gct:redirect outcome="productshow" value="#{productManagedBean.curDvd}" expect="#{null}"></gct:redirect>
                 <h2>Product Form</h2>
                 <div class="form">
                     <h:form class="niceform">
