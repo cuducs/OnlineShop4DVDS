@@ -9,6 +9,10 @@
         <source>tags/example.xhtml</source>
     </tag>
     <tag>
+        <tag-name>customer-dvd-list</tag-name>
+        <source>tags/customer-dvd-list.xhtml</source>
+    </tag>
+    <tag>
         <tag-name>load-side-menu</tag-name>
         <source>tags/load-side-menu.xhtml</source>
         <attribute>

@@ -26,4 +26,9 @@ public class BaseHelper {
         }
 
     }
+
+    public Session getSession() {
+        return session;
+    }
+
 }

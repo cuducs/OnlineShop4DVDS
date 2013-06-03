@@ -17,6 +17,7 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.hibernate.Criteria;
 
 /**
  *
@@ -67,7 +68,8 @@ public class ProductManagedBean {
     public String search() {
 
         if (searchDvd != null) {
-            resustSearch = helper.search(searchDvd);
+//            resustSearch = helper.search(searchDvd);
+            resustSearch=helper.getCriteriaSearch(searchDvd);
         }
         return null;
     }
@@ -114,7 +116,13 @@ public class ProductManagedBean {
     public String back() {
         return returnFromDetails;
     }
-
+//    public String getCriteria(){
+//        if(searchDvd!=null){
+//            Criteria criteria=helper.getCriteriaSearch(searchDvd);
+//            return criteria.toString();
+//        }
+//        return "No criteria";
+//    }
     public String save() {
         curDvd.setCreatedDate(new Date());
         curDvd.setModifiedDate(new Date());

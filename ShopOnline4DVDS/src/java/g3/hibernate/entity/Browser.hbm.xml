@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 3, 2013 12:34:41 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="DVDStore" name="g3.hibernate.entity.Browser" schema="dbo" table="Browser">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="parentId" type="int">
+      <column name="parentId" not-null="true"/>
+    </property>
+    <property name="query" type="string">
+      <column name="query" not-null="true"/>
+    </property>
+    <property name="title" type="string">
+      <column name="title" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

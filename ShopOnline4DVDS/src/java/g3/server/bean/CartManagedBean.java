@@ -6,6 +6,7 @@ package g3.server.bean;
 
 import g3.hibernate.entity.CartItem;
 import g3.hibernate.entity.Dvd;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;

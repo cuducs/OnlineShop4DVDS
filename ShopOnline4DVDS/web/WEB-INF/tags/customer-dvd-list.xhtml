@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:gct="http://g3.com/tags"
+      
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <table id="lvProductsList_Table1" class="list">
+                <tbody>
+                    <c:forEach var="m" items="#{list}">
+                        <tr id="ctrl0_Tr1">
+                            <td class="/ShopOnline4DVDS/resources/customer/images" rowspan="3">
+                                <div class="thumbimage">
+                                    <a id="LnkProduct1" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                        <img src="#{m.imageCoverUrl}" alt="#{m.title}" />
+                                        <span id="spnFlag" class="offer"></span></a>
+                                </div>
+                            </td>
+                            <td colspan="2">
+                                <h4>
+                                    <a id="nkProduct2" title="#{m.description}" href="detail.xhtml?detail=#{m.id}/#{m.type}">
+                                        #{m.title}</a>
+                                </h4>
+                            </td>
+                            <td class="ProductPrice">
+                                <h4>
+                                    £ #{m.price}
+                                </h4>
+                            </td>
+                        </tr>
+                        <tr class="extra">
+                            <td colspan="2">
+                                <!--                        <p id="pComment">
+                                                            <font color="#af1023" id="free">15% off (normal price £3.95)</font>
+                                                        </p>-->
+
+                            </td>
+                            <td>
+                                <p class="product-code"> 
+                                    Rate: #{m.ratePoint}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="extra">
+                            <td class="product-icons">
+                                <img id="imgOrganic" title="organic" src="/ShopOnline4DVDS/resources/customer/images/icon-organic.gif"
+                                     style="border-width: 0px;"/>
+                                <span id="spOrganic" class="orange organic">#{m.type}</span>
+                                <img id="imgVegetarian" title="vegetarian" src="/ShopOnline4DVDS/resources/customer/images/icon-vegetarian.gif"
+                                     style="border-width: 0px;"/>
+                            </td>
+                            <td>
+                                <p class="in-basket">
+                                    <span id="lbBasketText"></span>
+                                </p>
+                            </td>
+                            <td class="add">
+                                <div id="ctrl0_Div2" class="form-cont">
+                                    <div id="divAdd">
+                                        <h:form>
+                                            <h:inputText value="#{cartManagedBean.count}" maxlength="2" id="txtQuantity1" style="padding: 2px 4px 2px 4px; margin-right:2px"
+                                                         class="qty"></h:inputText>
+                                            <h:commandButton id="lbAddToBasket" action="#{cartManagedBean.add(m.id)}" value="add" class="btn"></h:commandButton>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </ui:composition>
+    </h:body>
+</html>
+

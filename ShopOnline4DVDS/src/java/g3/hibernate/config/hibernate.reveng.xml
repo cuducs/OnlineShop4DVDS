@@ -17,4 +17,5 @@
   <table-filter match-name="DVD"/>
   <table-filter match-name="AlbumMusicMapping"/>
   <table-filter match-name="Movie"/>
+  <table-filter match-name="Browser"/>
 </hibernate-reverse-engineering>

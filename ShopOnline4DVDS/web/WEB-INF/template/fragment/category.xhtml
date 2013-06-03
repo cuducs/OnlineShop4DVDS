@@ -7,78 +7,34 @@
     <h:body>
         <ui:composition>
             <!--content of category-->
-            <div id="dvBrowseByCategory" class="Refine-nav">
-                <h3 class="RefineHeading">
-                    Browse by Category</h3>
-                <a href=""></a>
-                <div id="tvBrowseByCategoryFilters">
-                    <table cellpadding="0" cellspacing="0" style="border-width: 0;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a class="tvBrowseByCategoryFilters_0" href="">
-                                        <h4 class="trigger">
-                                            Fruit &amp; veg</h4>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table cellpadding="0" cellspacing="0" style="border-width: 0;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a class="tvBrowseByCategoryFilters_0" href="">
-                                        <h4 class="trigger">
-                                            Dairy &amp; eggs</h4>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table cellpadding="0" cellspacing="0" style="border-width: 0;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a class="tvBrowseByCategoryFilters_0" href="">
-                                        <h4 class="trigger">
-                                            Bakery</h4>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table cellpadding="0" cellspacing="0" style="border-width: 0;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a class="tvBrowseByCategoryFilters_0" href="">
-                                        <h4 class="trigger">
-                                            Meat</h4>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <h:form>
+                <div id="dvBrowseByCategory" class="Refine-nav">
+                    <ui:repeat var="item1" varStatus="stt1" value="#{browserManagedBean.browserMenu.menuLv1}">
+                        <h:commandLink action="#{browserManagedBean.browser(item1)}">
+                            <h3 class="RefineHeading">#{item1.title}</h3>
+                        </h:commandLink>
+                        <div id="tvBrowseByCategoryFilters">
+                            <h:panelGroup rendered="#{not empty browserManagedBean.browserMenu.menuLv2[item1.id]}">
+
+                                <ui:repeat var="item2" varStatus="stt2" value="#{browserManagedBean.browserMenu.menuLv2[item1.id]}">
+                                    <table cellpadding="0" cellspacing="0" style="border-width: 0;">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h:commandLink class="tvBrowseByCategoryFilters_0" action="#{browserManagedBean.browser(item1)}">
+                                                        <h4 class="trigger">#{item2.title}</h4>
+                                                    </h:commandLink>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </ui:repeat>
+                            </h:panelGroup>
+
+                        </div>
+                    </ui:repeat>
                 </div>
-                <a id="SkipLink"></a>
-                <h3 class="RefineHeading">
-                    Only Show Me</h3>
-                <a href="" id="lnkFilter"><span id="lbFilter" class="OnlyShowMeLabel">Fruit &amp; veg</span>
-                </a>
-                <br/>
-                <a href="" id="lnkFilter"><span id="lbFilter" class="OnlyShowMeLabel">Dairy &amp; eggs</span>
-                </a>
-                <br/>
-                <a href="" id="lnkFilter"><span id="lbFilter" class="OnlyShowMeLabel">Bakery</span>
-                </a>
-                <br/>
-                <a href="" id="lnkFilter"><span id="lbFilter" class="OnlyShowMeLabel">Meat</span>
-                </a>
-                <br/>
-                <div id="dvOnlyShowMeFilters" class="ShopOnlyShowMe">
-                </div>
-            </div>
+            </h:form>
 
         </ui:composition>
     </h:body>

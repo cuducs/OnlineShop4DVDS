@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:link value="Return List" outcome="show"></h:link><br/>
+                    Input Search:<br/>
+                    <p:inputText id="inputid" value="#{browserManagedBean.searchBrowser.id}" style="width:200px;">
+                        <f:converter converterId="ZeroConverter"></f:converter>
+                    </p:inputText>
+                    <p:watermark for="inputid" value="ID"></p:watermark><br/>
+                    
+                    <p:inputText id="inputparentid" value="#{browserManagedBean.searchBrowser.parentId}" style="width:200px;">
+                        <f:converter converterId="ZeroConverter"></f:converter>
+                    </p:inputText>
+                    <p:watermark for="inputparentid" value="ID"></p:watermark><br/>
+                    
+                    <p:inputText id="inputtitle" value="#{browserManagedBean.searchBrowser.title}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputtitle" value="Title"></p:watermark><br/>
+
+                    <p:inputTextarea id="inputquery" value="#{browserManagedBean.searchBrowser.query}" style="width:200px;"></p:inputTextarea>
+                    <p:watermark for="inputquery" value="Query"></p:watermark><br/>
+
+
+                    <h:commandButton value="Search" action="#{browserManagedBean.search()}"></h:commandButton><br/>
+
+                    Result :<br/>
+                    <gct:common-list controller="#{browserManagedBean}" list="#{browserManagedBean.resustSearch}" for="search" from="search"></gct:common-list>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

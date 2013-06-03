@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+            <ui:define name="content">
+
+                <h2>File Form</h2>
+                <div class="form">
+                    <h:form class="niceform">
+                        <fieldset>
+                            <dl>
+                                <dt><label>Title :</label></dt>
+                                <dd><h:inputText value="#{browserManagedBean.curBrowser.title}"></h:inputText></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Parent :</label></dt>
+                                <dd><h:selectOneMenu value="#{browserManagedBean.curBrowser.parentId}">
+                                        <f:selectItems var="item" value="#{browserManagedBean.listParent}" ></f:selectItems>
+                                    </h:selectOneMenu></dd>
+                            </dl>
+                            <dl>
+                                <dt><label>Query :</label></dt>
+                                <dd><h:inputTextarea value="#{browserManagedBean.curBrowser.query}"></h:inputTextarea></dd>
+                            </dl>
+                            <dl class="submit">
+                                <dt></dt>
+                                <dd>
+                                    <h:panelGroup rendered="#{browserManagedBean.mode eq appConstant.modeCreate}">
+                                        <h:commandButton value="Create" action="#{browserManagedBean.save()}"></h:commandButton>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{browserManagedBean.mode eq appConstant.modeEdit}">
+                                        <h:commandButton value="Edit" action="#{browserManagedBean.update()}"></h:commandButton>
+                                    </h:panelGroup>
+                                    <h:commandButton value="Cancel" action="#{browserManagedBean.cancel()}"></h:commandButton>
+                                </dd>
+                            </dl>
+                        </fieldset>
+                    </h:form>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
