@@ -70,19 +70,15 @@
                                     <div id="pnlProductTabs">
                                         <div class="product-tabs">
                                             <ul>
-                                                <li id="description" class="single-tab-closed"><a id="a_description" class="current-active"
+                                                <li id="trailer" class="single-tab-closed"><a id="a_description" class="current-active"
                                                                                                   href="">Trailer</a> </li>
-                                                <li id="producer" class="single-tab-closed"><a id="a_producer" class="" href="">
-                                                        producer</a> </li>
-                                                <li id="ingredients" class="single-tab-open"><a id="a_ingredients" class="" href="">
-                                                        songs number</a> </li>
-                                                <li id="nutrition" class="single-tab-closed"><a id="a_nutrition" onclick="changetab();" class="" href="">
-                                                        description</a> </li>
-                                                <li id="storageprep" class="double-tab-closed"><a id="a_storageprep" class="" href="">
-                                                        comment</a> </li>
+                                                <li id="description" class="single-tab-closed"><a id="a_producer" class="" href="">
+                                                        Description</a> </li>
+                                                <li id="comment" class="single-tab-open"><a id="a_ingredients" class="" href="">
+                                                        Comment</a> </li>
                                             </ul>
                                             <div id="ulTabsDivs" class="tabs">
-                                                <div id="divdescription" style="display: block;" class="description">
+                                                <div id="divtrailer" style="display: block;" class="description">
                                                     <!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
                                                     <div id="mediaplayer">Have not file to view trailer</div>
 
@@ -100,15 +96,10 @@
                                                     <br/>
                                                     <a href="#{showProductBean.trailerUrl}" title="Download">Download trailer for free</a>
                                                 </div>
-                                                <div id="divproducer" style="display: none;" class="producer">
+                                                <div id="divdescription" style="display: none;" class="producer">
                                                     #{showProductBean.detail.genres}
                                                 </div>
-                                                <div id="divingredients" style="display: none;" class="ingredients">
-                                                </div>
-                                                <div id="divnutrition" style="display: none;" class="nutrition">
-                                                    #{showProductBean.detail.description}
-                                                </div>
-                                                <div id="divstorageprep" style="display: none;" class="storageprep">
+                                                <div id="divcomment" style="display: none;" class="storageprep">
                                                     No comment
                                                 </div>
                                             </div>
@@ -125,6 +116,23 @@
                         </div>
                     </div>
                 </div>
+                <script type="text/javascript">
+                    $('#trailer').click(function(){
+                        $('#divtrailer').show();
+                        $('#divdescription').hide();
+                        $('#divcomment').hide();
+                    });
+                    $('#description').click(function(){
+                        $('#divtrailer').hide();
+                        $('#divdescription').show();
+                        $('#divcomment').hide();
+                    });
+                    $('#comment').click(function(){
+                        $('#divtrailer').hide();
+                        $('#divdescription').hide();
+                        $('#divcomment').show();
+                    });
+                </script>
             </ui:define>
         </ui:composition>
     </h:body>
