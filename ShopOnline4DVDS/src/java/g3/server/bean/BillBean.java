@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -55,9 +57,56 @@ public class BillBean {
     private BillDetail billdetail;
     private Dvd dvddetail;
 
-    public BillBean() {
+    // ducnt
+    private BillHelper helper;
+    private Bill bill;
+
+    public int getItemsPerPage() {
+        return itemsPerPage;
     }
 
+    public void setItemsPerPage(int itemsPerPage) {
+        this.itemsPerPage = itemsPerPage;
+    }
+
+    public BillHelper getHelper() {
+        return helper;
+    }
+
+    public void setHelper(BillHelper helper) {
+        this.helper = helper;
+    }
+
+    public Bill getBill() {
+        if(bill == null){
+            return bill = new Bill();
+        }
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+    
+    @PostConstruct
+    public void init() {
+        helper = BillHelper.getInstance();
+    }
+
+    @PreDestroy
+    public void end() {
+        helper.close();
+    }
+    public BillBean() {
+    }
+    public void AddBill(){
+        Date date = new Date();
+        bill.setOrderDate(date);
+        bill.setIsDeleted(false);
+        bill.setStatus((short)AppConstant.BILL_STATUS_WAIT);
+        
+    }
+// end ducnt
     /**
      * *****************************************GETTER and
      * SETTER********************************************

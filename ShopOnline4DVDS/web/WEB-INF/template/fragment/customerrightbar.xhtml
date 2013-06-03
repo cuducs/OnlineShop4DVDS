@@ -68,7 +68,14 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-                                <a class="btn" href="member/order.xhtml">Buy</a>
+                            <c:if test="#{cartManagedBean.total > 0}">
+                                <c:if test="#{sessionScope.member!=null}">
+                                    <a class="btn" href="/ShopOnline4DVDS/faces/member/order.xhtml">Buy</a>
+                                </c:if>
+                                <c:if test="#{sessionScope.member==null}">
+                                    <a class="btn" href="/ShopOnline4DVDS/faces/member/login.xhtml">Buy</a>
+                                </c:if>
+                            </c:if>
                             <p class="checkout">
                             </p>
                         </div>
