@@ -6,9 +6,12 @@ package g3.server.bean;
 
 import g3.hibernate.entity.Bill;
 import g3.hibernate.entity.BillDetail;
+import g3.hibernate.entity.BillDetailId;
+import g3.hibernate.entity.CartItem;
 import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.Member;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,9 +59,9 @@ public class BillBean {
     private List<Page> sortLinks;//paging links sorted
     private BillDetail billdetail;
     private Dvd dvddetail;
-
     // ducnt
-    private BillHelper helper;
+    private BillHelper billHelper;
+    private BillDetailHelper billDetailHelper;
     private Bill bill;
 
     public int getItemsPerPage() {
@@ -70,15 +73,15 @@ public class BillBean {
     }
 
     public BillHelper getHelper() {
-        return helper;
+        return billHelper;
     }
 
-    public void setHelper(BillHelper helper) {
-        this.helper = helper;
+    public void setHelper(BillHelper billHelper) {
+        this.billHelper = billHelper;
     }
 
     public Bill getBill() {
-        if(bill == null){
+        if (bill == null) {
             return bill = new Bill();
         }
         return bill;
@@ -87,26 +90,48 @@ public class BillBean {
     public void setBill(Bill bill) {
         this.bill = bill;
     }
-    
+
     @PostConstruct
     public void init() {
-        helper = BillHelper.getInstance();
+        billHelper = BillHelper.getInstance();
+        billDetailHelper = BillDetailHelper.getInstance();
     }
 
     @PreDestroy
     public void end() {
-        helper.close();
+        billHelper.close();
+        billDetailHelper.close();
     }
+
     public BillBean() {
     }
-    public void AddBill(){
-        Date date = new Date();
-        bill.setOrderDate(date);
-        bill.setIsDeleted(false);
-        bill.setStatus((short)AppConstant.BILL_STATUS_WAIT);
-        
+
+    public String createBill() {
+        if (ValidateBean.validEmpty(bill.getDeliveryAddress()) && ValidateBean.validEmpty(bill.getPhone()) && ValidateBean.validEmpty(bill.getCustomerName())) {
+            Date date = new Date();
+            bill.setOrderDate(date);
+            bill.setIsDeleted(false);
+            bill.setStatus((short) AppConstant.BILL_STATUS_WAIT);
+            CartManagedBean cmb = (CartManagedBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cartManagedBean");
+            HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            Member m = (Member) ss.getAttribute("member");
+            bill.setMemberId(m.getId());
+            bill.setTotal(BigDecimal.valueOf(cmb.getTotal()));
+            if (billHelper.save(bill)) {
+                for (CartItem ci : cmb.getListCart()) {
+                    BillDetail bd = new BillDetail(new BillDetailId(bill.getId(), ci.getProduct().getId()), ci.getProduct().getPrice(), ci.getCount());
+                    billDetailHelper.save(bd);
+                }
+                return "history.xhtml";
+            } else {
+                return "order.xhtml";
+            }
+        } else {
+            return "order.xhtml";
+        }
     }
 // end ducnt
+
     /**
      * *****************************************GETTER and
      * SETTER********************************************
