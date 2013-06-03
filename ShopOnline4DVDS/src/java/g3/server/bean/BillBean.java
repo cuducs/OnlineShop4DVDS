@@ -97,11 +97,6 @@ public class BillBean {
         billDetailHelper = BillDetailHelper.getInstance();
     }
 
-    @PreDestroy
-    public void end() {
-        billHelper.close();
-        billDetailHelper.close();
-    }
 
     public BillBean() {
     }
