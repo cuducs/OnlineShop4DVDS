@@ -204,6 +204,6 @@ public class BrowserManagedBean {
     
     public String browser(Browser browser){
         browserDvd=helper.getSession().createQuery(browser.getQuery()).list();
-        return null;
+        return "showproduct";
     }
 }
