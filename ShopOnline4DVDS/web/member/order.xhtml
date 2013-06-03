@@ -7,7 +7,7 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/customerTemplate.xhtml">
             <ui:define name="content_wrapcategory">
-                <title>Registry</title>
+                <title>Order</title>
                 <div id="basket-content">
                     <div id="divTitle" style="position: relative; margin-bottom: 25px;">
                         <h3 id="h3Title"  style="margin-top: 5px;">
@@ -19,6 +19,9 @@
                         <div>
                             <c:if test="#{sessionScope.member==null}">
                                 #{facesContext.externalContext.redirect("login.xhtml")}
+                            </c:if>
+                            <c:if test="#{cartManagedBean.total == 0}">
+                                #{facesContext.externalContext.redirect("history.xhtml")}
                             </c:if>
                             <h:form>
                                 <table style="text-align: center;">
@@ -37,7 +40,7 @@
                                     <tr>
                                         <td colspan="2" style="color: red">#{requestScope.result}</td>
                                     </tr>
-                                    <tr><td colspan="2"><h:commandButton value="Registry" action="#{billBean.addBill()}"/></td></tr>
+                                    <tr><td colspan="2"><h:commandButton value="Confirm" action="#{billBean.createBill()}"/></td></tr>
                                 </table>
                             </h:form>
                         </div>

@@ -5,32 +5,28 @@
 package g3.server.bean;
 
 import g3.hibernate.entity.Bill;
-import g3.hibernate.entity.Dvd;
+import g3.hibernate.entity.BillDetail;
 import org.hibernate.Transaction;
 
 /**
  *
  * @author TrungDuc
  */
-public class BillHelper extends BaseHelper{
-    private static BillHelper instance;
+public class BillDetailHelper extends BaseHelper{
+    private static BillDetailHelper instance;
 
-    private BillHelper() {
+    private BillDetailHelper() {
     }
 
-    public static BillHelper getInstance() {
+    public static BillDetailHelper getInstance() {
         if (instance == null) {
-            instance = new BillHelper();
+            instance = new BillDetailHelper();
         }
         return instance;
     }
-    public boolean save(Bill bill) {
+    public void save(BillDetail billDetail) {
         Transaction beginTransaction = session.beginTransaction();
-        session.save(bill);
+        session.save(billDetail);
         beginTransaction.commit();
-        if (bill.getId() != 0) {
-            return true;
-        }
-        return false;
     }
 }
