@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0053)http://livedemo00.template-help.com/virtuemart_36022/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr"
+      xmlns:gct="http://g3.com/tags">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+        <title>Welcome to the Frontpage</title>
+        <link href="/ShopOnline4DVDS/resources/customerver2/all/fetchscript(1).php" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/constant.css" type="text/css"/>
+        <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/template.css" type="text/css"/>
+        <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/virtuemart.css" type="text/css"/>
+        <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/products.css" type="text/css"/>
+
+        <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/jqtransform.js"></script>
+        <script type="text/javascript">
+            var $j=jQuery.noConflict();
+            $j(document).ready(function() {			
+                $j(function(){
+                    $j('#select-form').jqTransform({imgPath:'/ShopOnline4DVDS/resources/customerver2/images/'});
+                });
+            });
+        </script>
+        <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/imagepreloader.js"></script>
+        <script type="text/javascript">
+            $j(document).ready(function(){
+                $j(".module-new .featuredborder").hover(function() {
+                    $j(this).find(".bg").stop().animate({ left: 16}, "normal");
+                },function(){
+                    $j(this).find(".bg").stop().animate({ left: -236}, 300);
+                });
+                //accordion begin
+                $j("#accordion dt").eq(0).addClass("active");
+                $j("#accordion dd").eq(0).show();
+	 
+                $j("#accordion dt").click(function(){
+                    $j(this).next("#accordion dd").slideToggle("slow")
+                    .siblings("#accordion dd:visible").slideUp("slow");
+                    $j(this).toggleClass("active");
+                    $j(this).siblings("#accordion dt").removeClass("active");
+                    return false;
+                });
+            });
+            $j(document).ready(function(){
+                $j(function() {
+                    var offset = $j(".cart").offset();
+                    var topPadding = 135;
+                    $j(window).scroll(function() {
+                        if ($j(window).scrollTop() > offset.top) {
+                            $j(".cart").stop().animate({marginTop: $j(window).scrollTop() - offset.top + topPadding});
+                        }
+                        else {$j(".cart").stop().animate({marginTop: 0});};});
+                });}); 
+            preloadImages([
+                '/ShopOnline4DVDS/resources/customerver2/images/button2-active.png', 
+                '/ShopOnline4DVDS/resources/customerver2/images/Login-button-active.gif',
+                '/ShopOnline4DVDS/resources/customerver2/images/log-out-button-active.gif',
+                '/ShopOnline4DVDS/resources/customerver2/images/button1-active.png',
+                '/ShopOnline4DVDS/resources/customerver2/images/button1.png',
+                '/ShopOnline4DVDS/resources/customerver2/images/cart-button-active.png',
+                '/ShopOnline4DVDS/resources/customerver2/images/search-button-active.png',
+                '/ShopOnline4DVDS/resources/customerver2/images/cat-a.active.jpg',
+                '/ShopOnline4DVDS/resources/customerver2/images/button-active.png',
+                '/ShopOnline4DVDS/resources/customerver2/images/arrowUp-active.png',
+                '/ShopOnline4DVDS/resources/customerver2/images/arrowDown-active.png'
+            ]);
+        </script>
+        <!--[if lt IE 7]>
+                        <div style=' clear: both; text-align:center; position: relative;'>
+                                <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0"  alt="" /></a>
+                        </div>
+                <![endif]-->
+
+    </head>
+    <body id="body" class="first  ext-safari">
+        <!--top-->
+        <div id="header">
+
+            <div class="main">
+                <div class="module_LoginForm">
+                    <div class="boxIndent">
+                        <a href="#" class="login" title="Login" rel="{size: {x: 300, y: 325}, ajaxOptions: {method: &quot;get&quot;}}">
+                            Login</a>
+                    </div>
+                </div>
+                <div class="header-splash"></div>
+                <div id="logo">
+                    <a href="#"><img alt="" src="/ShopOnline4DVDS/resources/customerver2/all/logo.png"/></a>
+                </div>
+                <div class="currency">
+                    <div class="moduletable">
+                        <h3>Currencies:</h3>
+
+                        <form id="select-form" action="/ShopOnline4DVDS/resources/customerver2/all/Welcome to the Frontpage.htm" method="post" class="jqtransformdone">
+                            <input type="hidden" name="option" value="com_content"/>
+                            <input type="hidden" name="view" value="frontpage"/>
+                            <input type="hidden" name="Itemid" value="1"/>
+                            <input type="hidden" name="limit" value="0"/>
+                            <div class="jqTransformSelectWrapper" style="z-index: 10; width: 140px;"><div><span style="width: 0px;">US Dollar</span><a href="http://livedemo00.template-help.com/virtuemart_36022/#" class="jqTransformSelectOpen"></a></div><ul style="width: 138px; display: none; visibility: visible;"><li><a href="#">Euro</a></li><li><a href="http://livedemo00.template-help.com/virtuemart_36022/#" class="selected">US Dollar</a></li></ul><select class="inputbox jqTransformHidden" name="product_currency" size="1" style="">
+                                    <option value="EUR">Euro</option>
+                                    <option value="USD" selected="selected">US Dollar</option>
+                                </select></div>
+                            <input type="hidden" name="do_coupon" value="yes"/>
+                            <button id="" name="submit" type="submit" class="button jqTransformButton"><span><span>Change</span></span></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="cart">
+                    <div class="moduletable">
+                        <div class="vmCartModule">
+                            <a href="#">0</a>
+                        </div> </div>
+                </div>
+                <div id="topmenu">
+                    <div class="moduletable-nav">
+                        <ul class="menu"><li class="item29"><a href="#"><span>Online Store</span></a></li><li class="item18"><a href="#"><span>Delivery</span></a></li><li class="item53"><a href="#"><span>FAQS</span></a></li><li class="item54"><a href="#"><span>Contacts</span></a></li></ul> </div>
+                </div>
+                <div class="moduletable-categories">
+                    <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/ddsmoothmenu.js"></script>
+                    <div class="ddsmoothmenu" id="smoothmenu1"><div id="relative_div" style="position:relative;z-index:0"></div>
+                        <ul class="level1">
+                            <li class="level1 item1 parent" style="z-index: 100;">
+                                <a class="level1 item1  parent" href="#" target="_self" title="Movies" style="padding-right: 23px;">
+                                    <span>Movies</span><img src="/ShopOnline4DVDS/resources/customerver2/all/down.gif" class="downarrowclass" style="border:0;"/></a>
+                                <ul class="level2" style="display: none; top: 44px; visibility: visible;">
+                                    <li class="level2 item1"><a class="level2 item1 " href="#" target="_self" title="Action &amp; Adventure">
+                                            <span>Action &amp; Adventure</span></a>
+                                    </li>
+                                    <li class="level2 item2">
+                                        <a class="level2 item2 " href="#" target="_self" title="Animation">
+                                            <span>Animation</span></a>
+                                    </li>
+                                    <li class="level2 item3 parent" style="z-index: 99;">
+                                        <a class="level2 item3  parent" href="#" target="_self" title="Anime">
+                                            <span>Anime</span>
+                                            <img src="/ShopOnline4DVDS/resources/customerver2/all/right.gif" class="rightarrowclass" style="border:0;"/></a>
+                                        <ul class="level3" style="display: none; top: 0px; visibility: visible;">
+                                            <li class="level3 item1"><a class="level3 item1 " href="#" target="_self" title="Horror">
+                                                    <span>Horror</span></a>
+                                            </li>
+                                            <li class="level3 item2">
+                                                <a class="level3 item2 " href="#" target="_self" title="Lorem ">
+                                                    <span>Lorem </span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="level2 item4">
+                                        <a class="level2 item4 " href="#" target="_self" title="Classics">
+                                            <span>Classics</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="level1 item2 parent" style="z-index: 98;">
+                                <a class="level1 item2  parent" href="#" target="_self" title="Music" style="padding-right: 23px;">
+                                    <span>Music</span>
+                                    <img src="/ShopOnline4DVDS/resources/customerver2/all/down.gif" class="downarrowclass" style="border:0;"/></a>
+                                <ul class="level2" style="display: none; top: 44px; visibility: visible;">
+                                    <li class="level2 item1"><a class="level2 item1 " href="#" target="_self" title="Dolor ">
+                                            <span>Dolor </span></a></li><li class="level2 item2 parent" style="z-index: 97;">
+                                        <a class="level2 item2  parent" href="#" target="_self" title="Magnum ">
+                                            <span>Magnum </span>
+                                            <img src="/ShopOnline4DVDS/resources/customerver2/all/right.gif" class="rightarrowclass" style="border:0;"/>
+                                        </a>
+                                        <ul class="level3" style="display: none; top: 0px; visibility: visible;">
+                                            <li class="level3 item1">
+                                                <a class="level3 item1 " href="#" target="_self" title="Ipsum ">
+                                                    <span>Ipsum </span></a>
+                                            </li>
+                                            <li class="level3 item2">
+                                                <a class="level3 item2 " href="#" target="_self" title="Suspendisse potenti ">
+                                                    <span>Suspendisse potenti </span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="level2 item3">
+                                        <a class="level2 item3 " href="#" target="_self" title="Lorem">
+                                            <span>Lorem</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="level1 item3">
+                                <a class="level1 item3 " href="#" target="_self" title="Games">
+                                    <span>Games</span>
+                                </a></li>
+                            <li class="level1 item4">
+                                <a class="level1 item4 " href="#" target="_self" title="Books">
+                                    <span>Books</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="content">
+            <div class="main1">
+                <!--search-->
+                <div id="search">
+
+                    <div class="moduletable">
+                        <h3>Search:</h3>
+                        <form action="" method="post">
+                            <div class="search">
+                                <input name="searchword" id="mod_search_searchword" maxlength="800" alt="" class="inputbox" type="text" size="800" value="Enter search keywords here" />
+                                <input type="submit" value="" class="button" onclick="this.form.searchword.focus();"/> </div>
+                            <input type="hidden" name="task" value="search"/>
+                            <input type="hidden" name="option" value="com_search"/>
+                            <input type="hidden" name="Itemid" value="1"/>
+                        </form> </div>
+                </div>
+                <div class="wrapper2">
+                    <!--left menu-->
+                    <div id="left">
+                        <div class="wrapper2">
+                            <div class="extra-indent">
+                                <!--left menu part 1 200 row-->
+                                <div class="module_multi">
+
+                                    <h3><span><span>Specials</span></span></h3>
+                                    <div class="boxIndent">
+                                        <div class="tab-page" id="all_in_one51ada2ec41227"><div id="ext-comp-1002" class="x-tab-panel" style="width: auto;">
+                                                <div class="x-tab-panel-header x-unselectable" id="ext-gen15">
+                                                    <div class="x-tab-strip-wrap" id="ext-gen19">
+                                                        <ul class="x-tab-strip x-tab-strip-top" id="ext-gen21">
+                                                            <li class=" x-tab-strip-active" id="ext-comp-1002__ext-comp-1003">
+                                                                <a class="x-tab-strip-close" onclick="return false;"></a>
+                                                                <a class="x-tab-right" href="http://livedemo00.template-help.com/virtuemart_36022/#" onclick="return false;">
+                                                                    <em class="x-tab-left">
+                                                                        <span class="x-tab-strip-inner"><span class="x-tab-strip-text ">Featured Products</span></span>
+                                                                    </em></a>
+                                                            </li>
+                                                            <li class="x-tab-edge" id="ext-gen22"></li>
+                                                            <li class="x-clear" id="ext-gen23"></li>
+                                                        </ul></div><div class="x-tab-strip-spacer" id="ext-gen20"></div></div><div class="x-tab-panel-bwrap" id="ext-gen16"><div class="x-tab-panel-body x-tab-panel-body-top" id="ext-gen17" style="overflow: auto; width: auto;"><div id="ext-comp-1003" class="x-panel x-panel-noborder " style="width: 220px;"><div class="x-panel-bwrap" id="ext-gen26"><div class="x-panel-body x-panel-body-noheader x-panel-body-noborder" id="ext-gen27" style="height: auto; width: 220px;"><div class="tab-page" id="featured_all_in_one51ada2ec41227"> <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <gct:cus-ver2-aproduct-ads></gct:cus-ver2-aproduct-ads>
+                                                                                <gct:cus-ver2-aproduct-ads></gct:cus-ver2-aproduct-ads>
+                                                                                <gct:cus-ver2-aproduct-ads></gct:cus-ver2-aproduct-ads>
+                                                                                <gct:cus-ver2-aproduct-ads></gct:cus-ver2-aproduct-ads>
+                                                                                <gct:cus-ver2-aproduct-ads></gct:cus-ver2-aproduct-ads>
+                                                                                <tr></tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div></div></div></div></div></div></div>
+                                    </div>
+                                </div>
+                                <!--left menu part 2 60 row-->
+                                <div class="module_best">
+                                    <h3><span><span>Bestsellers</span></span></h3>
+                                    <div class="boxIndent">
+                                        <ul>
+                                            <li class="best">
+                                                <span>01.</span>
+                                                <a href="#">
+                                                    Aliqua enim ad </a>
+                                            </li>
+                                            <li class="best">
+                                                <span>02.</span>
+                                                <a href="#">
+                                                    Lorem ipsum dolor sit </a>
+                                            </li>
+                                            <li class="best">
+                                                <span>03.</span>
+                                                <a href="#">
+                                                    Amet conse ctetur adipisicing </a>
+                                            </li>
+                                            <li class="best">
+                                                <span>04.</span>
+                                                <a href="#">
+                                                    Commodo consequat </a>
+                                            </li>
+                                            <li class="best">
+                                                <span>05.</span>
+                                                <a href="#">
+                                                    Elit sed do eiusmod </a>
+                                            </li>
+                                            <li class="best">
+                                                <span>06.</span>
+                                                <a href="#">
+                                                    Exercitation ullamco laboris </a>
+                                            </li>
+                                            <li class="best">
+                                                <span>07.</span>
+                                                <a href="#">
+                                                    Labore et dolore magna </a>
+                                            </li>
+                                            <li class="best">
+                                                <span>08.</span>
+                                                <a href="#">
+                                                    Minim veniam, quis nostrud </a>
+                                            </li>
+                                            <li class="best">
+                                                <span>09.</span>
+                                                <a href="#">
+                                                    Nisi ut aliquip ex ea </a>
+                                            </li>
+                                            <li class="best">
+                                                <span>10.</span>
+                                                <a href="#">
+                                                    Tempor incididunt ut </a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--content-->
+                    <div class="container">
+
+                        <!--show all product-->
+                        <div class="module-new">
+                            <h3><span><span>New Products</span></span></h3>
+                            <div class="boxIndent">
+                                <div class="anythingSlider">
+                                    <div class="wrapper-box">
+                                        <ul class="box-product">
+                                            <!--row-->
+                                            <li><div class="row-bg first">
+                                                    <!--a product-->
+                                                    <gct:cus-ver2-aproduct></gct:cus-ver2-aproduct>
+                                                    <gct:cus-ver2-aproduct></gct:cus-ver2-aproduct>
+                                                    <gct:cus-ver2-aproduct></gct:cus-ver2-aproduct>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row-bg">
+                                                    <gct:cus-ver2-aproduct></gct:cus-ver2-aproduct>
+                                                    <gct:cus-ver2-aproduct></gct:cus-ver2-aproduct>
+                                                    <gct:cus-ver2-aproduct></gct:cus-ver2-aproduct>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row-bg">
+                                                    <gct:cus-ver2-aproduct></gct:cus-ver2-aproduct>
+                                                    <gct:cus-ver2-aproduct></gct:cus-ver2-aproduct>
+                                                    <gct:cus-ver2-aproduct></gct:cus-ver2-aproduct>
+                                                </div>
+                                            </li> 
+                                        </ul>
+                                    </div>
+                                </div> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+
+        <!--bottom-->
+        <div id="footer">
+            <div class="main">
+                <div class="space">
+                    <div class="wrapper">
+                        <div class="footerText">
+                            <ul class="menu"><li class="item29"><a href="#"><span>Online Store</span></a></li><li class="item18">
+                                    <a href="#"><span>About Us</span></a></li><li class="item30">
+                                    <a href="#"><span>Delivery</span></a></li><li class="item53">
+                                    <a href="#"><span>FAQS</span></a></li><li class="item54">
+                                    <a href="#"><span>Contacts</span></a></li></ul><div>Copyright © 2013 CD&amp;DVD. All Rights Reserved.</div>
+                            <div><a href="http://www.joomla.org/">Joomla!</a> is Free Software released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL License.</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>

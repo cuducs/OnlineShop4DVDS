@@ -9,6 +9,14 @@
         <source>tags/example.xhtml</source>
     </tag>
     <tag>
+        <tag-name>cus-ver2-aproduct</tag-name>
+        <source>tags/cus-ver2-aproduct.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>cus-ver2-aproduct-ads</tag-name>
+        <source>tags/cus-ver2-aproduct-ads.xhtml</source>
+    </tag>
+    <tag>
         <tag-name>customer-dvd-list</tag-name>
         <source>tags/customer-dvd-list.xhtml</source>
     </tag>
