@@ -9,6 +9,7 @@
             <ui:define name="content_wrapcategory">
                 <title>History</title>
                 <c:if test="#{sessionScope.member==null}">
+                    <h3>You must login</h3>
                     #{facesContext.externalContext.redirect("login.xhtml")}
                 </c:if>
                 <c:if test="#{sessionScope.member!=null}">
@@ -44,7 +45,14 @@
                                         </c:forEach>
                                     </table>
                                     <h:form>
-                                        Search by date (dd/mm/yyyy): <h:inputText value="#{billBean.orderedDate}"/>
+                                        <link rel="stylesheet" href="../resources/customer/css/jquery-ui.css" />
+                                        <script src="../resources/customer/js/jquery-ui.js"></script>
+                                        <script>
+                                            $(function() {
+                                                $( ".datepicker" ).datepicker();
+                                            });
+                                        </script>
+                                        Search by date (dd/mm/yyyy): <h:inputText class="existing-login" value="#{billBean.orderedDate}" styleClass="datepicker"/>
                                         <br/>
                                         <b style="color: red">#{billBean.result}</b>
                                         <br/>

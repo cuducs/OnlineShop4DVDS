@@ -100,6 +100,21 @@ public class MemberBean {
     public List<Member> getMembers() {
         return getSession().createQuery("FROM Member").list();
     }
+    
+    public String getProfileName(){
+        String s = "";
+        HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        if(ss.getAttribute("member")!=null){
+            Member m = (Member)ss.getAttribute("member");
+            name = m.getName();
+            password = m.getPassword();
+            repassword = m.getPassword();
+            s = m.getEmail();
+        }else{
+            s = "You must login.";
+        }
+        return s;
+    }
 
     //Functions
     public String registry() {

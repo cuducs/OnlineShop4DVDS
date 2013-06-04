@@ -2051,7 +2051,7 @@ table.box-contents
 }
 .product-tabs ul li#description a
 {
-	background: url('../images/product-tabs-description.gif') no-repeat 0 0;
+	background: url('../images/descript.gif') no-repeat 0 0;
 	width: 81px;
 	height: 40px;
 }
@@ -2090,34 +2090,34 @@ table.box-contents
 	background-position: 0 -62px;
 }
 
-.product-tabs ul li#producer
+.product-tabs ul li#trailer
 {
 	padding-left: 15px;
 }
-.product-tabs ul li#producer a
+.product-tabs ul li#trailer a
 {
-	background: url('../images/product-tabs-producer.gif') no-repeat 0 0;
+	background: url('../images/trailer.gif') no-repeat 0 0;
 	width: 72px;
 	height: 40px;
 }
-.product-tabs ul li#producer a:hover, .product-tabs ul li#producer a.current-active
+.product-tabs ul li#trailer a:hover, .product-tabs ul li#trailer a.current-active
 {
 	background-position: 0 -40px;
 }
 
-.product-tabs ul li#nutrition
+.product-tabs ul li#comment
 {
 	padding-left: 15px;
 }
-.product-tabs ul li#nutrition a
+.product-tabs ul li#comment a
 {
-	background: url('../images/product-tabs-nutrition.gif') no-repeat 0 0;
-	width: 70px;
-	height: 30px;
+	background: url('../images/comment.gif') no-repeat 0 0;
+	width: 81px;
+	height: 40px;
 }
-.product-tabs ul li#nutrition a:hover, .product-tabs ul li#nutrition a.current-active
+.product-tabs ul li#comment a:hover, .product-tabs ul li#comment a.current-active
 {
-	background-position: 0 -30px;
+	background-position: 0 -40px;
 }
 
 .product-tabs .tabs .description, .product-tabs .tabs .ingredients, .product-tabs .tabs .storageprep, .product-tabs .tabs .producer, .product-tabs .tabs .nutrition

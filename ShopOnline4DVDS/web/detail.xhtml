@@ -4,14 +4,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <h:head>
-        <script>
-            function changetab(){
-                $('#divnutrition').toggle();
-                $('#divdescription').hide();
-            }
-        </script>
-    </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/customerTemplate.xhtml">
             <ui:define name="content">
@@ -31,7 +23,7 @@
                                         #{showProductBean.detail.title}</h3>
                                     <div id="divProductImgStatic">
                                         <div class="img">
-                                            <img src="#{showProductBean.detail.imageCoverUrl}" id="imgProduct" class="product-image" alt="#{showProductBean.detail.title}"/>
+                                            <img height="200" width="150" src="#{showProductBean.detail.imageCoverUrl}" id="imgProduct" class="product-image" alt="#{showProductBean.detail.title}"/>
                                         </div>
                                     </div>
                                     <div class="product-text">
@@ -70,11 +62,11 @@
                                     <div id="pnlProductTabs">
                                         <div class="product-tabs">
                                             <ul>
-                                                <li id="trailer" class="single-tab-closed"><a id="a_description" class="current-active"
-                                                                                                  href="">Trailer</a> </li>
+                                                <li id="trailer" class="single-tab-open"><a id="a_description" class="current-active"
+                                                                                              href="">Trailer</a> </li>
                                                 <li id="description" class="single-tab-closed"><a id="a_producer" class="" href="">
                                                         Description</a> </li>
-                                                <li id="comment" class="single-tab-open"><a id="a_ingredients" class="" href="">
+                                                <li id="comment" class="single-tab-closed"><a id="a_ingredients" class="" href="">
                                                         Comment</a> </li>
                                             </ul>
                                             <div id="ulTabsDivs" class="tabs">
@@ -107,11 +99,16 @@
                                     </div>
                                 </c:if>
                                 <h2>Others DVD:</h2>
-                                <ul>
-                                    <c:forEach var="o" items="#{showProductBean.others}">
-                                        <li><img src="#{o.imageCoverUrl}" alt="ok"/><a href="detail.xhtml?detail=#{o.id}/#{o.type}">#{o.title}</a></li>
-                                    </c:forEach>
-                                </ul>
+                                <table>
+                                    <tr>
+                                        <c:forEach var="o" items="#{showProductBean.others}">
+                                            <td style="text-align: center; padding: 20px">
+                                            <a href="detail.xhtml?detail=#{o.id}/#{o.type}"><img height="81" width="62" src="#{o.imageCoverUrl}" alt="ok"/></a>
+                                            <br/>
+                                            <a href="detail.xhtml?detail=#{o.id}/#{o.type}">#{o.title}</a></td>
+                                        </c:forEach>
+                                    </tr>
+                                </table>
                             </c:if>
                         </div>
                     </div>
@@ -121,16 +118,38 @@
                         $('#divtrailer').show();
                         $('#divdescription').hide();
                         $('#divcomment').hide();
+                        
+                        $('#description').removeClass("single-tab-open").addClass("single-tab-closed");
+                        $('#trailer').addClass("single-tab-open");
+                        $('#comment').removeClass("single-tab-open").addClass("single-tab-closed");
+                        
+                        $('#a_description').addClass("current-active");
+                        $('#a_producer').removeClass("current-active");
+                        $('#a_ingredients').removeClass("current-active");
                     });
                     $('#description').click(function(){
                         $('#divtrailer').hide();
                         $('#divdescription').show();
                         $('#divcomment').hide();
+                        $('#description').addClass("single-tab-open");
+                        $('#trailer').removeClass("single-tab-open").addClass("single-tab-closed");
+                        $('#comment').removeClass("single-tab-open").addClass("single-tab-closed");
+                        
+                        $('#a_description').removeClass("current-active");
+                        $('#a_producer').addClass("current-active");
+                        $('#a_ingredients').removeClass("current-active");
                     });
                     $('#comment').click(function(){
                         $('#divtrailer').hide();
                         $('#divdescription').hide();
                         $('#divcomment').show();
+                        $('#description').removeClass("single-tab-open").addClass("single-tab-closed");
+                        $('#trailer').removeClass("single-tab-open").addClass("single-tab-closed");
+                        $('#comment').addClass("single-tab-open");
+                        
+                        $('#a_description').removeClass("current-active");
+                        $('#a_producer').removeClass("current-active");
+                        $('#a_ingredients').addClass("current-active");
                     });
                 </script>
             </ui:define>
