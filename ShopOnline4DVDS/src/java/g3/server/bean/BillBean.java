@@ -4,6 +4,7 @@
  */
 package g3.server.bean;
 
+import g3.server.bean.utility.AppConstant;
 import g3.hibernate.entity.Bill;
 import g3.hibernate.entity.BillDetail;
 import g3.hibernate.entity.BillDetailId;

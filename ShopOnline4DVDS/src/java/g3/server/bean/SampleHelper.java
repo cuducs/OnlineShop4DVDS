@@ -4,6 +4,7 @@
  */
 package g3.server.bean;
 
+import g3.server.bean.utility.AppConstant;
 import g3.hibernate.entity.FileData;
 import g3.hibernate.entity.Genre;
 import java.util.Date;

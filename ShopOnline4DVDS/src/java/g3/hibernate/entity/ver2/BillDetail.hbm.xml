@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 5, 2013 8:44:20 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="g3.hibernate.entity.ver2.BillDetail" table="BillDetail" schema="dbo" catalog="DVDStoreVer2">
+        <composite-id name="id" class="g3.hibernate.entity.ver2.BillDetailId">
+            <key-property name="billId" type="int">
+                <column name="BillId" />
+            </key-property>
+            <key-property name="dvdId" type="int">
+                <column name="DvdId" />
+            </key-property>
+        </composite-id>
+        <property name="price" type="java.lang.Double">
+            <column name="Price" precision="53" scale="0" />
+        </property>
+        <property name="quantity" type="java.lang.Integer">
+            <column name="Quantity" />
+        </property>
+    </class>
+</hibernate-mapping>

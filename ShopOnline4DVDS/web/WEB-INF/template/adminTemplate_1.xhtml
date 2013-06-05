@@ -5,43 +5,58 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:gct="http://g3.com/tags">
     <h:head>
-        <!--add css, js-->
-        <ui:insert name="top">
-            <ui:include src="fragment/top.xhtml"/>
-        </ui:insert>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
+        <title>SimpleAdmin</title>
+        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/SimpleAdmin_kilab_pl/css/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/SimpleAdmin_kilab_pl/css/navi.css" media="screen" />
+        <script type="text/javascript" src="/ShopOnline4DVDS/resources/SimpleAdmin_kilab_pl/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $(".box .h_title").not(this).next("ul").hide("normal");
+                $(".box .h_title").not(this).next("#home").show("normal");
+                $(".box").children(".h_title").click( function() { $(this).next("ul").slideToggle(); });
+            });
+        </script>
     </h:head>
     <h:body>
-        <div id="main_container">
-            <!--clock, login,message-->
-            <ui:insert name="welcome">
-                <ui:include src="fragment/welcome.xhtml"/>
-            </ui:insert>
-            <div class="main_content">
-                <!--top menu-->
-                <ui:insert name="hmenu">
-                    <!--<ui:include src="fragment/hmenu.xhtml"/>-->
-                    <gct:admin-horizotal-menu></gct:admin-horizotal-menu>
+        <div class="wrap">
+
+            <div id="header">
+                <ui:insert name="loginTop">
+                    <ui:include src="fragment/adminVer2_toplogin.xhtml"></ui:include>
                 </ui:insert>
-                <div class="center_content">  
-                    <!--left menu-->
-                    <ui:insert name="vmenu">
-                        <!--<ui:include src="fragment/vmenu.xhtml"/>-->
-                        <gct:admin-vertical-menu></gct:admin-vertical-menu>
+                <ui:insert name="navTop">
+                    <ui:include src="fragment/adminVer2_topmenu.xhtml"></ui:include>
+                </ui:insert> 
+            </div>
+
+            <div id="content">
+                <ui:insert name="navSide">
+                    <ui:include src="fragment/adminVer2_sidemenu.xhtml"></ui:include>
+                </ui:insert> 
+                <div id="main">
+                    <ui:insert name="content">
+                        <div class="full_w">
+                            <div class="h_title">Here is Content go</div>
+                            <h2>Hello</h2>
+                        </div>
                     </ui:insert>
-                    <div class="right_content"> 
-                        <ui:insert name="content">
-                            <!--here is main display-->
-                        </ui:insert>
 
-
-                    </div>         
-                </div> 
+                </div>
                 <div class="clear"></div>
             </div>
-            <ui:insert name="footer">
-                <ui:include src="fragment/footer.xhtml"/>
-            </ui:insert>
+
+            <div id="footer">
+                <div class="left">
+                    <p>Design: <a href="http://kilab.pl">Paweł Balicki</a> | Admin Panel: <a href="">YourSite.com</a></p>
+                </div>
+                <div class="right">
+                    <p><a href="">Example link 1</a> | <a href="">Example link 2</a></p>
+                </div>
+            </div>
         </div>
+
     </h:body>
 </html>
 
