@@ -24,5 +24,7 @@
     <mapping resource="g3/hibernate/entity/BillDetail.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/Bill.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/FileData.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/ver2/MappingTable.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/ver2/ObjectOfBrowsingRule.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

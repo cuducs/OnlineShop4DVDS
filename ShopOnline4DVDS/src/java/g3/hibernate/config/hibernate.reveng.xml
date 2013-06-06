@@ -18,4 +18,6 @@
   <table-filter match-name="AlbumMusicMapping"/>
   <table-filter match-name="Movie"/>
   <table-filter match-name="Browser"/>
+  <table-filter match-name="MappingTable"/>
+  <table-filter match-name="ObjectOfBrowsingRule"/>
 </hibernate-reverse-engineering>
