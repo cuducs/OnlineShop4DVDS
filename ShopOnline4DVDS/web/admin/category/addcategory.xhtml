@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>add category</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+            <ui:define name="content">
+
+                <h2>File Form</h2>
+                <div class="form">
+        <h:form>
+            <label>Name</label><h:inputText value="#{categoryManagedBean.curCate.name}"></h:inputText><br/>
+            <label>Parent</label>
+            <h:selectOneMenu value="#{categoryManagedBean.curCate.categoryParentId}">
+                <f:selectItems var="item" value="#{categoryManagedBean.listCategories}"></f:selectItems>
+            </h:selectOneMenu><br/>
+            <label>Description</label><h:inputText value="#{categoryManagedBean.curCate.description}"></h:inputText><br/>
+            <br/>
+            <label>Rule for Browsing products : </label><br/>
+            <h:selectOneMenu value="#{categoryManagedBean.objectOfBrowsingRule}">
+                <f:selectItems value="#{objectOfBrowsingRuleManagedBean.listObjectsOfBrowsingRule}"></f:selectItems>
+            </h:selectOneMenu>
+            <h:selectOneMenu value="#{categoryManagedBean.operaterOfBrowsingRule}">
+                <f:selectItem itemValue="#{appConstant.OPERATOR_EQUAL}" itemLabel="#{appConstant.OPERATOR_EQUAL}"></f:selectItem>
+                <f:selectItem itemValue="#{appConstant.OPERATOR_LARGER}" itemLabel="#{appConstant.OPERATOR_LARGER}"></f:selectItem>
+                <f:selectItem itemValue="#{appConstant.OPERATOR_LARGER_EQUAL}" itemLabel="#{appConstant.OPERATOR_LARGER_EQUAL}"></f:selectItem>
+                <f:selectItem itemValue="#{appConstant.OPERATOR_LESSER}" itemLabel="#{appConstant.OPERATOR_LESSER}"></f:selectItem>
+                <f:selectItem itemValue="#{appConstant.OPERATOR_LESSER_EQUAL}" itemLabel="#{appConstant.OPERATOR_LESSER_EQUAL}"></f:selectItem>
+                <f:selectItem itemValue="#{appConstant.OPERATOR_TOP}" itemLabel="#{appConstant.OPERATOR_TOP}"></f:selectItem>
+                <f:selectItem itemValue="#{appConstant.OPERATOR_BETWEEN}" itemLabel="#{appConstant.OPERATOR_BETWEEN}"></f:selectItem>
+                <f:selectItem itemValue="#{appConstant.OPERATOR_CONTAIN}" itemLabel="#{appConstant.OPERATOR_CONTAIN}"></f:selectItem>
+                <f:ajax render="valueOfBrowsingRule2"/>
+            </h:selectOneMenu>
+            <h:inputText value="#{categoryManagedBean.valueOfBrowsingRule}"></h:inputText>
+            <h:inputText id="valueOfBrowsingRule2" style="#{(categoryManagedBean.operaterOfBrowsingRule != appConstant.OPERATOR_BETWEEN) ? 'visibility:hidden' : 'visibility:visibility'}" 
+                         disabled="#{categoryManagedBean.operaterOfBrowsingRule != appConstant.OPERATOR_BETWEEN}" 
+                         value="#{categoryManagedBean.valueOfBrowsingRule2}"></h:inputText>
+            <br/>
+            <h:commandButton action="#{categoryManagedBean.save()}"/>
+        </h:form>
+                </div></ui:define></ui:composition>
+    </h:body>
+</html>
