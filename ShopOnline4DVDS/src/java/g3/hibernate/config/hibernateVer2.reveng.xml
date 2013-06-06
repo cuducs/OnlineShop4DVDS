@@ -7,7 +7,6 @@
   <table-filter match-name="Advertising"/>
   <table-filter match-name="PromotionRegister"/>
   <table-filter match-name="Song"/>
-  <table-filter match-name="Game"/>
   <table-filter match-name="Category"/>
   <table-filter match-name="Genre"/>
   <table-filter match-name="Manage"/>
@@ -21,7 +20,6 @@
   <table-filter match-name="ManagePermissionMapping"/>
   <table-filter match-name="Browser"/>
   <table-filter match-name="Permission"/>
-  <table-filter match-name="Movie"/>
   <table-filter match-name="Artist"/>
   <table-filter match-name="Report"/>
   <table-filter match-name="Feedback"/>

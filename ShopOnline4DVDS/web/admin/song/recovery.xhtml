@@ -9,13 +9,15 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h:link value="Return List" outcome="show"></h:link><br/>
-                    <gct:common-list controller="#{songManagedBean}" list="#{songManagedBean.allSongsDeleted}" for="recovery" from="recovery" ></gct:common-list>
-                    
-                </h:form>
+                <div class="full_w">
+                    <div class="h_title">Song Recovery</div>
+                    <h:form>
+                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <gct:common-list controller="#{songManagedBean}" list="#{songManagedBean.allSongsDeleted}" from="recovery" for="recovery"></gct:common-list>
+                    </h:form>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

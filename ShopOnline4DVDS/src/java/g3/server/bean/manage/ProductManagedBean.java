@@ -7,8 +7,6 @@ package g3.server.bean.manage;
 import g3.server.bean.utility.AppConstant;
 import g3.hibernate.entity.ver2.Album;
 import g3.hibernate.entity.ver2.Dvd;
-import g3.hibernate.entity.ver2.Game;
-import g3.hibernate.entity.ver2.Movie;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -183,7 +181,7 @@ public class ProductManagedBean {
     }
 
     public String prepareMap(Dvd item) {
-        if (item.getDetailId() != null) {
+        if (item.getDetails() != null) {
             return "details";
         }
         curDvd = item;
@@ -197,30 +195,10 @@ public class ProductManagedBean {
     }
 
     public String removeDetails() {
-        curDvd.setDetailId(null);
+        curDvd.setDetails(null);
         curDvd.setModifiedDate(new Date());
         helper.save(curDvd);
         return null;
     }
 
-    public String mappingGame(Game item) {
-        curDvd.setDetailId(item.getId());
-        curDvd.setModifiedDate(new Date());
-        helper.save(curDvd);
-        return "productdetails";
-    }
-
-    public String mappingMovie(Movie item) {
-        curDvd.setDetailId(item.getId());
-        curDvd.setModifiedDate(new Date());
-        helper.save(curDvd);
-        return "productdetails";
-    }
-
-    public String mappingAlbum(Album item) {
-        curDvd.setDetailId(item.getId());
-        curDvd.setModifiedDate(new Date());
-        helper.save(curDvd);
-        return "productdetails";
-    }
 }

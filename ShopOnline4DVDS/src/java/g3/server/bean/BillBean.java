@@ -8,7 +8,7 @@ import g3.server.bean.utility.AppConstant;
 import g3.hibernate.entity.Bill;
 import g3.hibernate.entity.BillDetail;
 import g3.hibernate.entity.BillDetailId;
-import g3.hibernate.entity.CartItem;
+import g3.hibernate.entity.ver2.CartItem;
 import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.Member;
 import java.io.IOException;

@@ -3,46 +3,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:gct="http://g3.com/tags">
+      xmlns:gct="http://g3.com/tags"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
-                <h2>Game Form</h2>
-                <div class="form">
-                    <h:form class="niceform">
-                        <fieldset>
-                            <dl>
-                                <dt><label>Title :</label></dt>
-                                <dd><h:inputText value="#{gameManagedBean.curGame.title}"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Platform :</label></dt>
-                                <dd><h:inputText value="#{gameManagedBean.curGame.platform}"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Brand :</label></dt>
-                                <dd><h:inputText value="#{gameManagedBean.curGame.brand}"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Language :</label></dt>
-                                <dd><h:inputText value="#{gameManagedBean.curGame.language}"></h:inputText></dd>
-                            </dl>
-                            <dl class="submit">
-                                <dt></dt>
-                                <dd>
-                                <h:panelGroup rendered="#{gameManagedBean.mode eq appConstant.modeCreate}">
-                                    <h:commandButton value="Create" action="#{gameManagedBean.save()}"></h:commandButton>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{gameManagedBean.mode eq appConstant.modeEdit}">
-                                    <h:commandButton value="Edit" action="#{gameManagedBean.update()}"></h:commandButton>
-                                </h:panelGroup>
-                                <h:commandButton value="Cancel" action="#{gameManagedBean.cancel()}"></h:commandButton>
-                                </dd>
-                            </dl>
-                        </fieldset>
+                <div class="full_w">
+                    <div class="h_title">Game Form</div>
+                    <h:form>
+                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <div class="element">
+                            <label>Title</label>
+                            <p:inputText id="inputtitle" value="#{gameManagedBean.curGame.title}" style="width:200px;"></p:inputText>
+                            <p:watermark for="inputtitle" value="Title"></p:watermark>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Manufacture</label>
+                                <p:inputText id="inputmnf" value="#{gameManagedBean.curGame.manufacture}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputmnf" value="Manufacture"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Info</label>
+                                <p:inputText id="inputinfo" value="#{gameManagedBean.curGame.info}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputinfo" value="Information"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+
+                        <div class="entry">
+                            <h:panelGroup  rendered="#{gameManagedBean.mode eq appConstant.modeCreate}">
+                                <h:commandButton class="button add" value="Create" action="#{gameManagedBean.save()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup class="button" rendered="#{gameManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton value="Edit" action="#{gameManagedBean.update()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{gameManagedBean.cancel()}"></h:commandButton>
+                        </div>
+
                     </h:form>
                 </div>
             </ui:define>

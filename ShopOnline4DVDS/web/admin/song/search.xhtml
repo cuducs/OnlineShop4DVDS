@@ -10,30 +10,69 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h:link value="Return List" outcome="show"></h:link><br/>
-                    Input Search:<br/>
-                    <p:inputText id="inputid" value="#{songManagedBean.searchSong.id}" style="width:200px;">
-                        <f:converter converterId="ZeroConverter"></f:converter>
-                    </p:inputText>
-                    <p:watermark for="inputid" value="ID"></p:watermark><br/>
+                <div class="full_w">
+                    <div class="h_title">Song Filter</div>
+                    <h:form>
+                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <div class="element">
+                            <div class="split1">
+                                <label>ID</label>
+                                <p:inputText id="inputid" value="#{songManagedBean.searchSong.id}" style="width:200px;">
+                                    <f:converter converterId="ZeroConverter"></f:converter>
+                                </p:inputText>
+                                <p:watermark for="inputid" value="ID"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Title</label>
+                                <p:inputText id="inputtitle" value="#{songManagedBean.searchSong.title}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputtitle" value="Title"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Singer</label>
+                                <p:inputText id="inputsinger" value="#{songManagedBean.searchSong.singerId}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputsinger" value="Singer"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Composer</label>
+                                <p:inputText id="inputcomposer" value="#{songManagedBean.searchSong.composerId}" style="width:200px;">
+                                </p:inputText>
+                                <p:watermark for="inputcomposer" value="Composer"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Lyrics</label>
+                                <p:inputText id="inputlyics" value="#{songManagedBean.searchSong.lyrics}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputlyics" value="Lyrics"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Info</label>
+                                <p:inputText id="inputinfo" value="#{songManagedBean.searchSong.info}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputinfo" value="Information"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
+                            <label>Free</label>
+                            <p:selectBooleanCheckbox id="inputfree" value="#{songManagedBean.searchSong.isFree}"></p:selectBooleanCheckbox>
 
-                    <p:inputText id="inputtitle" value="#{songManagedBean.searchSong.title}" style="width:200px;"></p:inputText>
-                    <p:watermark for="inputtitle" value="Title"></p:watermark><br/>
+                        </div>
+                        <div class="entry">
+                            <h:commandButton class="button" value="Search" action="#{movieManagedBean.search()}"></h:commandButton><br/>
+                        </div>
+                        Result :<br/>
+                        <gct:common-list controller="#{movieManagedBean}" list="#{movieManagedBean.resustSearch}" from="search" for="search"></gct:common-list>
 
-                    <p:inputText id="inputlyrics" value="#{songManagedBean.searchSong.lyrics}" style="width:200px;"></p:inputText>
-                    <p:watermark for="inputlyrics" value="Lyrics"></p:watermark><br/>
+                    </h:form>
+                </div>
 
-                    <label>Free</label><p:selectBooleanCheckbox value="#{songManagedBean.searchSong.isFree}" /><br/>
 
-                    <h:commandButton value="Search" action="#{songManagedBean.search()}"></h:commandButton><br/>
-
-                    Result :<br/>
-                    <gct:common-list controller="#{songManagedBean}" list="#{songManagedBean.resustSearch}" for="search" from="search" ></gct:common-list>
-
-                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

@@ -16,6 +16,8 @@ import javax.faces.bean.SessionScoped;
 public class AppConstant {
     public static final String FILE_TYPE_SOUND="sound";
     public static final String FILE_TYPE_VIDEO="video";
+    public static final String FILE_TYPE_YOUTUBE="youtube";
+    public static final String FILE_TYPE_SOUND_INTERNET="internet";
     public static final int BILL_STATUS_WAIT=1;
     public static final int BILL_STATUS_DONE=2;
     public static final int BILL_STATUS_CANCEL=0;
@@ -24,7 +26,9 @@ public class AppConstant {
     public static final String DVD_TYPE_GAME="game";
     public static final int FORM_MODE_CREATE=1;
     public static final int FORM_MODE_EDIT=2;
-    
+    public static final String ARTIST_COMPOSER="composer";
+    public static final String ARTIST_SINGER="singer";
+    public static final String ARTIST_BOTH="both";
     public int getModeCreate(){
         return FORM_MODE_CREATE;
     }

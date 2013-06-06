@@ -10,33 +10,49 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h:link value="Return List" outcome="show"></h:link><br/>
-                    Input Search:<br/>
-                    <p:inputText id="inputid" value="#{gameManagedBean.searchGame.id}" style="width:200px;">
-                        <f:converter converterId="ZeroConverter"></f:converter>
-                    </p:inputText>
-                    <p:watermark for="inputid" value="ID"></p:watermark><br/>
+                <div class="full_w">
+                    <div class="h_title">Game Filter</div>
+                    <h:form>
+                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <div class="element">
+                            <div class="split1">
+                                <label>ID</label>
+                                <p:inputText id="inputid" value="#{gameManagedBean.searchGame.id}" style="width:200px;">
+                                    <f:converter converterId="ZeroConverter"></f:converter>
+                                </p:inputText>
+                                <p:watermark for="inputid" value="ID"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Title</label>
+                                <p:inputText id="inputtitle" value="#{gameManagedBean.searchGame.title}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputtitle" value="Title"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Manufacture</label>
+                                <p:inputText id="inputmnf" value="#{gameManagedBean.searchGame.manufacture}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputmnf" value="Manufacture"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Info</label>
+                                <p:inputText id="inputinfo" value="#{gameManagedBean.searchGame.info}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputinfo" value="Information"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
 
-                    <p:inputText id="inputtitle" value="#{gameManagedBean.searchGame.title}" style="width:200px;"></p:inputText>
-                    <p:watermark for="inputtitle" value="Title"></p:watermark><br/>
+                        <div class="entry">
+                            <h:commandButton class="button" value="Search" action="#{gameManagedBean.search()}"></h:commandButton><br/>
+                        </div>
+                        Result :<br/>
+                        <gct:common-list controller="#{gameManagedBean}" list="#{gameManagedBean.resustSearch}" from="search" for="search"></gct:common-list>
 
-                    <p:inputText id="inputplatform" value="#{gameManagedBean.searchGame.platform}" style="width:200px;"></p:inputText>
-                    <p:watermark for="inputplatform" value="Platform"></p:watermark><br/>
-
-                    <p:inputText id="inputbrand" value="#{gameManagedBean.searchGame.brand}" style="width:200px;"></p:inputText>
-                    <p:watermark for="inputbrand" value="Brand"></p:watermark><br/>
-
-                    <p:inputText id="inputlan" value="#{gameManagedBean.searchGame.language}" style="width:200px;"></p:inputText>
-                    <p:watermark for="inputlan" value="Language"></p:watermark><br/>
-
-                    <h:commandButton value="Search" action="#{gameManagedBean.search()}"></h:commandButton><br/>
-
-                    Result :<br/>
-                    <gct:common-list for="search" from="search" list="#{gameManagedBean.resustSearch}" controller="#{gameManagedBean}"></gct:common-list>
-                </h:form>
+                    </h:form>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

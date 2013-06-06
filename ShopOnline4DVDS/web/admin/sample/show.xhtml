@@ -4,6 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
@@ -12,11 +13,18 @@
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
                 <div class="full_w">
-                    <div class="h_title">Movie Recovery</div>
-                <h:form>
-                    <h:link class="button" value="Return List" outcome="show"></h:link><br/>
-                    <gct:common-list controller="#{movieManagedBean}" list="#{movieManagedBean.allMoviesDeleted}" from="recovery" for="recovery"></gct:common-list>
-                </h:form>
+                    <div class="h_title">Sample Panel</div>
+                    <h:form>
+                        <div class="entry">
+                            <h:commandButton class="button" value="Generate Sample" action="#{sampleBean.generate}"></h:commandButton>
+                            <h:commandButton class="button" value="Clear Sample" action="#{sampleBean.clear}"></h:commandButton>
+                        </div>
+                        <div class="n_ok">
+                            <p>
+                                #{sampleBean.mes}
+                            </p>
+                        </div>
+                    </h:form>
                 </div>
             </ui:define>
         </ui:composition>

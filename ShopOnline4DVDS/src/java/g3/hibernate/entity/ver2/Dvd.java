@@ -1,5 +1,5 @@
 package g3.hibernate.entity.ver2;
-// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
+// Generated Jun 5, 2013 7:27:49 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -22,8 +22,10 @@ public class Dvd  implements java.io.Serializable {
      private Integer producerId;
      private Integer supplierId;
      private Integer discNumber;
+     private Integer trailerId;
+     private Integer albumId;
      private String type;
-     private Integer detailId;
+     private String details;
      private Integer ratePoint;
      private Integer rateCount;
      private Date createdDate;
@@ -44,7 +46,7 @@ public class Dvd  implements java.io.Serializable {
         this.modifiedDate = modifiedDate;
         this.isDeleted = isDeleted;
     }
-    public Dvd(int id, String title, Date releaseDate, String genres, String description, Double price, String imgCover, String author, Integer producerId, Integer supplierId, Integer discNumber, String type, Integer detailId, Integer ratePoint, Integer rateCount, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Dvd(int id, String title, Date releaseDate, String genres, String description, Double price, String imgCover, String author, Integer producerId, Integer supplierId, Integer discNumber, Integer trailerId, Integer albumId, String type, String details, Integer ratePoint, Integer rateCount, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.title = title;
        this.releaseDate = releaseDate;
@@ -56,8 +58,10 @@ public class Dvd  implements java.io.Serializable {
        this.producerId = producerId;
        this.supplierId = supplierId;
        this.discNumber = discNumber;
+       this.trailerId = trailerId;
+       this.albumId = albumId;
        this.type = type;
-       this.detailId = detailId;
+       this.details = details;
        this.ratePoint = ratePoint;
        this.rateCount = rateCount;
        this.createdDate = createdDate;
@@ -142,6 +146,20 @@ public class Dvd  implements java.io.Serializable {
     public void setDiscNumber(Integer discNumber) {
         this.discNumber = discNumber;
     }
+    public Integer getTrailerId() {
+        return this.trailerId;
+    }
+    
+    public void setTrailerId(Integer trailerId) {
+        this.trailerId = trailerId;
+    }
+    public Integer getAlbumId() {
+        return this.albumId;
+    }
+    
+    public void setAlbumId(Integer albumId) {
+        this.albumId = albumId;
+    }
     public String getType() {
         return this.type;
     }
@@ -149,12 +167,12 @@ public class Dvd  implements java.io.Serializable {
     public void setType(String type) {
         this.type = type;
     }
-    public Integer getDetailId() {
-        return this.detailId;
+    public String getDetails() {
+        return this.details;
     }
     
-    public void setDetailId(Integer detailId) {
-        this.detailId = detailId;
+    public void setDetails(String details) {
+        this.details = details;
     }
     public Integer getRatePoint() {
         return this.ratePoint;

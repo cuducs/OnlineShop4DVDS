@@ -1,5 +1,5 @@
 package g3.hibernate.entity.ver2;
-// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
+// Generated Jun 5, 2013 7:27:49 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -16,6 +16,8 @@ public class Album  implements java.io.Serializable {
      private String owner;
      private Integer viewCount;
      private Integer numberItem;
+     private String description;
+     private boolean isAdminCreated;
      private Date createdDate;
      private Date modifiedDate;
      private boolean isDeleted;
@@ -24,17 +26,20 @@ public class Album  implements java.io.Serializable {
     }
 
 	
-    public Album(int id, String title, boolean isDeleted) {
+    public Album(int id, String title, boolean isAdminCreated, boolean isDeleted) {
         this.id = id;
         this.title = title;
+        this.isAdminCreated = isAdminCreated;
         this.isDeleted = isDeleted;
     }
-    public Album(int id, String title, String owner, Integer viewCount, Integer numberItem, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Album(int id, String title, String owner, Integer viewCount, Integer numberItem, String description, boolean isAdminCreated, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.title = title;
        this.owner = owner;
        this.viewCount = viewCount;
        this.numberItem = numberItem;
+       this.description = description;
+       this.isAdminCreated = isAdminCreated;
        this.createdDate = createdDate;
        this.modifiedDate = modifiedDate;
        this.isDeleted = isDeleted;
@@ -74,6 +79,20 @@ public class Album  implements java.io.Serializable {
     
     public void setNumberItem(Integer numberItem) {
         this.numberItem = numberItem;
+    }
+    public String getDescription() {
+        return this.description;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public boolean isIsAdminCreated() {
+        return this.isAdminCreated;
+    }
+    
+    public void setIsAdminCreated(boolean isAdminCreated) {
+        this.isAdminCreated = isAdminCreated;
     }
     public Date getCreatedDate() {
         return this.createdDate;
