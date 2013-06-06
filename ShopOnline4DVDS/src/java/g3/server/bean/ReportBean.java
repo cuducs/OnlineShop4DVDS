@@ -25,35 +25,50 @@ public class ReportBean {
     private int canceledOrder;
     private String pie;
     private String byMonth;
+    private String myyear = "2010";
   
     
     public ReportBean() {
     }
 
     public int getTotalOrders() {
-        return ReportHelper.getTotalOrder();
+        return ReportHelper.getTotalOrder(myyear);
     }
 
     public int getDoneOrder() {
-        return ReportHelper.getDoneOrder();
+        return ReportHelper.getDoneOrder(myyear);
     }
 
     public int getWaitingOrder() {
-        return ReportHelper.getWaitingOrder();
+        return ReportHelper.getWaitingOrder(myyear);
     }
 
     public int getCanceledOrder() {
-        return ReportHelper.getCanceledOrder();
+        return ReportHelper.getCanceledOrder(myyear);
     }
 
     public String getPie() {
-        pie = ReportHelper.drawPie();
+        pie = ReportHelper.drawPie(myyear);
         return pie;
     }
 
     public String getByMonth() {
-        return ReportHelper.drawBarMonth(2010);
+        return ReportHelper.incomeMonthbyYearMusic(myyear);
     }
-    
+
+    public String getMyyear() {
+        return myyear;
+    }
+
+    public void setMyyear(String myyear) {
+        this.myyear = myyear;
+    }
+    public void changeYear(){
+        setMyyear(myyear);
+    }
+    public String getTest(){
+        String s = ReportHelper.prin();
+        return s;
+    }
     
 }
