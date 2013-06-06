@@ -11,9 +11,7 @@
     <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="g3/hibernate/entity/ver2/Artist.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/ver2/PromotionRegister.hbm.xml"/>
-    <mapping resource="g3/hibernate/entity/ver2/Genre.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/ver2/Permission.hbm.xml"/>
-    <mapping resource="g3/hibernate/entity/ver2/Movie.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/ver2/Producer.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/ver2/News.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/ver2/Manage.hbm.xml"/>

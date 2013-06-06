@@ -7,7 +7,7 @@
     <property name="hibernate.connection.username">Loog</property>
     <property name="hibernate.connection.password">123456</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.current_session_context_class">managed</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="g3/hibernate/entity/Comment.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/Member.hbm.xml"/>
@@ -24,5 +24,6 @@
     <mapping resource="g3/hibernate/entity/BillDetail.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/Bill.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/FileData.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Browser.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
