@@ -46,4 +46,7 @@ public class SampleBean {
         mes = "Generate Succesfull";
         return null;
     }
+    public String clear(){
+        return null;
+    }
 }
