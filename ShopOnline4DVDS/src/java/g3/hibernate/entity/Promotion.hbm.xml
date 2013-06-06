@@ -1,30 +1,29 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 5, 2013 8:44:20 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="g3.hibernate.entity.ver2.Promotion" table="Promotion" schema="dbo" catalog="DVDStoreVer2">
-        <id name="id" type="int">
-            <column name="Id" />
-            <generator class="identity" />
-        </id>
-        <property name="title" type="string">
-            <column name="Title" not-null="true" />
-        </property>
-        <property name="description" type="string">
-            <column name="Description" />
-        </property>
-        <property name="promotionInfo" type="string">
-            <column name="PromotionInfo" not-null="true" />
-        </property>
-        <property name="createdDate" type="timestamp">
-            <column name="CreatedDate" length="23" not-null="true" />
-        </property>
-        <property name="modifiedDate" type="timestamp">
-            <column name="ModifiedDate" length="23" not-null="true" />
-        </property>
-        <property name="isDeleted" type="boolean">
-            <column name="IsDeleted" not-null="true" />
-        </property>
-    </class>
+  <class catalog="DVDStoreVer2" name="g3.hibernate.entity.Promotion" schema="dbo" table="Promotion">
+    <id name="id" type="int">
+      <column name="Id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="title" type="string">
+      <column name="Title" not-null="true"/>
+    </property>
+    <property name="description" type="string">
+      <column name="Description"/>
+    </property>
+    <property name="promotionInfo" type="string">
+      <column name="PromotionInfo" not-null="true"/>
+    </property>
+    <property name="createdDate" type="timestamp">
+      <column length="23" name="CreatedDate" not-null="true"/>
+    </property>
+    <property name="modifiedDate" type="timestamp">
+      <column length="23" name="ModifiedDate" not-null="true"/>
+    </property>
+    <property name="isDeleted" type="boolean">
+      <column name="IsDeleted" not-null="true"/>
+    </property>
+  </class>
 </hibernate-mapping>

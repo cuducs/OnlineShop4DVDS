@@ -37,14 +37,8 @@
                             <h:panelGroup rendered="#{for eq 'recovery'}">
                                 <h:commandButton class="button" value="Recovery" action="#{controller.recovery(item)}"></h:commandButton>
                             </h:panelGroup>
-                            <h:panelGroup rendered="#{for eq 'mappinggame'}">
-                                <h:commandButton class="button" value="Mapping" action="#{productManagedBean.mappingGame(item)}"></h:commandButton>
-                            </h:panelGroup>
                             <h:panelGroup rendered="#{for eq 'mappingalbum'}">
                                 <h:commandButton class="button" value="Mapping" action="#{productManagedBean.mappingAlbum(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{for eq 'mappingmovie'}">
-                                <h:commandButton class="button" value="Mapping" action="#{productManagedBean.mappingMovie(item)}"></h:commandButton>
                             </h:panelGroup>
                             <h:panelGroup rendered="#{for eq 'mapfile'}">
                                 <h:commandButton class="button" value="Map File" action="#{objectmapfile.addFile(item)}"></h:commandButton>

@@ -19,7 +19,7 @@
                             <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                             <h:link class="button" value="Search" outcome="search"></h:link>
                         </div>
-                        <gct:common-list  from="show" list="#{albumManagedBean.allAlbums}" for="show" controller="#{albumManagedBean}"></gct:common-list>
+                        <gct:common-list  from="show" list="#{albumManagedBean.allAlbums}" for="show" controller="#{albumManagedBean}" target="album"></gct:common-list>
                     </h:form>
                 </div>
             </ui:define>

@@ -39,9 +39,9 @@
                             </div>
                             <div class="split2">
                                 <label>Type</label>
-                                <p:inputText id="inputtype" value="#{fileDataManagedBean.searchFileData.type}" style="width:200px;">
-                                </p:inputText>
-                                <p:watermark for="inputtype" value="Type"></p:watermark>
+                                <h:selectOneMenu id="selecttype" value="#{fileDataManagedBean.curFileData.type}">  
+                                    <f:selectItems value="#{fileDataManagedBean.listType}" />  
+                                </h:selectOneMenu> 
                             </div>
                             <div class="splitclear"></div>
                         </div>

@@ -9,28 +9,35 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
                 <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
                     <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
                 </p:dialog> 
-                <h:form>
-                    <h:link value="Return List" outcome="show"></h:link><br/>
-                    <h:link value="Recovery" outcome="recovery"></h:link><br/>
-                    <h:commandLink value="Back" action="#{fileDataManagedBean.back}"></h:commandLink><br/>
-                    ID : #{fileDataManagedBean.curFileData.id}<br/>
-                    Title : #{fileDataManagedBean.curFileData.title}<br/>
-                    Url : <p:commandButton id="downloadLink" value="Download" ajax="false" 
-                                           onclick="PrimeFaces.monitorDownload(start, stop)" 
-                                           icon="ui-icon-arrowthichk-s">  
-                        <p:fileDownload value="#{fileDataManagedBean.download}" />  
-                    </p:commandButton>  <br/>
-                    Type : #{fileDataManagedBean.curFileData.type}<br/>
-                    View Count : #{fileDataManagedBean.curFileData.viewCount}<br/>
-                    Created Date : #{fileDataManagedBean.curFileData.createdDate}<br/>
-                    Modified Date : #{fileDataManagedBean.curFileData.modifiedDate}<br/>
-                    Is Deleted : #{fileDataManagedBean.curFileData.isDeleted}<br/>
-                </h:form>
+                <div class="full_w">
+                    <h2 class="h_title">File Details</h2>
+                    <h:form>
+                        <div class="entry">
+                            <h:link class="button" value="Return List" outcome="show"></h:link>
+                            <h:link class="button" value="Recovery" outcome="recovery"></h:link>
+                            <h:commandLink class="button" value="Back" action="#{fileDataManagedBean.back}"></h:commandLink>
+                        </div>
+
+                        ID : #{fileDataManagedBean.curFileData.id}<br/>
+                        Title : #{fileDataManagedBean.curFileData.title}<br/>
+                        Url : <p:commandButton id="downloadLink" value="Download" ajax="false" 
+                                               onclick="PrimeFaces.monitorDownload(start, stop)" 
+                                               icon="ui-icon-arrowthichk-s">  
+                            <p:fileDownload value="#{fileDataManagedBean.download}" />  
+                        </p:commandButton>  <br/>
+                        Type : #{fileDataManagedBean.curFileData.type}<br/>
+                        View Count : #{fileDataManagedBean.curFileData.viewCount}<br/>
+                        Created Date : #{fileDataManagedBean.curFileData.createdDate}<br/>
+                        Modified Date : #{fileDataManagedBean.curFileData.modifiedDate}<br/>
+                        Is Deleted : #{fileDataManagedBean.curFileData.isDeleted}<br/>
+                    </h:form>
+
+                </div>
                 <script type="text/javascript">  
                     function start() {  
                         statusDialog.show();  

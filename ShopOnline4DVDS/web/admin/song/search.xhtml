@@ -64,10 +64,10 @@
 
                         </div>
                         <div class="entry">
-                            <h:commandButton class="button" value="Search" action="#{movieManagedBean.search()}"></h:commandButton><br/>
+                            <h:commandButton class="button" value="Search" action="#{songManagedBean.search()}"></h:commandButton><br/>
                         </div>
                         Result :<br/>
-                        <gct:common-list controller="#{movieManagedBean}" list="#{movieManagedBean.resustSearch}" from="search" for="search"></gct:common-list>
+                        <gct:common-list controller="#{songManagedBean}" list="#{songManagedBean.resustSearch}" from="search" for="search"></gct:common-list>
 
                     </h:form>
                 </div>

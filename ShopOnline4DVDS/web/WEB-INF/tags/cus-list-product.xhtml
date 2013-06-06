@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:gct="http://g3.com/tags"
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div class="content-indent" style="width:701px;">
+                <div id="vmMainPage">
+                    <div class="clear">
+                        <h3>Product List</h3>
+                        <div style="text-align:center;">
+                        </div>
+                    </div>
+                    <div class="orderby_form">
+                        <form class="orderby_form">
+                            Sort By :
+                            <select class="inputbox" name="orderby">
+                                <option value="product_list">Select</option>
+                                <option value="product_name" selected="selected">Product Name</option>
+                                <option value="product_price">Price</option> 
+                                <option value="product_cdate">Latest Products</option>
+                            </select>
+                            <img src="/ShopOnline4DVDS/resources/customerver2/images/sort_asc.png" border="0" width="17" height="16" alt=""  title="Ascending order"/>
+                            <img src="/ShopOnline4DVDS/resources/customerver2/images/sort_desc.png" border="0" width="17" height="16" alt="" title="Descending order"/>
+                        </form>
+                    </div>
+                    <div class="product_list">
+                        <div class="leftPosition" style="width:100%;">
+                            <div class="browse_1">
+                                <div class="bottom_separator">
+                                    <div class="wrapper">
+                                        <div class="floatElementR">
+                                            <div class="browsePriceContainer">
+                                                <span class="productPrice">$ 163.00</span>
+                                                <span class="product-Old-Price">$ 165.00</span>
+                                            </div>
+                                            <div class="browseAddToCartContainer">
+                                                <input type="submit" class="addtocart_button" value="Add to Cart" title="Add to Cart"/>
+                                            </div>
+                                        </div>
+                                        <div class="browseProductImageContainer">
+                                            <img src="/ShopOnline4DVDS/resources/customerver2/images/Product15_resized.png" height="329" width="220" class="browseProductImage" title="Lorem ipsum dolor sit amet" alt="Lorem ipsum dolor sit amet" border="0"/>
+                                        </div>
+                                        <div class="floatElement">
+                                            <h2 class="browseProductTitle"><a class="product_name">Lorem ipsum dolor sit amet </a></h2>
+                                            <div class="browseProductDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
+                                            <div class="browseRatingContainer">
+                                                <span class="contentpagetitle">Average customer rating:</span>
+                                                <img src="/ShopOnline4DVDS/resources/customerver2/images/3.png" class="stars" align="top" border="0" alt="0 stars"/>&nbsp;
+                                                <strong>Total votes: 0</strong> 
+                                            </div>
+                                            <div class="productDetailsContainer">
+                                                <a class="product_details" href="#" title="Product Details"> Product Details </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br class="clr"></br>
+
+
+                        <div class="leftPosition" style="width:100%;">
+                            <div class="browse_1">
+                                <div class="bottom_separator">
+                                    <div class="wrapper">
+                                        <div class="floatElementR">
+                                            <div class="browsePriceContainer">
+                                                <span class="productPrice">$ 163.00</span>
+                                                <span class="product-Old-Price">$ 165.00</span>
+                                            </div>
+                                            <div class="browseAddToCartContainer">
+                                                <span class="quantity" style=" display:block;">
+                                                    <label for="quantity19" class="quantity_box">Quantity:</label>
+                                                    <input type="text" class="inputboxquantity" size="4" value="1"/>
+                                                    <input type="button" class="quantity_box_button quantity_box_button_up png" />
+                                                    <input type="button" class="quantity_box_button quantity_box_button_down png" />
+                                                </span>
+                                                <input type="submit" class="addtocart_button" value="Add to Cart" title="Add to Cart"/>
+                                            </div>
+                                        </div>
+                                        <div class="browseProductImageContainer">
+                                            <img src="/ShopOnline4DVDS/resources/customerver2/images/Product15_resized.png" height="329" width="220" class="browseProductImage" title="Lorem ipsum dolor sit amet" alt="Lorem ipsum dolor sit amet" border="0"/>
+                                        </div>
+                                        <div class="floatElement">
+                                            <h2 class="browseProductTitle"><a class="product_name">Lorem ipsum dolor sit amet </a></h2>
+                                            <div class="browseProductDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
+                                            <div class="browseRatingContainer">
+                                                <span class="contentpagetitle">Average customer rating:</span>
+                                                <img src="/ShopOnline4DVDS/resources/customerver2/images/3.png" class="stars" align="top" border="0" alt="0 stars"/>&nbsp;
+                                                <strong>Total votes: 0</strong> 
+                                            </div>
+                                            <div class="productDetailsContainer">
+                                                <a class="product_details" href="#" title="Product Details"> Product Details </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br class="clr"></br>
+                    </div>
+                    <br class="clr"></br>
+                    <div class="wrapper">
+                        <div align="center" style="padding:0px 5px 10px 0px;">
+                            <ul class="pagination">
+                                <li><span class="pagenav">«« Start</span></li>
+                                <li><span class="pagenav">« Prev</span></li>
+                                <li><span class="pagenav"> 1 </span></li>
+                                <li><a href="#" class="pagenav"><strong>2</strong></a></li>
+                                <li><a href="#" class="pagenav" title="Next"> Next »</a></li>
+                                <li><a href="#" class="pagenav" title="End"> End »»</a></li>
+                            </ul>
+                            <br/>
+                            <div class="pagenav">
+                                Display#
+                                <select class="inputbox">
+                                    <option value="5" >5</option>
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="20" >20</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+

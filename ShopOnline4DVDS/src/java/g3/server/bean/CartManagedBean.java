@@ -5,7 +5,7 @@
 package g3.server.bean;
 
 import g3.server.bean.manage.ProductManagedHelper;
-import g3.hibernate.entity.ver2.CartItem;
+import g3.hibernate.entity.CartItem;
 import g3.hibernate.entity.Dvd;
 import java.math.BigDecimal;
 import java.util.ArrayList;

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+            <title>Welcome to the Frontpage</title>
+            <link href="/ShopOnline4DVDS/resources/customerver2/all/fetchscript(1).php" type="text/css" rel="stylesheet"/>
+            <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/constant.css" type="text/css"/>
+            <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/template.css" type="text/css"/>
+            <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/virtuemart.css" type="text/css"/>
+            <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/products.css" type="text/css"/>
+            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/mootools.js"></script>
+            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/modal.js"></script>
+            <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+            <!--<script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/jquery-1.4.2.min.js"></script>-->
+            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/jqtransform.js"></script>
+
+            <script type="text/javascript">
+                var $j=jQuery.noConflict();
+                $j(document).ready(function() {			
+                    $j(function(){
+                        $j('#select-form').jqTransform({imgPath:'/ShopOnline4DVDS/resources/customerver2/images/'});
+                    });
+                });
+            </script>
+            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/imagepreloader.js"></script>
+            <script type="text/javascript">
+                $j(document).ready(function(){
+                    $j(".module-new .featuredborder").hover(function() {
+                        $j(this).find(".bg").stop().animate({ left: 16}, "normal");
+                    },function(){
+                        $j(this).find(".bg").stop().animate({ left: -236}, 300);
+                    });
+                    //accordion begin
+                    $j("#accordion dt").eq(0).addClass("active");
+                    $j("#accordion dd").eq(0).show();
+	 
+                    $j("#accordion dt").click(function(){
+                        $j(this).next("#accordion dd").slideToggle("slow")
+                        .siblings("#accordion dd:visible").slideUp("slow");
+                        $j(this).toggleClass("active");
+                        $j(this).siblings("#accordion dt").removeClass("active");
+                        return false;
+                    });
+                });
+                $j(document).ready(function(){
+                    $j(function() {
+                        var offset = $j(".cart").offset();
+                        var topPadding = 135;
+                        $j(window).scroll(function() {
+                            if ($j(window).scrollTop() > offset.top) {
+                                $j(".cart").stop().animate({marginTop: $j(window).scrollTop() - offset.top + topPadding});
+                            }
+                            else {$j(".cart").stop().animate({marginTop: 0});};});
+                    });}); 
+                preloadImages([
+                    '/ShopOnline4DVDS/resources/customerver2/images/button2-active.png', 
+                    '/ShopOnline4DVDS/resources/customerver2/images/Login-button-active.gif',
+                    '/ShopOnline4DVDS/resources/customerver2/images/log-out-button-active.gif',
+                    '/ShopOnline4DVDS/resources/customerver2/images/button1-active.png',
+                    '/ShopOnline4DVDS/resources/customerver2/images/button1.png',
+                    '/ShopOnline4DVDS/resources/customerver2/images/cart-button-active.png',
+                    '/ShopOnline4DVDS/resources/customerver2/images/search-button-active.png',
+                    '/ShopOnline4DVDS/resources/customerver2/images/cat-a.active.jpg',
+                    '/ShopOnline4DVDS/resources/customerver2/images/button-active.png',
+                    '/ShopOnline4DVDS/resources/customerver2/images/arrowUp-active.png',
+                    '/ShopOnline4DVDS/resources/customerver2/images/arrowDown-active.png'
+                ]);
+            </script>
+            <!--[if lt IE 7]>
+                            <div style=' clear: both; text-align:center; position: relative;'>
+                                    <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0"  alt="" /></a>
+                            </div>
+                    <![endif]-->
+        </ui:composition>
+    </h:body>
+</html>

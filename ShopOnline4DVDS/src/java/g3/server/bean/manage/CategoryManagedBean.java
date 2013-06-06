@@ -3,8 +3,8 @@
  * and open the template in the editor.
  */
 package g3.server.bean.manage;
-import g3.hibernate.entity.ver2.Category;
-import g3.hibernate.entity.ver2.ObjectOfBrowsingRule;
+import g3.hibernate.entity.Category;
+import g3.hibernate.entity.ObjectOfBrowsingRule;
 import g3.server.bean.utility.AppConstant;
 import java.util.ArrayList;
 import java.util.Date;

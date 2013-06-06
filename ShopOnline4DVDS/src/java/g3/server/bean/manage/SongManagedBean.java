@@ -5,8 +5,8 @@
 package g3.server.bean.manage;
 
 import g3.server.bean.utility.AppConstant;
-import g3.hibernate.entity.ver2.FileData;
-import g3.hibernate.entity.ver2.Song;
+import g3.hibernate.entity.FileData;
+import g3.hibernate.entity.Song;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -156,6 +156,13 @@ public class SongManagedBean {
 
     public String addFile(FileData file) {
         curSong.setFileId(file.getId());
+        curSong.setModifiedDate(new Date());
+        helper.update(curSong);
+        return "details";
+    }
+
+    public String removeFile() {
+        curSong.setFileId(0);
         curSong.setModifiedDate(new Date());
         helper.update(curSong);
         return "details";

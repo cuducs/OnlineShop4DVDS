@@ -4,8 +4,8 @@
  */
 package g3.server.bean.manage;
 
-import g3.hibernate.entity.ver2.Album;
-import g3.hibernate.entity.ver2.Song;
+import g3.hibernate.entity.Album;
+import g3.hibernate.entity.Song;
 import g3.server.bean.utility.AppConstant;
 import java.util.Date;
 import java.util.List;

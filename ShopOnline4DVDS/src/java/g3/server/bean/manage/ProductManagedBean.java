@@ -5,8 +5,9 @@
 package g3.server.bean.manage;
 
 import g3.server.bean.utility.AppConstant;
-import g3.hibernate.entity.ver2.Album;
-import g3.hibernate.entity.ver2.Dvd;
+import g3.hibernate.entity.Album;
+import g3.hibernate.entity.Dvd;
+import g3.hibernate.entity.FileData;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +69,7 @@ public class ProductManagedBean {
 
         if (searchDvd != null) {
 //            resustSearch = helper.search(searchDvd);
-            resustSearch=helper.getCriteriaSearch(searchDvd);
+            resustSearch = helper.getCriteriaSearch(searchDvd);
         }
         return null;
     }
@@ -122,6 +123,7 @@ public class ProductManagedBean {
 //        }
 //        return "No criteria";
 //    }
+
     public String save() {
         curDvd.setCreatedDate(new Date());
         curDvd.setModifiedDate(new Date());
@@ -181,24 +183,40 @@ public class ProductManagedBean {
     }
 
     public String prepareMap(Dvd item) {
-        if (item.getDetails() != null) {
-            return "details";
-        }
         curDvd = item;
         if (curDvd.getType().equals(AppConstant.DVD_TYPE_GAME)) {
-            return "mappinggame";
+            return "mappingtrailer";
         }
         if (curDvd.getType().equals(AppConstant.DVD_TYPE_MOVIE)) {
-            return "mappingmovie";
+            return "mappingtrailer";
         }
         return "mappingalbum";
     }
 
-    public String removeDetails() {
-        curDvd.setDetails(null);
+    public String mappingAlbum(Album item) {
+        curDvd.setAlbumId(item.getId());
         curDvd.setModifiedDate(new Date());
         helper.save(curDvd);
-        return null;
+        return "details";
     }
 
+    public String removeTrailerId() {
+        curDvd.setTrailerId(null);
+        curDvd.setModifiedDate(new Date());
+        helper.save(curDvd);
+        return "details";
+    }
+
+    public String removeAlbumId() {
+        curDvd.setAlbumId(null);
+        curDvd.setModifiedDate(new Date());
+        helper.save(curDvd);
+        return "details";
+    }
+    public String addFile(FileData file) {
+        curDvd.setTrailerId(file.getId());
+        curDvd.setModifiedDate(new Date());
+        helper.update(curDvd);
+        return "details";
+    }
 }

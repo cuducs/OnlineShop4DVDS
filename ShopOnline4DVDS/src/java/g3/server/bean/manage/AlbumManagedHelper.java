@@ -4,10 +4,10 @@
  */
 package g3.server.bean.manage;
 
-import g3.hibernate.entity.ver2.Album;
-import g3.hibernate.entity.ver2.AlbumMusicMapping;
-import g3.hibernate.entity.ver2.AlbumMusicMappingId;
-import g3.hibernate.entity.ver2.Song;
+import g3.hibernate.entity.Album;
+import g3.hibernate.entity.AlbumMusicMapping;
+import g3.hibernate.entity.AlbumMusicMappingId;
+import g3.hibernate.entity.Song;
 import g3.server.bean.BaseHelper;
 import java.util.List;
 import org.hibernate.Criteria;

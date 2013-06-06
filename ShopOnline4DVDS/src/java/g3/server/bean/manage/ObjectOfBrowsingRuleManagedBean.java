@@ -4,7 +4,7 @@
  */
 package g3.server.bean.manage;
 
-import g3.hibernate.entity.ver2.ObjectOfBrowsingRule;
+import g3.hibernate.entity.ObjectOfBrowsingRule;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;

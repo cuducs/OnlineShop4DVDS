@@ -21,21 +21,33 @@
                             <p:watermark for="inputtitle" value="Title"></p:watermark>
                         </div>
                         <div class="element">
-                            <label>Select File :</label>
-                            <p:fileUpload fileUploadListener="#{fileDataManagedBean.handleFileUpload}"  
-                                          mode="advanced"   
-                                          update="messages"  
-                                          sizeLimit="100000"   
-                                          allowTypes="/(\.|\/)(gif|jpe?g|png|mp3)$/"/>  
+                            <div class="split1">
+                                <label>File Url</label>
+                                <p:inputText id="inputurl" value="#{fileDataManagedBean.curFileData.url}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputurl" value="File Url"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Type</label>
+                                <h:selectOneMenu id="selecttype" value="#{fileDataManagedBean.curFileData.type}">  
+                                    <f:selectItems value="#{fileDataManagedBean.listType}" />  
+                                </h:selectOneMenu> 
 
-                            <p:messages id="messages" showDetail="true"/>
-                        </div>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div><label>Select File :</label>
+                        <p:fileUpload fileUploadListener="#{fileDataManagedBean.handleFileUpload}"  
+                                      mode="advanced"   
+                                      update="messages"  
+                                      sizeLimit="50000000"   
+                                      allowTypes="/(\.|\/)(gif|jpe?g|png|mp3)$/"/>  
+
+                        <p:messages id="messages" showDetail="true"/>
                         <div class="entry">
                             <h:panelGroup  rendered="#{fileDataManagedBean.mode eq appConstant.modeCreate}">
                                 <h:commandButton class="button add" value="Create" action="#{fileDataManagedBean.save()}"></h:commandButton>
                             </h:panelGroup>
-                            <h:panelGroup class="button" rendered="#{fileDataManagedBean.mode eq appConstant.modeEdit}">
-                                <h:commandButton value="Edit" action="#{fileDataManagedBean.update()}"></h:commandButton>
+                            <h:panelGroup rendered="#{fileDataManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton  class="button" value="Edit" action="#{fileDataManagedBean.update()}"></h:commandButton>
                             </h:panelGroup>
                             <h:commandButton class="button cancel" value="Cancel" action="#{fileDataManagedBean.cancel()}"></h:commandButton>
                         </div>

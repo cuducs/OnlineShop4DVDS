@@ -60,7 +60,7 @@
                                 <label>Type</label>
                                 <h:selectOneMenu id="selecttype" value="#{productManagedBean.curDvd.type}">  
                                     <f:selectItem itemLabel="Select Type" itemValue="" />  
-                                    <f:selectItems value="#{productManagedBean.listTypeSearch}" />  
+                                    <f:selectItems value="#{productManagedBean.listType}" />  
                                 </h:selectOneMenu> 
 
                             </div>
@@ -82,7 +82,9 @@
                         <div class="element">
                             <div class="split1">
                                 <label>Image Cover</label>
-                                <p:inputText id="inputimg" value="#{productManagedBean.curDvd.imgCover}" style="width:200px;"></p:inputText>
+                                <p:inputText id="inputimg" value="#{productManagedBean.curDvd.imgCover}" style="width:200px;">
+                                    
+                                </p:inputText>
                                 <p:watermark for="inputimg" value="Image Cover"></p:watermark>
                             </div>
                             <div class="split2">
@@ -103,8 +105,8 @@
                             <h:panelGroup  rendered="#{productManagedBean.mode eq appConstant.modeCreate}">
                                 <h:commandButton class="button add" value="Create" action="#{productManagedBean.save()}"></h:commandButton>
                             </h:panelGroup>
-                            <h:panelGroup class="button" rendered="#{productManagedBean.mode eq appConstant.modeEdit}">
-                                <h:commandButton value="Edit" action="#{productManagedBean.update()}"></h:commandButton>
+                            <h:panelGroup  rendered="#{productManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton class="button" value="Edit" action="#{productManagedBean.update()}"></h:commandButton>
                             </h:panelGroup>
                             <h:commandButton class="button cancel" value="Cancel" action="#{productManagedBean.cancel()}"></h:commandButton>
                         </div>

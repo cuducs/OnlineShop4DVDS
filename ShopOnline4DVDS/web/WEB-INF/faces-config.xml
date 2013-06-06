@@ -74,23 +74,6 @@
             <to-view-id>/admin/file/search.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>gameshow</from-outcome>
-            <to-view-id>/admin/game/show.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>gameform</from-outcome>
-            <to-view-id>/admin/game/form.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>gamerecovery</from-outcome>
-            <to-view-id>/admin/game/recovery.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>gamesearch</from-outcome>
-            <to-view-id>/admin/game/search.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
             <from-outcome>albumshow</from-outcome>
             <to-view-id>/admin/album/show.xhtml</to-view-id>
             <redirect/>
@@ -123,84 +106,6 @@
         <navigation-case>
             <from-outcome>songsearch</from-outcome>
             <to-view-id>/admin/song/search.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>movieshow</from-outcome>
-            <to-view-id>/admin/movie/show.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>movieform</from-outcome>
-            <to-view-id>/admin/movie/form.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>movierecovery</from-outcome>
-            <to-view-id>/admin/movie/recovery.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>moviesearch</from-outcome>
-            <to-view-id>/admin/movie/search.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>/admin/product/mappinggame.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>details</from-outcome>
-            <to-view-id>/admin/game/details.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>productdetails</from-outcome>
-            <to-view-id>/admin/product/details.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>/admin/product/mappingmovie.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>details</from-outcome>
-            <to-view-id>/admin/movie/details.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>productdetails</from-outcome>
-            <to-view-id>/admin/product/details.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>/admin/product/mappingalbum.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>details</from-outcome>
-            <to-view-id>/admin/album/details.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>productdetails</from-outcome>
-            <to-view-id>/admin/product/details.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-    
-    <navigation-rule>
-        <from-view-id>/admin/game/details.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>mappinggame</from-outcome>
-            <to-view-id>/admin/product/mappinggame.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>/admin/album/details.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>mappingalbum</from-outcome>
-            <to-view-id>/admin/product/mappingalbum.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>/admin/movie/details.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>mappingmovie</from-outcome>
-            <to-view-id>/admin/product/mappingmovie.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     

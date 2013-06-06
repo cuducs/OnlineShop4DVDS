@@ -21,9 +21,7 @@
                 <ui:repeat var="item" varStatus="stt" value="#{list}">
                     <tr>
                         <td>#{item.title}</td>
-                        <td><h:selectOneMenu value="#{item.type}">
-                                <f:selectItems var="item" value="#{productManagedBean.listType}" ></f:selectItems>
-                            </h:selectOneMenu>
+                        <td>#{item.type}
                         </td>
                         <td><h:commandButton class="button" value="Details" action="#{controller.details(item)}">
                                 <f:param name="from" value="#{from}"></f:param>
@@ -32,12 +30,15 @@
                             <h:panelGroup rendered="#{for eq 'show'}">
                                 <h:commandLink class="table-icon edit" title="Edit" action="#{controller.edit(item)}"></h:commandLink>
                                 <h:commandLink class="table-icon delete" title="Del" action="#{controller.del(item)}"></h:commandLink>
-                                <h:commandButton class="button" value="Map" action="#{productManagedBean.prepareMap(item)}" rendered="#{item.detailId eq null}"></h:commandButton>
+
+                                <h:commandButton class="button" value="Map Album" action="#{productManagedBean.prepareMap(item)}" rendered="#{(item.albumId eq null) and (appConstant.DVD_TYPE_MUSIC == item.type)}"></h:commandButton>
+                                <h:commandButton class="button" value="Map Trailers" action="#{productManagedBean.prepareMap(item)}" rendered="#{(item.trailerId eq null) and (appConstant.DVD_TYPE_MUSIC != item.type)}"></h:commandButton>
                             </h:panelGroup>
-                             <h:panelGroup rendered="#{for eq 'search'}">
+                            <h:panelGroup rendered="#{for eq 'search'}">
                                 <h:commandLink class="table-icon edit" title="Edit" action="#{controller.edit(item)}"></h:commandLink>
                                 <h:commandLink class="table-icon delete" title="Del" action="#{controller.del(item)}"></h:commandLink>
-                                <h:commandButton class="button" value="Map" action="#{productManagedBean.prepareMap(item)}" rendered="#{item.detailId eq null}"></h:commandButton>
+                                <h:commandButton class="button" value="Map Album" action="#{productManagedBean.prepareMap(item)}" rendered="#{(item.albumId eq null) and (appConstant.DVD_TYPE_MUSIC == item.type)}"></h:commandButton>
+                                <h:commandButton class="button" value="Map Trailers" action="#{productManagedBean.prepareMap(item)}" rendered="#{(item.trailerId eq null) and (appConstant.DVD_TYPE_MUSIC != item.type)}"></h:commandButton>
                             </h:panelGroup>
                             <h:panelGroup rendered="#{for eq 'recovery'}">
                                 <h:commandButton class="button" value="Recovery" action="#{controller.recovery(item)}"></h:commandButton>

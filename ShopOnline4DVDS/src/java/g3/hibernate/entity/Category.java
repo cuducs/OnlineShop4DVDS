@@ -1,4 +1,4 @@
-package g3.hibernate.entity.ver2;
+package g3.hibernate.entity;
 // Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
 
 

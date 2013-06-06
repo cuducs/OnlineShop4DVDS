@@ -68,8 +68,8 @@ public class BrowserManagedHelper extends BaseHelper {
         if (searchBrowser.getParentId() >= 0) {
             criteria.add(org.hibernate.criterion.Expression.eq("parentId", searchBrowser.getParentId()));
         }
-        if (!"".equals(searchBrowser.getQuery())) {
-            criteria.add(org.hibernate.criterion.Expression.ilike("query", "%" + searchBrowser.getQuery() + "%"));
+        if (!"".equals(searchBrowser.getQuerySearch())) {
+            criteria.add(org.hibernate.criterion.Expression.ilike("query", "%" + searchBrowser.getQuerySearch() + "%"));
         }
         if (!"".equals(searchBrowser.getTitle())) {
             criteria.add(org.hibernate.criterion.Expression.ilike("title", "%" + searchBrowser.getTitle() + "%"));

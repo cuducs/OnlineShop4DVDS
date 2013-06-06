@@ -89,9 +89,17 @@
                             <div class="splitclear"></div>
                         </div>
                         <div class="element">
-                            <label>Image Cover</label>
-                            <p:inputText id="inputimg" value="#{productManagedBean.searchDvd.imgCover}" style="width:200px;"></p:inputText>
-                            <p:watermark for="inputimg" value="Image Cover"></p:watermark>
+                            <div class="split1">
+                                <label>Image Cover</label>
+                                <p:inputText id="inputimg" value="#{productManagedBean.searchDvd.imgCover}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputimg" value="Image Cover"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Details</label>
+                                <p:inputText id="inputdetails" value="#{productManagedBean.searchDvd.details}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputdetails" value="Details"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
 
                         </div>
                         <div class="element">

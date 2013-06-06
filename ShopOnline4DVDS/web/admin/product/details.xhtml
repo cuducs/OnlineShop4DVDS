@@ -7,34 +7,56 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h:link value="Return List" outcome="show"></h:link><br/>
-                    <h:link value="Recovery" outcome="recovery"></h:link><br/>
-                    <h:commandLink value="Back" action="#{productManagedBean.back}"></h:commandLink><br/>
-                    ID : #{productManagedBean.curDvd.id}<br/>
-                    Title : #{productManagedBean.curDvd.title}<br/>
-                    Release Date : #{productManagedBean.curDvd.releaseDate}<br/>
-                    Genres : #{productManagedBean.curDvd.genres}<br/>
-                    Description : #{productManagedBean.curDvd.description}<br/>
-                    Price : #{productManagedBean.curDvd.price}<br/>
-                    Image Cover Url : #{productManagedBean.curDvd.imageCoverUrl}<br/>
-                    <h:graphicImage url="#{productManagedBean.curDvd.imageCoverUrl}" style="width:81px;height:62px;"></h:graphicImage><br/>
-                    Author : #{productManagedBean.curDvd.author}<br/>
-                    Number of Disc : #{productManagedBean.curDvd.discNumber}<br/>
-                    Type : #{productManagedBean.curDvd.type}<br/>
-                    Detail ID : 
-                    <h:outputText value="No ID" rendered="#{empty productManagedBean.curDvd.detailId}"></h:outputText>
-                    <h:panelGroup rendered="#{not empty productManagedBean.curDvd.detailId}">
-                        <h:outputText value="#{productManagedBean.curDvd.detailId}" ></h:outputText>
-                        <h:commandButton value="Remove Details" action="#{productManagedBean.removeDetails}"></h:commandButton>
-                    </h:panelGroup>
-                    <br/>
-                    Created Date : #{productManagedBean.curDvd.createdDate}<br/>
-                    Modified Date : #{productManagedBean.curDvd.modifiedDate}<br/>
-                    Is Deleted : #{productManagedBean.curDvd.isDeleted}<br/>
-                </h:form>
+                <div class="full_w">
+                    <h2 class="h_title">Dvd Details</h2>
+                    <h:form>
+                        <div class="entry">
+                            <h:link class="button" value="Return List" outcome="show"></h:link>
+                            <h:link class="button" value="Recovery" outcome="recovery"></h:link>
+                        </div>
+
+                        ID : #{productManagedBean.curDvd.id}<br/>
+                        Title : #{productManagedBean.curDvd.title}<br/>
+                        Release Date : #{productManagedBean.curDvd.releaseDate}<br/>
+                        Genres : #{productManagedBean.curDvd.genres}<br/>
+                        Description : #{productManagedBean.curDvd.description}<br/>
+                        Price : #{productManagedBean.curDvd.price}<br/>
+                        Image Cover Url : #{productManagedBean.curDvd.imgCover}<br/>
+                        <h:graphicImage url="#{productManagedBean.curDvd.imgCover}" style="width:81px;height:62px;"></h:graphicImage><br/>
+                        Author : #{productManagedBean.curDvd.author}<br/>
+                        Producer ID : #{productManagedBean.curDvd.producerId}<br/>
+                        Supplier ID : #{productManagedBean.curDvd.supplierId}<br/>
+                        Number of Disc : #{productManagedBean.curDvd.discNumber}<br/>
+                        Trailer ID : 
+                        <h:panelGroup rendered="#{not (productManagedBean.curDvd.trailerId eq null)}">
+                            #{productManagedBean.curDvd.trailerId}
+                            <h:commandLink class="button" value="Remove" action="#{productManagedBean.removeTrailerId()}"></h:commandLink>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{productManagedBean.curDvd.trailerId eq null}" >
+                            <h:commandLink class="button" value="Map File" action="mappingtrailer"></h:commandLink>
+                        </h:panelGroup>
+                        <br/>
+                        Album ID : 
+                        <h:panelGroup rendered="#{not (productManagedBean.curDvd.albumId eq null)}">
+                            #{productManagedBean.curDvd.albumId}
+                            <h:commandLink class="button" value="Remove" action="#{productManagedBean.removeAlbumId()}"></h:commandLink>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{productManagedBean.curDvd.albumId eq null}" >
+                            <h:commandLink class="button" value="Map Album" action="mappingalbum"></h:commandLink>
+                        </h:panelGroup>
+                        <br/>
+                        Type : #{productManagedBean.curDvd.type}<br/>
+                        Details : #{productManagedBean.curDvd.details}<br/>
+                        
+                        Rate Point : #{productManagedBean.curDvd.ratePoint}<br/>
+                        Rate Count : #{productManagedBean.curDvd.rateCount}<br/>
+                        Created Date : #{productManagedBean.curDvd.createdDate}<br/>
+                        Modified Date : #{productManagedBean.curDvd.modifiedDate}<br/>
+                        Is Deleted : #{productManagedBean.curDvd.isDeleted}<br/>
+                    </h:form>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

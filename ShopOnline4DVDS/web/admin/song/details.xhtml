@@ -8,32 +8,36 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h:link value="Return List" outcome="show"></h:link><br/>
-                    <h:link value="Recovery" outcome="recovery"></h:link><br/>
-                    <h:commandLink value="Back" action="#{songManagedBean.back}"></h:commandLink><br/>
-                    ID : #{songManagedBean.curSong.id}<br/>
-                    Title : #{songManagedBean.curSong.title}<br/>
-                    Runtime : 
-                    <h:outputText value="#{songManagedBean.curSong.runtime}">
-                        <f:converter converterId="TimeConverter"></f:converter>
-                    </h:outputText><br/>
-                    Lyrics : #{songManagedBean.curSong.lyrics}<br/>
-                    Free : #{songManagedBean.curSong.isFree}<br/>
-                    File :
-                    <h:panelGroup rendered="#{not (songManagedBean.curSong.fileId eq null)}">
-                        #{songManagedBean.curSong.fileId}
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{songManagedBean.curSong.fileId eq null}" >
-                        <h:commandLink value="Map File" action="mappingfile"></h:commandLink>
-                    </h:panelGroup>
-                    <br/>
-                    Created Date : #{songManagedBean.curSong.createdDate}<br/>
-                    Modified Date : #{songManagedBean.curSong.modifiedDate}<br/>
-                    Is Deleted : #{songManagedBean.curSong.isDeleted}<br/>
-                </h:form>
+                <div class="full_w">
+                    <h2 class="h_title">Song Details</h2>
+                    <h:form>
+                        <div class="entry">
+                            <h:link class="button" value="Return List" outcome="show"></h:link>
+                            <h:link class="button" value="Recovery" outcome="recovery"></h:link>
+                        </div>
+                        ID : #{songManagedBean.curSong.id}<br/>
+                        Title : #{songManagedBean.curSong.title}<br/>
+                        Singer ID : #{songManagedBean.curSong.singerId}<br/>0 
+                        Composer ID : #{songManagedBean.curSong.composerId}<br/>
+                        Lyrics : #{songManagedBean.curSong.lyrics}<br/>
+                        Info : #{songManagedBean.curSong.info}<br/>
+                        Free : #{songManagedBean.curSong.isFree}<br/>
+                        File :
+                        <h:panelGroup rendered="#{not (songManagedBean.curSong.fileId eq 0)}">
+                            #{songManagedBean.curSong.fileId}
+                            <h:commandLink class="button" value="Remove" action="#{songManagedBean.removeFile()}"></h:commandLink>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{songManagedBean.curSong.fileId eq 0}" >
+                            <h:commandLink class="button" value="Map File" action="mappingfile"></h:commandLink>
+                        </h:panelGroup>
+                        <br/>
+                        Created Date : #{songManagedBean.curSong.createdDate}<br/>
+                        Modified Date : #{songManagedBean.curSong.modifiedDate}<br/>
+                        Is Deleted : #{songManagedBean.curSong.isDeleted}<br/>
+                    </h:form>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

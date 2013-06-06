@@ -168,7 +168,7 @@ public class ShowProductBean {
     public String getTrailerUrl() {
         try {
             Dvd d = getDetail();
-            String q = "FROM FileData f WHERE f.isDeleted = 0 and f.id = " + d.getDetailId();
+            String q = "FROM FileData f WHERE f.isDeleted = 0 and f.id = " + d.getTrailerId();
             FileData f = (FileData) getSession().createQuery(q).uniqueResult();
             trailerUrl = f.getUrl();
         } catch (Exception ex) {

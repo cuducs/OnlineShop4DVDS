@@ -4,20 +4,20 @@
  */
 package g3.server.bean.utility;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Administrator
  */
 @ManagedBean
-@SessionScoped
+@ApplicationScoped
 public class AppConstant {
     public static final String FILE_TYPE_SOUND="sound";
     public static final String FILE_TYPE_VIDEO="video";
-    public static final String FILE_TYPE_YOUTUBE="youtube";
-    public static final String FILE_TYPE_SOUND_INTERNET="internet";
+    public static final String FILE_TYPE_VIDEO_NET="video-net";
+    public static final String FILE_TYPE_SOUND_NET="sound-net";
     public static final int BILL_STATUS_WAIT=1;
     public static final int BILL_STATUS_DONE=2;
     public static final int BILL_STATUS_CANCEL=0;
@@ -26,7 +26,9 @@ public class AppConstant {
     public static final String DVD_TYPE_GAME="game";
     public static final int FORM_MODE_CREATE=1;
     public static final int FORM_MODE_EDIT=2;
-    
+    public static final String ARTIST_COMPOSER="composer";
+    public static final String ARTIST_SINGER="singer";
+    public static final String ARTIST_BOTH="both";
     public static final String OPERATOR_EQUAL="=";
     public static final String OPERATOR_LARGER=">";
     public static final String OPERATOR_LARGER_EQUAL=">=";
@@ -75,6 +77,18 @@ public class AppConstant {
 
     public String getOPERATOR_CONTAIN() {
         return OPERATOR_CONTAIN;
+    }
+
+    public String getDVD_TYPE_MUSIC() {
+        return DVD_TYPE_MUSIC;
+    }
+
+    public String getDVD_TYPE_MOVIE() {
+        return DVD_TYPE_MOVIE;
+    }
+
+    public String getDVD_TYPE_GAME() {
+        return DVD_TYPE_GAME;
     }
     
 }

@@ -198,7 +198,7 @@ public class FeedbackBean {
 
     public Member getCustomer() {
         try {
-            customer = (Member) getSession().createQuery("FROM Member m WHERE m.id = " + getDetail().getCustomerId()).uniqueResult();
+            customer = (Member) getSession().createQuery("FROM Member m WHERE m.id = " + getDetail().getMemberId()).uniqueResult();
 
         } catch (Exception ex) {
             customer = null;
@@ -211,7 +211,7 @@ public class FeedbackBean {
         try {
             m = (Member) getSession().createQuery("FROM Member m WHERE m.name = '" + name + "'").uniqueResult();
         } catch (Exception ex) {
-            m = new Member(0, 0);
+            m = new Member();
         }
         return m;
     }

@@ -4,7 +4,7 @@
  */
 package g3.server.bean.manage;
 
-import g3.hibernate.entity.ver2.MappingTable;
+import g3.hibernate.entity.MappingTable;
 import g3.server.bean.BaseHelper;
 import java.util.List;
 import org.hibernate.Query;

@@ -4,7 +4,7 @@
  */
 package g3.server.bean.manage;
 
-import g3.hibernate.entity.ver2.Dvd;
+import g3.hibernate.entity.Dvd;
 import g3.server.bean.BaseHelper;
 import java.sql.Date;
 import java.text.DateFormat;

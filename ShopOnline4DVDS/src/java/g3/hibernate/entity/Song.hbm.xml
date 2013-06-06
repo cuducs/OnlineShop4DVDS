@@ -1,42 +1,41 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 5, 2013 8:44:20 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="g3.hibernate.entity.ver2.Song" table="Song" schema="dbo" catalog="DVDStoreVer2">
-        <id name="id" type="int">
-            <column name="Id" />
-            <generator class="identity" />
-        </id>
-        <property name="title" type="string">
-            <column name="Title" not-null="true" />
-        </property>
-        <property name="singerId" type="java.lang.Integer">
-            <column name="SingerId" />
-        </property>
-        <property name="composerId" type="java.lang.Integer">
-            <column name="ComposerId" />
-        </property>
-        <property name="lyrics" type="string">
-            <column name="Lyrics" />
-        </property>
-        <property name="isFree" type="boolean">
-            <column name="IsFree" not-null="true" />
-        </property>
-        <property name="fileId" type="int">
-            <column name="FileID" not-null="true" />
-        </property>
-        <property name="info" type="string">
-            <column name="Info" />
-        </property>
-        <property name="createdDate" type="timestamp">
-            <column name="CreatedDate" length="23" not-null="true" />
-        </property>
-        <property name="modifiedDate" type="timestamp">
-            <column name="ModifiedDate" length="23" not-null="true" />
-        </property>
-        <property name="isDeleted" type="boolean">
-            <column name="IsDeleted" not-null="true" />
-        </property>
-    </class>
+  <class catalog="DVDStoreVer2" name="g3.hibernate.entity.Song" schema="dbo" table="Song">
+    <id name="id" type="int">
+      <column name="Id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="title" type="string">
+      <column name="Title" not-null="true"/>
+    </property>
+    <property name="singerId" type="java.lang.Integer">
+      <column name="SingerId"/>
+    </property>
+    <property name="composerId" type="java.lang.Integer">
+      <column name="ComposerId"/>
+    </property>
+    <property name="lyrics" type="string">
+      <column name="Lyrics"/>
+    </property>
+    <property name="isFree" type="boolean">
+      <column name="IsFree" not-null="true"/>
+    </property>
+    <property name="fileId" type="int">
+      <column name="FileID" not-null="true"/>
+    </property>
+    <property name="info" type="string">
+      <column name="Info"/>
+    </property>
+    <property name="createdDate" type="timestamp">
+      <column length="23" name="CreatedDate" not-null="true"/>
+    </property>
+    <property name="modifiedDate" type="timestamp">
+      <column length="23" name="ModifiedDate" not-null="true"/>
+    </property>
+    <property name="isDeleted" type="boolean">
+      <column name="IsDeleted" not-null="true"/>
+    </property>
+  </class>
 </hibernate-mapping>
