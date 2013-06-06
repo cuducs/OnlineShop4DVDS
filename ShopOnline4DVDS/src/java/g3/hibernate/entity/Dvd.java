@@ -1,5 +1,5 @@
-package g3.hibernate.entity;
-// Generated May 24, 2013 5:41:42 PM by Hibernate Tools 3.2.1.GA
+package g3.hibernate.entity.ver2;
+// Generated Jun 5, 2013 7:27:49 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -17,13 +17,17 @@ public class Dvd  implements java.io.Serializable {
      private String genres;
      private String description;
      private Double price;
-     private String imageCoverUrl;
+     private String imgCover;
      private String author;
+     private Integer producerId;
+     private Integer supplierId;
      private Integer discNumber;
-     private Integer detailId;
+     private Integer trailerId;
+     private Integer albumId;
+     private String type;
+     private String details;
      private Integer ratePoint;
      private Integer rateCount;
-     private String type;
      private Date createdDate;
      private Date modifiedDate;
      private boolean isDeleted;
@@ -32,24 +36,34 @@ public class Dvd  implements java.io.Serializable {
     }
 
 	
-    public Dvd(int id, boolean isDeleted) {
+    public Dvd(int id, String title, String imgCover, String author, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
         this.id = id;
+        this.title = title;
+        this.imgCover = imgCover;
+        this.author = author;
+        this.type = type;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
         this.isDeleted = isDeleted;
     }
-    public Dvd(int id, String title, Date releaseDate, String genres, String description, Double price, String imageCoverUrl, String author, Integer discNumber, Integer detailId, Integer ratePoint, Integer rateCount, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Dvd(int id, String title, Date releaseDate, String genres, String description, Double price, String imgCover, String author, Integer producerId, Integer supplierId, Integer discNumber, Integer trailerId, Integer albumId, String type, String details, Integer ratePoint, Integer rateCount, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.title = title;
        this.releaseDate = releaseDate;
        this.genres = genres;
        this.description = description;
        this.price = price;
-       this.imageCoverUrl = imageCoverUrl;
+       this.imgCover = imgCover;
        this.author = author;
+       this.producerId = producerId;
+       this.supplierId = supplierId;
        this.discNumber = discNumber;
-       this.detailId = detailId;
+       this.trailerId = trailerId;
+       this.albumId = albumId;
+       this.type = type;
+       this.details = details;
        this.ratePoint = ratePoint;
        this.rateCount = rateCount;
-       this.type = type;
        this.createdDate = createdDate;
        this.modifiedDate = modifiedDate;
        this.isDeleted = isDeleted;
@@ -97,12 +111,12 @@ public class Dvd  implements java.io.Serializable {
     public void setPrice(Double price) {
         this.price = price;
     }
-    public String getImageCoverUrl() {
-        return this.imageCoverUrl;
+    public String getImgCover() {
+        return this.imgCover;
     }
     
-    public void setImageCoverUrl(String imageCoverUrl) {
-        this.imageCoverUrl = imageCoverUrl;
+    public void setImgCover(String imgCover) {
+        this.imgCover = imgCover;
     }
     public String getAuthor() {
         return this.author;
@@ -111,6 +125,20 @@ public class Dvd  implements java.io.Serializable {
     public void setAuthor(String author) {
         this.author = author;
     }
+    public Integer getProducerId() {
+        return this.producerId;
+    }
+    
+    public void setProducerId(Integer producerId) {
+        this.producerId = producerId;
+    }
+    public Integer getSupplierId() {
+        return this.supplierId;
+    }
+    
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
+    }
     public Integer getDiscNumber() {
         return this.discNumber;
     }
@@ -118,12 +146,33 @@ public class Dvd  implements java.io.Serializable {
     public void setDiscNumber(Integer discNumber) {
         this.discNumber = discNumber;
     }
-    public Integer getDetailId() {
-        return this.detailId;
+    public Integer getTrailerId() {
+        return this.trailerId;
     }
     
-    public void setDetailId(Integer detailId) {
-        this.detailId = detailId;
+    public void setTrailerId(Integer trailerId) {
+        this.trailerId = trailerId;
+    }
+    public Integer getAlbumId() {
+        return this.albumId;
+    }
+    
+    public void setAlbumId(Integer albumId) {
+        this.albumId = albumId;
+    }
+    public String getType() {
+        return this.type;
+    }
+    
+    public void setType(String type) {
+        this.type = type;
+    }
+    public String getDetails() {
+        return this.details;
+    }
+    
+    public void setDetails(String details) {
+        this.details = details;
     }
     public Integer getRatePoint() {
         return this.ratePoint;
@@ -138,13 +187,6 @@ public class Dvd  implements java.io.Serializable {
     
     public void setRateCount(Integer rateCount) {
         this.rateCount = rateCount;
-    }
-    public String getType() {
-        return this.type;
-    }
-    
-    public void setType(String type) {
-        this.type = type;
     }
     public Date getCreatedDate() {
         return this.createdDate;

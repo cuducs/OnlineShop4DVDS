@@ -1,5 +1,5 @@
-package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+package g3.hibernate.entity.ver2;
+// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -15,32 +15,27 @@ public class Member  implements java.io.Serializable {
      private String name;
      private String email;
      private String password;
+     private Date lastLogin;
      private Date joinedDate;
      private Date modifiedDate;
-     private int isLock;
+     private boolean isLock;
 
     public Member() {
     }
 
 	
-    public Member(int id, int isLock) {
+    public Member(int id, Date joinedDate, Date modifiedDate, boolean isLock) {
         this.id = id;
+        this.joinedDate = joinedDate;
+        this.modifiedDate = modifiedDate;
         this.isLock = isLock;
     }
-    public Member(int id, String name, String email, String password, Date joinedDate, Date modifiedDate, int isLock) {
+    public Member(int id, String name, String email, String password,Date lastLogin, Date joinedDate, Date modifiedDate, boolean isLock) {
        this.id = id;
        this.name = name;
        this.email = email;
        this.password = password;
-       this.joinedDate = joinedDate;
-       this.modifiedDate = modifiedDate;
-       this.isLock = isLock;
-    }
-    public Member(String name, String email, String password, Date joinedDate, Date modifiedDate, int isLock) {
-       this.id = id;
-       this.name = name;
-       this.email = email;
-       this.password = password;
+       this.lastLogin=lastLogin;
        this.joinedDate = joinedDate;
        this.modifiedDate = modifiedDate;
        this.isLock = isLock;
@@ -74,6 +69,15 @@ public class Member  implements java.io.Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+    
     public Date getJoinedDate() {
         return this.joinedDate;
     }
@@ -88,17 +92,12 @@ public class Member  implements java.io.Serializable {
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-    public int isIsLock() {
+    public boolean isIsLock() {
         return this.isLock;
     }
     
-    public void setIsLock(int isLock) {
+    public void setIsLock(boolean isLock) {
         this.isLock = isLock;
-    }
-
-    @Override
-    public String toString() {
-        return "Member{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", joinedDate=" + joinedDate + ", modifiedDate=" + modifiedDate + ", isLock=" + isLock + '}';
     }
 
 

@@ -1,5 +1,5 @@
-package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+package g3.hibernate.entity.ver2;
+// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -12,8 +12,8 @@ public class Artist  implements java.io.Serializable {
 
 
      private int id;
-     private String name;
-     private String details;
+     private String title;
+     private String info;
      private String workAs;
      private Date createdDate;
      private Date modifiedDate;
@@ -23,14 +23,17 @@ public class Artist  implements java.io.Serializable {
     }
 
 	
-    public Artist(int id, boolean isDeleted) {
+    public Artist(int id, String title, Date createdDate, Date modifiedDate, boolean isDeleted) {
         this.id = id;
+        this.title = title;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
         this.isDeleted = isDeleted;
     }
-    public Artist(int id, String name, String details, String workAs, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Artist(int id, String title, String info, String workAs, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
-       this.name = name;
-       this.details = details;
+       this.title = title;
+       this.info = info;
        this.workAs = workAs;
        this.createdDate = createdDate;
        this.modifiedDate = modifiedDate;
@@ -44,19 +47,19 @@ public class Artist  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public String getName() {
-        return this.name;
+    public String getTitle() {
+        return this.title;
     }
     
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
-    public String getDetails() {
-        return this.details;
+    public String getInfo() {
+        return this.info;
     }
     
-    public void setDetails(String details) {
-        this.details = details;
+    public void setInfo(String info) {
+        this.info = info;
     }
     public String getWorkAs() {
         return this.workAs;

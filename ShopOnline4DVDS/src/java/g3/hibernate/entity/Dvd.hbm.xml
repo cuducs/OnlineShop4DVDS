@@ -1,57 +1,68 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 24, 2013 5:41:43 PM by Hibernate Tools 3.2.1.GA -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 5, 2013 7:28:02 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="g3.hibernate.entity.Dvd" table="DVD" schema="dbo" catalog="DVDStore">
-        <id name="id" type="int">
-            <column name="Id" />
-            <generator class="identity" />
-        </id>
-        <property name="title" type="string">
-            <column name="Title" />
-        </property>
-        <property name="releaseDate" type="timestamp">
-            <column name="ReleaseDate" length="23" />
-        </property>
-        <property name="genres" type="string">
-            <column name="Genres" />
-        </property>
-        <property name="description" type="string">
-            <column name="Description" />
-        </property>
-        <property name="price" type="java.lang.Double">
-            <column name="Price" precision="53" scale="0" />
-        </property>
-        <property name="imageCoverUrl" type="string">
-            <column name="ImageCoverUrl" />
-        </property>
-        <property name="author" type="string">
-            <column name="Author" />
-        </property>
-        <property name="discNumber" type="java.lang.Integer">
-            <column name="DiscNumber" />
-        </property>
-        <property name="detailId" type="java.lang.Integer">
-            <column name="DetailId" />
-        </property>
-        <property name="ratePoint" type="java.lang.Integer">
-            <column name="RatePoint" />
-        </property>
-        <property name="rateCount" type="java.lang.Integer">
-            <column name="RateCount" />
-        </property>
-        <property name="type" type="string">
-            <column name="Type" length="50" />
-        </property>
-        <property name="createdDate" type="timestamp">
-            <column name="CreatedDate" length="23" />
-        </property>
-        <property name="modifiedDate" type="timestamp">
-            <column name="ModifiedDate" length="23" />
-        </property>
-        <property name="isDeleted" type="boolean">
-            <column name="IsDeleted" not-null="true" />
-        </property>
-    </class>
+  <class catalog="DVDStoreVer2" name="g3.hibernate.entity.ver2.Dvd" schema="dbo" table="DVD">
+    <id name="id" type="int">
+      <column name="Id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="title" type="string">
+      <column name="Title" not-null="true"/>
+    </property>
+    <property name="releaseDate" type="timestamp">
+      <column length="23" name="ReleaseDate"/>
+    </property>
+    <property name="genres" type="string">
+      <column name="Genres"/>
+    </property>
+    <property name="description" type="string">
+      <column name="Description"/>
+    </property>
+    <property name="price" type="java.lang.Double">
+      <column name="Price" precision="53" scale="0"/>
+    </property>
+    <property name="imgCover" type="string">
+      <column name="ImgCover" not-null="true"/>
+    </property>
+    <property name="author" type="string">
+      <column name="Author" not-null="true"/>
+    </property>
+    <property name="producerId" type="java.lang.Integer">
+      <column name="ProducerId"/>
+    </property>
+    <property name="supplierId" type="java.lang.Integer">
+      <column name="SupplierId"/>
+    </property>
+    <property name="discNumber" type="java.lang.Integer">
+      <column name="DiscNumber"/>
+    </property>
+    <property name="trailerId" type="java.lang.Integer">
+      <column name="TrailerId"/>
+    </property>
+    <property name="albumId" type="java.lang.Integer">
+      <column name="AlbumId"/>
+    </property>
+    <property name="type" type="string">
+      <column length="50" name="Type" not-null="true"/>
+    </property>
+    <property name="details" type="string">
+      <column name="Details"/>
+    </property>
+    <property name="ratePoint" type="java.lang.Integer">
+      <column name="RatePoint"/>
+    </property>
+    <property name="rateCount" type="java.lang.Integer">
+      <column name="RateCount"/>
+    </property>
+    <property name="createdDate" type="timestamp">
+      <column length="23" name="CreatedDate" not-null="true"/>
+    </property>
+    <property name="modifiedDate" type="timestamp">
+      <column length="23" name="ModifiedDate" not-null="true"/>
+    </property>
+    <property name="isDeleted" type="boolean">
+      <column name="IsDeleted" not-null="true"/>
+    </property>
+  </class>
 </hibernate-mapping>

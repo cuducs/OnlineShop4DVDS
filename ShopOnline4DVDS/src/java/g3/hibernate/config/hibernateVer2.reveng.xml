@@ -26,4 +26,6 @@
   <table-filter match-name="BillDetail"/>
   <table-filter match-name="Producer"/>
   <table-filter match-name="Comment"/>
+  <table-filter match-name="MappingTable"/>
+  <table-filter match-name="ObjectOfBrowsingRule"/>
 </hibernate-reverse-engineering>

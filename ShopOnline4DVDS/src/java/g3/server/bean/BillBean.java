@@ -114,10 +114,10 @@ public class BillBean {
             bill.setMemberId(m.getId());
             bill.setTotal(BigDecimal.valueOf(cmb.getTotal()));
             if (billHelper.save(bill)) {
-                for (CartItem ci : cmb.getListCart()) {
-                    BillDetail bd = new BillDetail(new BillDetailId(bill.getId(), ci.getProduct().getId()), ci.getProduct().getPrice(), ci.getCount());
-                    billDetailHelper.save(bd);
-                }
+//                for (CartItem ci : cmb.getListCart()) {
+//                    BillDetail bd = new BillDetail(new BillDetailId(bill.getId(), ci.getProduct().getId()), ci.getProduct().getPrice(), ci.getCount());
+//                    billDetailHelper.save(bd);
+//                }
                 return "history.xhtml";
             } else {
                 return "order.xhtml";

@@ -1,5 +1,5 @@
-package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+package g3.hibernate.entity.ver2;
+// Generated Jun 5, 2013 7:27:49 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -15,9 +15,10 @@ public class Album  implements java.io.Serializable {
      private String title;
      private String owner;
      private Integer viewCount;
-     private Date createdDate;
      private Integer numberItem;
-     private String type;
+     private String description;
+     private boolean isAdminCreated;
+     private Date createdDate;
      private Date modifiedDate;
      private boolean isDeleted;
 
@@ -25,18 +26,21 @@ public class Album  implements java.io.Serializable {
     }
 
 	
-    public Album(int id, boolean isDeleted) {
+    public Album(int id, String title, boolean isAdminCreated, boolean isDeleted) {
         this.id = id;
+        this.title = title;
+        this.isAdminCreated = isAdminCreated;
         this.isDeleted = isDeleted;
     }
-    public Album(int id, String title, String owner, Integer viewCount, Date createdDate, Integer numberItem, String type, Date modifiedDate, boolean isDeleted) {
+    public Album(int id, String title, String owner, Integer viewCount, Integer numberItem, String description, boolean isAdminCreated, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
        this.title = title;
        this.owner = owner;
        this.viewCount = viewCount;
-       this.createdDate = createdDate;
        this.numberItem = numberItem;
-       this.type = type;
+       this.description = description;
+       this.isAdminCreated = isAdminCreated;
+       this.createdDate = createdDate;
        this.modifiedDate = modifiedDate;
        this.isDeleted = isDeleted;
     }
@@ -69,13 +73,6 @@ public class Album  implements java.io.Serializable {
     public void setViewCount(Integer viewCount) {
         this.viewCount = viewCount;
     }
-    public Date getCreatedDate() {
-        return this.createdDate;
-    }
-    
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
     public Integer getNumberItem() {
         return this.numberItem;
     }
@@ -83,12 +80,26 @@ public class Album  implements java.io.Serializable {
     public void setNumberItem(Integer numberItem) {
         this.numberItem = numberItem;
     }
-    public String getType() {
-        return this.type;
+    public String getDescription() {
+        return this.description;
     }
     
-    public void setType(String type) {
-        this.type = type;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public boolean isIsAdminCreated() {
+        return this.isAdminCreated;
+    }
+    
+    public void setIsAdminCreated(boolean isAdminCreated) {
+        this.isAdminCreated = isAdminCreated;
+    }
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
+    
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
     public Date getModifiedDate() {
         return this.modifiedDate;

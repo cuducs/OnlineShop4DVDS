@@ -26,13 +26,55 @@ public class AppConstant {
     public static final String DVD_TYPE_GAME="game";
     public static final int FORM_MODE_CREATE=1;
     public static final int FORM_MODE_EDIT=2;
-    public static final String ARTIST_COMPOSER="composer";
-    public static final String ARTIST_SINGER="singer";
-    public static final String ARTIST_BOTH="both";
+    
+    public static final String OPERATOR_EQUAL="=";
+    public static final String OPERATOR_LARGER=">";
+    public static final String OPERATOR_LARGER_EQUAL=">=";
+    public static final String OPERATOR_LESSER="<";
+    public static final String OPERATOR_LESSER_EQUAL="<=";
+    public static final String OPERATOR_TOP="top";
+    public static final String OPERATOR_BETWEEN="between";
+    public static final String OPERATOR_CONTAIN="like";
+    public static final String OPERATOR_NONE="none";
+    
+    
     public int getModeCreate(){
         return FORM_MODE_CREATE;
     }
     public int getModeEdit(){
         return FORM_MODE_EDIT;
     }
+    
+     public String getOPERATOR_EQUAL() {
+        return OPERATOR_EQUAL;
+    }
+
+    public String getOPERATOR_LARGER() {
+        return OPERATOR_LARGER;
+    }
+
+    public String getOPERATOR_LARGER_EQUAL() {
+        return OPERATOR_LARGER_EQUAL;
+    }
+
+    public String getOPERATOR_LESSER() {
+        return OPERATOR_LESSER;
+    }
+
+    public String getOPERATOR_LESSER_EQUAL() {
+        return OPERATOR_LESSER_EQUAL;
+    }
+
+    public String getOPERATOR_TOP() {
+        return OPERATOR_TOP;
+    }
+
+    public String getOPERATOR_BETWEEN() {
+        return OPERATOR_BETWEEN;
+    }
+
+    public String getOPERATOR_CONTAIN() {
+        return OPERATOR_CONTAIN;
+    }
+    
 }
