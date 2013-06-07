@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/customerTemplate_1.xhtml">
+            <ui:define name="content">
+                <c:if test="#{sessionScope.member==null}">
+                    #{facesContext.externalContext.redirect("/ShopOnline4DVDS/faces/user/login.xhtml")}
+                </c:if>
+                <c:if test="#{cartManagedBean.total == 0}">
+                    #{facesContext.externalContext.redirect("history.xhtml")}
+                </c:if>
+                <div class="content-indent">
+                    <div id="vmMainPage">
+                        <h3>Checkout</h3><div>
+
+                            <div class="register-stretcher">
+                                <h5><input type="radio" name="togglerchecker" id="toggler2" class="toggler"/>
+                                    <label for="toggler2" style="vertical-align:top">New? Please Provide Your Billing Information</label>
+                                </h5>
+                                <div class="stretcher" id="register_stretcher" style="padding-top: 0px; border-top-style: none; padding-bottom: 0px; border-bottom-style: none; overflow: hidden; visibility: hidden; zoom: 1; opacity: 0; height: 0px;">
+                                    <form action="http://livedemo00.template-help.com/virtuemart_36022/index.php?page=checkout.index&amp;option=com_virtuemart&amp;Itemid=29&amp;redirected=1&amp;Itemid=29" method="post" name="adminForm">
+
+                                        <div style="width:90%;"><div style="padding:5px;text-align:center;"><strong>(* = Required)</strong></div><fieldset>
+                                                <legend class="sectiontableheader">Customer Information</legend>
+                                                
+                                                <div id="email_div" class="formLabel "><label for="email_field">Email</label><strong>* </strong> </div>
+                                                <div class="formField" id="email_input">
+                                                    <input type="text" id="email_field" name="email" size="30" value="" class="inputbox" maxlength="100"/>
+                                                    <br/></div>
+                                                <br style="clear:both;"/>
+                                                <input type="hidden" id="register_account" name="register_account" value="1"/><div id="username_div" class="formLabel "><label for="username_field">Username</label><strong>* </strong> </div>
+                                                
+                                                <div class="formField" id="username_input">
+                                                    <input type="text" id="username_field" name="username" size="30" value="" class="inputbox" maxlength="25"/>
+                                                    <br/></div>
+                                                <br style="clear:both;"/>
+                                                
+                                                <div id="password_div" class="formLabel "><label for="password_field">Password</label><strong>* </strong> </div>
+                                                <div class="formField" id="password_input">
+                                                    <input type="password" id="password_field" name="password" size="30" class="inputbox"/>
+                                                    <br/></div>
+                                                <br style="clear:both;"/>
+                                                
+                                                <div id="password2_div" class="formLabel "><label for="password2_field">Confirm Password</label><strong>* </strong> </div>
+                                                <div class="formField" id="password2_input">
+                                                    <input type="password" id="password2_field" name="password2" size="30" class="inputbox"/>
+                                                    <br/></div>
+                                                <br style="clear:both;"></br></fieldset>
+
+                                            <fieldset>
+                                                <legend class="sectiontableheader">Send Registration</legend>
+                                                <div id="agreed_div" class="formLabel ">
+                                                    <label for="agreed_field">
+                                                        <label for="agreed_field">I agree to the Terms of Service</label><a href="#"> (Terms of Service)</a>
+                                                    </label><strong>* </strong> 
+                                                </div>
+                                                <div class="formField" id="agreed_input">
+                                                    <input type="checkbox" id="agreed_field" name="agreed" value="1" class="inputbox"/><br/>
+                                                </div>
+                                                <br style="clear:both;"/>
+                                            </fieldset>
+                                        </div>
+                                        <div align="center">
+                                            <input type="hidden" name="remember" value="yes"/>
+                                            <input type="submit" value="Send Registration" class="button button02" />
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                Window.onDomReady(function() {
+
+                                    // get accordion elements
+                                    myStretch = $$( '.toggler' );
+                                    myStretcher = $$( '.stretcher' );
+
+                                    // Create the accordion
+                                    myAccordion = new Fx.Accordion(myStretch, myStretcher, 
+                                    {
+                                        /*fixedHeight: 125,*/
+                                        opacity : true,
+                                        display: 0
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <div id="statusBox" style="text-align:center;display:none;visibility:hidden;"></div></div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

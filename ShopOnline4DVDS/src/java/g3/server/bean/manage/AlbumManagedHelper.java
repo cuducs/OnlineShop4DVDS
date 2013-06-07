@@ -43,28 +43,6 @@ public class AlbumManagedHelper extends BaseHelper {
         return query.list();
     }
 
-    public boolean save(Album curAlbum) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.save(curAlbum);
-        beginTransaction.commit();
-        if (curAlbum.getId() != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    void del(Album item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.delete(item);
-        beginTransaction.commit();
-
-    }
-
-    void update(Album item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.update(item);
-    }
-
     List<Album> getAllAlbumsDeleted() {
         Transaction beginTransaction = session.beginTransaction();
         String hql = "FROM Album g WHERE g.isDeleted=1";
@@ -100,10 +78,10 @@ public class AlbumManagedHelper extends BaseHelper {
 
     void maintainAlbum(Album album) {
         List lstMapping = session.createQuery("From AlbumMusicMapping a Where a.id.albumId=" + album.getId()).list();
-        int count=0;
-        if(lstMapping.size()>0){
+        int count = 0;
+        if (lstMapping.size() > 0) {
             for (int i = 1; i <= lstMapping.size(); i++) {
-                AlbumMusicMapping temp=(AlbumMusicMapping) lstMapping.get(i-1);
+                AlbumMusicMapping temp = (AlbumMusicMapping) lstMapping.get(i - 1);
                 temp.setTrackNumber(i);
                 count++;
             }
@@ -124,8 +102,9 @@ public class AlbumManagedHelper extends BaseHelper {
 
     List<Song> getSongCanAdd(Album item) {
         Transaction beginTransaction = session.beginTransaction();
-        
-        Criteria songCanAdd = session.createCriteria(Song.class);List lstCannotAddId = session.createQuery("Select a.id.songId From AlbumMusicMapping a Where a.id.albumId=" + item.getId()).list();
+
+        Criteria songCanAdd = session.createCriteria(Song.class);
+        List lstCannotAddId = session.createQuery("Select a.id.songId From AlbumMusicMapping a Where a.id.albumId=" + item.getId()).list();
         if (lstCannotAddId.size() > 0) {
             songCanAdd.add(Restrictions.not(Restrictions.in("id", lstCannotAddId)));
         }

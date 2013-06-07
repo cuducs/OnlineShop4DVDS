@@ -9,7 +9,7 @@
 
     <lifecycle>
         <phase-listener>
-           g3.custom.phaselistener.AdminSideMenuPhaseListener
+            g3.custom.phaselistener.AdminSideMenuPhaseListener
         </phase-listener>
     </lifecycle>
     <navigation-rule>
@@ -25,6 +25,20 @@
         <navigation-case>
             <from-outcome>showproduct</from-outcome>
             <to-view-id>/showproduct.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>welcome</from-outcome>
+            <to-view-id>/user/welcome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cuslistproduct</from-outcome>
+            <to-view-id>/user/listproduct.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cart</from-outcome>
+            <to-view-id>/user/cart.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -130,7 +144,7 @@
             <to-view-id>/admin/category/show.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-     <navigation-rule>
+    <navigation-rule>
         <from-view-id>/admin/category/show.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>create</from-outcome>

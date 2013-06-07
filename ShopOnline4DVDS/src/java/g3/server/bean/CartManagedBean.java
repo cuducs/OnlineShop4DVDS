@@ -12,11 +12,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -62,7 +64,15 @@ public class CartManagedBean {
         this.count = count;
     }
 
+    public void addParam() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params =
+                context.getExternalContext().getRequestParameterMap();
+        String productcarttid = params.get("productcarttid");
+        add(Integer.valueOf(productcarttid));
+    }
     /*function*/
+
     public void add(int id) {
         CartItem ci = cart.get(id);
         if (ci == null) {

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:gct="http://g3.com/tags">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/customerTemplate_1.xhtml">
+            <ui:define name="content">
+                <div class="content-indent" style="width:701px;">
+                    <div id="vmMainPage">
+                        <div class="clear">
+                            <h3>Product List</h3>
+                            <div style="text-align:center;">
+                            </div>
+                        </div>
+                        <div class="orderby_form">
+                            <form class="orderby_form">
+                                Sort By :
+                                <select class="inputbox" name="orderby">
+                                    <option value="product_list">Select</option>
+                                    <option value="product_name" selected="selected">Product Name</option>
+                                    <option value="product_price">Price</option> 
+                                    <option value="product_cdate">Latest Products</option>
+                                </select>
+                                <img src="/ShopOnline4DVDS/resources/customerver2/images/sort_asc.png" border="0" width="17" height="16" alt=""  title="Ascending order"/>
+                                <img src="/ShopOnline4DVDS/resources/customerver2/images/sort_desc.png" border="0" width="17" height="16" alt="" title="Descending order"/>
+                            </form>
+                        </div>
+                        <div class="product_list">
+                            <ui:repeat var="item" varStatus="stt" value="#{showProductBean.productList}">
+                                <gct:cus-list-product product="#{item}"></gct:cus-list-product>
+                            </ui:repeat>
+
+                        </div>
+                        <br class="clr"></br>
+                        <div class="wrapper">
+                            <div align="center" style="padding:0px 5px 10px 0px;">
+                                <ul class="pagination">
+                                    <li><span class="pagenav">«« Start</span></li>
+                                    <li><span class="pagenav">« Prev</span></li>
+                                    <li><span class="pagenav"> 1 </span></li>
+                                    <li><a href="#" class="pagenav"><strong>2</strong></a></li>
+                                    <li><a href="#" class="pagenav" title="Next"> Next »</a></li>
+                                    <li><a href="#" class="pagenav" title="End"> End »»</a></li>
+                                </ul>
+                                <br/>
+                                <div class="pagenav">
+                                    Display#
+                                    <select class="inputbox">
+                                        <option value="5" >5</option>
+                                        <option value="10" selected="selected">10</option>
+                                        <option value="20" >20</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

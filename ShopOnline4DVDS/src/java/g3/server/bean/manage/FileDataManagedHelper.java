@@ -15,7 +15,8 @@ import org.hibernate.Transaction;
  *
  * @author Administrator
  */
-public class FileDataManagedHelper extends BaseHelper{
+public class FileDataManagedHelper extends BaseHelper {
+
     private static FileDataManagedHelper instance;
 
     private FileDataManagedHelper() {
@@ -34,28 +35,6 @@ public class FileDataManagedHelper extends BaseHelper{
         Query query = session.createQuery(hql);
         beginTransaction.commit();
         return query.list();
-    }
-
-    public boolean save(FileData curFileData) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.save(curFileData);
-        beginTransaction.commit();
-        if (curFileData.getId() != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    void del(FileData item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.delete(item);
-        beginTransaction.commit();
-
-    }
-
-    void update(FileData item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.update(item);
     }
 
     List<FileData> getAllFileDatasDeleted() {

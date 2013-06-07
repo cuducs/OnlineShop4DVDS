@@ -42,28 +42,6 @@ public class ProductManagedHelper extends BaseHelper {
         return query.list();
     }
 
-    public boolean save(Dvd curDvd) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.save(curDvd);
-        beginTransaction.commit();
-        if (curDvd.getId() != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public void del(Dvd item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.delete(item);
-        beginTransaction.commit();
-
-    }
-
-    public void update(Dvd item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.update(item);
-    }
-
     public List<Dvd> getAllDvdsDeleted() {
         Transaction beginTransaction = session.beginTransaction();
         String hql = "FROM Dvd d WHERE d.isDeleted=1";

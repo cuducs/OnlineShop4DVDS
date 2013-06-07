@@ -36,28 +36,6 @@ public class SongManagedHelper extends BaseHelper{
         return query.list();
     }
 
-    public boolean save(Song curSong) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.save(curSong);
-        beginTransaction.commit();
-        if (curSong.getId() != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    void del(Song item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.delete(item);
-        beginTransaction.commit();
-
-    }
-
-    void update(Song item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.update(item);
-    }
-
     List<Song> getAllSongsDeleted() {
         Transaction beginTransaction = session.beginTransaction();
         String hql = "FROM Song g WHERE g.isDeleted=1";

@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:gct="http://g3.com/tags"
-      >
+
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -15,15 +16,20 @@
                         <!--front-->
                         <div class="product_image_container">
                             <div class="product_image_shadow"></div>
-                            <a title="American Duet - Hartford Maple" href="#">
-                                <div class="corner-left-top"></div><div class="corner-right-top"></div><div class="corner-right-bot"></div><div class="corner-left-bot"></div>
-                                <img src="/ShopOnline4DVDS/resources/customerver2/all/Product80_resized.png" height="329" width="220" alt="American Duet - Hartford Maple" border="0"/> </a>
+                            <div class="corner-left-top"></div>
+                            <div class="corner-right-top"></div>
+                            <div class="corner-right-bot"></div>
+                            <div class="corner-left-bot"></div>
+                            <img src="#{appConstant.PRODUCT_IMAGE_PATH}#{product.imgCover}" height="329" width="220" alt="#{product.title}" border="0"/>
+
                         </div>
                         <!--slide more info-->
                         <div class="bg">
 
                             <div class="product_name">
-                                <a class="product_name" title="American Duet - Hartford Maple" href="#">American Duet - Hartford Maple</a>
+                                <h:link class="product_name" value="#{product.title}" outcome="details" target="_blank">
+                                    <f:param value="#{product.id}" name="productid"></f:param>
+                                </h:link>
                             </div>
 
                             <div class="product-options">
@@ -31,26 +37,14 @@
 
                                 <div class="box_product_price"><em>Price:</em>
                                     <span class="productPrice">
-                                        $ 112.98 </span>
-                                    <span class="product-Old-Price">
-                                        $ 120.00 </span>
+                                        $ #{product.price} </span>
                                 </div>
 
 
                                 <div class="product_buttons">
-                                    <form action="./all/Welcome to the Frontpage.htm" method="post" name="addtocart" id="addtocart">
-                                        <input type="hidden" name="option" value="com_virtuemart"/>
-                                        <input type="hidden" name="page" value="shop.cart"/>
-                                        <input type="hidden" name="Itemid" value="29"/>
-                                        <input type="hidden" name="func" value="cartAdd"/>
-                                        <input type="hidden" name="prod_id" value="80"/>
-                                        <input type="hidden" name="product_id" value="80"/>
-                                        <input type="hidden" name="quantity" value="1"/>
-                                        <input type="hidden" name="set_price[]" value=""/>
-                                        <input type="hidden" name="adjust_price[]" value=""/>
-                                        <input type="hidden" name="master_product[]" value=""/>
-                                        <input type="submit" class="addtocart_button" value="Add to Cart" title="Add to Cart"/>
-                                    </form>
+                                    <h:form>
+                                        <h:commandButton class="addtocart_button" action="#{cartManagedBean.add(product.id)}" value="Add to Cart"></h:commandButton>
+                                    </h:form>
                                 </div>
 
                             </div>

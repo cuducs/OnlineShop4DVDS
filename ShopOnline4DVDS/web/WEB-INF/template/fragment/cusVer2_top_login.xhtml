@@ -18,7 +18,9 @@
             </div>
             <div class="header-splash"></div>
             <div id="logo">
-                <a href="#"><img alt="" src="/ShopOnline4DVDS/resources/customerver2/all/logo.png"/></a>
+                <h:link outcome="welcome">
+                    <img alt="" src="/ShopOnline4DVDS/resources/customerver2/all/logo.png"/>
+                </h:link>
             </div>
             <div class="currency">
                 <div class="moduletable">
@@ -41,7 +43,7 @@
             <div class="cart">
                 <div class="moduletable">
                     <div class="vmCartModule">
-                        <a href="#">0</a>
+                        <h:link outcome="cart">#{cartManagedBean.totalItems}</h:link>
                     </div> </div>
             </div>
         </ui:composition>

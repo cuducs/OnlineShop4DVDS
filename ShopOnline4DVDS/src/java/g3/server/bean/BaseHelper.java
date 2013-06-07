@@ -31,4 +31,16 @@ public class BaseHelper {
         return session;
     }
 
+    public void save(Object item) {
+        session.save(item);
+    }
+
+    public void del(Object item) {
+        session.delete(item);
+
+    }
+
+    public void update(Object item) {
+        session.update(item);
+    }
 }
