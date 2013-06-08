@@ -33,12 +33,22 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/user/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>cuslistproduct</from-outcome>
             <to-view-id>/user/listproduct.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>cart</from-outcome>
             <to-view-id>/user/cart.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>profile</from-outcome>
+            <to-view-id>/member/profile.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

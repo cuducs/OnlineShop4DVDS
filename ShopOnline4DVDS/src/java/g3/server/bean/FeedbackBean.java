@@ -250,7 +250,7 @@ public class FeedbackBean {
                     result = "Invalid content, content must be larger 10 chars.";
                 } else {
                     int customerId = ((Member) ss.getAttribute("member")).getId();
-                    String sql = "insert into Feedback values (" + customerId + ", '" + DvdStoreHibernateUtil.currenrTime() + "', N'" + content + "', 0, N'', '" + DvdStoreHibernateUtil.currenrTime() + "', '" + DvdStoreHibernateUtil.currenrTime() + "', 0)";
+                    String sql = "insert into Feedback values (" + customerId + ", N'" + content + "', 0, N'', '" + DvdStoreHibernateUtil.currenrTime() + "', '" + DvdStoreHibernateUtil.currenrTime() + "', 0)";
                     getSession().createSQLQuery(sql).executeUpdate();
                     getSession().beginTransaction().commit();
                     result = "1";//Thank for your feedback!";
