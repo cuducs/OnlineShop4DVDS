@@ -4,24 +4,47 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:gct="http://g3.com/tags"
-      
-      xmlns:f="http://java.sun.com/jsf/core">
+
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition>
-            Input Search:<br/>
-            <label>ID</label><h:inputText value="#{fileDataManagedBean.searchFileData.id}">
-                <f:converter converterId="ZeroConverter"></f:converter>
-            </h:inputText><br/>
-            <label>Title</label><h:inputText value="#{fileDataManagedBean.searchFileData.title}">
-            </h:inputText><br/>
-            <label>Url</label><h:inputText value="#{fileDataManagedBean.searchFileData.url}">
-            </h:inputText><br/>
-            <label>Type</label><h:inputText value="#{fileDataManagedBean.searchFileData.type}">
-            </h:inputText><br/>
-            <h:commandButton value="Search" action="#{fileDataManagedBean.search()}"></h:commandButton><br/>
+            <div class="element">
+                <div class="split1">
+                    <label>ID</label>
+                    <p:inputText id="inputid" value="#{fileDataManagedBean.searchFileData.id}" style="width:200px;">
+                        <f:converter converterId="ZeroConverter"></f:converter>
+                    </p:inputText>
+                    <p:watermark for="inputid" value="ID"></p:watermark>
+                </div>
+                <div class="split2">
+                    <label>Title</label>
+                    <p:inputText id="inputtitle" value="#{fileDataManagedBean.searchFileData.title}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputtitle" value="Title"></p:watermark>
+                </div>
+                <div class="splitclear"></div>
+            </div>
+            <div class="element">
+                <div class="split1">
+                    <label>Url</label>
+                    <p:inputText id="inputurl" value="#{fileDataManagedBean.searchFileData.url}" style="width:200px;"></p:inputText>
+                    <p:watermark for="inputurl" value="Url"></p:watermark>
+                </div>
+                <div class="split2">
+                    <label>Type</label>
+                    <h:selectOneMenu id="selecttype" value="#{fileDataManagedBean.searchFileData.type}">  
+                        <f:selectItems value="#{fileDataManagedBean.listType}" />  
+                    </h:selectOneMenu> 
+                </div>
+                <div class="splitclear"></div>
+            </div>
+
+            <div class="entry">
+                <h:commandButton class="button" value="Search" action="#{fileDataManagedBean.search()}"></h:commandButton><br/>
+            </div>
 
             Result :<br/>
             <gct:common-list controller="#{fileDataManagedBean}" list="#{fileDataManagedBean.resustSearch}" objectmapfile="#{objectmapfile}" for="mapfile" from="show"></gct:common-list>

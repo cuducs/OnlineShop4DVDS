@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="DvdStoreVer2" match-schema="dbo"/>
+  <table-filter match-name="Promotion"/>
+  <table-filter match-name="Album"/>
+  <table-filter match-name="Advertising"/>
+  <table-filter match-name="PromotionRegister"/>
+  <table-filter match-name="Song"/>
+  <table-filter match-name="Category"/>
+  <table-filter match-name="Genre"/>
+  <table-filter match-name="Manage"/>
+  <table-filter match-name="Member"/>
+  <table-filter match-name="News"/>
+  <table-filter match-name="FileData"/>
+  <table-filter match-name="AlbumMusicMapping"/>
+  <table-filter match-name="DVD"/>
+  <table-filter match-name="Supplier"/>
+  <table-filter match-name="Bill"/>
+  <table-filter match-name="ManagePermissionMapping"/>
+  <table-filter match-name="Browser"/>
+  <table-filter match-name="Permission"/>
+  <table-filter match-name="Artist"/>
+  <table-filter match-name="Report"/>
+  <table-filter match-name="Feedback"/>
+  <table-filter match-name="BillDetail"/>
+  <table-filter match-name="Producer"/>
+  <table-filter match-name="Comment"/>
+  <table-filter match-name="MappingTable"/>
+  <table-filter match-name="ObjectOfBrowsingRule"/>
+</hibernate-reverse-engineering>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=DvdStoreVer2</property>
+    <property name="hibernate.connection.username">Loog </property>
+    <property name="hibernate.connection.password">123456</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">managed</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="g3/hibernate/entity/Artist.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/PromotionRegister.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Permission.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Producer.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/News.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Manage.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Song.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Category.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/FileData.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Feedback.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/AlbumMusicMapping.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/BillDetail.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Member.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Promotion.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Supplier.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Comment.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Dvd.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Browser.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/ManagePermissionMapping.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Report.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Album.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Bill.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/Advertising.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/MappingTable.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/ObjectOfBrowsingRule.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

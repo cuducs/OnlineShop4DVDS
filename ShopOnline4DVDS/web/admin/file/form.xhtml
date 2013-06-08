@@ -9,40 +9,49 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
+                <div class="full_w">
+                    <div class="h_title">File Form</div>
+                    <h:form>
+                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <div class="element">
+                            <label>Title</label>
+                            <p:inputText id="inputtitle" value="#{fileDataManagedBean.curFileData.title}" style="width:200px;"></p:inputText>
+                            <p:watermark for="inputtitle" value="Title"></p:watermark>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>File Url</label>
+                                <p:inputText id="inputurl" value="#{fileDataManagedBean.curFileData.url}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputurl" value="File Url"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Type</label>
+                                <h:selectOneMenu id="selecttype" value="#{fileDataManagedBean.curFileData.type}">  
+                                    <f:selectItems value="#{fileDataManagedBean.listType}" />  
+                                </h:selectOneMenu> 
 
-                <h2>File Form</h2>
-                <div class="form">
-                    <h:form class="niceform" enctype="multipart/form-data">
-                        <fieldset>
-                            <dl>
-                                <dt><label>Title :</label></dt>
-                                <dd><h:inputText value="#{fileDataManagedBean.curFileData.title}"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Select File :</label></dt>
-                                <dd><p:fileUpload fileUploadListener="#{fileDataManagedBean.handleFileUpload}"  
-                                                  mode="advanced"   
-                                                  update="messages"  
-                                                  sizeLimit="100000"   
-                                                  allowTypes="/(\.|\/)(gif|jpe?g|png|mp3)$/"/>  
+                            </div>
+                            <div class="splitclear"></div>
+                        </div><label>Select File :</label>
+                        <p:fileUpload fileUploadListener="#{fileDataManagedBean.handleFileUpload}"  
+                                      mode="advanced"   
+                                      update="messages"  
+                                      sizeLimit="50000000"   
+                                      allowTypes="/(\.|\/)(gif|jpe?g|png|mp3)$/"/>  
 
-                                    <p:messages id="messages" showDetail="true"/></dd>
-                            </dl>
-                            <dl class="submit">
-                                <dt></dt>
-                                <dd>
-                                    <h:panelGroup rendered="#{fileDataManagedBean.mode eq appConstant.modeCreate}">
-                                        <h:commandButton value="Create" action="#{movieManagedBean.save()}"></h:commandButton>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{fileDataManagedBean.mode eq appConstant.modeEdit}">
-                                        <h:commandButton value="Edit" action="#{fileDataManagedBean.update()}"></h:commandButton>
-                                    </h:panelGroup>
-                                    <h:commandButton value="Cancel" action="#{fileDataManagedBean.cancel()}"></h:commandButton>
-                                </dd>
-                            </dl>
-                        </fieldset>
+                        <p:messages id="messages" showDetail="true"/>
+                        <div class="entry">
+                            <h:panelGroup  rendered="#{fileDataManagedBean.mode eq appConstant.modeCreate}">
+                                <h:commandButton class="button add" value="Create" action="#{fileDataManagedBean.save()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{fileDataManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton  class="button" value="Edit" action="#{fileDataManagedBean.update()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{fileDataManagedBean.cancel()}"></h:commandButton>
+                        </div>
+
                     </h:form>
                 </div>
 

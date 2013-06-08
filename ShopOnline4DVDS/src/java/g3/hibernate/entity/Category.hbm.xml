@@ -1,33 +1,38 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated May 23, 2013 8:04:28 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="g3.hibernate.entity.Category" table="Category" schema="dbo" catalog="DVDStore">
-        <id name="id" type="int">
-            <column name="Id" />
-            <generator class="identity" />
-        </id>
-        <property name="name" type="string">
-            <column name="Name" />
-        </property>
-        <property name="query" type="string">
-            <column name="Query" />
-        </property>
-        <property name="description" type="string">
-            <column name="Description" />
-        </property>
-        <property name="categoryParentId" type="java.lang.Integer">
-            <column name="CategoryParentId" />
-        </property>
-        <property name="createdDate" type="timestamp">
-            <column name="CreatedDate" length="23" />
-        </property>
-        <property name="modifiedDate" type="timestamp">
-            <column name="ModifiedDate" length="23" />
-        </property>
-        <property name="isDeleted" type="boolean">
-            <column name="IsDeleted" not-null="true" />
-        </property>
-    </class>
+  <class catalog="DvdStoreVer2" name="g3.hibernate.entity.Category" schema="dbo" table="Category">
+    <id name="id" type="int">
+      <column name="Id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="name" type="string">
+      <column name="Name"/>
+    </property>
+    <property name="query" type="string">
+      <column name="Query"/>
+    </property>
+    <property name="description" type="string">
+      <column name="Description"/>
+    </property>
+    <property name="categoryParentId" type="int">
+      <column name="CategoryParentId"/>
+    </property>
+    <property name="createdDate" type="timestamp">
+      <column length="23" name="CreatedDate"/>
+    </property>
+    <property name="modifiedDate" type="timestamp">
+      <column length="23" name="ModifiedDate"/>
+    </property>
+    <property name="isDeleted" type="boolean">
+      <column name="IsDeleted" not-null="true"/>
+    </property>
+    <property name="woodenLeg" type="string">
+      <column name="WoodenLeg"/>
+    </property>
+    <property name="cateLevel" type="int">
+      <column name="CateLevel" not-null="true"/>
+    </property>
+  </class>
 </hibernate-mapping>

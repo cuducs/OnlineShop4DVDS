@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div id="search">
+
+                <div class="moduletable">
+                    <h3>Search:</h3>
+                    <form action="" method="post">
+                        <div class="search">
+                            <input name="searchword" id="mod_search_searchword" maxlength="800" alt="" class="inputbox" type="text" size="800" value="Enter search keywords here" />
+                            <input type="submit" value="" class="button" onclick="this.form.searchword.focus();"/> </div>
+                        <input type="hidden" name="task" value="search"/>
+                        <input type="hidden" name="option" value="com_search"/>
+                        <input type="hidden" name="Itemid" value="1"/>
+                    </form> </div>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>

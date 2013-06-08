@@ -38,28 +38,6 @@ public class BrowserManagedHelper extends BaseHelper {
         return query.list();
     }
 
-    public boolean save(Browser curBrowser) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.save(curBrowser);
-        beginTransaction.commit();
-        if (curBrowser.getId() != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    void del(Browser item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.delete(item);
-        beginTransaction.commit();
-
-    }
-
-    void update(Browser item) {
-        Transaction beginTransaction = session.beginTransaction();
-        session.update(item);
-    }
-
     List<Browser> search(Browser searchBrowser) {
         Criteria criteria = session.createCriteria(Browser.class);
         if (searchBrowser.getId() > 0) {
@@ -68,8 +46,8 @@ public class BrowserManagedHelper extends BaseHelper {
         if (searchBrowser.getParentId() >= 0) {
             criteria.add(org.hibernate.criterion.Expression.eq("parentId", searchBrowser.getParentId()));
         }
-        if (!"".equals(searchBrowser.getQuery())) {
-            criteria.add(org.hibernate.criterion.Expression.ilike("query", "%" + searchBrowser.getQuery() + "%"));
+        if (!"".equals(searchBrowser.getQuerySearch())) {
+            criteria.add(org.hibernate.criterion.Expression.ilike("query", "%" + searchBrowser.getQuerySearch() + "%"));
         }
         if (!"".equals(searchBrowser.getTitle())) {
             criteria.add(org.hibernate.criterion.Expression.ilike("title", "%" + searchBrowser.getTitle() + "%"));

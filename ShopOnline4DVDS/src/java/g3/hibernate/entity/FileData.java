@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -24,8 +24,10 @@ public class FileData  implements java.io.Serializable {
     }
 
 	
-    public FileData(int id, boolean isDeleted) {
+    public FileData(int id, Date createdDate, Date modifiedDate, boolean isDeleted) {
         this.id = id;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
         this.isDeleted = isDeleted;
     }
     public FileData(int id, String title, String url, String type, Integer viewCount, Date createdDate, Date modifiedDate, boolean isDeleted) {

@@ -9,12 +9,17 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h:link value="Return List" outcome="show"></h:link><br/>
-                    <gct:mapping-file objectmapfile="#{songManagedBean}"></gct:mapping-file>
-                </h:form>
+                <div class="full_w">
+                    <h2 class="h_title">Map File For Song</h2>
+                    <h:form>
+                        <div class="entry">
+                            <h:link class="button" value="Return List" outcome="show"></h:link>
+                        </div>
+                        <gct:mapping-file objectmapfile="#{songManagedBean}"></gct:mapping-file>
+                    </h:form>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

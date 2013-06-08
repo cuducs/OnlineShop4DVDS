@@ -4,28 +4,24 @@
  */
 package g3.server.bean;
 
+import g3.server.bean.utility.AppConstant;
 import g3.hibernate.entity.Bill;
 import g3.hibernate.entity.BillDetail;
-import g3.hibernate.entity.BillDetailId;
-import g3.hibernate.entity.CartItem;
 import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.Member;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -104,7 +100,7 @@ public class BillBean {
     public String createBill() {
         if (ValidateBean.validEmpty(bill.getDeliveryAddress()) && ValidateBean.validEmpty(bill.getPhone()) && ValidateBean.validEmpty(bill.getCustomerName())) {
             Date date = new Date();
-            bill.setOrderDate(date);
+            bill.setCreatedDate(date);
             bill.setIsDeleted(false);
             bill.setStatus((short) AppConstant.BILL_STATUS_WAIT);
             CartManagedBean cmb = (CartManagedBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cartManagedBean");
@@ -113,10 +109,10 @@ public class BillBean {
             bill.setMemberId(m.getId());
             bill.setTotal(BigDecimal.valueOf(cmb.getTotal()));
             if (billHelper.save(bill)) {
-                for (CartItem ci : cmb.getListCart()) {
-                    BillDetail bd = new BillDetail(new BillDetailId(bill.getId(), ci.getProduct().getId()), ci.getProduct().getPrice(), ci.getCount());
-                    billDetailHelper.save(bd);
-                }
+//                for (CartItem ci : cmb.getListCart()) {
+//                    BillDetail bd = new BillDetail(new BillDetailId(bill.getId(), ci.getProduct().getId()), ci.getProduct().getPrice(), ci.getCount());
+//                    billDetailHelper.save(bd);
+//                }
                 return "history.xhtml";
             } else {
                 return "order.xhtml";
@@ -331,7 +327,7 @@ public class BillBean {
 
     public Dvd getDvddetail() {
         try {
-            dvddetail = (Dvd) getSession().createQuery("FROM Dvd d WHERE d.id = " + getBilldetail().getId().getProductId()).uniqueResult();
+            dvddetail = (Dvd) getSession().createQuery("FROM Dvd d WHERE d.id = " + getBilldetail().getId().getDvdId()).uniqueResult();
 
         } catch (Exception ex) {
             dvddetail = null;

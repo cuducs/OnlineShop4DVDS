@@ -4,68 +4,112 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:gct="http://g3.com/tags">
+      xmlns:gct="http://g3.com/tags"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
-                <gct:redirect outcome="productshow" value="#{productManagedBean.curDvd}" expect="#{null}"></gct:redirect>
-                <h2>Product Form</h2>
-                <div class="form">
-                    <h:form class="niceform">
-                        <fieldset>
-                            <dl>
-                                <dt><label>Title :</label></dt>
-                                <dd><h:inputText value="#{productManagedBean.curDvd.title}" size="54"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Author :</label></dt>
-                                <dd><h:inputText value="#{productManagedBean.curDvd.author}" size="54"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Genres :</label></dt>
-                                <dd><h:inputText value="#{productManagedBean.curDvd.genres}" size="54"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Price :</label></dt>
-                                <dd><h:inputText value="#{productManagedBean.curDvd.price}" size="54"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Image Url :</label></dt>
-                                <dd><h:inputText value="#{productManagedBean.curDvd.imageCoverUrl}" size="54"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Number of Disc :</label></dt>
-                                <dd><h:inputText value="#{productManagedBean.curDvd.discNumber}" size="54"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Type :</label></dt>
-                                <dd><h:selectOneMenu value="#{productManagedBean.curDvd.type}">
-                                        <f:selectItems var="item" value="#{productManagedBean.listType}" ></f:selectItems>
-                                    </h:selectOneMenu></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Description :</label></dt>
-                                <dd>
-                                    <h:inputTextarea value="#{productManagedBean.curDvd.description}" rows="5" cols="36"></h:inputTextarea>
-                                </dd>
-                            </dl>
-                            <dl class="submit">
-                                <dt></dt>
-                                <dd>
-                                    <h:panelGroup rendered="#{productManagedBean.mode eq appConstant.modeCreate}">
-                                        <h:commandButton value="Create" action="#{productManagedBean.save()}"></h:commandButton>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{productManagedBean.mode eq appConstant.modeEdit}">
-                                        <h:commandButton value="Edit" action="#{productManagedBean.update()}"></h:commandButton>
-                                    </h:panelGroup>
-                                    <h:commandButton value="Cancel" action="#{productManagedBean.cancel()}"></h:commandButton>
-                                </dd>
+                <!--<gct:redirect outcome="productshow" value="#{productManagedBean.curDvd}" expect="#{null}"></gct:redirect>-->
+                <div class="full_w">
+                    <div class="h_title">Product Filter</div>
+                    <h:form>
+                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <div class="element">
+                            <label>Title</label>
+                            <p:inputText id="inputtitle" value="#{productManagedBean.curDvd.title}" style="width:200px;"></p:inputText>
+                            <p:watermark for="inputtitle" value="Title"></p:watermark>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Author</label>
+                                <p:inputText id="inputauthor" value="#{productManagedBean.curDvd.author}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputauthor" value="Author"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Release Date</label>
+                                <p:inputText id="inputdate" value="#{productManagedBean.curDvd.releaseDate}" style="width:200px;">
+                                    <f:convertDateTime pattern="d-M-yyyy" />
+                                </p:inputText>
+                                <p:watermark for="inputdate" value="Release Date(Format d-M-yyyy)"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Price</label>
+                                <p:inputText id="inputprice" value="#{productManagedBean.curDvd.price}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputprice" value="Price"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Disc Number</label>
+                                <p:inputText id="inputdisc" value="#{productManagedBean.curDvd.discNumber}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputdisc" value="Number of Disc"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Genres</label>
+                                <p:inputText id="inputgenres" value="#{productManagedBean.curDvd.genres}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputgenres" value="Genres"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Type</label>
+                                <h:selectOneMenu id="selecttype" value="#{productManagedBean.curDvd.type}">  
+                                    <f:selectItem itemLabel="Select Type" itemValue="" />  
+                                    <f:selectItems value="#{productManagedBean.listType}" />  
+                                </h:selectOneMenu> 
 
-                            </dl>
-                        </fieldset>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Supplier</label>
+                                <p:inputText id="inputsupplier" value="#{productManagedBean.curDvd.supplierId}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputsupplier" value="Supplier"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Producer</label>
+                                <p:inputText id="inputproducer" value="#{productManagedBean.curDvd.producerId}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputproducer" value="Producer"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Image Cover</label>
+                                <p:inputText id="inputimg" value="#{productManagedBean.curDvd.imgCover}" style="width:200px;">
+                                    
+                                </p:inputText>
+                                <p:watermark for="inputimg" value="Image Cover"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Details</label>
+                                <p:inputText id="inputdetails" value="#{productManagedBean.curDvd.details}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputdetails" value="Details"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+
+
+                        </div>
+                        <div class="element">
+                            <label>Description</label>
+                            <p:inputTextarea id="inputdes" value="#{productManagedBean.curDvd.description}" style="width:100%;" rows="10"></p:inputTextarea>
+                            <p:watermark for="inputdes" value="Description"></p:watermark>
+                        </div>
+                        <div class="entry">
+                            <h:panelGroup  rendered="#{productManagedBean.mode eq appConstant.modeCreate}">
+                                <h:commandButton class="button add" value="Create" action="#{productManagedBean.save()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup  rendered="#{productManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton class="button" value="Edit" action="#{productManagedBean.update()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{productManagedBean.cancel()}"></h:commandButton>
+                        </div>
                     </h:form>
                 </div>
             </ui:define>

@@ -100,17 +100,17 @@ public class MemberBean {
     public List<Member> getMembers() {
         return getSession().createQuery("FROM Member").list();
     }
-    
-    public String getProfileName(){
+
+    public String getProfileName() {
         String s = "";
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        if(ss.getAttribute("member")!=null){
-            Member m = (Member)ss.getAttribute("member");
+        if (ss.getAttribute("member") != null) {
+            Member m = (Member) ss.getAttribute("member");
             name = m.getName();
             password = m.getPassword();
             repassword = m.getPassword();
             s = m.getEmail();
-        }else{
+        } else {
             s = "You must login.";
         }
         return s;
@@ -126,10 +126,10 @@ public class MemberBean {
         if (vname && vemail && vpass && !isExisted(email)) {
             try {
                 String joined = DvdStoreHibernateUtil.currenrTime();
-                String sql = "insert into Member values (N'" + name + "', '" + email + "', '" + password + "', '" + joined + "', '" + joined + "', 0)";
+                String sql = "insert into Member values (N'" + name + "', '" + email + "', '" + password + "',null, '" + joined + "', '" + joined + "', 0)";
                 getSession().createSQLQuery(sql).executeUpdate();
                 getSession().beginTransaction().commit();
-                page = "login.xhtml?faces-redirect=true";
+                page = "login";
             } catch (Exception ex) {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("result", "Can not registry at this time.");
             }
@@ -174,7 +174,7 @@ public class MemberBean {
             if (mem != null) {
                 HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 ss.setAttribute("member", mem);
-                return "profile.xhtml?faces-redirect=true";
+                return "profile";
             } else {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("result", "Not exist this member or locked, please retry.");
             }
@@ -218,7 +218,8 @@ public class MemberBean {
         }
     }
     //Logout
-    public String logout(){
+
+    public String logout() {
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         ss.setAttribute("member", null);
         return "../index.xhtml?faces-redirect=true";

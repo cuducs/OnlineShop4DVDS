@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
 
 
 

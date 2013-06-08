@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div class="moduletable-categories">
+                <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/ddsmoothmenu.js"></script>
+                <div class="ddsmoothmenu" id="smoothmenu1"><div id="relative_div" style="position:relative;z-index:0"></div>
+                    <ul class="level1">
+                        <li class="level1 item1 parent" style="z-index: 100;">
+                            <h:link class="level1 item1  parent" value="Movies" outcome="cuslistproduct" style="padding-right: 23px;">
+                                <img src="/ShopOnline4DVDS/resources/customerver2/all/down.gif" class="downarrowclass" style="border:0;"/>
+                                <f:param name="type" value="#{appConstant.DVD_TYPE_MOVIE}"></f:param>
+                            </h:link>
+                            <ul class="level2" style="display: none; top: 44px; visibility: visible;">
+                                <li class="level2 item1"><a class="level2 item1 " href="#" target="_self" title="Action &amp; Adventure">
+                                        <span>Action &amp; Adventure</span></a>
+                                </li>
+                                <li class="level2 item2">
+                                    <a class="level2 item2 " href="#" target="_self" title="Animation">
+                                        <span>Animation</span></a>
+                                </li>
+                                <li class="level2 item3 parent" style="z-index: 99;">
+                                    <a class="level2 item3  parent" href="#" target="_self" title="Anime">
+                                        <span>Anime</span>
+                                        <img src="/ShopOnline4DVDS/resources/customerver2/all/right.gif" class="rightarrowclass" style="border:0;"/></a>
+                                    <ul class="level3" style="display: none; top: 0px; visibility: visible;">
+                                        <li class="level3 item1"><a class="level3 item1 " href="#" target="_self" title="Horror">
+                                                <span>Horror</span></a>
+                                        </li>
+                                        <li class="level3 item2">
+                                            <a class="level3 item2 " href="#" target="_self" title="Lorem ">
+                                                <span>Lorem </span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="level2 item4">
+                                    <a class="level2 item4 " href="#" target="_self" title="Classics">
+                                        <span>Classics</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="level1 item2 parent" style="z-index: 98;">
+                            <h:link class="level1 item1  parent" value="Games" outcome="cuslistproduct" style="padding-right: 23px;">
+                                <img src="/ShopOnline4DVDS/resources/customerver2/all/down.gif" class="downarrowclass" style="border:0;"/>
+                                <f:param name="type" value="#{appConstant.DVD_TYPE_GAME}"></f:param>
+                            </h:link>
+                            <ul class="level2" style="display: none; top: 44px; visibility: visible;">
+                                <li class="level2 item1"><a class="level2 item1 " href="#" target="_self" title="Dolor ">
+                                        <span>Dolor </span></a></li><li class="level2 item2 parent" style="z-index: 97;">
+                                    <a class="level2 item2  parent" href="#" target="_self" title="Magnum ">
+                                        <span>Magnum </span>
+                                        <img src="/ShopOnline4DVDS/resources/customerver2/all/right.gif" class="rightarrowclass" style="border:0;"/>
+                                    </a>
+                                    <ul class="level3" style="display: none; top: 0px; visibility: visible;">
+                                        <li class="level3 item1">
+                                            <a class="level3 item1 " href="#" target="_self" title="Ipsum ">
+                                                <span>Ipsum </span></a>
+                                        </li>
+                                        <li class="level3 item2">
+                                            <a class="level3 item2 " href="#" target="_self" title="Suspendisse potenti ">
+                                                <span>Suspendisse potenti </span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="level2 item3">
+                                    <a class="level2 item3 " href="#" target="_self" title="Lorem">
+                                        <span>Lorem</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="level1 item3">
+                            <h:link class="level1 item4 " value="Albums" outcome="cuslistproduct">
+                                <f:param name="type" value="#{appConstant.DVD_TYPE_MUSIC}"></f:param>
+                            </h:link>
+                        </li>
+                        <li class="level1 item4">
+                            <h:link class="level1 item4 " value="Dvds" outcome="cuslistproduct">
+                                <f:param name="type" value="#{appConstant.DVD_TYPE_ALL}"></f:param>
+                            </h:link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>

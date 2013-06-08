@@ -3,77 +3,83 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags">
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/customer/css/product_page_style.css"/>
-
-        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/customer/css/delivery_order_style.css"/>
-        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/customer/css/base_style.css"/>
-        <script type="text/javascript" src="/ShopOnline4DVDS/resources/customer/js/jquery-1.7.js"></script>
-        <script type="text/javascript" src="/ShopOnline4DVDS/resources/customer/js/jquery.tools.min.js"></script>
-        <script type="text/javascript">
-            //<![CDATA[
-    
-            function loadJquery()
-            {
-                $('img.help').tooltip({tip: '#tooltip-help', position: 'center right', offset: [6, 5], delay: 500, effect: 'fade' });
-                $(document).ready(function(){
-                    $('#future-delivery img.edit, #next-delivery img.edit').tooltip({tip: '#tooltip-edit', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
-                    $('#future-delivery img.skip, #next-delivery img.skip').tooltip({tip: '#tooltip-skip', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
-                    $('#future-delivery img.delete, #next-delivery img.delete').tooltip({tip: '#tooltip-delete', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
-                    $('#next-delivery img.edit-packed').tooltip({tip: '#tooltip-edit-packed', effect: 'fade', position: 'center right', offset: [4, 5], delay: 500});
-                });
-            }
-            //]]>
-        </script>
+        <ui:insert name="head">
+            <ui:include src="fragment/cusVer2_head.xhtml"></ui:include>
+        </ui:insert>
     </h:head>
-    <h:body onload="loadJquery()">
-        <div id="container">
-            <ui:insert name="customertopmenu">
-                <ui:include src="fragment/customertopmenu.xhtml">
+    <h:body  id="body" class="first  ext-safari">
+        <!--top-->
+        <div id="header">
 
-                </ui:include>
-            </ui:insert>
-            <div id="main">
-
-
-                <ui:insert name="customerlogo">
-                    <ui:include src="fragment/customerlogo.xhtml">
-
-                    </ui:include>
+            <div class="main">
+                <ui:insert name="top_login">
+                    <ui:include src="fragment/cusVer2_top_login.xhtml"></ui:include>
                 </ui:insert>
-                <!--main inner-->
-                <div id="main-inner">
-                    <ui:insert name="customerrightbar">
-                        <ui:include src="fragment/customerrightbar.xhtml">
+                <ui:insert name="top_menu">
+                    <ui:include src="fragment/cusVer2_top_menu.xhtml"></ui:include>
+                </ui:insert>
+                <ui:insert name="top_category">
+                    <ui:include src="fragment/cusVer2_top_category.xhtml"></ui:include>
+                </ui:insert>
+            </div>
+        </div>
 
-                        </ui:include>
-                    </ui:insert>
-                    <!--right menu-->
 
+        <div id="content">
+            <div class="main1">
+                <!--search-->
+                <ui:insert name="search">
+                    <ui:include src="fragment/cusVer2_search.xhtml"></ui:include>
+                </ui:insert>
+                <div class="wrapper2">
+                    <!--left menu-->
+                    <div id="left">
+                        <div class="wrapper2">
+                            <div class="extra-indent">
+                                <ui:insert name="browser">
+                                    <ui:include src="fragment/cusVer2_browser.xhtml"></ui:include>
+                                </ui:insert>
+                                <!--left menu part 2 60 row-->
 
-                    <!--main content-->
-                    <div id="maincol">
-                        <ui:insert name="content_wrapcategory">
-                            <ui:insert name="category">
-                                <ui:include src="fragment/category.xhtml"></ui:include>
-                            </ui:insert>
-                            <ui:insert name="content" >
-                                here is main display
-                            </ui:insert>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--content-->
+                    <div class="container">
+
+                        <!--show all product-->
+                        <ui:insert name="content">
+                            <ui:include src="fragment/cusVer2_content.xhtml"></ui:include>
                         </ui:insert>
                     </div>
                 </div>
             </div>
-            <ui:insert name="customerfooter">
-                <ui:include src="fragment/customerfooter.xhtml">
-
-                </ui:include>
-            </ui:insert>
-
         </div>
+        <div class="clear"></div>
+
+        <!--bottom-->
+        <div id="footer">
+            <div class="main">
+                <div class="space">
+                    <div class="wrapper">
+                        <div class="footerText">
+                            <ul class="menu"><li class="item29"><a href="#"><span>Online Store</span></a></li><li class="item18">
+                                    <a href="#"><span>About Us</span></a></li><li class="item30">
+                                    <a href="#"><span>Delivery</span></a></li><li class="item53">
+                                    <a href="#"><span>FAQS</span></a></li><li class="item54">
+                                    <a href="#"><span>Contacts</span></a></li></ul><div>Copyright © 2013 CD&amp;DVD. All Rights Reserved.</div>
+                            <div><a href="http://www.joomla.org/">Joomla!</a> is Free Software released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL License.</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </h:body>
 </html>
 

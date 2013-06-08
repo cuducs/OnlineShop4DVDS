@@ -4,6 +4,7 @@
  */
 package g3.server.bean;
 
+import g3.server.bean.utility.AppConstant;
 import g3.hibernate.entity.Browser;
 import g3.hibernate.entity.BrowserMenu;
 import g3.hibernate.entity.Dvd;
@@ -142,7 +143,7 @@ public class BrowserManagedBean {
 
     public List<Dvd> execQuery() {
         Session session = helper.getSession();
-        Query query = session.createQuery(curBrowser.getQuery());
+        Query query = session.createQuery(curBrowser.getQuerySearch());
         return query.list();
     }
 
@@ -203,7 +204,7 @@ public class BrowserManagedBean {
     }
     
     public String browser(Browser browser){
-        browserDvd=helper.getSession().createQuery(browser.getQuery()).list();
+        browserDvd=helper.getSession().createQuery(browser.getQuerySearch()).list();
         return "showproduct";
     }
 }

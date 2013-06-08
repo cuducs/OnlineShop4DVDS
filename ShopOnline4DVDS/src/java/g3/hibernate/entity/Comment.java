@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -12,9 +12,9 @@ public class Comment  implements java.io.Serializable {
 
 
      private int id;
+     private String title;
      private int memberId;
-     private int productId;
-     private Date submittedDate;
+     private int dvdId;
      private String commentText;
      private Date createdDate;
      private Date modifiedDate;
@@ -23,18 +23,11 @@ public class Comment  implements java.io.Serializable {
     public Comment() {
     }
 
-	
-    public Comment(int id, int memberId, int productId, boolean isDeleted) {
-        this.id = id;
-        this.memberId = memberId;
-        this.productId = productId;
-        this.isDeleted = isDeleted;
-    }
-    public Comment(int id, int memberId, int productId, Date submittedDate, String commentText, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Comment(int id, String title, int memberId, int dvdId, String commentText, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
+       this.title = title;
        this.memberId = memberId;
-       this.productId = productId;
-       this.submittedDate = submittedDate;
+       this.dvdId = dvdId;
        this.commentText = commentText;
        this.createdDate = createdDate;
        this.modifiedDate = modifiedDate;
@@ -48,6 +41,13 @@ public class Comment  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
+    public String getTitle() {
+        return this.title;
+    }
+    
+    public void setTitle(String title) {
+        this.title = title;
+    }
     public int getMemberId() {
         return this.memberId;
     }
@@ -55,19 +55,12 @@ public class Comment  implements java.io.Serializable {
     public void setMemberId(int memberId) {
         this.memberId = memberId;
     }
-    public int getProductId() {
-        return this.productId;
+    public int getDvdId() {
+        return this.dvdId;
     }
     
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-    public Date getSubmittedDate() {
-        return this.submittedDate;
-    }
-    
-    public void setSubmittedDate(Date submittedDate) {
-        this.submittedDate = submittedDate;
+    public void setDvdId(int dvdId) {
+        this.dvdId = dvdId;
     }
     public String getCommentText() {
         return this.commentText;

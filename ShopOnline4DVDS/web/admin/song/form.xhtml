@@ -3,54 +3,68 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
+                <div class="full_w">
+                    <div class="h_title">Song Form</div>
+                    <h:form>
+                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Title</label>
+                                <p:inputText id="inputtitle" value="#{songManagedBean.curSong.title}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputtitle" value="Title"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Free</label>
+                                <p:selectBooleanCheckbox id="inputfree" value="#{songManagedBean.curSong.isFree}"></p:selectBooleanCheckbox>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
+                            <div class="split1">
+                                <label>Singer</label>
+                                <p:inputText id="inputsinger" value="#{songManagedBean.curSong.singerId}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputsinger" value="Singer"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Composer</label>
+                                <p:inputText id="inputcomposer" value="#{songManagedBean.curSong.composerId}" style="width:200px;">
+                                </p:inputText>
+                                <p:watermark for="inputcomposer" value="Composer"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+                        <div class="element">
 
-                <h2>Movie Form</h2>
-                <div class="form">
-                    <h:form class="niceform">
-                        <fieldset>
-                            <dl>
-                                <dt><label>Title :</label></dt>
-                                <dd><h:inputText value="#{songManagedBean.curSong.title}"></h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Runtime :</label></dt>
-                                <dd><h:inputText value="#{songManagedBean.curSong.runtime}">
-                                        <f:converter converterId="TimeConverter"></f:converter>
-                                    </h:inputText></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Free :</label></dt>
-                                <dd><h:selectBooleanCheckbox value="#{songManagedBean.curSong.isFree}"></h:selectBooleanCheckbox></dd>
-                            </dl>
-                            <dl>
-                                <dt><label>Lyrics :</label></dt>
-                                <dd>
-                                    <h:inputTextarea value="#{songManagedBean.curSong.lyrics}" rows="5" cols="36"></h:inputTextarea>
-                                </dd>
-                            </dl>
-                            <dl class="submit">
-                                <dt></dt>
-                                <dd>
-                                <h:panelGroup rendered="#{songManagedBean.mode eq appConstant.modeCreate}">
-                                    <h:commandButton value="Create" action="#{songManagedBean.save()}"></h:commandButton>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
-                                    <h:commandButton value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
-                                </h:panelGroup>
-                                <h:commandButton value="Cancel" action="#{songManagedBean.cancel()}"></h:commandButton>
-                                </dd>
-                            </dl>
-                        </fieldset>
+                            <label>Info</label>
+                            <p:inputTextarea id="inputinfo" value="#{songManagedBean.curSong.info}" style="width:100%;" rows="10"></p:inputTextarea>
+                            <p:watermark for="inputinfo" value="Information"></p:watermark>
+                        </div>
+                        <div class="element">
+                            <label>Lyrics</label>
+                            <p:inputTextarea id="inputlyics" value="#{songManagedBean.curSong.lyrics}"  style="width:100%;" rows="10"></p:inputTextarea>
+                            <p:watermark for="inputlyics" value="Lyrics"></p:watermark>
+                        </div>
+
+                        <div class="entry">
+                            <h:panelGroup  rendered="#{songManagedBean.mode eq appConstant.modeCreate}">
+                                <h:commandButton class="button add" value="Create" action="#{songManagedBean.save()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup class="button" rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{songManagedBean.cancel()}"></h:commandButton>
+                        </div>
+
                     </h:form>
                 </div>
-
             </ui:define>
         </ui:composition>
     </h:body>

@@ -29,7 +29,7 @@ public class DvdStoreHibernateUtil {
             // config file.
             
             sessionFactory = new Configuration().configure(
-					"/g3/hibernate/config/dvdStore.cfg.xml")
+					"/g3/hibernate/config/dvdStoreVer2.cfg.xml")
 					.buildSessionFactory();
             
 //            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();

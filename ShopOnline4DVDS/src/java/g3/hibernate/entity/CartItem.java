@@ -9,6 +9,7 @@ package g3.hibernate.entity;
  * @author TrungDuc
  */
 public class CartItem {
+
     private Dvd product;
     private Integer count;
 
@@ -34,5 +35,9 @@ public class CartItem {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public double getTotalPrice() {
+        return (product.getPrice() * count);
     }
 }

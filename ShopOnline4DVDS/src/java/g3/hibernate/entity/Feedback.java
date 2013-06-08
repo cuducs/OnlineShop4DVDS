@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -12,10 +12,9 @@ public class Feedback  implements java.io.Serializable {
 
 
      private int id;
-     private Integer customerId;
-     private Date submittedDate;
+     private Integer memberId;
      private String feedbackText;
-     private boolean isRead;
+     private Boolean isRead;
      private String replyText;
      private Date createdDate;
      private Date modifiedDate;
@@ -25,14 +24,15 @@ public class Feedback  implements java.io.Serializable {
     }
 
 	
-    public Feedback(int id, boolean isDeleted) {
+    public Feedback(int id, Date createdDate, Date modifiedDate, boolean isDeleted) {
         this.id = id;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
         this.isDeleted = isDeleted;
     }
-    public Feedback(int id, Integer customerId, Date submittedDate, String feedbackText, boolean isRead, String replyText, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Feedback(int id, Integer memberId, String feedbackText, Boolean isRead, String replyText, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
-       this.customerId = customerId;
-       this.submittedDate = submittedDate;
+       this.memberId = memberId;
        this.feedbackText = feedbackText;
        this.isRead = isRead;
        this.replyText = replyText;
@@ -48,19 +48,12 @@ public class Feedback  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Integer getCustomerId() {
-        return this.customerId;
+    public Integer getMemberId() {
+        return this.memberId;
     }
     
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
-    public Date getSubmittedDate() {
-        return this.submittedDate;
-    }
-    
-    public void setSubmittedDate(Date submittedDate) {
-        this.submittedDate = submittedDate;
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
     }
     public String getFeedbackText() {
         return this.feedbackText;
@@ -69,7 +62,7 @@ public class Feedback  implements java.io.Serializable {
     public void setFeedbackText(String feedbackText) {
         this.feedbackText = feedbackText;
     }
-    public boolean getIsRead() {
+    public Boolean getIsRead() {
         return this.isRead;
     }
     

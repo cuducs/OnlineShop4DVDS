@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -13,7 +13,6 @@ public class Bill  implements java.io.Serializable {
 
 
      private int id;
-     private Date orderDate;
      private BigDecimal total;
      private Short status;
      private String customerName;
@@ -21,19 +20,22 @@ public class Bill  implements java.io.Serializable {
      private String phone;
      private String message;
      private Integer memberId;
+     private Date createdDate;
+     private Date modifiedDate;
      private boolean isDeleted;
 
     public Bill() {
     }
 
 	
-    public Bill(int id, boolean isDeleted) {
+    public Bill(int id, Date createdDate, Date modifiedDate, boolean isDeleted) {
         this.id = id;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
         this.isDeleted = isDeleted;
     }
-    public Bill(int id, Date orderDate, BigDecimal total, Short status, String customerName, String deliveryAddress, String phone, String message, Integer memberId, boolean isDeleted) {
+    public Bill(int id, BigDecimal total, Short status, String customerName, String deliveryAddress, String phone, String message, Integer memberId, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
-       this.orderDate = orderDate;
        this.total = total;
        this.status = status;
        this.customerName = customerName;
@@ -41,6 +43,8 @@ public class Bill  implements java.io.Serializable {
        this.phone = phone;
        this.message = message;
        this.memberId = memberId;
+       this.createdDate = createdDate;
+       this.modifiedDate = modifiedDate;
        this.isDeleted = isDeleted;
     }
    
@@ -50,13 +54,6 @@ public class Bill  implements java.io.Serializable {
     
     public void setId(int id) {
         this.id = id;
-    }
-    public Date getOrderDate() {
-        return this.orderDate;
-    }
-    
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
     }
     public BigDecimal getTotal() {
         return this.total;
@@ -106,6 +103,20 @@ public class Bill  implements java.io.Serializable {
     
     public void setMemberId(Integer memberId) {
         this.memberId = memberId;
+    }
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
+    
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+    public Date getModifiedDate() {
+        return this.modifiedDate;
+    }
+    
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
     public boolean isIsDeleted() {
         return this.isDeleted;

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/customerTemplate_1.xhtml">
+            <ui:define name="content">
+                <div class="content-indent" style="width:701px;">
+                    <div id="vmMainPage">
+                        <div class="pad-top">
+                            <div class="Product-border">
+                                <div class="wrapper">
+                                    <div class="float-left">
+                                        <div class="browseProductImageContainer">
+                                            <div class="browseProductImage">
+                                                <img src="#{appConstant.PRODUCT_IMAGE_PATH}#{showProductBean.productDetails.imgCover}" height="329" width="220" alt="" border="0"/>
+                                            </div>
+                                        </div>
+                                        <div class="reviews" style="padding-top:24px; padding-bottom:15px;">
+                                            <h5 class="title">
+                                                <span>Customer Reviews:</span>
+                                            </h5>
+                                            There are yet no reviews for this product. <br/>Please log in to write a review.
+                                        </div>
+                                    </div>
+                                    <div class="floatElement">
+                                        <h2 class="browseProductTitle">
+                                            <span href="#" title="" class="product_name">#{showProductBean.productDetails.title}</span>
+                                        </h2>
+                                        <div class="product-divider">
+                                            <div class="vmCartContainer1">
+                                                <div class="vmCartContainer">
+                                                    <h:form>
+                                                        <h:commandButton class="addtocart_button" action="#{cartManagedBean.add(showProductBean.productDetails.id)}" value="Add to Cart">
+                                                            <f:param value="#{param['productid']}" name="productid"></f:param>
+                                                        </h:commandButton>
+                                                    </h:form>
+                                                </div> 
+                                            </div>
+                                            <div class="browsePriceContainer">
+                                                <span class="productPrice">$ #{showProductBean.productDetails.price} </span>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div class="description">
+                                            #{showProductBean.productDetails.description}
+                                        </div>
+                                        <div class="ask_seller nobutton">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+
+                                <div class="wrapper" style="padding-top:20px;">
+                                    <span class="next_page">
+                                        <h:form>
+                                            <h:commandLink action="welcome" value="Return Welcome"></h:commandLink>
+                                        </h:form>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="statusBox" style="text-align:center;display:none;visibility:hidden;">
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

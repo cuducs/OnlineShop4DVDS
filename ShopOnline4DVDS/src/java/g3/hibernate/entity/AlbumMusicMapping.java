@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -10,16 +10,12 @@ public class AlbumMusicMapping  implements java.io.Serializable {
 
 
      private AlbumMusicMappingId id;
-     private Integer trackNumber;
+     private int trackNumber;
 
     public AlbumMusicMapping() {
     }
 
-	
-    public AlbumMusicMapping(AlbumMusicMappingId id) {
-        this.id = id;
-    }
-    public AlbumMusicMapping(AlbumMusicMappingId id, Integer trackNumber) {
+    public AlbumMusicMapping(AlbumMusicMappingId id, int trackNumber) {
        this.id = id;
        this.trackNumber = trackNumber;
     }
@@ -31,11 +27,11 @@ public class AlbumMusicMapping  implements java.io.Serializable {
     public void setId(AlbumMusicMappingId id) {
         this.id = id;
     }
-    public Integer getTrackNumber() {
+    public int getTrackNumber() {
         return this.trackNumber;
     }
     
-    public void setTrackNumber(Integer trackNumber) {
+    public void setTrackNumber(int trackNumber) {
         this.trackNumber = trackNumber;
     }
 

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/customerTemplate_1.xhtml">
+            <ui:define name="content">
+                <div class="content-indent">
+                    <div id="vmMainPage">
+                        <h3>Checkout</h3><div>
+
+                            <div class="register-stretcher">
+                                <h5><input type="radio" name="togglerchecker" id="toggler2" class="toggler"/>
+                                    <label for="toggler2" style="vertical-align:top">New? Please Provide Your Billing Information</label>
+                                </h5>
+                                <div class="stretcher" id="register_stretcher" style="padding-top: 0px; border-top-style: none; padding-bottom: 0px; border-bottom-style: none; overflow: hidden; visibility: hidden; zoom: 1; opacity: 0; height: 0px;">
+                                    <h:form>
+
+                                        <div style="width:90%;"><div style="padding:5px;text-align:center;">
+                                                <strong>(* = Required)</strong>
+                                                <br/>
+                                                <strong style="color: red">#{requestScope.result}</strong>
+                                            </div><fieldset>
+                                                <legend class="sectiontableheader">Checkout Information</legend>
+
+                                                <div class="formLabel "><label>Name</label><strong>* </strong> </div>
+                                                <div class="formField" id="email_input">
+                                                    <h:inputText size="30" class="inputbox" maxlength="100" value="#{billBean.bill.customerName}">
+                                                    </h:inputText>
+                                                    <br/>
+                                                </div>
+                                                <br style="clear:both;"/>
+
+                                                <div class="formLabel "><label>Phone</label><strong>* </strong> </div>
+                                                <div class="formField">
+                                                    <h:inputText size="30" class="inputbox" maxlength="100" value="#{billBean.bill.phone}">
+                                                    </h:inputText>
+                                                    <br/>
+                                                </div>
+                                                <br style="clear:both;"/>
+
+                                                <div class="formLabel "><label>Address</label><strong>* </strong> </div>
+                                                <div class="formField">
+                                                    <h:inputTextarea class="inputtextarea" value="#{billBean.bill.deliveryAddress}">
+                                                    </h:inputTextarea>
+                                                    <br/>
+                                                </div>
+                                                <br style="clear:both;"/>
+
+                                                <div class="formLabel "><label>Message</label><strong></strong> </div>
+                                                <div class="formField">
+                                                    <h:inputTextarea class="inputtextarea" value="#{billBean.bill.message}">
+                                                    </h:inputTextarea>
+                                                    <br/>
+                                                </div>
+                                                <br style="clear:both;"/>
+                                            </fieldset>
+
+                                            <fieldset>
+                                                <legend class="sectiontableheader">Promotions</legend>
+                                                <div align="center">
+                                                    <label for="agreed_field">
+                                                        <label for="agreed_field">Would it be OK if occasionally we notified you of special sales via email?</label>
+                                                    </label>
+
+                                                    <input type="checkbox" id="agreed_field" name="agreed" value="1" class="inputbox"/><br/>
+                                                </div>
+
+                                                <br style="clear:both;"/>
+                                            </fieldset>
+                                        </div>
+                                        <div align="center">
+                                            <h:commandButton value="Confirm" class="button button02" action="#{billBean.createBill()}"/>
+                                        </div>
+
+                                    </h:form>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                Window.onDomReady(function() {
+
+                                    // get accordion elements
+                                    myStretch = $$( '.toggler' );
+                                    myStretcher = $$( '.stretcher' );
+
+                                    // Create the accordion
+                                    myAccordion = new Fx.Accordion(myStretch, myStretcher, 
+                                    {
+                                        /*fixedHeight: 125,*/
+                                        opacity : true,
+                                        display: 0
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <div id="statusBox" style="text-align:center;display:none;visibility:hidden;"></div></div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

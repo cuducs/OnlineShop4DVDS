@@ -1,5 +1,5 @@
 package g3.hibernate.entity;
-// Generated May 23, 2013 8:04:27 PM by Hibernate Tools 3.2.1.GA
+// Generated Jun 5, 2013 8:44:18 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -12,8 +12,9 @@ public class Genre  implements java.io.Serializable {
 
 
      private int id;
-     private String name;
+     private String title;
      private String type;
+     private String description;
      private Date createdDate;
      private Date modifiedDate;
      private boolean isDeleted;
@@ -22,14 +23,19 @@ public class Genre  implements java.io.Serializable {
     }
 
 	
-    public Genre(int id, boolean isDeleted) {
+    public Genre(int id, String title, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
         this.id = id;
+        this.title = title;
+        this.type = type;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
         this.isDeleted = isDeleted;
     }
-    public Genre(int id, String name, String type, Date createdDate, Date modifiedDate, boolean isDeleted) {
+    public Genre(int id, String title, String type, String description, Date createdDate, Date modifiedDate, boolean isDeleted) {
        this.id = id;
-       this.name = name;
+       this.title = title;
        this.type = type;
+       this.description = description;
        this.createdDate = createdDate;
        this.modifiedDate = modifiedDate;
        this.isDeleted = isDeleted;
@@ -42,12 +48,12 @@ public class Genre  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public String getName() {
-        return this.name;
+    public String getTitle() {
+        return this.title;
     }
     
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
     public String getType() {
         return this.type;
@@ -55,6 +61,13 @@ public class Genre  implements java.io.Serializable {
     
     public void setType(String type) {
         this.type = type;
+    }
+    public String getDescription() {
+        return this.description;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
     }
     public Date getCreatedDate() {
         return this.createdDate;
