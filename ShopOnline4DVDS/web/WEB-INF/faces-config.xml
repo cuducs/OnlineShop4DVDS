@@ -11,6 +11,9 @@
         <phase-listener>
             g3.custom.phaselistener.AdminSideMenuPhaseListener
         </phase-listener>
+        <phase-listener>
+            g3.server.bean.authenticate.AuthenticatePhaseListener
+        </phase-listener>
     </lifecycle>
     <navigation-rule>
         <description>
@@ -33,8 +36,13 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>login</from-outcome>
+            <from-outcome>customerlogin</from-outcome>
             <to-view-id>/user/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>adminlogin</from-outcome>
+            <to-view-id>/admin/login.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
         <navigation-case>
