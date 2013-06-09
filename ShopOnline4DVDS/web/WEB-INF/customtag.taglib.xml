@@ -9,10 +9,6 @@
         <source>tags/example.xhtml</source>
     </tag>
     <tag>
-        <tag-name>cus-welcome-product</tag-name>
-        <source>tags/cus-welcome-product.xhtml</source>
-    </tag>
-    <tag>
         <tag-name>cus-list-product</tag-name>
         <source>tags/cus-list-product.xhtml</source>
     </tag>

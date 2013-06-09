@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -47,7 +49,7 @@ public class BillBean {
     private List<Page> pageLinks;//paging links
     private Bill detail;//detail object
     private int detailId;//Id to view detail
-    private String updateStatus;//for update
+    private Short updateStatus;//for update
     private String searchField;//for search
     private String searchQuery;//for search
     private String result;
@@ -92,7 +94,6 @@ public class BillBean {
         billHelper = BillHelper.getInstance();
         billDetailHelper = BillDetailHelper.getInstance();
     }
-
 
     public BillBean() {
     }
@@ -238,11 +239,11 @@ public class BillBean {
         return detailId;
     }
 
-    public String getUpdateStatus() {
+    public Short getUpdateStatus() {
         return updateStatus;
     }
 
-    public void setUpdateStatus(String updateStatus) {
+    public void setUpdateStatus(Short updateStatus) {
         this.updateStatus = updateStatus;
     }
 
@@ -310,6 +311,14 @@ public class BillBean {
         return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status = 2").list().size();
     }
 
+    public Map<String, Integer> getListStatus() {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("Cancelled", 0);
+        map.put("Waiting", 1);
+        map.put("Done", 2);
+        return map;
+    }
+
     public String getCurrentTime() {
         return DvdStoreHibernateUtil.currenrTime();
     }
@@ -322,6 +331,7 @@ public class BillBean {
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Bill b = (Bill) ss.getAttribute("detail");
         billdetail = (BillDetail) getSession().createQuery("FROM BillDetail b WHERE b.id.billId = " + b.getId()).uniqueResult();
+        updateStatus = b.getStatus();
         return billdetail;
     }
 
@@ -341,7 +351,7 @@ public class BillBean {
     public void searchAdmin() {
         if (searchField != null && searchQuery != null) {
             List<Bill> l = new ArrayList<Bill>();
-            if (searchField == "orderDate") {
+            if (searchField == "createdDate") {
                 l = getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and " + searchField + " = '" + searchQuery + "'").list();
             } else if (searchField == "id") {
                 l = getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and " + searchField + " = " + searchQuery + "").list();
@@ -395,7 +405,7 @@ public class BillBean {
             int id = ((Member) ss.getAttribute("member")).getId();
             try {
                 Date d = new Date(orderedDate);
-                setBillSearch(getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.orderDate = '" + orderedDate + "' and b.memberId = " + id).list());
+                setBillSearch(getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.createdDate = '" + orderedDate + "' and b.memberId = " + id).list());
             } catch (Exception ex) {
                 result = "Invalid date! Format is: mm/dd/yyyy";
             }
