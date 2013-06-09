@@ -100,7 +100,26 @@
             <required>true</required>
         </attribute>
     </tag>
-    
+    <tag>
+        <tag-name>user-list</tag-name>
+        <source>tags/user-list.xhtml</source>
+        <attribute>
+            <name>from</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>list</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>for</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>controller</name>
+            <required>true</required>
+        </attribute>
+    </tag>
     <tag>
         <tag-name>mapping-file</tag-name>
         <source>tags/mapping-file.xhtml</source>

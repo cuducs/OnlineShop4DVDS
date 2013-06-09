@@ -12,7 +12,7 @@
             g3.custom.phaselistener.AdminSideMenuPhaseListener
         </phase-listener>
         <phase-listener>
-            g3.server.bean.authenticate.AuthenticatePhaseListener
+            g3.custom.phaselistener.AuthenticatePhaseListener
         </phase-listener>
     </lifecycle>
     <navigation-rule>

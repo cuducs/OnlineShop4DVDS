@@ -57,8 +57,8 @@
                             <h:panelGroup  rendered="#{songManagedBean.mode eq appConstant.modeCreate}">
                                 <h:commandButton class="button add" value="Create" action="#{songManagedBean.save()}"></h:commandButton>
                             </h:panelGroup>
-                            <h:panelGroup class="button" rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
-                                <h:commandButton value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
+                            <h:panelGroup  rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton class="button" value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
                             </h:panelGroup>
                             <h:commandButton class="button cancel" value="Cancel" action="#{songManagedBean.cancel()}"></h:commandButton>
                         </div>
