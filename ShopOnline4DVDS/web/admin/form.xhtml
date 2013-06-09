@@ -1,131 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-        <ui:insert name="top">
-            <ui:include src="template/top.xhtml"/>
-        </ui:insert>
-        <title>DVD Store FPT Aptech C1007L_G3_S4</title>
-   <body>
-<div id="main_container">
-    <ui:insert name="welcome">
-            <ui:include src="template/welcome.xhtml"/>
-    </ui:insert>
-    <div class="main_content">
-        <ui:insert name="vmenu">
-            <ui:include src="template/hmenu.xhtml"/>
-        </ui:insert>
-    <div class="center_content">  
-        <ui:insert name="vmenu">
-            <ui:include src="template/vmenu.xhtml"/>
-        </ui:insert>
-        <div class="right_content"> 
-            <!---Mọi người viết nội dung vào trong DIV này nhé-->
-            
-            
-            
-            <h2>Warning Box examples</h2>
-      
-     <div class="warning_box">
-        Nếu không hiển thị được CSS thì đừng lo, các bác cứ ném nó vào thư mục của mình là OK, vì nó trỏ sai folder thôi.
-     </div>
-     <div class="valid_box">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-     </div>
-     <div class="error_box">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-     </div>  
-           
-     <h2>Nice Form example</h2>
-     
-         <div class="form">
-         <form action="" method="post" class="niceform">
-         
-                <fieldset>
-                    <dl>
-                        <dt><label for="email">Email Address:</label></dt>
-                        <dd><input type="text" name="" id="" size="54" /></dd>
-                    </dl>
-                    <dl>
-                        <dt><label for="password">Password:</label></dt>
-                        <dd><input type="text" name="" id="" size="54" /></dd>
-                    </dl>
-                    
-                    
-                    <dl>
-                        <dt><label for="gender">Select categories:</label></dt>
-                        <dd>
-                            <select size="1" name="gender" id="">
-                                <option value="">Select option 1</option>
-                                <option value="">Select option 2</option>
-                                <option value="">Select option 3</option>
-                                <option value="">Select option 4</option>
-                                <option value="">Select option 5</option>
-                            </select>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt><label for="interests">Select tags:</label></dt>
-                        <dd>
-                            <input type="checkbox" name="interests[]" id="" value="" /><label class="check_label">Web design</label>
-                            <input type="checkbox" name="interests[]" id="" value="" /><label class="check_label">Business</label>
-                            <input type="checkbox" name="interests[]" id="" value="" /><label class="check_label">Simple</label>
-                            <input type="checkbox" name="interests[]" id="" value="" /><label class="check_label">Clean</label>
-                        </dd>
-                    </dl>
-                    
-                    <dl>
-                        <dt><label for="color">Select type</label></dt>
-                        <dd>
-                            <input type="radio" name="type" id="" value="" /><label class="check_label">Basic</label>
-                            <input type="radio" name="type" id="" value="" /><label class="check_label">Medium</label>
-                            <input type="radio" name="type" id="" value="" /><label class="check_label">Premium</label>
-                        </dd>
-                    </dl>
-                    
-                    
-                    
-                    <dl>
-                        <dt><label for="upload">Upload a File:</label></dt>
-                        <dd><input type="file" name="upload" id="upload" /></dd>
-                    </dl>
-                    
-                    <dl>
-                        <dt><label for="comments">Message:</label></dt>
-                        <dd><textarea name="comments" id="comments" rows="5" cols="36"></textarea></dd>
-                    </dl>
-                    
-                    <dl>
-                        <dt><label></label></dt>
-                        <dd>
-                            <input type="checkbox" name="interests[]" id="" value="" /><label class="check_label">I agree to the <a href="#">terms &amp; conditions</a></label>
-                        </dd>
-                    </dl>
-                    
-                     <dl class="submit">
-                    <input type="submit" name="submit" id="submit" value="Submit" />
-                     </dl>
-                     
-                     
-                    
-                </fieldset>
-                
-         </form>
-         </div>  
-        </div>         
-  </div> 
-  <div class="clear"></div>
-  </div>
-  <ui:insert name="footer">
-      <ui:include src="template/footer.xhtml"/>
-  </ui:insert>
-</div>
-   </body>
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="content">
+                <div class="full_w">
+                    <div class="h_title">sample Form</div>
+                    <h:form>
+                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <!--double input text in row-->
+                        <div class="element">
+                            <div class="split1">
+                                <label>sample</label>
+                                <p:inputText id="inputsample" value="#{sampleManagedBean.cursample.title}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputsample" value="Title"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>sample</label>
+                                <p:inputText id="inputsample" value="#{sampleManagedBean.cursample.title}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputsample" value="sample"></p:watermark>
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+
+                        <!--input text row-->
+                        <div class="element">
+                            <label>sample</label>
+                            <p:inputText id="inputsample" value="#{sampleManagedBean.cursample.title}" style="width:200px;"></p:inputText>
+                            <p:watermark for="inputsample" value="sample"></p:watermark>
+                        </div>
+
+                        <!--input textarea row-->
+                        <div class="element">
+                            <label>Lyrics</label>
+                            <p:inputTextarea id="inputlyics" value="#{sampleManagedBean.cursample.lyrics}"  style="width:100%;" rows="10"></p:inputTextarea>
+                            <p:watermark for="inputlyics" value="Lyrics"></p:watermark>
+                        </div>
+                        <!--input text and select-->s
+                        <div class="element">
+                            <div class="split1">
+                                <label>Genres</label>
+                                <p:inputText id="inputgenres" value="#{productManagedBean.curDvd.genres}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputgenres" value="Genres"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Type</label>
+                                <h:selectOneMenu id="selecttype" value="#{productManagedBean.curDvd.type}">  
+                                    <f:selectItem itemLabel="Select Type" itemValue="" />  
+                                    <f:selectItems value="#{productManagedBean.listType}" />  
+                                </h:selectOneMenu> 
+
+                            </div>
+                            <div class="splitclear"></div>
+                        </div>
+
+                        <div class="entry">
+                            <h:panelGroup  rendered="#{sampleManagedBean.mode eq appConstant.modeCreate}">
+                                <h:commandButton class="button add" value="Create" action="#{sampleManagedBean.save()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup class="button" rendered="#{sampleManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton value="Edit" action="#{sampleManagedBean.update()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{sampleManagedBean.cancel()}"></h:commandButton>
+                        </div>
+
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
+

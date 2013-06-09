@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package g3.bean.client;
+package g3.bean.utility;
 
 import g3.bean.utility.DvdStoreHibernateUtil;
 import org.hibernate.Session;
@@ -14,7 +14,7 @@ import org.hibernate.Session;
 public class BaseHelper {
 
     protected Session session = null;
-
+    
     protected BaseHelper() {
         session = DvdStoreHibernateUtil.getSessionFactory().openSession();
     }

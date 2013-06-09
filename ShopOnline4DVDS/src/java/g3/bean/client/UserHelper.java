@@ -4,6 +4,8 @@
  */
 package g3.bean.client;
 
+import g3.bean.utility.BaseHelper;
+
 /**
  *
  * @author Administrator

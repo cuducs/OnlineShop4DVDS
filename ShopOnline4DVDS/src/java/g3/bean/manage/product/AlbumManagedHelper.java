@@ -8,7 +8,7 @@ import g3.hibernate.entity.Album;
 import g3.hibernate.entity.AlbumMusicMapping;
 import g3.hibernate.entity.AlbumMusicMappingId;
 import g3.hibernate.entity.Song;
-import g3.bean.client.BaseHelper;
+import g3.bean.utility.BaseHelper;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;

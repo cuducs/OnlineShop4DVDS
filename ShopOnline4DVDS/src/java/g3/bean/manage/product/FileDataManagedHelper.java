@@ -5,7 +5,7 @@
 package g3.bean.manage.product;
 
 import g3.hibernate.entity.FileData;
-import g3.bean.client.BaseHelper;
+import g3.bean.utility.BaseHelper;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;

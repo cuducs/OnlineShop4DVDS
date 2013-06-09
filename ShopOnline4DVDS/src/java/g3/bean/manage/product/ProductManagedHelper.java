@@ -5,7 +5,9 @@
 package g3.bean.manage.product;
 
 import g3.hibernate.entity.Dvd;
-import g3.bean.client.BaseHelper;
+import g3.bean.utility.BaseHelper;
+import g3.hibernate.entity.Producer;
+import g3.hibernate.entity.Supplier;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -152,5 +154,13 @@ public class ProductManagedHelper extends BaseHelper {
             query.append(" d.type='" + searchDvd.getType() + "' ");
         }
         return session.createQuery(query.toString()).list();
+    }
+
+    List<Producer> getListProducer() {
+        return session.createQuery("From Producer p where p.isDeleted=0").list();
+    }
+
+    List<Supplier> getListSupplier() {
+        return session.createQuery("From Supplier s where s.isDeleted=0").list();
     }
 }

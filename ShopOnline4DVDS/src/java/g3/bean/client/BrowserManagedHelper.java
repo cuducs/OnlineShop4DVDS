@@ -4,6 +4,7 @@
  */
 package g3.bean.client;
 
+import g3.bean.utility.BaseHelper;
 import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.Browser;
 import java.util.List;

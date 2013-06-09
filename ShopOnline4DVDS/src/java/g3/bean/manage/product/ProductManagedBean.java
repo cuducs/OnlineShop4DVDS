@@ -8,6 +8,8 @@ import g3.bean.utility.AppConstant;
 import g3.hibernate.entity.Album;
 import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.FileData;
+import g3.hibernate.entity.Producer;
+import g3.hibernate.entity.Supplier;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -170,6 +172,24 @@ public class ProductManagedBean {
         return map;
     }
 
+    public Map<String, Object> getListProducer() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        for(Producer producer : helper.getListProducer()){
+            map.put(producer.getTitle(), producer.getId());
+        }
+        
+        return map;
+    }
+
+    public Map<String, Object> getListSupplier() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        for(Supplier supplier : helper.getListSupplier()){
+            map.put(supplier.getTitle(), supplier.getId());
+        }
+        
+        return map;
+    }
+
     public String recovery(Dvd item) {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
@@ -213,6 +233,7 @@ public class ProductManagedBean {
         helper.save(curDvd);
         return "details";
     }
+
     public String addFile(FileData file) {
         curDvd.setTrailerId(file.getId());
         curDvd.setModifiedDate(new Date());

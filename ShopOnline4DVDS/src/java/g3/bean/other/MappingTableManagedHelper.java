@@ -5,7 +5,7 @@
 package g3.bean.other;
 
 import g3.hibernate.entity.MappingTable;
-import g3.bean.client.BaseHelper;
+import g3.bean.utility.BaseHelper;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Transaction;

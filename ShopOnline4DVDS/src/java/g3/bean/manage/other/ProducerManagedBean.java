@@ -5,7 +5,7 @@
 package g3.bean.manage.other;
 
 import g3.bean.utility.AppConstant;
-import g3.hibernate.entity.Supplier;
+import g3.hibernate.entity.Producer;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -21,24 +21,24 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class SupplierManagedBean {
+public class ProducerManagedBean {
 
-    private Supplier curSupplier;
+    private Producer curProducer;
     private int formMode;
-    private SupplierManagedHelper helper;
+    private ProducerManagedHelper helper;
     private String returnFromDetails;
-    private Supplier searchSupplier;
-    private List<Supplier> resustSearch;
+    private Producer searchProducer;
+    private List<Producer> resustSearch;
 
     /**
      * Creates a new instance of MusicManagedBean
      */
-    public SupplierManagedBean() {
+    public ProducerManagedBean() {
     }
 
     @PostConstruct
     public void init() {
-        helper = SupplierManagedHelper.getInstance();
+        helper = ProducerManagedHelper.getInstance();
     }
 
     @PreDestroy
@@ -46,31 +46,31 @@ public class SupplierManagedBean {
         helper.close();
     }
 
-    public List<Supplier> getResustSearch() {
+    public List<Producer> getResustSearch() {
         return resustSearch;
     }
 
-    public void setResustSearch(List<Supplier> resustSearch) {
+    public void setResustSearch(List<Producer> resustSearch) {
         this.resustSearch = resustSearch;
     }
 
-    public Supplier getSearchSupplier() {
-        if (searchSupplier == null) {
-            searchSupplier = new Supplier();
+    public Producer getSearchProducer() {
+        if (searchProducer == null) {
+            searchProducer = new Producer();
         }
-        return searchSupplier;
+        return searchProducer;
     }
 
     public String search() {
 
-        if (searchSupplier != null) {
-            resustSearch = helper.search(searchSupplier);
+        if (searchProducer != null) {
+            resustSearch = helper.search(searchProducer);
         }
         return null;
     }
 
-    public void setSearchSupplier(Supplier searchSupplier) {
-        this.searchSupplier = searchSupplier;
+    public void setSearchProducer(Producer searchProducer) {
+        this.searchProducer = searchProducer;
     }
 
     public int getMode() {
@@ -81,42 +81,42 @@ public class SupplierManagedBean {
         this.formMode = mode;
     }
 
-    public Supplier getCurSupplier() {
-        return curSupplier;
+    public Producer getCurProducer() {
+        return curProducer;
     }
 
-    public void setCurSupplier(Supplier curSupplier) {
-        this.curSupplier = curSupplier;
+    public void setCurProducer(Producer curProducer) {
+        this.curProducer = curProducer;
     }
 
     public String create() {
-        curSupplier = new Supplier();
+        curProducer = new Producer();
         formMode = AppConstant.FORM_MODE_CREATE;
         return "form";
     }
 
-    public String edit(Supplier item) {
-        curSupplier = item;
+    public String edit(Producer item) {
+        curProducer = item;
         formMode = AppConstant.FORM_MODE_EDIT;
         return "form";
     }
 
-    public String details(Supplier item) {
-        curSupplier = item;
+    public String details(Producer item) {
+        curProducer = item;
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         returnFromDetails = params.get("from");
         return "details";
     }
 
     public String save() {
-        curSupplier.setCreatedDate(new Date());
-        curSupplier.setModifiedDate(new Date());
-        helper.save(curSupplier);
-        curSupplier = null;
+        curProducer.setCreatedDate(new Date());
+        curProducer.setModifiedDate(new Date());
+        helper.save(curProducer);
+        curProducer = null;
         return "show";
     }
 
-    public String del(Supplier item) {
+    public String del(Producer item) {
         item.setIsDeleted(true);
         item.setModifiedDate(new Date());
         helper.update(item);
@@ -124,20 +124,20 @@ public class SupplierManagedBean {
     }
 
     public String update() {
-        curSupplier.setModifiedDate(new Date());
-        helper.update(curSupplier);
+        curProducer.setModifiedDate(new Date());
+        helper.update(curProducer);
         return "show";
     }
 
-    public List<Supplier> getAllSuppliers() {
-        return helper.getAllSuppliers();
+    public List<Producer> getAllProducers() {
+        return helper.getAllProducers();
     }
 
-    public List<Supplier> getAllSuppliersDeleted() {
-        return helper.getAllSuppliersDeleted();
+    public List<Producer> getAllProducersDeleted() {
+        return helper.getAllProducersDeleted();
     }
 
-    public String recovery(Supplier item) {
+    public String recovery(Producer item) {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
         helper.update(item);
@@ -145,7 +145,7 @@ public class SupplierManagedBean {
     }
 
     public String cancel() {
-        curSupplier = new Supplier();
+        curProducer = new Producer();
         return "show";
     }
 }
