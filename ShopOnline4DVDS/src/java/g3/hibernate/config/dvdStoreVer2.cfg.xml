@@ -34,5 +34,6 @@
     <mapping resource="g3/hibernate/entity/Advertising.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/MappingTable.hbm.xml"/>
     <mapping resource="g3/hibernate/entity/ObjectOfBrowsingRule.hbm.xml"/>
+    <mapping resource="g3/hibernate/entity/ValueOfBrowsingRule.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

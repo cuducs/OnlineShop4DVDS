@@ -3,18 +3,21 @@
  * and open the template in the editor.
  */
 package g3.bean.other;
-import g3.hibernate.entity.Category;
-import g3.hibernate.entity.ObjectOfBrowsingRule;
+
+
 import g3.bean.utility.AppConstant;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
-
+import g3.hibernate.entity.Category;
+import g3.hibernate.entity.Dvd;
+import g3.hibernate.entity.ObjectOfBrowsingRule;
+import g3.hibernate.entity.ValueOfBrowsingRule;
+import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author Administrator
@@ -31,9 +34,13 @@ public class CategoryManagedBean{
     private Category curCate;
     private int formMode;    
     private int objectOfBrowsingRule;
-    private String operaterOfBrowsingRule;
-    private String valueOfBrowsingRule;
-    private String valueOfBrowsingRule2;
+    private String operaterOfBrowsingRule = "";
+    private String valueOfBrowsingRule = "";
+    private String valueOfBrowsingRule2 = "";
+    private String hinting1 = "";
+    private String hinting2 = "";
+    private boolean showHinting = false;
+    private List<Dvd> productsInCateDetail;
     
     public CategoryManagedBean() {
     }
@@ -60,6 +67,22 @@ public class CategoryManagedBean{
         mapping_helper.close();
     } 
 
+    public String getHinting1() {
+        return hinting1;
+    }
+
+    public void setHinting1(String hinting1) {
+        this.hinting1 = hinting1;
+    }
+
+    public String getHinting2() {
+        return hinting2;
+    }
+
+    public void setHinting2(String hinting2) {
+        this.hinting2 = hinting2;
+    }
+
     public int getMode() {
         return formMode;
     }
@@ -76,12 +99,18 @@ public class CategoryManagedBean{
         this.curCate = curCate;
     }
 
-    public String create() {
-        curCate = new Category();
-        return "create";
+    public List<Dvd> getProductsInCateDetail() {
+        return productsInCateDetail;
     }
 
+    public void setProductsInCateDetail(List<Dvd> productsInCateDetail) {
+        this.productsInCateDetail = productsInCateDetail;
+    }
+    
+  
+    
     public String save() {
+        System.out.print("da vao ham save");
         ObjectOfBrowsingRule obj = obj_helper.getObjectOfBrowsingRule(objectOfBrowsingRule);
         curCate.setCreatedDate(new Date());
         curCate.setModifiedDate(new Date());
@@ -183,16 +212,54 @@ public class CategoryManagedBean{
     }
     
     public String del(Category item) {
-        item.setIsDeleted(true);
-        item.setModifiedDate(new Date());
-        helper.update(item);
+       executeDeleteCate(item);
         return "show";
+    }
+    
+    private void executeDeleteCate(Category cate)
+    {
+        try
+        {
+        cate.setIsDeleted(true);
+        cate.setModifiedDate(new Date());
+        helper.update(cate);
+        List<Category> lst = helper.getChildCategories(cate);
+        if(lst != null)
+        {
+            for(int i = 0; i < lst.size(); i++)
+            {
+                executeDeleteCate(lst.get(i));
+            }
+        }
+        }catch(Exception ex)
+        {
+            System.out.printf("Loi " + ex.toString());
+        }
     }
 
     public String update() {
         curCate.setModifiedDate(new Date());
         helper.update(curCate);
         return "show";
+    }
+    
+    public String create() {
+      curCate = new Category();
+      return "create";
+    }
+
+    public String details(Category cate)
+    {
+        try
+        {
+            productsInCateDetail = helper.getProductsInCateDetail(cate);
+            curCate = cate;
+        }
+        catch(Exception ex)
+        {
+            productsInCateDetail = new ArrayList<Dvd>();
+        }
+        return "details";
     }
 
     public List<Category> getAllCategories() {
@@ -247,5 +314,59 @@ public class CategoryManagedBean{
         this.valueOfBrowsingRule = valueOfBrowsingRule;
     }
     
-
+    public List<SelectItem> getListValueOfBrowsingRule()
+    {
+        ObjectOfBrowsingRule obj = obj_helper.getObjectOfBrowsingRule(objectOfBrowsingRule);
+//        System.out.print("object la " + objectOfBrowsingRule);
+       
+        if(obj != null)
+        {
+            try{
+                List<SelectItem> result = new ArrayList<SelectItem>();
+                List<ValueOfBrowsingRule> lst = obj_helper.getListValueOfBrowsingRule(obj);
+                if(lst != null)
+                {
+                    for(int i = 0; i < lst.size(); i++)
+                    {
+                        result.add(new SelectItem(lst.get(i).getId(), lst.get(i).getValue()));
+                    }
+                }
+                 return result;
+            }catch(Exception ex)
+            {
+                System.out.print("Loi : " + ex.toString());
+               return null;
+            }
+        }
+    //System.out.print("cau truy van " + obj.getQueryToGetValue());
+        return null;
+    }
+    
+    public void hintingListener()
+    {
+        valueOfBrowsingRule = hinting1;
+        valueOfBrowsingRule2 = hinting2;
+    }
+    
+    public boolean isShowHinting()
+    {
+       return showHinting;
+    }
+    
+    public boolean isShowHinting2()
+    {
+       return showHinting && operaterOfBrowsingRule.equals(AppConstant.OPERATOR_BETWEEN);
+    }
+    
+    public void changeHintListener()
+    {
+        try
+        {
+            ObjectOfBrowsingRule obj = obj_helper.getObjectOfBrowsingRule(objectOfBrowsingRule);
+            showHinting = (!obj.isIsBase()) && (("".endsWith(operaterOfBrowsingRule)  ? AppConstant.OPERATOR_TOP != null : !operaterOfBrowsingRule.equals(AppConstant.OPERATOR_TOP)));
+        }
+        catch(Exception ex){
+            showHinting = false;
+        }
+    }
 }
