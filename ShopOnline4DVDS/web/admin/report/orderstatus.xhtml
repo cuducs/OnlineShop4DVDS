@@ -1,30 +1,200 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
-        <title>Order Status</title>
-        <script type="text/javascript" src="/ShopOnline4DVDS/resources/js/jquery.min.js"></script>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
+        <title>Report Orders Status</title>
+        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/SimpleAdmin_kilab_pl/css/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/SimpleAdmin_kilab_pl/css/navi.css" media="screen" />
+        <script type="text/javascript" src="/ShopOnline4DVDS/resources/SimpleAdmin_kilab_pl/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $(".box .h_title").not(this).next("ul").hide("normal");
+                $(".box .h_title").not(this).next("#home").show("normal");
+                $(".box").children(".h_title").click( function() { $(this).next("ul").slideToggle(); });
+            });
+        </script>
     </h:head>
     <h:body>
-        <table>
-            <tr>
-                <th>Select year (yyyy): </th>
-                <td>
-                    <h:form>
-                    <h:inputText value="#{reportBean.myyear}" styleClass="datepicker" valueChangeListener="#{reportBean.changeYear()}">
-                    </h:inputText><h:commandButton value="View" action="#{reportBean.changeYear()}"/></h:form>
-                </td>
-            </tr>
-        </table>
-        <h:outputText escape="false" value="#{reportBean.pie}"/>
-        <script src="/ShopOnline4DVDS/resources/chart2/js/highcharts.js"></script>
-        <script src="/ShopOnline4DVDS/resources/chart2/js/modules/exporting.js"></script>
-        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+        <div class="wrap">
+
+            <div id="header">
+                <div id="top">
+                    <div class="left">
+                        <p>Welcome, <strong>Paweł B.</strong> [ <a href="">logout</a> ]</p>
+                    </div>
+                    <div class="right">
+                        <div class="align-right">
+                            <p>Last login: <strong>23-04-2012 23:12</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="nav">
+                    <ul>
+                        <li class="upp"><a href="#">Main control</a>
+                            <ul>
+                                <li>&#8250; <a href="">Visit site</a></li>
+                                <li>&#8250; <a href="">Reports</a></li>
+                                <li>&#8250; <a href="">Add new page</a></li>
+                                <li>&#8250; <a href="">Site config</a></li>
+                            </ul>
+                        </li>
+                        <li class="upp"><a href="#">Manage content</a>
+                            <ul>
+                                <li>&#8250; <a href="">Show all pages</a></li>
+                                <li>&#8250; <a href="">Add new page</a></li>
+                                <li>&#8250; <a href="">Add new gallery</a></li>
+                                <li>&#8250; <a href="">Categories</a></li>
+                            </ul>
+                        </li>
+                        <li class="upp"><a href="#">Users</a>
+                            <ul>
+                                <li>&#8250; <a href="">Show all uses</a></li>
+                                <li>&#8250; <a href="">Add new user</a></li>
+                                <li>&#8250; <a href="">Lock users</a></li>
+                            </ul>
+                        </li>
+                        <li class="upp"><a href="#">Settings</a>
+                            <ul>
+                                <li>&#8250; <a href="">Site configuration</a></li>
+                                <li>&#8250; <a href="">Contact Form</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="content">
+                <div id="sidebar">
+                    <div class="box">
+                        <div class="h_title">&#8250; Main control</div>
+                        <ul id="home">
+                            <li class="b1"><a class="icon view_page" href="">Visit site</a></li>
+                            <li class="b2"><a class="icon report" href="">Reports</a></li>
+                            <li class="b1"><a class="icon add_page" href="">Add new page</a></li>
+                            <li class="b2"><a class="icon config" href="">Site config</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="box">
+                        <div class="h_title">&#8250; Manage content</div>
+                        <ul>
+                            <li class="b1"><a class="icon page" href="">Show all pages</a></li>
+                            <li class="b2"><a class="icon add_page" href="">Add new page</a></li>
+                            <li class="b1"><a class="icon photo" href="">Add new gallery</a></li>
+                            <li class="b2"><a class="icon category" href="">Categories</a></li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <div class="h_title">&#8250; Users</div>
+                        <ul>
+                            <li class="b1"><a class="icon users" href="">Show all users</a></li>
+                            <li class="b2"><a class="icon add_user" href="">Add new user</a></li>
+                            <li class="b1"><a class="icon block_users" href="">Lock users</a></li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <div class="h_title">&#8250; Settings</div>
+                        <ul>
+                            <li class="b1"><a class="icon config" href="">Site configuration</a></li>
+                            <li class="b2"><a class="icon contact" href="">Contact Form</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="main">
+
+                    <div class="full_w">
+                        <div class="h_title">Report by Orders Status</div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <h:form>
+                                        Day: <h:selectOneMenu value="#{reportBean.myday}">
+                                            <f:selectItems value="#{reportBean.listDay}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
+                                        </h:selectOneMenu>
+                                        Month: 
+                                        <h:selectOneMenu value="#{reportBean.mymonth}">
+                                            <f:selectItems value="#{reportBean.listMonth}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
+                                        </h:selectOneMenu>
+                                        Year: 
+                                        <h:inputText value="#{reportBean.myyear}"/>
+                                        <h:commandButton value="View" action="#{reportBean.changeYear()}"/>
+                                    </h:form>    
+                                </td>
+                            </tr>
+                        </table>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#container').highcharts({
+                                    chart: {
+                                        plotBackgroundColor: null,
+                                        plotBorderWidth: null,
+                                        plotShadow: false
+                                    },
+                                    title: {
+                                        text: 'Orders status, #{reportBean.myday}/ #{reportBean.mymonth}/ #{reportBean.myyear}'
+                                    },
+                                    tooltip: {
+                                        pointFormat: '{series.name}: <b>{this.point.percentage}%</b>',
+                                        percentageDecimals: 1
+                                    },
+                                    plotOptions: {
+                                        pie: {
+                                            allowPointSelect: true,
+                                            cursor: 'pointer',
+                                            dataLabels: {
+                                                enabled: true,
+                                                color: '#000000',
+                                                connectorColor: '#000000',
+                                                formatter: function() {
+                                                    return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage*0.01*#{reportBean.totalOrders}) +' Order(s)';
+                                                }
+                                            }
+                                        }
+                                    },
+                                    series: [{
+                                            type: 'pie',
+                                            name: 'Order status',
+                                            data: [
+                                                {
+                                                    name: 'Done',
+                                                    y: #{reportBean.doneOrder},
+                                                    sliced: true,
+                                                    selected: true
+                                                },
+                                                ['Waiting',    #{reportBean.waitingOrder}],
+                                                ['Canceled',     #{reportBean.canceledOrder}]
+                                            ]
+                                        }]
+                                });
+                            });
+    
+
+                        </script>
+                        <a href="income.xhtml">View Income</a> | <a href="overview.xhtml">Overview</a> | <a href="thebestselling.xhtml">The best selling</a> | <a href="vipcustomer.xhtml">VIP Customer</a>
+                        <script src="/ShopOnline4DVDS/resources/chart2/js/highcharts.js"></script>
+                        <script src="/ShopOnline4DVDS/resources/chart2/js/modules/exporting.js"></script>
+                        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>                        
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div id="footer">
+                <div class="left">
+                    <p>Design: <a href="http://kilab.pl">Paweł Balicki</a> | Admin Panel: <a href="">YourSite.com</a></p>
+                </div>
+                <div class="right">
+                    <p><a href="">Example link 1</a> | <a href="">Example link 2</a></p>
+                </div>
+            </div>
+        </div>
+
     </h:body>
 </html>
