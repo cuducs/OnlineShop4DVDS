@@ -10,12 +10,14 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Expression;
 
 /**
  *
  * @author Administrator
  */
-public class SongManagedHelper extends BaseHelper{
+public class SongManagedHelper extends BaseHelper {
+
     private static SongManagedHelper instance;
 
     private SongManagedHelper() {
@@ -46,15 +48,23 @@ public class SongManagedHelper extends BaseHelper{
 
     List<Song> search(Song searchSong) {
         Criteria criteria = session.createCriteria(Song.class);
-        if (searchSong.getId() > 0) {
-            criteria.add(org.hibernate.criterion.Expression.eq("id", searchSong.getId()));
-        }
         if (searchSong.getTitle() != "") {
             criteria.add(org.hibernate.criterion.Expression.ilike("title", "%" + searchSong.getTitle() + "%"));
         }
         if (searchSong.getLyrics() != "") {
             criteria.add(org.hibernate.criterion.Expression.ilike("lyrics", "%" + searchSong.getLyrics() + "%"));
         }
+        if (searchSong.getInfo() != "") {
+            criteria.add(org.hibernate.criterion.Expression.ilike("info", "%" + searchSong.getInfo() + "%"));
+        }
+        if (searchSong.getSingerId() != null) {
+            criteria.add(org.hibernate.criterion.Expression.eq("singerId", searchSong.getSingerId()));
+        }
+        if (searchSong.getComposerId() != null) {
+            criteria.add(org.hibernate.criterion.Expression.eq("composerId", searchSong.getComposerId()));
+        }
+        criteria.add(Expression.eq("isFree", searchSong.isIsFree()));
+        criteria.add(Expression.eq("isDeleted", searchSong.isIsDeleted()));
         criteria.add(org.hibernate.criterion.Expression.eq("isFree", searchSong.isIsFree()));
         return criteria.list();
     }

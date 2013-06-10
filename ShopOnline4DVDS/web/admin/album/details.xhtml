@@ -16,16 +16,17 @@
                             <h:link class="button" value="Return List" outcome="show"></h:link>
                             <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                         </div>
-                        ID : #{albumManagedBean.curAlbum.id}<br/>
-                        Title : #{albumManagedBean.curAlbum.title}<br/>
-                        Owner : #{albumManagedBean.curAlbum.owner}<br/>
-                        View Count : #{albumManagedBean.curAlbum.viewCount}<br/>
-                        Number Item : #{albumManagedBean.curAlbum.numberItem}<br/>
-                        Admin Created : #{albumManagedBean.curAlbum.isAdminCreated}<br/>
-                        Description : #{albumManagedBean.curAlbum.description}<br/>
-                        Created Date : #{albumManagedBean.curAlbum.createdDate}<br/>
-                        Modified Date : #{albumManagedBean.curAlbum.modifiedDate}<br/>
-                        Is Deleted : #{albumManagedBean.curAlbum.isDeleted}<br/>
+                        <table>
+                            <tr><td style="width: 100px;">Title</td><td>#{albumManagedBean.curAlbum.title}</td></tr>
+                            <tr><td>Owner</td><td>#{albumManagedBean.curAlbum.owner}</td></tr>
+                            <tr><td>View Count</td><td>#{albumManagedBean.curAlbum.viewCount}</td></tr>
+                            <tr><td>Number Item </td><td>#{albumManagedBean.curAlbum.numberItem}</td></tr>
+                            <tr><td>Is Administrator Created</td><td>#{albumManagedBean.curAlbum.isAdminCreated}</td></tr>
+                            <tr><td>Description</td><td>#{albumManagedBean.curAlbum.description}</td></tr>
+                            <tr><td>Created Date</td><td>#{albumManagedBean.curAlbum.createdDate}</td></tr>
+                            <tr><td>Modified Date</td><td>#{albumManagedBean.curAlbum.modifiedDate}</td></tr>
+                            <tr><td>Is Deleted</td><td>#{albumManagedBean.curAlbum.isDeleted}</td></tr>
+                        </table>
                     </h:form>
                 </div>
             </ui:define>

@@ -125,7 +125,7 @@ public class AlbumManagedBean {
         item.setIsDeleted(true);
         item.setModifiedDate(new Date());
         helper.update(item);
-        return "show";
+        return null;
     }
 
     public String update() {
@@ -146,7 +146,7 @@ public class AlbumManagedBean {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
         helper.update(item);
-        return "recovery";
+        return null;
     }
 
     public String cancel() {

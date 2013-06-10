@@ -71,7 +71,7 @@ public class ProductManagedBean {
 
         if (searchDvd != null) {
 //            resustSearch = helper.search(searchDvd);
-            resustSearch = helper.getCriteriaSearch(searchDvd);
+            resustSearch = helper.search(searchDvd);
         }
         return null;
     }
@@ -138,7 +138,7 @@ public class ProductManagedBean {
         item.setIsDeleted(true);
         item.setModifiedDate(new Date());
         helper.update(item);
-        return "show";
+        return null;
     }
 
     public String update() {
@@ -174,19 +174,19 @@ public class ProductManagedBean {
 
     public Map<String, Object> getListProducer() {
         Map<String, Object> map = new HashMap<String, Object>();
-        for(Producer producer : helper.getListProducer()){
+        for (Producer producer : helper.getListProducer()) {
             map.put(producer.getTitle(), producer.getId());
         }
-        
+
         return map;
     }
 
     public Map<String, Object> getListSupplier() {
         Map<String, Object> map = new HashMap<String, Object>();
-        for(Supplier supplier : helper.getListSupplier()){
+        for (Supplier supplier : helper.getListSupplier()) {
             map.put(supplier.getTitle(), supplier.getId());
         }
-        
+
         return map;
     }
 

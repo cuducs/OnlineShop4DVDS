@@ -5,8 +5,9 @@
 package g3.bean.manage.other;
 
 import g3.bean.utility.AppConstant;
-import g3.hibernate.entity.Promotion;
+import g3.hibernate.entity.Artist;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -21,23 +22,23 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class PromotionManagedBean {
-private Promotion curPromotion;
+public class ArtistManagedBean {
+private Artist curArtist;
     private int formMode;
-    private PromotionManagedHelper helper;
+    private ArtistManagedHelper helper;
     private String returnFromDetails;
-    private Promotion searchPromotion;
-    private List<Promotion> resustSearch;
+    private Artist searchArtist;
+    private List<Artist> resustSearch;
 
     /**
      * Creates a new instance of MusicManagedBean
      */
-    public PromotionManagedBean() {
+    public ArtistManagedBean() {
     }
 
     @PostConstruct
     public void init() {
-        helper = PromotionManagedHelper.getInstance();
+        helper = ArtistManagedHelper.getInstance();
     }
 
     @PreDestroy
@@ -45,31 +46,31 @@ private Promotion curPromotion;
         helper.close();
     }
 
-    public List<Promotion> getResustSearch() {
+    public List<Artist> getResustSearch() {
         return resustSearch;
     }
 
-    public void setResustSearch(List<Promotion> resustSearch) {
+    public void setResustSearch(List<Artist> resustSearch) {
         this.resustSearch = resustSearch;
     }
 
-    public Promotion getSearchPromotion() {
-        if (searchPromotion == null) {
-            searchPromotion = new Promotion();
+    public Artist getSearchArtist() {
+        if (searchArtist == null) {
+            searchArtist = new Artist();
         }
-        return searchPromotion;
+        return searchArtist;
     }
 
     public String search() {
 
-        if (searchPromotion != null) {
-            resustSearch = helper.search(searchPromotion);
+        if (searchArtist != null) {
+            resustSearch = helper.search(searchArtist);
         }
         return null;
     }
 
-    public void setSearchPromotion(Promotion searchPromotion) {
-        this.searchPromotion = searchPromotion;
+    public void setSearchArtist(Artist searchArtist) {
+        this.searchArtist = searchArtist;
     }
 
     public int getMode() {
@@ -80,42 +81,42 @@ private Promotion curPromotion;
         this.formMode = mode;
     }
 
-    public Promotion getCurPromotion() {
-        return curPromotion;
+    public Artist getCurArtist() {
+        return curArtist;
     }
 
-    public void setCurPromotion(Promotion curPromotion) {
-        this.curPromotion = curPromotion;
+    public void setCurArtist(Artist curArtist) {
+        this.curArtist = curArtist;
     }
 
     public String create() {
-        curPromotion = new Promotion();
+        curArtist = new Artist();
         formMode = AppConstant.FORM_MODE_CREATE;
         return "form";
     }
 
-    public String edit(Promotion item) {
-        curPromotion = item;
+    public String edit(Artist item) {
+        curArtist = item;
         formMode = AppConstant.FORM_MODE_EDIT;
         return "form";
     }
 
-    public String details(Promotion item) {
-        curPromotion = item;
+    public String details(Artist item) {
+        curArtist = item;
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         returnFromDetails = params.get("from");
         return "details";
     }
 
     public String save() {
-        curPromotion.setCreatedDate(new Date());
-        curPromotion.setModifiedDate(new Date());
-        helper.save(curPromotion);
-        curPromotion = null;
+        curArtist.setCreatedDate(new Date());
+        curArtist.setModifiedDate(new Date());
+        helper.save(curArtist);
+        curArtist = null;
         return "show";
     }
 
-    public String del(Promotion item) {
+    public String del(Artist item) {
         item.setIsDeleted(true);
         item.setModifiedDate(new Date());
         helper.update(item);
@@ -123,20 +124,20 @@ private Promotion curPromotion;
     }
 
     public String update() {
-        curPromotion.setModifiedDate(new Date());
-        helper.update(curPromotion);
+        curArtist.setModifiedDate(new Date());
+        helper.update(curArtist);
         return "show";
     }
 
-    public List<Promotion> getAllPromotions() {
-        return helper.getAllPromotions();
+    public List<Artist> getAllArtists() {
+        return helper.getAllArtists();
     }
 
-    public List<Promotion> getAllPromotionsDeleted() {
-        return helper.getAllPromotionsDeleted();
+    public List<Artist> getAllArtistsDeleted() {
+        return helper.getAllArtistsDeleted();
     }
 
-    public String recovery(Promotion item) {
+    public String recovery(Artist item) {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
         helper.update(item);
@@ -144,7 +145,15 @@ private Promotion curPromotion;
     }
 
     public String cancel() {
-        curPromotion = new Promotion();
+        curArtist = new Artist();
         return "show";
+    }
+    
+    public Map<String, Integer> getListArtist() {
+        Map<String, Integer> lst = new HashMap<String, Integer>();
+        for (Artist artist : getAllArtists()) {
+            lst.put(artist.getTitle(), artist.getId());
+        }
+        return lst;
     }
 }

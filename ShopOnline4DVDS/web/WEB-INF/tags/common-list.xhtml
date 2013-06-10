@@ -31,8 +31,8 @@
                             </h:panelGroup>
                             <h:panelGroup rendered="#{for eq 'search'}">
                                 <h:commandLink class="table-icon edit" title="Edit" action="#{controller.edit(item)}"></h:commandLink>
-                                <h:commandLink class="table-icon delete" title="Del" action="#{controller.del(item)}"></h:commandLink>
-
+                                <h:commandLink class="table-icon delete" title="Del" action="#{controller.del(item)}" rendered="#{not item.isDeleted}"></h:commandLink>
+                                <h:commandButton class="button" value="Recovery" action="#{controller.recovery(item)}" rendered="#{item.isDeleted}"></h:commandButton>
                             </h:panelGroup>
                             <h:panelGroup rendered="#{for eq 'recovery'}">
                                 <h:commandButton class="button" value="Recovery" action="#{controller.recovery(item)}"></h:commandButton>

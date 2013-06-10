@@ -53,15 +53,14 @@ public class AlbumManagedHelper extends BaseHelper {
 
     List<Album> search(Album searchAlbum) {
         Criteria criteria = session.createCriteria(Album.class);
-        if (searchAlbum.getId() > 0) {
-            criteria.add(org.hibernate.criterion.Expression.eq("id", searchAlbum.getId()));
-        }
         if (searchAlbum.getTitle() != "") {
             criteria.add(org.hibernate.criterion.Expression.ilike("title", "%" + searchAlbum.getTitle() + "%"));
         }
         if (searchAlbum.getOwner() != "") {
             criteria.add(org.hibernate.criterion.Expression.ilike("owner", "%" + searchAlbum.getOwner() + "%"));
         }
+        criteria.add(Expression.eq("isAdminCreated", searchAlbum.isIsAdminCreated()));
+        criteria.add(Expression.eq("isDeleted", searchAlbum.isIsDeleted()));
         return criteria.list();
     }
 
