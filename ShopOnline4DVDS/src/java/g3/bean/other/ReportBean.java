@@ -132,17 +132,17 @@ public class ReportBean {
     public void setMymonth(String mymonth) {
         this.mymonth = mymonth;
     }
-    public List<Integer> getListMonth(){
-        List<Integer> l = new ArrayList<Integer>();
-        for(int i=0; i<13; i++){
-            l.add(i);
+    public List<String> getListMonth(){
+        List<String> l = new ArrayList<String>();
+        for(int i=1; i<13; i++){
+            l.add(""+i+"");
         }
         return l;
     }
-    public List<Integer> getListDay(){
-        List<Integer> l = new ArrayList<Integer>();
-        for(int i=0; i<32; i++){
-            l.add(i);
+    public List<String> getListDay(){
+        List<String> l = new ArrayList<String>();
+        for(int i=1; i<32; i++){
+            l.add(""+i+"");
         }
         return l;
     }

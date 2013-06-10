@@ -28,9 +28,9 @@ public class ReportHelper {
 
     public static int getTotalOrder(String day, String month, String year) {
         try {
-            if (day.equals("0") && !month.equals("0")) {
+            if (day.equals("--") && !month.equals("--")) {
                 return (Integer) getSession().createSQLQuery("select count(id) from Bill b where DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year).uniqueResult();
-            } else if (day.equals("0") && month.equals("0")) {
+            } else if (day.equals("--") && month.equals("--")) {
                 return (Integer) getSession().createSQLQuery("select count(id) from Bill b where DATEPART(YYYY, b.CreatedDate)=" + year).uniqueResult();
             } else {
                 return (Integer) getSession().createSQLQuery("select count(id) from Bill b where DATEPART(dd, b.CreatedDate)=" + day + " and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year).uniqueResult();
@@ -45,9 +45,9 @@ public class ReportHelper {
             String s = "";
             int x = 0;
             if (year != null && year != "") {
-                if (day.equals("0") && !month.equals("0")) {
+                if (day.equals("--") && !month.equals("--")) {
                     s = "select count(id) from Bill b where [Status] = 2 and b.IsDeleted = 0 and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year;
-                } else if (day.equals("0") && month.equals("0")) {
+                } else if (day.equals("--") && month.equals("--")) {
                     s = "select count(id) from Bill b where [Status] = 2 and b.IsDeleted = 0 and DATEPART(YYYY, b.CreatedDate)=" + year;
                 } else {
                     s = "select count(id) from Bill b where [Status] = 2 and b.IsDeleted = 0 and DATEPART(dd, b.CreatedDate)=" + day + " and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year;
@@ -65,9 +65,9 @@ public class ReportHelper {
             String s = "";
             int x = 0;
             if (year != null && year != "") {
-                if (day.equals("0") && !month.equals("0")) {
+                if (day.equals("--") && !month.equals("--")) {
                     s = "select count(id) from Bill b where [Status] = 1 and b.IsDeleted = 0 and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year;
-                } else if (day.equals("0") && month.equals("0")) {
+                } else if (day.equals("--") && month.equals("--")) {
                     s = "select count(id) from Bill b where [Status] = 1 and b.IsDeleted = 0 and DATEPART(YYYY, b.CreatedDate)=" + year;
                 } else {
                     s = "select count(id) from Bill b where [Status] = 1 and b.IsDeleted = 0 and DATEPART(dd, b.CreatedDate)=" + day + " and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year;
@@ -85,9 +85,9 @@ public class ReportHelper {
             String s = "";
             int x = 0;
             if (year != null && year != "") {
-                if (day.equals("0") && !month.equals("0")) {
+                if (day.equals("--") && !month.equals("--")) {
                     s = "select count(id) from Bill b where [Status] = 0 and b.IsDeleted = 0 and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year;
-                } else if (day.equals("0") && month.equals("0")) {
+                } else if (day.equals("--") && month.equals("--")) {
                     s = "select count(id) from Bill b where [Status] = 0 and b.IsDeleted = 0 and DATEPART(YYYY, b.CreatedDate)=" + year;
                 } else {
                     s = "select count(id) from Bill b where [Status] = 0 and b.IsDeleted = 0 and DATEPART(dd, b.CreatedDate)=" + day + " and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year;
@@ -105,9 +105,9 @@ public class ReportHelper {
         BigDecimal val = null;
         try {
             if (year != null && !year.equals("")) {
-                if (day.equals("0") && !month.equals("0")) {
+                if (day.equals("--") && !month.equals("--")) {
                     sql = "select SUM(b.Total) from Bill b join BillDetail d on b.Id = d.BillId join DVD v on d.dvdId = v.Id where v.Type = '" + type + "' and b.Status = 2 and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year;
-                } else if (day.equals("0") && month.equals("0")) {
+                } else if (day.equals("--") && month.equals("--")) {
                     sql = "select SUM(b.Total) from Bill b join BillDetail d on b.Id = d.BillId join DVD v on d.dvdId = v.Id where v.Type = '" + type + "' and b.Status = 2 and DATEPART(YYYY, b.CreatedDate)=" + year;
                 } else {
                     sql = "select SUM(b.Total) from Bill b join BillDetail d on b.Id = d.BillId join DVD v on d.dvdId = v.Id where v.Type = '" + type + "' and b.Status = 2 and DATEPART(dd, b.CreatedDate)=" + day + " and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year;
@@ -175,9 +175,9 @@ public class ReportHelper {
         String sql = "";
         try {
             if (year != null && year != "") {
-                if (day.equals("0") && !month.equals("0")) {
+                if (day.equals("--") && !month.equals("--")) {
                     sql = "select TOP(1) d.dvdId from Bill b join BillDetail d on b.Id = d.BillId join DVD v on d.dvdId = v.Id where b.Status = 2 and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year + " and v.Type = '" + type + "' GROUP BY(d.dvdId) order by (SUM(d.Quantity)) desc";
-                } else if (day.equals("0") && month.equals("0")) {
+                } else if (day.equals("--") && month.equals("--")) {
                     sql = "select TOP(1) d.dvdId from Bill b join BillDetail d on b.Id = d.BillId join DVD v on d.dvdId = v.Id where b.Status = 2 and DATEPART(YYYY, b.CreatedDate)=" + year + " and v.Type = '" + type + "' GROUP BY(d.dvdId) order by (SUM(d.Quantity)) desc";
                 } else {
                     sql = "select TOP(1) d.dvdId from Bill b join BillDetail d on b.Id = d.BillId join DVD v on d.dvdId = v.Id where b.Status = 2 and DATEPART(dd, b.CreatedDate)=" + day + " and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year + " and v.Type = '" + type + "' GROUP BY(d.dvdId) order by (SUM(d.Quantity)) desc";
@@ -203,9 +203,9 @@ public class ReportHelper {
         Integer x = 0;
         try {
             if (year != null && year != "") {
-                if (day.equals("0") && !month.equals("0")) {
+                if (day.equals("--") && !month.equals("--")) {
                     sql = "select TOP(1) SUM(d.Quantity) as total from Bill b join BillDetail d on b.Id = d.BillId join DVD v on d.dvdId = v.Id where b.Status = 2 and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year + " and v.Type = '" + type + "' GROUP BY(d.dvdId) order by (total) desc";
-                } else if (day.equals("0") && month.equals("0")) {
+                } else if (day.equals("--") && month.equals("--")) {
                     sql = "select TOP(1) SUM(d.Quantity) as total from Bill b join BillDetail d on b.Id = d.BillId join DVD v on d.dvdId = v.Id where b.Status = 2 and DATEPART(YYYY, b.CreatedDate)=" + year + " and v.Type = '" + type + "' GROUP BY(d.dvdId) order by (total) desc";
                 } else {
                     sql = "select TOP(1) SUM(d.Quantity) as total from Bill b join BillDetail d on b.Id = d.BillId join DVD v on d.dvdId = v.Id where b.Status = 2 and DATEPART(dd, b.CreatedDate)=" + day + " and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year + " and v.Type = '" + type + "' GROUP BY(d.dvdId) order by (total) desc";
@@ -239,9 +239,9 @@ public class ReportHelper {
         Integer x = 0;
         try {
             if (year != null && year != "") {
-                if (day.equals("0") && !month.equals("0")) {
+                if (day.equals("--") && !month.equals("--")) {
                     sql = "select TOP(1) SUM(d.Quantity) as q from Bill b join Member m on b.MemberId = m.Id join BillDetail d on d.BillId = b.Id where b.Status = 2 and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year + " GROUP BY (b.MemberId) ORDER BY (q) desc";
-                } else if (day.equals("0") && month.equals("0")) {
+                } else if (day.equals("--") && month.equals("--")) {
                     sql = "select TOP(1) SUM(d.Quantity) as q from Bill b join Member m on b.MemberId = m.Id join BillDetail d on d.BillId = b.Id where b.Status = 2 and DATEPART(YYYY, b.CreatedDate)=" + year + " GROUP BY (b.MemberId) ORDER BY (q) desc";
                 } else {
                     sql = "select TOP(1) SUM(d.Quantity) as q from Bill b join Member m on b.MemberId = m.Id join BillDetail d on d.BillId = b.Id where b.Status = 2 and DATEPART(dd, b.CreatedDate)=" + day + " and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year + " GROUP BY (b.MemberId) ORDER BY (q) desc";
@@ -259,9 +259,9 @@ public class ReportHelper {
         int x = 0;
         try {
             if (year != null && year != "") {
-                if (day.equals("0") && !month.equals("0")) {
+                if (day.equals("--") && !month.equals("--")) {
                     sql = "select TOP(1) b.MemberId from Bill b join Member m on b.MemberId = m.Id join BillDetail d on d.BillId = b.Id where b.Status = 2 and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year + " GROUP BY (b.MemberId) ORDER BY (SUM(d.Quantity)) desc";
-                } else if (day.equals("0") && month.equals("0")) {
+                } else if (day.equals("--") && month.equals("--")) {
                     sql = "select TOP(1) b.MemberId from Bill b join Member m on b.MemberId = m.Id join BillDetail d on d.BillId = b.Id where b.Status = 2 and DATEPART(YYYY, b.CreatedDate)=" + year + " GROUP BY (b.MemberId) ORDER BY (SUM(d.Quantity)) desc";
                 } else {
                     sql = "select TOP(1) b.MemberId from Bill b join Member m on b.MemberId = m.Id join BillDetail d on d.BillId = b.Id where b.Status = 2 and DATEPART(dd, b.CreatedDate)=" + day + " and DATEPART(mm, b.CreatedDate)=" + month + " and DATEPART(YYYY, b.CreatedDate)=" + year + " GROUP BY (b.MemberId) ORDER BY (SUM(d.Quantity)) desc";
