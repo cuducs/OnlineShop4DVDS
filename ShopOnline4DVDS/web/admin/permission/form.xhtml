@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <Title>Facelet Permission</Title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="content">
+                <div class="full_w">
+                    <div class="h_title">Permission Form</div>
+                    <h:form>
+                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <div class="element">
+                            <label>Title</label>
+                            <p:inputText id="inputtitle" value="#{permissionManagedBean.curPermission.title}" style="width:200px;"></p:inputText>
+                            <p:watermark for="inputtitle" value="Title"></p:watermark>
+                        </div>
+                        <div class="element">
+                            <label>Url Pattern</label>
+                            <p:inputText id="inputpattern" value="#{permissionManagedBean.curPermission.urlPattern}" style="width:200px;"></p:inputText>
+                            <p:watermark for="inputpattern" value="Url Pattern"></p:watermark>
+                        </div>
+                        <div class="element">
+
+                            <label>Description</label>
+                            <p:inputTextarea id="inputinfo" value="#{permissionManagedBean.curPermission.description}" style="width:100%;" rows="10"></p:inputTextarea>
+                            <p:watermark for="inputinfo" value="Description"></p:watermark>
+                        </div>
+                        <div class="entry">
+                            <h:panelGroup  rendered="#{permissionManagedBean.mode eq appConstant.modeCreate}">
+                                <h:commandButton class="button add" value="Create" action="#{permissionManagedBean.save()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup  rendered="#{permissionManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton  class="button" value="Edit" action="#{permissionManagedBean.update()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{permissionManagedBean.cancel()}"></h:commandButton>
+                        </div>
+
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

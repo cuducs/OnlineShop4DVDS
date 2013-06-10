@@ -11,19 +11,20 @@
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
                 <div class="full_w">
-                    <h2 class="h_title">Customer Details</h2>
+                    <h2 class="h_title">Manage Details</h2>
                     <h:form>
                         <div class="entry">
                             <h:link class="button" value="Return List" outcome="show"></h:link>
+                            <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                         </div>
-                        ID : #{customerManagedBean.curCustomer.id}<br/>
-                        Name : #{customerManagedBean.curCustomer.name}<br/>
-                        Email : #{customerManagedBean.curCustomer.email}<br/>
-                        Password : #{customerManagedBean.curCustomer.password}<br/>
-                        Last Login : #{customerManagedBean.curCustomer.lastLogin}<br/>
-                        Created Date : #{customerManagedBean.curCustomer.joinedDate}<br/>
-                        Modified Date : #{customerManagedBean.curCustomer.modifiedDate}<br/>
-                        Is Deleted : #{customerManagedBean.curCustomer.isLock}<br/>
+                        ID : #{manageManagedBean.curManage.id}<br/>
+                        Name : #{manageManagedBean.curManage.name}<br/>
+                        Password : #{manageManagedBean.curManage.password}<br/>
+                        Info : #{manageManagedBean.curManage.info}<br/>
+                        Last Login : #{manageManagedBean.curManage.lastLogin}<br/>
+                        Created Date : #{manageManagedBean.curManage.createdDate}<br/>
+                        Modified Date : #{manageManagedBean.curManage.modifiedDate}<br/>
+                        Is Deleted : #{manageManagedBean.curManage.isLock}<br/>
                     </h:form>
                 </div>
             </ui:define>

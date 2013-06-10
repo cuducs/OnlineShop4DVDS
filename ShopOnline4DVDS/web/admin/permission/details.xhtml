@@ -11,19 +11,19 @@
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
                 <div class="full_w">
-                    <h2 class="h_title">Customer Details</h2>
+                    <h2 class="h_title">Permission Details</h2>
                     <h:form>
                         <div class="entry">
                             <h:link class="button" value="Return List" outcome="show"></h:link>
+                            <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                         </div>
-                        ID : #{customerManagedBean.curCustomer.id}<br/>
-                        Name : #{customerManagedBean.curCustomer.name}<br/>
-                        Email : #{customerManagedBean.curCustomer.email}<br/>
-                        Password : #{customerManagedBean.curCustomer.password}<br/>
-                        Last Login : #{customerManagedBean.curCustomer.lastLogin}<br/>
-                        Created Date : #{customerManagedBean.curCustomer.joinedDate}<br/>
-                        Modified Date : #{customerManagedBean.curCustomer.modifiedDate}<br/>
-                        Is Deleted : #{customerManagedBean.curCustomer.isLock}<br/>
+                        ID : #{permissionManagedBean.curPermission.id}<br/>
+                        Title : #{permissionManagedBean.curPermission.title}<br/>
+                        Url Pattern : #{permissionManagedBean.curPermission.urlPattern}<br/>
+                        Description : #{permissionManagedBean.curPermission.description}<br/>
+                        Created Date : #{permissionManagedBean.curPermission.createdDate}<br/>
+                        Modified Date : #{permissionManagedBean.curPermission.modifiedDate}<br/>
+                        Is Deleted : #{permissionManagedBean.curPermission.isDeleted}<br/>
                     </h:form>
                 </div>
             </ui:define>
