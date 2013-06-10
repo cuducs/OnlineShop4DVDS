@@ -3,8 +3,9 @@
  * and open the template in the editor.
  */
 package g3.bean.other;
-import g3.hibernate.entity.ObjectOfBrowsingRule;
 import g3.bean.utility.BaseHelper;
+import g3.hibernate.entity.ObjectOfBrowsingRule;
+import g3.hibernate.entity.ValueOfBrowsingRule;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
@@ -48,5 +49,21 @@ class ObjectOfBrowsingRuleManagedHelper extends BaseHelper {
         else {
             return null;
         }
+    }
+   
+    public List<ValueOfBrowsingRule> getListValueOfBrowsingRule(ObjectOfBrowsingRule obj) {        
+        try
+        {
+            Query query = session.createSQLQuery(obj.getQueryToGetValue()).addEntity(ValueOfBrowsingRule.class);
+            List results = query.list();
+
+
+            return results;
+        }
+        catch(Exception ex)
+        {
+            System.out.printf(ex.toString());
+        }
+        return null;
     }
 }
