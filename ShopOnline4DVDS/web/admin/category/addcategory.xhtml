@@ -10,7 +10,7 @@
         <title>add category</title>
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/template/adminTemplate.xhtml">
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
 
                 <h2>File Form</h2>
@@ -24,26 +24,42 @@
             <label>Description</label><h:inputText value="#{categoryManagedBean.curCate.description}"></h:inputText><br/>
             <br/>
             <label>Rule for Browsing products : </label><br/>
-            <h:selectOneMenu value="#{categoryManagedBean.objectOfBrowsingRule}">
-                <f:selectItems value="#{objectOfBrowsingRuleManagedBean.listObjectsOfBrowsingRule}"></f:selectItems>
-            </h:selectOneMenu>
-            <h:selectOneMenu value="#{categoryManagedBean.operaterOfBrowsingRule}">
-                <f:selectItem itemValue="#{appConstant.OPERATOR_EQUAL}" itemLabel="#{appConstant.OPERATOR_EQUAL}"></f:selectItem>
-                <f:selectItem itemValue="#{appConstant.OPERATOR_LARGER}" itemLabel="#{appConstant.OPERATOR_LARGER}"></f:selectItem>
-                <f:selectItem itemValue="#{appConstant.OPERATOR_LARGER_EQUAL}" itemLabel="#{appConstant.OPERATOR_LARGER_EQUAL}"></f:selectItem>
-                <f:selectItem itemValue="#{appConstant.OPERATOR_LESSER}" itemLabel="#{appConstant.OPERATOR_LESSER}"></f:selectItem>
-                <f:selectItem itemValue="#{appConstant.OPERATOR_LESSER_EQUAL}" itemLabel="#{appConstant.OPERATOR_LESSER_EQUAL}"></f:selectItem>
-                <f:selectItem itemValue="#{appConstant.OPERATOR_TOP}" itemLabel="#{appConstant.OPERATOR_TOP}"></f:selectItem>
-                <f:selectItem itemValue="#{appConstant.OPERATOR_BETWEEN}" itemLabel="#{appConstant.OPERATOR_BETWEEN}"></f:selectItem>
-                <f:selectItem itemValue="#{appConstant.OPERATOR_CONTAIN}" itemLabel="#{appConstant.OPERATOR_CONTAIN}"></f:selectItem>
-                <f:ajax render="valueOfBrowsingRule2"/>
-            </h:selectOneMenu>
-            <h:inputText value="#{categoryManagedBean.valueOfBrowsingRule}"></h:inputText>
-            <h:inputText id="valueOfBrowsingRule2" style="#{(categoryManagedBean.operaterOfBrowsingRule != appConstant.OPERATOR_BETWEEN) ? 'visibility:hidden' : 'visibility:visibility'}" 
+            <h:panelGrid columns="4">
+                <h:selectOneMenu value="#{categoryManagedBean.objectOfBrowsingRule}">
+                    <f:selectItems value="#{objectOfBrowsingRuleManagedBean.listObjectsOfBrowsingRule}"></f:selectItems>
+                    <f:ajax render="hinting1 hinting2" listener="#{categoryManagedBean.changeHintListener}"/>
+                </h:selectOneMenu>
+                <h:selectOneMenu value="#{categoryManagedBean.operaterOfBrowsingRule}">
+                    <f:selectItem itemValue="#{appConstant.OPERATOR_EQUAL}" itemLabel="#{appConstant.OPERATOR_EQUAL}"></f:selectItem>
+                    <f:selectItem itemValue="#{appConstant.OPERATOR_LARGER}" itemLabel="#{appConstant.OPERATOR_LARGER}"></f:selectItem>
+                    <f:selectItem itemValue="#{appConstant.OPERATOR_LARGER_EQUAL}" itemLabel="#{appConstant.OPERATOR_LARGER_EQUAL}"></f:selectItem>
+                    <f:selectItem itemValue="#{appConstant.OPERATOR_LESSER}" itemLabel="#{appConstant.OPERATOR_LESSER}"></f:selectItem>
+                    <f:selectItem itemValue="#{appConstant.OPERATOR_LESSER_EQUAL}" itemLabel="#{appConstant.OPERATOR_LESSER_EQUAL}"></f:selectItem>
+                    <f:selectItem itemValue="#{appConstant.OPERATOR_TOP}" itemLabel="#{appConstant.OPERATOR_TOP}"></f:selectItem>
+                    <f:selectItem itemValue="#{appConstant.OPERATOR_BETWEEN}" itemLabel="#{appConstant.OPERATOR_BETWEEN}"></f:selectItem>
+                    <f:selectItem itemValue="#{appConstant.OPERATOR_CONTAIN}" itemLabel="#{appConstant.OPERATOR_CONTAIN}"></f:selectItem>
+                    <f:ajax render="valueOfBrowsingRule2 hinting1 hinting2" listener="#{categoryManagedBean.changeHintListener}"/>
+                </h:selectOneMenu>
+                <h:inputText id="valueOfBrowsingRule" value="#{categoryManagedBean.valueOfBrowsingRule}"></h:inputText>
+                <h:inputText id="valueOfBrowsingRule2" 
+                         style="#{(categoryManagedBean.operaterOfBrowsingRule != appConstant.OPERATOR_BETWEEN) ? 'visibility:hidden' : 'visibility:visibility'}" 
                          disabled="#{categoryManagedBean.operaterOfBrowsingRule != appConstant.OPERATOR_BETWEEN}" 
                          value="#{categoryManagedBean.valueOfBrowsingRule2}"></h:inputText>
-            <br/>
-            <h:commandButton action="#{categoryManagedBean.save()}" value="Save"/>
+                <h:inputHidden></h:inputHidden>
+                <h:inputHidden></h:inputHidden>
+                <h:selectOneMenu id="hinting1" value="#{categoryManagedBean.hinting1}"
+                     style="#{(categoryManagedBean.showHinting) ? 'visibility:visibility' : 'visibility:hidden'}">
+                    <f:selectItems value="#{categoryManagedBean.listValueOfBrowsingRule}"></f:selectItems>
+                    <f:ajax render="valueOfBrowsingRule" listener="#{categoryManagedBean.hintingListener}"/>
+                </h:selectOneMenu>
+                <h:selectOneMenu id="hinting2" value="#{categoryManagedBean.hinting2}"
+                                 style="#{(categoryManagedBean.showHinting2) ? 'visibility:visibility' : 'visibility:hidden'}" >
+                    <f:selectItems value="#{categoryManagedBean.listValueOfBrowsingRule}"></f:selectItems>
+                    <f:ajax render="valueOfBrowsingRule2" listener="#{categoryManagedBean.hintingListener}"/>
+                </h:selectOneMenu>
+            </h:panelGrid>
+           
+            <h:commandButton class="button" action="#{categoryManagedBean.save()}" value="Save"/>
         </h:form>
                 </div></ui:define></ui:composition>
     </h:body>

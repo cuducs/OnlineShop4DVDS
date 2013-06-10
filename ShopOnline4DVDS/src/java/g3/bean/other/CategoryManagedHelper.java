@@ -3,11 +3,14 @@
  * and open the template in the editor.
  */
 package g3.bean.other;
-import g3.hibernate.entity.Category;
+
 import g3.bean.utility.BaseHelper;
+import g3.hibernate.entity.Category;
+import g3.hibernate.entity.Dvd;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+
 /**
  *
  * @author Administrator
@@ -45,7 +48,6 @@ class CategoryManagedHelper extends BaseHelper {
 
     void del(Category item) {
         Transaction beginTransaction = session.beginTransaction();
-//        session.delete(item);
         item.setIsDeleted(true);
         beginTransaction.commit();
 
@@ -72,11 +74,33 @@ class CategoryManagedHelper extends BaseHelper {
         return (Category) query.list().get(0);
     }
     
+    List<Category> getChildCategories(Category cate) {
+         Transaction beginTransaction = session.beginTransaction();
+        String hql = "FROM Category g WHERE g.isDeleted=0 and g.categoryParentId=" + cate.getId();
+        Query query = session.createQuery(hql);
+        beginTransaction.commit();
+        return query.list();
+    }
+    
      int getMaxId() {
          Transaction beginTransaction = session.beginTransaction();
         String hql = "FROM Category g WHERE g.isDeleted=0 order by g.id desc";
         Query query = session.createQuery(hql);
         beginTransaction.commit();
         return ((Category) query.list().get(0)).getId();
+    }
+     
+      public List<Dvd> getProductsInCateDetail(Category cate) {        
+        try
+        {
+            Query query = session.createSQLQuery(cate.getQuery()).addEntity(Dvd.class);
+            List results = query.list();
+            return results;
+        }
+        catch(Exception ex)
+        {
+            System.out.printf(ex.toString());
+        }
+        return null;
     }
 }
