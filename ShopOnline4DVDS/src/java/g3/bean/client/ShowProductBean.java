@@ -248,7 +248,4 @@ public class ShowProductBean {
                 context.getExternalContext().getRequestParameterMap();
         return params.get("type");
     }
-    public void editToComit(){
-        
-    }
 }
