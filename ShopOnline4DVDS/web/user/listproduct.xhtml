@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:gct="http://g3.com/tags">
+      xmlns:gct="http://g3.com/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -40,12 +42,55 @@
                         <div class="wrapper">
                             <div align="center" style="padding:0px 5px 10px 0px;">
                                 <ul class="pagination">
-                                    <li><span class="pagenav">«« Start</span></li>
-                                    <li><span class="pagenav">« Prev</span></li>
-                                    <li><span class="pagenav"> 1 </span></li>
-                                    <li><a href="#" class="pagenav"><strong>2</strong></a></li>
-                                    <li><a href="#" class="pagenav" title="Next"> Next »</a></li>
-                                    <li><a href="#" class="pagenav" title="End"> End »»</a></li>
+                                    <c:if test="#{showProductBean.page == 1}">
+                                        <li><span class="pagenav">«« First</span></li>
+                                        <li><span class="pagenav">« Prev</span></li>
+                                    </c:if>
+                                    <c:if test="#{showProductBean.page != 1}">
+                                        <li>
+                                            <h:link class="pagenav" outcome="listproduct" value="«« First" title="First Page">
+                                                <f:param value="1" name="page"></f:param>
+                                                <f:param value="#{showProductBean.type}" name="type"></f:param>
+                                            </h:link>
+                                        </li>
+                                        <li>
+                                            <h:link class="pagenav" outcome="listproduct" value="« Prev" title="Pre Page">
+                                                <f:param value="${showProductBean.page -1}" name="page"></f:param>
+                                                <f:param value="#{showProductBean.type}" name="type"></f:param>
+                                            </h:link>
+                                        </li>
+                                    </c:if>
+                                    <c:forEach begin="1" end="#{showProductBean.totalPage}" var="idx">
+                                        <c:if test="#{showProductBean.page == idx}">
+                                            <li><span class="pagenav"> ${idx} </span></li>
+                                        </c:if>
+                                        <c:if test="#{showProductBean.page != idx}">
+                                            <li>
+                                                <h:link class="pagenav" outcome="listproduct" value="${idx}">
+                                                    <f:param value="${idx}" name="page"></f:param>
+                                                    <f:param value="#{showProductBean.type}" name="type"></f:param>
+                                                </h:link>
+                                            </li>
+                                        </c:if>
+                                    </c:forEach>
+                                    <c:if test="#{showProductBean.page == showProductBean.totalPage}">
+                                        <li><span class="pagenav">Next »</span></li>
+                                        <li><span class="pagenav">End »»</span></li>
+                                    </c:if>
+                                    <c:if test="#{showProductBean.page != showProductBean.totalPage}">
+                                        <li>
+                                            <h:link class="pagenav" outcome="listproduct" value="Next »" title="Next Page">
+                                                <f:param value="${showProductBean.page + 1}" name="page"></f:param>
+                                                <f:param value="#{showProductBean.type}" name="type"></f:param>
+                                            </h:link>
+                                        </li>
+                                        <li>
+                                            <h:link class="pagenav" outcome="listproduct" value="End »»" title="Last Page">
+                                                <f:param value="${showProductBean.totalPage}" name="page"></f:param>
+                                                <f:param value="#{showProductBean.type}" name="type"></f:param>
+                                            </h:link>
+                                        </li>
+                                    </c:if>
                                 </ul>
                                 <br/>
                                 <div class="pagenav">
