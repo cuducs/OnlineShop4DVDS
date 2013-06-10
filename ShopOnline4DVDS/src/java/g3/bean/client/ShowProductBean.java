@@ -36,7 +36,7 @@ public class ShowProductBean {
     private List<Dvd> dvdvideo;
     private List<Dvd> dvdmusic;
     private List<Dvd> dvdgame;
-    private int itemsPerPage = 100;//for paging
+    private int itemsPerPage = 10;//for paging
     private int page = 0; //offset = 2*10
     private int length = 0;
     private String sort;
@@ -47,6 +47,8 @@ public class ShowProductBean {
     private List<Dvd> others;
     private String query;
     private String trailerUrl;
+    
+    private int totalPage;
     
     public ShowProductBean() {
     }
@@ -69,13 +71,15 @@ public class ShowProductBean {
     public Session getSession() {
         return DvdStoreHibernateUtil.getSessionFactory().openSession();
     }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
     
     public int getPage() {
         HttpServletRequest rq = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        String pa = "";
         try {
-            pa = rq.getParameter("page");
-            page = Integer.parseInt(pa);
+            page = Integer.parseInt(rq.getParameter("page"));
             if (page == 0) {
                 page = 1;
             }
@@ -225,7 +229,23 @@ public class ShowProductBean {
         if (!type.equals(AppConstant.DVD_TYPE_ALL)) {
             hqlQuery += " and d.type='" + type + "'";
         }
-        Query query = getSession().createQuery(hqlQuery).setMaxResults(5);
+        Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
         return query.list();
+    }
+    public int getTotalPage() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params =
+                context.getExternalContext().getRequestParameterMap();
+        String type = params.get("type");
+        String hqlQuery = "SELECT COUNT(*) FROM Dvd d WHERE d.isDeleted=0 and d.type='"+type+"'";
+        int total = ((Long)getSession().createQuery(hqlQuery).uniqueResult()).intValue();
+        totalPage = (total%itemsPerPage ==0) ? (total/itemsPerPage) : ((total/itemsPerPage) +1);
+        return totalPage==0? 1 : totalPage;
+    }
+    public String getType(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params =
+                context.getExternalContext().getRequestParameterMap();
+        return params.get("type");
     }
 }
