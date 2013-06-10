@@ -17,25 +17,27 @@
                             <h:link class="button" value="Return List" outcome="show"></h:link>
                             <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                         </div>
-                        ID : #{songManagedBean.curSong.id}<br/>
-                        Title : #{songManagedBean.curSong.title}<br/>
-                        Singer ID : #{songManagedBean.curSong.singerId}<br/>0 
-                        Composer ID : #{songManagedBean.curSong.composerId}<br/>
-                        Lyrics : #{songManagedBean.curSong.lyrics}<br/>
-                        Info : #{songManagedBean.curSong.info}<br/>
-                        Free : #{songManagedBean.curSong.isFree}<br/>
-                        File :
-                        <h:panelGroup rendered="#{not (songManagedBean.curSong.fileId eq 0)}">
-                            #{songManagedBean.curSong.fileId}
-                            <h:commandLink class="button" value="Remove" action="#{songManagedBean.removeFile()}"></h:commandLink>
-                        </h:panelGroup>
-                        <h:panelGroup rendered="#{songManagedBean.curSong.fileId eq 0}" >
-                            <h:commandLink class="button" value="Map File" action="mappingfile"></h:commandLink>
-                        </h:panelGroup>
-                        <br/>
-                        Created Date : #{songManagedBean.curSong.createdDate}<br/>
-                        Modified Date : #{songManagedBean.curSong.modifiedDate}<br/>
-                        Is Deleted : #{songManagedBean.curSong.isDeleted}<br/>
+                        <table>
+                            <tr><td style="width:100px;">Title</td><td>#{songManagedBean.curSong.title}</td></tr>
+                            <tr><td>Singer</td><td>#{songManagedBean.curSong.singerId}</td></tr>
+                            <tr><td>Composer</td><td> #{songManagedBean.curSong.composerId}</td></tr>
+                            <tr><td>Free</td><td>#{songManagedBean.curSong.isFree}</td></tr>
+                            <tr><td>File</td>
+                                <td><h:panelGroup rendered="#{not (songManagedBean.curSong.fileId eq 0)}">
+                                        #{songManagedBean.curSong.fileId}
+                                        <h:commandLink class="button" value="Remove" action="#{songManagedBean.removeFile()}"></h:commandLink>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{songManagedBean.curSong.fileId eq 0}" >
+                                        <h:commandLink class="button" value="Map File" action="mappingfile"></h:commandLink>
+                                    </h:panelGroup>
+                                </td>
+                            </tr>
+                            <tr><td> Info</td><td>#{songManagedBean.curSong.info}</td></tr>
+                            <tr><td>Created Date</td><td>#{songManagedBean.curSong.createdDate}</td></tr>
+                            <tr><td>Modified Date</td><td>#{songManagedBean.curSong.modifiedDate}</td></tr>
+                            <tr><td>Is Deleted</td><td>#{songManagedBean.curSong.isDeleted}</td></tr>
+                            <tr><td>Lyrics</td><td>#{songManagedBean.curSong.lyrics}</td></tr>
+                        </table>
                     </h:form>
                 </div>
             </ui:define>

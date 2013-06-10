@@ -18,30 +18,32 @@
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <div class="element">
                             <div class="split1">
-                                <label>ID</label>
-                                <p:inputText id="inputid" value="#{songManagedBean.searchSong.id}" style="width:200px;">
-                                    <f:converter converterId="ZeroConverter"></f:converter>
-                                </p:inputText>
-                                <p:watermark for="inputid" value="ID"></p:watermark>
-                            </div>
-                            <div class="split2">
                                 <label>Title</label>
                                 <p:inputText id="inputtitle" value="#{songManagedBean.searchSong.title}" style="width:200px;"></p:inputText>
                                 <p:watermark for="inputtitle" value="Title"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Free</label>
+                                <p:selectBooleanCheckbox id="inputfree" value="#{songManagedBean.searchSong.isFree}"></p:selectBooleanCheckbox>
+                                 <label>is Deleted</label>
+                                 <p:selectBooleanCheckbox id="inputdeleted" value="#{songManagedBean.searchSong.isDeleted}"></p:selectBooleanCheckbox>
                             </div>
                             <div class="splitclear"></div>
                         </div>
                         <div class="element">
                             <div class="split1">
                                 <label>Singer</label>
-                                <p:inputText id="inputsinger" value="#{songManagedBean.searchSong.singerId}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputsinger" value="Singer"></p:watermark>
+                                <h:selectOneMenu value="#{songManagedBean.searchSong.singerId}">  
+                                    <f:selectItem itemLabel="Select Singer" itemValue="" />  
+                                    <f:selectItems value="#{artistManagedBean.listArtist}" />  
+                                </h:selectOneMenu> 
                             </div>
                             <div class="split2">
                                 <label>Composer</label>
-                                <p:inputText id="inputcomposer" value="#{songManagedBean.searchSong.composerId}" style="width:200px;">
-                                </p:inputText>
-                                <p:watermark for="inputcomposer" value="Composer"></p:watermark>
+                                <h:selectOneMenu value="#{songManagedBean.searchSong.composerId}">  
+                                    <f:selectItem itemLabel="Select Composer" itemValue="" />  
+                                    <f:selectItems value="#{artistManagedBean.listArtist}" />  
+                                </h:selectOneMenu> 
                             </div>
                             <div class="splitclear"></div>
                         </div>
@@ -57,11 +59,6 @@
                                 <p:watermark for="inputinfo" value="Information"></p:watermark>
                             </div>
                             <div class="splitclear"></div>
-                        </div>
-                        <div class="element">
-                            <label>Free</label>
-                            <p:selectBooleanCheckbox id="inputfree" value="#{songManagedBean.searchSong.isFree}"></p:selectBooleanCheckbox>
-
                         </div>
                         <div class="entry">
                             <h:commandButton class="button" value="Search" action="#{songManagedBean.search()}"></h:commandButton><br/>

@@ -120,7 +120,7 @@ public class ProducerManagedBean {
         item.setIsDeleted(true);
         item.setModifiedDate(new Date());
         helper.update(item);
-        return "show";
+        return null;
     }
 
     public String update() {
@@ -141,7 +141,7 @@ public class ProducerManagedBean {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
         helper.update(item);
-        return "recovery";
+        return null;
     }
 
     public String cancel() {

@@ -15,47 +15,63 @@
                 <div class="full_w">
                     <div class="h_title">Product Filter</div>
                     <h:form>
-                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <div class="entry">
+                            <h:link class="button" value="Return List" outcome="show"></h:link>
+                            <h:commandButton  class="button" value="Search" action="#{productManagedBean.search()}"></h:commandButton><br/>
+                        </div>
                         <div class="element">
                             <div class="split1">
-                                <label>ID</label>
-                                <p:inputText id="inputid" value="#{productManagedBean.searchDvd.id}" style="width:200px;">
-                                    <f:converter converterId="ZeroConverter"></f:converter>
-                                </p:inputText>
-                                <p:watermark for="inputid" value="ID"></p:watermark><br/>
-                            </div>
-                            <div class="split2">
                                 <label>Title</label>
                                 <p:inputText id="inputtitle" value="#{productManagedBean.searchDvd.title}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputtitle" value="Title"></p:watermark><br/>
+                                <p:watermark for="inputtitle" value="Title"></p:watermark>
+
+                            </div>
+                            <div class="split2">
+                                <label>Author</label>
+                                <p:inputText id="inputauthor" value="#{productManagedBean.searchDvd.author}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputauthor" value="Author"></p:watermark>
                             </div>
                             <div class="splitclear"></div>
                         </div>
                         <div class="element">
                             <div class="split1">
-                                <label>Author</label>
-                                <p:inputText id="inputauthor" value="#{productManagedBean.searchDvd.author}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputauthor" value="Author"></p:watermark>
+                                <label>Type</label>
+                                <h:selectOneMenu id="selecttype" value="#{productManagedBean.searchDvd.type}">  
+                                    <f:selectItem itemLabel="Select Type" itemValue="" />  
+                                    <f:selectItems value="#{productManagedBean.listTypeSearch}" />  
+                                </h:selectOneMenu> 
+
                             </div>
                             <div class="split2">
-                                <label>Release Date</label>
-                                <p:inputText id="inputdate" value="#{productManagedBean.searchDvd.releaseDate}" style="width:200px;">
-                                    <f:convertDateTime pattern="d-M-yyyy" />
-                                </p:inputText>
-                                <p:watermark for="inputdate" value="Release Date(Format d-M-yyyy)"></p:watermark>
+                                <label>Is Deleted</label>
+                                <h:selectBooleanCheckbox value="#{productManagedBean.searchDvd.isDeleted}"></h:selectBooleanCheckbox>
                             </div>
                             <div class="splitclear"></div>
                         </div>
                         <div class="element">
                             <div class="split1">
                                 <label>Price</label>
-                                <p:inputText id="inputprice" value="#{productManagedBean.searchDvd.price}" style="width:200px;"></p:inputText>
+                                <p:inputText id="inputprice" value="#{productManagedBean.searchDvd.price}" style="width:200px;">
+                                    <f:convertNumber type="number"></f:convertNumber>
+                                </p:inputText>
+                                <p:message for="inputprice" display="text"></p:message>
                                 <p:watermark for="inputprice" value="Price"></p:watermark>
                             </div>
                             <div class="split2">
                                 <label>Disc Number</label>
-                                <p:inputText id="inputdisc" value="#{productManagedBean.searchDvd.discNumber}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputdisc" value="Number of Disc"></p:watermark>
+                                <h:selectOneMenu value="#{productManagedBean.searchDvd.discNumber}">  
+                                    <f:selectItem itemLabel="Select One" itemValue="" />  
+                                    <f:selectItem itemLabel="1" itemValue="1" />  
+                                    <f:selectItem itemLabel="2" itemValue="2" />  
+                                    <f:selectItem itemLabel="3" itemValue="3" />  
+                                    <f:selectItem itemLabel="4" itemValue="4" /> 
+                                    <f:selectItem itemLabel="5" itemValue="5" /> 
+                                    <f:selectItem itemLabel="6" itemValue="6" /> 
+                                    <f:selectItem itemLabel="7" itemValue="7" /> 
+                                    <f:selectItem itemLabel="8" itemValue="8" /> 
+                                    <f:selectItem itemLabel="9" itemValue="9" /> 
+                                    <f:selectItem itemLabel="10" itemValue="10" /> 
+                                </h:selectOneMenu>  
                             </div>
                             <div class="splitclear"></div>
                         </div>
@@ -66,33 +82,36 @@
                                 <p:watermark for="inputgenres" value="Genres"></p:watermark>
                             </div>
                             <div class="split2">
-                                <label>Type</label>
-                                <h:selectOneMenu id="selecttype" value="#{productManagedBean.searchDvd.type}">  
-                                    <f:selectItem itemLabel="Select Type" itemValue="" />  
-                                    <f:selectItems value="#{productManagedBean.listTypeSearch}" />  
-                                </h:selectOneMenu> 
 
+                                <label>Release Date</label>
+                                <p:calendar value="#{productManagedBean.searchDvd.releaseDate}" id="popupButtonCal" style="width:200px;"  navigator="true"/> 
+                                <p:message for="popupButtonCal" display="text"></p:message>
+                                <p:watermark for="popupButtonCal" value="Release Date"></p:watermark>
                             </div>
                             <div class="splitclear"></div>
                         </div>
                         <div class="element">
                             <div class="split1">
                                 <label>Supplier</label>
-                                <p:inputText id="inputsupplier" value="#{productManagedBean.searchDvd.supplierId}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputsupplier" value="Supplier"></p:watermark>
+                                <h:selectOneMenu value="#{productManagedBean.searchDvd.supplierId}">  
+                                    <f:selectItem itemLabel="Select Supplier" itemValue="" />  
+                                    <f:selectItems value="#{productManagedBean.listSupplier}" />  
+                                </h:selectOneMenu> 
                             </div>
                             <div class="split2">
                                 <label>Producer</label>
-                                <p:inputText id="inputproducer" value="#{productManagedBean.searchDvd.producerId}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputproducer" value="Producer"></p:watermark>
+                                <h:selectOneMenu value="#{productManagedBean.searchDvd.producerId}">  
+                                    <f:selectItem itemLabel="Select Producer" itemValue="" />  
+                                    <f:selectItems value="#{productManagedBean.listProducer}" />  
+                                </h:selectOneMenu> 
                             </div>
                             <div class="splitclear"></div>
                         </div>
                         <div class="element">
                             <div class="split1">
-                                <label>Image Cover</label>
-                                <p:inputText id="inputimg" value="#{productManagedBean.searchDvd.imgCover}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputimg" value="Image Cover"></p:watermark>
+                                <label>Description</label>
+                                <p:inputText id="inputdes" value="#{productManagedBean.searchDvd.description}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputdes" value="Description"></p:watermark>
                             </div>
                             <div class="split2">
                                 <label>Details</label>
@@ -102,14 +121,7 @@
                             <div class="splitclear"></div>
 
                         </div>
-                        <div class="element">
-                            <label>Description</label>
-                            <p:inputTextarea id="inputdes" value="#{productManagedBean.searchDvd.description}" style="width:100%;" rows="10"></p:inputTextarea>
-                            <p:watermark for="inputdes" value="Description"></p:watermark>
-                        </div>
-                        <div class="entry">
-                            <h:commandButton  class="button" value="Search" action="#{productManagedBean.search()}"></h:commandButton><br/>
-                        </div>
+
 
                         Result :<br/>
                         <gct:product-list controller="#{productManagedBean}" list="#{productManagedBean.resustSearch}" for="search" from="search"></gct:product-list>

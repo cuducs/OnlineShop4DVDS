@@ -54,9 +54,6 @@ public class ProductManagedHelper extends BaseHelper {
 
     public List<Dvd> search(Dvd searchDvd) {
         Criteria criteria = session.createCriteria(Dvd.class);
-        if (searchDvd.getId() > 0) {
-            criteria.add(Expression.eq("id", searchDvd.getId()));
-        }
         if (searchDvd.getTitle() != "" && searchDvd.getTitle() != null) {
             criteria.add(Expression.ilike("title", "%" + searchDvd.getTitle() + "%"));
         }
@@ -72,9 +69,6 @@ public class ProductManagedHelper extends BaseHelper {
         if (searchDvd.getPrice() != null) {
             criteria.add(Expression.eq("price", searchDvd.getPrice()));
         }
-//        if (searchDvd.getImageCoverUrl() != "" && searchDvd.getImageCoverUrl() != null) {
-//            criteria.add(Expression.ilike("imageCoverUrl", "%" + searchDvd.getImageCoverUrl() + "%"));
-//        }
         if (searchDvd.getAuthor() != "" && searchDvd.getAuthor() != null) {
             criteria.add(Expression.ilike("author", "%" + searchDvd.getAuthor() + "%"));
         }
@@ -84,6 +78,13 @@ public class ProductManagedHelper extends BaseHelper {
         if (searchDvd.getType() != null) {
             criteria.add(Expression.eq("type", searchDvd.getType()));
         }
+        if (searchDvd.getSupplierId() != null) {
+            criteria.add(Expression.eq("supplierId", searchDvd.getSupplierId()));
+        }
+        if (searchDvd.getProducerId() != null) {
+            criteria.add(Expression.eq("producerId", searchDvd.getProducerId()));
+        }
+        criteria.add(Expression.eq("isDeleted", searchDvd.isIsDeleted()));
         return criteria.list();
     }
 

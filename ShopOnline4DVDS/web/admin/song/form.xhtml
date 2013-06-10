@@ -14,11 +14,21 @@
                 <div class="full_w">
                     <div class="h_title">Song Form</div>
                     <h:form>
-                        <h:link class="button" value="Return List" outcome="show"></h:link><br/>
+                        <div class="entry">
+                            <h:link class="button" value="Return List" outcome="show"></h:link>
+                            <h:panelGroup  rendered="#{songManagedBean.mode eq appConstant.modeCreate}">
+                                <h:commandButton class="button add" value="Create" action="#{songManagedBean.save()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup  rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton class="button" value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{songManagedBean.cancel()}"></h:commandButton>
+                        </div>
                         <div class="element">
                             <div class="split1">
                                 <label>Title</label>
-                                <p:inputText id="inputtitle" value="#{songManagedBean.curSong.title}" style="width:200px;"></p:inputText>
+                                <p:inputText id="inputtitle" value="#{songManagedBean.curSong.title}" style="width:200px;" required="true" requiredMessage="Title is required"></p:inputText>
+                                <p:message for="inputtitle" display="text"></p:message>
                                 <p:watermark for="inputtitle" value="Title"></p:watermark>
                             </div>
                             <div class="split2">
@@ -30,14 +40,17 @@
                         <div class="element">
                             <div class="split1">
                                 <label>Singer</label>
-                                <p:inputText id="inputsinger" value="#{songManagedBean.curSong.singerId}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputsinger" value="Singer"></p:watermark>
+                                <h:selectOneMenu value="#{songManagedBean.curSong.singerId}">  
+                                    <f:selectItem itemLabel="Select Singer" itemValue="" />  
+                                    <f:selectItems value="#{artistManagedBean.listArtist}" />  
+                                </h:selectOneMenu> 
                             </div>
                             <div class="split2">
                                 <label>Composer</label>
-                                <p:inputText id="inputcomposer" value="#{songManagedBean.curSong.composerId}" style="width:200px;">
-                                </p:inputText>
-                                <p:watermark for="inputcomposer" value="Composer"></p:watermark>
+                                <h:selectOneMenu value="#{songManagedBean.curSong.composerId}">  
+                                    <f:selectItem itemLabel="Select Composer" itemValue="" />  
+                                    <f:selectItems value="#{artistManagedBean.listArtist}" />  
+                                </h:selectOneMenu> 
                             </div>
                             <div class="splitclear"></div>
                         </div>
@@ -53,15 +66,7 @@
                             <p:watermark for="inputlyics" value="Lyrics"></p:watermark>
                         </div>
 
-                        <div class="entry">
-                            <h:panelGroup  rendered="#{songManagedBean.mode eq appConstant.modeCreate}">
-                                <h:commandButton class="button add" value="Create" action="#{songManagedBean.save()}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup  rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
-                                <h:commandButton class="button" value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:commandButton class="button cancel" value="Cancel" action="#{songManagedBean.cancel()}"></h:commandButton>
-                        </div>
+
 
                     </h:form>
                 </div>
