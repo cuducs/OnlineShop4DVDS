@@ -113,10 +113,12 @@
                         <div class="h_title">Report: VIP Customer at #{reportBean.myday}/#{reportBean.mymonth}/#{reportBean.myyear}</div>
                         <h:form>
                             Day: <h:selectOneMenu value="#{reportBean.myday}">
+                                <f:selectItem itemLabel="--" itemValue="--"/>
                                 <f:selectItems value="#{reportBean.listDay}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
                             </h:selectOneMenu>
                             Month: 
                             <h:selectOneMenu value="#{reportBean.mymonth}">
+                                <f:selectItem itemLabel="--" itemValue="--"/>
                                 <f:selectItems value="#{reportBean.listMonth}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
                             </h:selectOneMenu>
                             Year: 

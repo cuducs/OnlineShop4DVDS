@@ -72,7 +72,7 @@ public class ReportBean {
     }
 
     public String getMusicincomedata() {
-        String[] s = ReportHelper.income("0", "0", myyear);
+        String[] s = ReportHelper.income("--", "--", myyear);
         movieincomedata = s[1];
         gameincomedata = s[2];
         return s[0];

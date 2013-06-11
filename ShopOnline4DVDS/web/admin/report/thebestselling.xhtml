@@ -113,10 +113,12 @@
                         <div class="h_title">Report overview</div>
                         <h:form>
                             Date: <h:selectOneMenu value="#{reportBean.myday}">
+                                <f:selectItem itemLabel="--" itemValue="--"/>
                                 <f:selectItems value="#{reportBean.listDay}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
                             </h:selectOneMenu>
                             Month: 
                             <h:selectOneMenu value="#{reportBean.mymonth}">
+                                <f:selectItem itemLabel="--" itemValue="--"/>
                                 <f:selectItems value="#{reportBean.listMonth}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
                             </h:selectOneMenu>
                             Year: <h:inputText value="#{reportBean.myyear}"/>
