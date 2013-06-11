@@ -111,31 +111,39 @@
 
                     <div class="full_w">
                         <div class="h_title">Report overview</div>
-                        <h:form>
-                            Date: <h:selectOneMenu value="#{reportBean.myday}">
-                                <f:selectItem itemLabel="--" itemValue="--"/>
-                                <f:selectItems value="#{reportBean.listDay}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
-                            </h:selectOneMenu>
-                            Month: 
-                            <h:selectOneMenu value="#{reportBean.mymonth}">
-                                <f:selectItem itemLabel="--" itemValue="--"/>
-                                <f:selectItems value="#{reportBean.listMonth}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
-                            </h:selectOneMenu>
-                            Year: <h:inputText value="#{reportBean.myyear}"/>
-                            <h:commandButton value="View" action="#{reportBean.changeYear()}"/>
-                        </h:form>  
-                        <script>
-                            $(function () { $('#container').highcharts({ 
-                                    chart: { type: 'column', margin: [ 50, 50, 100, 80] }, title: { text: 'The best selling' }, 
-                                    xAxis: { categories: [ 'Music', 'Movie', 'Game' ], labels: { rotation: -45, align: 'right', style: { fontSize: '13px', fontFamily: 'Verdana, sans-serif' } } }, 
-                                    yAxis: { min: 0, title: { text: 'Number' } }, 
-                                    legend: { enabled: false }, tooltip: { formatter: function() { return ''+ this.x +''+ 'The best selling: '+ Highcharts.numberFormat(this.y, 0) + ' DVD (s)'; } }, 
-                                    series: [{ name: 'Population', data: [#{reportBean.topsellingdata}], dataLabels: { enabled: true, rotation: -90, color: '#FFFFFF', align: 'right', x: 4, y: 10, style: { fontSize: '13px', fontFamily: 'Verdana, sans-serif' } } }] }); });
-                        </script>
-                        <script src="/ShopOnline4DVDS/resources/chart2/js/highcharts.js"></script>
-                        <script src="/ShopOnline4DVDS/resources/chart2/js/modules/exporting.js"></script>
-                        <a href="orderstatus.xhtml">Orders status</a> | <a href="overview.xhtml">Overview</a> | <a href="income.xhtml">Income</a> | <a href="vipcustomer.xhtml">VIP Customer</a>
-                        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                        <table>
+                            <tr>
+                                <th>Total order to day: </th><td>#{reportBean.totalOrdersToday}</td>
+                            </tr>
+                            <tr>
+                                <th>Total DVD: </th><td>#{reportBean.totalDVD}</td>
+                            </tr>
+                            <tr>
+                                <th>Total member: </th><td>#{reportBean.totalMember}</td>
+                            </tr>
+                            <tr>
+                                <th>Unread feedback: </th><td>#{reportBean.totalUnreadFeedback}</td>
+                            </tr>
+                            <tr>
+                                <th>Total song: </th><td>#{reportBean.totalSong}</td>
+                            </tr>
+                            <tr>
+                                <th>Income today: </th><td>#{reportBean.totalIncomeToday}</td>
+                            </tr>
+                            <tr>
+                                <th>Sold today: </th><td>#{reportBean.totalSoldToday} DVD(s)</td>
+                            </tr>
+                            <c:if test="#{reportBean.vipCustomerToday!=null}">
+                                <tr>
+                                    <th colspan="2" style="text-align: center; font-weight: bold">VIP Customer (the most buy)</th>
+                                </tr>
+                                <tr><th>VIP Customer: </th><td><h1 style="color: red">#{reportBean.vipCustomerToday.name}</h1></td></tr>
+                                <tr><th>Email </th><td>#{reportBean.vipCustomerToday.email}</td></tr>
+                                <tr><th>ID: </th><td>#{reportBean.vipCustomerToday.id}</td></tr>
+                                <tr><th>Bought:</th><td>#{reportBean.vipQuantityToday} (DVDs)</td></tr>
+                            </c:if>
+                        </table>
+                        <a href="income.xhtml">View Income</a> | <a href="orderstatus.xhtml">Orders status</a> | <a href="thebestselling.xhtml">The best selling</a> | <a href="vipcustomer.xhtml">VIP Customer</a>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -153,3 +161,4 @@
 
     </h:body>
 </html>
+

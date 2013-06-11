@@ -163,7 +163,7 @@ public class ShowProductBean {
     
     public List<Dvd> getOthers() {
         String q = "FROM Dvd d WHERE d.isDeleted = 0 and d.type = '" + getDetailType() + "'";
-        List<Dvd> d = getSession().createQuery(q).list();
+        List<Dvd> d = getSession().createQuery(q).setMaxResults(4).list();
         return d;
     }
     

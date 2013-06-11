@@ -56,8 +56,7 @@ public class BillBean {
     private String result;
     private List<Bill> sortBills;
     private List<Page> sortLinks;//paging links sorted
-    private BillDetail billdetail;
-    private Dvd dvddetail;
+    private List<BillDetail> billdetail;
     // ducnt
     private BillHelper billHelper;
     private BillDetailHelper billDetailHelper;
@@ -328,22 +327,16 @@ public class BillBean {
         return getSession().createQuery("FROM Bill b WHERE b.isDeleted = 0 and b.status = " + s).list().size();
     }
 
-    public BillDetail getBilldetail() {
+    public List<BillDetail> getBilldetail() {
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Bill b = (Bill) ss.getAttribute("detail");
-        billdetail = (BillDetail) getSession().createQuery("FROM BillDetail b WHERE b.id.billId = " + b.getId()).uniqueResult();
+        billdetail = getSession().createQuery("FROM BillDetail b WHERE b.id.billId = " + b.getId()).list();
         updateStatus = b.getStatus();
         return billdetail;
     }
-
-    public Dvd getDvddetail() {
-        try {
-            dvddetail = (Dvd) getSession().createQuery("FROM Dvd d WHERE d.id = " + getBilldetail().getId().getDvdId()).uniqueResult();
-
-        } catch (Exception ex) {
-            dvddetail = null;
-        }
-        return dvddetail;
+    
+    public String member(int x){
+        return (String)getSession().createQuery("SELECT m.email FROM Member m WHERE m.id="+x).uniqueResult();
     }
 
     /**

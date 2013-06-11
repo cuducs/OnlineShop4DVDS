@@ -23,7 +23,7 @@
                                         #{showProductBean.detail.title}</h3>
                                     <div id="divProductImgStatic">
                                         <div class="img">
-                                            <img height="200" width="150" src="#{showProductBean.detail.imageCoverUrl}" id="imgProduct" class="product-image" alt="#{showProductBean.detail.title}"/>
+                                            <img height="200" width="150" src="#{showProductBean.detail.imgCover}" id="imgProduct" class="product-image" alt="#{showProductBean.detail.title}"/>
                                         </div>
                                     </div>
                                     <div class="product-text">
@@ -81,7 +81,7 @@
                                                             height: 230,
                                                             width: 320,
                                                             file: "#{showProductBean.trailerUrl}",
-                                                            image: "#{showProductBean.detail.imageCoverUrl}"
+                                                            image: "#{showProductBean.detail.imgCover}"
                                                         });
                                                     </script>
                                                     <!-- END OF THE PLAYER EMBEDDING -->
@@ -103,7 +103,7 @@
                                     <tr>
                                         <c:forEach var="o" items="#{showProductBean.others}">
                                             <td style="text-align: center; padding: 20px">
-                                            <a href="detail.xhtml?detail=#{o.id}/#{o.type}"><img height="81" width="62" src="#{o.imageCoverUrl}" alt="ok"/></a>
+                                            <a href="detail.xhtml?detail=#{o.id}/#{o.type}"><img height="81" width="62" src="#{o.imgCover}" alt="ok"/></a>
                                             <br/>
                                             <a href="detail.xhtml?detail=#{o.id}/#{o.type}">#{o.title}</a></td>
                                         </c:forEach>

@@ -9,7 +9,7 @@
     <h:head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
-        <title>Report Overview</title>
+        <title>Report VIP Customer</title>
         <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/SimpleAdmin_kilab_pl/css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ShopOnline4DVDS/resources/SimpleAdmin_kilab_pl/css/navi.css" media="screen" />
         <script type="text/javascript" src="/ShopOnline4DVDS/resources/SimpleAdmin_kilab_pl/js/jquery-1.7.2.min.js"></script>
@@ -110,9 +110,9 @@
                 <div id="main">
 
                     <div class="full_w">
-                        <div class="h_title">Report overview</div>
+                        <div class="h_title">Report: VIP Customer at #{reportBean.myday}/#{reportBean.mymonth}/#{reportBean.myyear}</div>
                         <h:form>
-                            Date: <h:selectOneMenu value="#{reportBean.myday}">
+                            Day: <h:selectOneMenu value="#{reportBean.myday}">
                                 <f:selectItem itemLabel="--" itemValue="--"/>
                                 <f:selectItems value="#{reportBean.listDay}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
                             </h:selectOneMenu>
@@ -121,21 +121,17 @@
                                 <f:selectItem itemLabel="--" itemValue="--"/>
                                 <f:selectItems value="#{reportBean.listMonth}" var="x" itemLabel="#{x}" itemValue="#{x}"/>
                             </h:selectOneMenu>
-                            Year: <h:inputText value="#{reportBean.myyear}"/>
+                            Year: 
+                            <h:inputText value="#{reportBean.myyear}"/>
                             <h:commandButton value="View" action="#{reportBean.changeYear()}"/>
                         </h:form>  
-                        <script>
-                            $(function () { $('#container').highcharts({ 
-                                    chart: { type: 'column', margin: [ 50, 50, 100, 80] }, title: { text: 'The best selling' }, 
-                                    xAxis: { categories: [ 'Music', 'Movie', 'Game' ], labels: { rotation: -45, align: 'right', style: { fontSize: '13px', fontFamily: 'Verdana, sans-serif' } } }, 
-                                    yAxis: { min: 0, title: { text: 'Number' } }, 
-                                    legend: { enabled: false }, tooltip: { formatter: function() { return ''+ this.x +''+ 'The best selling: '+ Highcharts.numberFormat(this.y, 0) + ' DVD (s)'; } }, 
-                                    series: [{ name: 'Population', data: [#{reportBean.topsellingdata}], dataLabels: { enabled: true, rotation: -90, color: '#FFFFFF', align: 'right', x: 4, y: 10, style: { fontSize: '13px', fontFamily: 'Verdana, sans-serif' } } }] }); });
-                        </script>
-                        <script src="/ShopOnline4DVDS/resources/chart2/js/highcharts.js"></script>
-                        <script src="/ShopOnline4DVDS/resources/chart2/js/modules/exporting.js"></script>
-                        <a href="orderstatus.xhtml">Orders status</a> | <a href="overview.xhtml">Overview</a> | <a href="income.xhtml">Income</a> | <a href="vipcustomer.xhtml">VIP Customer</a>
-                        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                        <a href="income.xhtml">View Income</a> | <a href="overview.xhtml">Overview</a> | <a href="thebestselling.xhtml">The best selling</a> | <a href="orderstatus.xhtml">Orders status</a>
+                        <table>
+                            <tr><th>Customer Name: </th><td style="color: red">#{reportBean.vipCustomer.name}</td></tr>
+                            <tr><th>Email </th><td>#{reportBean.vipCustomer.email}</td></tr>
+                            <tr><th>ID: </th><td>#{reportBean.vipCustomer.id}</td></tr>
+                            <tr><th>Bought:</th><td>#{reportBean.vipQuantity} (DVDs)</td></tr>
+                        </table>
                     </div>
                 </div>
                 <div class="clear"></div>
