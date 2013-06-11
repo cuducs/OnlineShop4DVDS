@@ -9,12 +9,12 @@ import g3.hibernate.entity.AlbumMusicMapping;
 import g3.hibernate.entity.AlbumMusicMappingId;
 import g3.hibernate.entity.Song;
 import g3.bean.utility.BaseHelper;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Expression;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -107,7 +107,7 @@ public class AlbumManagedHelper extends BaseHelper {
         if (lstCannotAddId.size() > 0) {
             songCanAdd.add(Restrictions.not(Restrictions.in("id", lstCannotAddId)));
         }
-
+        songCanAdd.add(Expression.eq("isDeleted", false));
         beginTransaction.commit();
 
         return songCanAdd.list();
@@ -115,24 +115,34 @@ public class AlbumManagedHelper extends BaseHelper {
 
     List<Song> getSongAdded(Album item) {
         Transaction beginTransaction = session.beginTransaction();
+        //list id added
         List lstCannotAddId = session.createQuery("Select a.id.songId From AlbumMusicMapping a Where a.id.albumId=" + item.getId()).list();
         Criteria songCanAdd = session.createCriteria(Song.class);
         if (lstCannotAddId.size() == 0) {
             return lstCannotAddId;
         }
+        songCanAdd.add(Expression.eq("isDeleted", false));
         songCanAdd.add(Restrictions.in("id", lstCannotAddId));
         beginTransaction.commit();
         return songCanAdd.list();
     }
 
-    List<Song> searchSongCanAdd(Album item) {
+    List<Song> searchSongCanAdd(Album item, List<Song> source) {
         Transaction beginTransaction = session.beginTransaction();
         List lstCannotAddId = session.createQuery("Select a.id.songId From AlbumMusicMapping a Where a.id.albumId=" + item.getId()).list();
         Criteria songCanAdd = session.createCriteria(Song.class);
         if (lstCannotAddId.size() > 0) {
             songCanAdd.add(Restrictions.not(Restrictions.in("id", lstCannotAddId)));
         }
-
+        if (source != null) {
+            List<Integer> lstInt = new ArrayList<Integer>();
+            for (Song song : source) {
+                lstInt.add(song.getId());
+            }
+            if (lstInt.size() > 0) {
+                songCanAdd.add(Restrictions.in("id", lstInt));
+            }
+        }
         beginTransaction.commit();
 
         return songCanAdd.list();

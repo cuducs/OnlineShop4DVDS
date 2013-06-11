@@ -10,6 +10,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Expression;
 
 /**
  *
@@ -45,17 +46,14 @@ public class SupplierManagedHelper extends BaseHelper{
     }
 
     List<Supplier> search(Supplier searchSupplier) {
-        Criteria criteria = session.createCriteria(Supplier.class);
-        if (searchSupplier.getId() > 0) {
-            criteria.add(org.hibernate.criterion.Expression.eq("id", searchSupplier.getId()));
-        }
+       Criteria criteria = session.createCriteria(Supplier.class);
         if (searchSupplier.getTitle() != "") {
-            criteria.add(org.hibernate.criterion.Expression.ilike("title", "%" + searchSupplier.getTitle() + "%"));
+            criteria.add(Expression.ilike("title", "%" + searchSupplier.getTitle() + "%"));
         }
-//        if (searchSupplier.getLyrics() != "") {
-//            criteria.add(org.hibernate.criterion.Expression.ilike("lyrics", "%" + searchSupplier.getLyrics() + "%"));
-//        }
-//        criteria.add(org.hibernate.critersion.Expression.eq("isFree", searchSupplier.isIsFree()));
+        if (searchSupplier.getInfo() != "") {
+            criteria.add(Expression.ilike("info", "%" + searchSupplier.getInfo() + "%"));
+        }
+        criteria.add(Expression.eq("isDeleted", searchSupplier.isIsDeleted()));
         return criteria.list();
     }
 }

@@ -16,8 +16,9 @@
                     <h:form>
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <div class="element">
-                            <label>Title</label>
-                            <p:inputText id="inputtitle" value="#{producerManagedBean.curProducer.title}" style="width:200px;"></p:inputText>
+                            <label>Title<span class="red">*</span></label>
+                            <p:inputText id="inputtitle" value="#{producerManagedBean.curProducer.title}" style="width:200px;" required="true" requiredMessage="Title is required"></p:inputText>
+                            <p:message for="inputtitle" display="text"></p:message>
                             <p:watermark for="inputtitle" value="Title"></p:watermark>
                         </div>
                         <div class="element">
@@ -33,7 +34,7 @@
                             <h:panelGroup  rendered="#{producerManagedBean.mode eq appConstant.modeEdit}">
                                 <h:commandButton  class="button" value="Edit" action="#{producerManagedBean.update()}"></h:commandButton>
                             </h:panelGroup>
-                            <h:commandButton class="button cancel" value="Cancel" action="#{producerManagedBean.cancel()}"></h:commandButton>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{producerManagedBean.cancel()}" immediate="true"></h:commandButton>
                         </div>
 
                     </h:form>

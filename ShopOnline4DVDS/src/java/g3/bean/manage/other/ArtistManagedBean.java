@@ -23,7 +23,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class ArtistManagedBean {
-private Artist curArtist;
+
+    private Artist curArtist;
     private int formMode;
     private ArtistManagedHelper helper;
     private String returnFromDetails;
@@ -108,6 +109,15 @@ private Artist curArtist;
         return "details";
     }
 
+    public Artist detailArtist() {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String id = params.get("detailid");
+        if (id != null) {
+            return (Artist) helper.getObjectById(Artist.class, id);
+        }
+        return curArtist;
+    }
+
     public String save() {
         curArtist.setCreatedDate(new Date());
         curArtist.setModifiedDate(new Date());
@@ -148,12 +158,34 @@ private Artist curArtist;
         curArtist = new Artist();
         return "show";
     }
-    
+
     public Map<String, Integer> getListArtist() {
         Map<String, Integer> lst = new HashMap<String, Integer>();
         for (Artist artist : getAllArtists()) {
             lst.put(artist.getTitle(), artist.getId());
         }
         return lst;
+    }
+
+    public Map<String, String> getListWorkAs() {
+        Map<String, String> lst = new HashMap<String, String>();
+        lst.put(AppConstant.ARTIST_SINGER.toUpperCase(), AppConstant.ARTIST_SINGER);
+        lst.put(AppConstant.ARTIST_COMPOSER.toUpperCase(), AppConstant.ARTIST_COMPOSER);
+        lst.put(AppConstant.ARTIST_BOTH.toUpperCase(), AppConstant.ARTIST_BOTH);
+        return lst;
+    }
+
+    public Map<String, String> getListSearchWorkAs() {
+        Map<String, String> lst = new HashMap<String, String>();
+        lst.put("All", null);
+        lst.put(AppConstant.ARTIST_SINGER.toUpperCase(), AppConstant.ARTIST_SINGER);
+        lst.put(AppConstant.ARTIST_COMPOSER.toUpperCase(), AppConstant.ARTIST_COMPOSER);
+        lst.put(AppConstant.ARTIST_BOTH.toUpperCase(), AppConstant.ARTIST_BOTH);
+        return lst;
+    }
+
+    public Artist artistById(String id) {
+        Artist output = (Artist) helper.getObjectById(Artist.class, id);
+        return output;
     }
 }

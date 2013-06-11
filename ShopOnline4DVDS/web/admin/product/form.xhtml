@@ -28,13 +28,13 @@
                         </div>
                         <div class="element">
                             <div class="split1">
-                                <label>Title</label>
+                                <label>Title<span class="red">*</span></label>
                                 <p:inputText id="inputtitle" value="#{productManagedBean.curDvd.title}" style="width:200px;" required="true" requiredMessage="Title is required"></p:inputText>
                                 <p:message for="inputtitle" display="text"></p:message>
                                 <p:watermark for="inputtitle" value="Title"></p:watermark>
                             </div>
                             <div class="split2">
-                                <label>Type</label>
+                                <label>Type<span class="red">*</span></label>
                                 <h:selectOneMenu value="#{productManagedBean.curDvd.type}">
                                     <f:selectItems value="#{productManagedBean.listType}" />  
                                 </h:selectOneMenu> 
@@ -44,13 +44,13 @@
                         </div>
                         <div class="element">
                             <div class="split1">
-                                <label>Author</label>
+                                <label>Author<span class="red">*</span></label>
                                 <p:inputText id="inputauthor" value="#{productManagedBean.curDvd.author}" style="width:200px;" required="true" requiredMessage="Author is required"></p:inputText>
                                 <p:message for="inputauthor" display="text"></p:message>
                                 <p:watermark for="inputauthor" value="Author"></p:watermark>
                             </div>
                             <div class="split2">
-                                <label>Price</label>
+                                <label>Price<span class="red">*</span></label>
                                 <p:inputText id="inputprice" value="#{productManagedBean.curDvd.price}" style="width:200px;" required="true" requiredMessage="Price is required">
                                     <f:convertNumber type="number"></f:convertNumber>
                                 </p:inputText>
@@ -118,26 +118,17 @@
                             <div class="splitclear"></div>
                         </div>
                         <div class="element">
-                            <div class="split1">
-                                <label>Image Cover</label>
-                                <p:inputText id="inputimg" value="#{productManagedBean.curDvd.imgCover}" style="width:200px;">
+                            <label>Image Cover</label>
+                            <p:inputText id="inputimg" value="#{productManagedBean.curDvd.imgCover}" style="width:200px;">
 
-                                </p:inputText>
-                                <p:watermark for="inputimg" value="Image Cover"></p:watermark>
-                            </div>
-                            <div class="split2">
-                                <label>Select File :</label>
-                                <p:fileUpload fileUploadListener="#{fileDataManagedBean.handleFileUpload}"  
-                                              mode="advanced"   
-                                              update="messages"  
-                                              sizeLimit="50000000"   
-                                              allowTypes="/(\.|\/)(gif|jpe?g|png|mp3)$/" style="width:300px;"/>  
-
-                                <p:messages id="messages" showDetail="true"/>
-                            </div>
-                            <div class="splitclear"></div>
+                            </p:inputText>
+                            <p:watermark for="inputimg" value="Image Cover"></p:watermark>
 
 
+                        </div>
+                        <div class="element">
+                            <label>Select File :</label>
+                            <gct:upload ></gct:upload>
                         </div>
                         <div class="element">
                             <label>Description</label>

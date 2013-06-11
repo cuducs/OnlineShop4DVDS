@@ -52,4 +52,14 @@ public class JsfUtilBean {
     public List<String> splitToListValue(String source) {
         return JsfUtilBean.splitString(source, COMMA);
     }
+
+    public String shortString(String source) {
+        if (source.length() > 30) {
+            String shortSource = source.substring(0, 29);
+            shortSource += "...";
+            return shortSource;
+        } else {
+            return source;
+        }
+    }
 }

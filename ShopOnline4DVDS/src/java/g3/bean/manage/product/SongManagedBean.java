@@ -167,4 +167,15 @@ public class SongManagedBean {
         helper.update(curSong);
         return "details";
     }
+    
+    public String removeFile(Song item){
+        item.setFileId(0);
+        item.setModifiedDate(new Date());
+        helper.update(item);
+        return null;
+    }
+    public String prepareAddFile(Song item){
+        curSong=item;
+        return "mappingfile";
+    }
 }

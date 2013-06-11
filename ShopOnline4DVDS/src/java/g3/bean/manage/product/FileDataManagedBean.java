@@ -6,6 +6,7 @@ package g3.bean.manage.product;
 
 import g3.bean.utility.AppConstant;
 import g3.hibernate.entity.FileData;
+import g3.hibernate.entity.Producer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,6 +26,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -46,7 +48,11 @@ public class FileDataManagedBean {
     private List<FileData> resustSearch;
     private String urlFileUpload;
     private String fileContentType;
-    public static final String URL_TO_FILE_FOLDER = "/ShopOnline4DVDS/files";
+    public static final String URL_TO_FILE_FOLDER = "/ShopOnline4DVDS/uploads";
+    public static final String URL_TO_FILE_FOLDER_IMAGE = "/ShopOnline4DVDS/uploads/images";
+    public static final String URL_TO_FILE_FOLDER_VIDEO = "/ShopOnline4DVDS/uploads/videos";
+    public static final String URL_TO_FILE_FOLDER_SOUND = "/ShopOnline4DVDS/uploads/sounds";
+    public static final String NO_NAME = "No_Name";
     private DefaultStreamedContent download;
 
     /**
@@ -110,6 +116,7 @@ public class FileDataManagedBean {
 
     public String create() {
         curFileData = new FileData();
+
         formMode = AppConstant.FORM_MODE_CREATE;
         return "fileform";
     }
@@ -127,14 +134,31 @@ public class FileDataManagedBean {
         return "details";
     }
 
+    public FileData detailFileData() {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String id = params.get("detailid");
+        if (id != null) {
+            return (FileData) helper.getObjectById(FileData.class, id);
+        }
+        return curFileData;
+    }
+
     public String back() {
         return returnFromDetails;
     }
 
     public String save() {
-        if (curFileData.getType().equals(AppConstant.FILE_TYPE_SOUND) || curFileData.getType().equals(AppConstant.FILE_TYPE_VIDEO)) {
-            curFileData.setUrl(urlFileUpload);
+        String ext = getExtension(curFileData.getUrl());
+        if (ext.equals("gif") || ext.equals("png") || ext.equals("jpg") || ext.equals("jpe")) {
+            curFileData.setType("image");
+        } else if (ext.equals("mp4") || ext.equals("flv")) {
+            curFileData.setType("video");
+        } else if (ext.equals("mp3")) {
+            curFileData.setType("sound");
+        } else {
+            curFileData.setType("link");
         }
+
         curFileData.setCreatedDate(new Date());
         curFileData.setModifiedDate(new Date());
         helper.save(curFileData);
@@ -146,15 +170,21 @@ public class FileDataManagedBean {
         item.setIsDeleted(true);
         item.setModifiedDate(new Date());
         helper.update(item);
-        return "show";
+        return null;
     }
 
     public String update() {
-        if (curFileData.getType().equals(AppConstant.FILE_TYPE_SOUND) || curFileData.getType().equals(AppConstant.FILE_TYPE_VIDEO)) {
-            if (!urlFileUpload.equals("")) {
-                curFileData.setUrl(urlFileUpload);
-            }
+        String ext = getExtension(curFileData.getUrl());
+        if (ext.equals("gif") || ext.equals("png") || ext.equals("jpg") || ext.equals("jpe")) {
+            curFileData.setType("image");
+        } else if (ext.equals("mp4") || ext.equals("flv")) {
+            curFileData.setType("video");
+        } else if (ext.equals("mp3")) {
+            curFileData.setType("sound");
+        } else {
+            curFileData.setType("link");
         }
+
         curFileData.setModifiedDate(new Date());
         helper.update(curFileData);
         return "show";
@@ -172,7 +202,7 @@ public class FileDataManagedBean {
         item.setIsDeleted(false);
         item.setModifiedDate(new Date());
         helper.update(item);
-        return "recovery";
+        return null;
     }
 
     public String cancel() {
@@ -182,27 +212,53 @@ public class FileDataManagedBean {
 
     public void handleFileUpload(FileUploadEvent event) {
         String fileName = event.getFile().getFileName();
-        saveFile(event.getFile(), getPath());
-        urlFileUpload = URL_TO_FILE_FOLDER + "/" + fileName;
+        String path = getPath();
+        FileData newFile = new FileData();
+        newFile.setTitle(NO_NAME);
+        newFile.setCreatedDate(new Date());
+        newFile.setModifiedDate(new Date());
+        newFile.setIsDeleted(false);
+        String ext = getExtension(fileName);
+        if (ext.equals("gif") || ext.equals("png") || ext.equals("jpg") || ext.equals("jpe")) {
+            path += "\\images";
+            newFile.setType("image");
+            urlFileUpload = URL_TO_FILE_FOLDER_IMAGE;
+        } else if (ext.equals("mp4") || ext.equals("flv")) {
+            newFile.setType("video");
+            path += "\\videos";
+            urlFileUpload = URL_TO_FILE_FOLDER_VIDEO;
+        } else if (ext.equals("mp3")) {
+            newFile.setType("sound");
+            path += "\\sounds";
+            urlFileUpload = URL_TO_FILE_FOLDER_SOUND;
+        }
+        saveFile(event.getFile(), path);
+        urlFileUpload += "/" + fileName;
+        newFile.setUrl(urlFileUpload);
+        helper.getSession().save(newFile);
         fileContentType = event.getFile().getContentType();
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", fileName + " is uploaded.");
+
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", "Your Url :" + urlFileUpload);
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public String getPath() {
-        return FacesContext.getCurrentInstance().getExternalContext().getRealPath("//files");
+        return FacesContext.getCurrentInstance().getExternalContext().getRealPath("//uploads");
     }
 
-//    public String getExtension(String fileName) {
-//        String ext = null;
-//        String s = fileName;
-//        int i = s.lastIndexOf('.');
-//
-//        if (i > 0 && i < s.length() - 1) {
-//            ext = s.substring(i + 1).toLowerCase();
-//        }
-//        return ext;
-//    }
+    public String getExtension(String fileName) {
+        String ext = null;
+        String s = fileName;
+        int i = s.lastIndexOf('.');
+        if (i == -1) {
+            return "link";
+        }
+        if (i > 0 && i < s.length() - 1) {
+            ext = s.substring(i + 1).toLowerCase();
+        }
+        return ext;
+    }
+
     private void saveFile(UploadedFile file, String path) {
         InputStream in = null;
         OutputStream out = null;
@@ -229,10 +285,34 @@ public class FileDataManagedBean {
         }
     }
 
-    public DefaultStreamedContent getDownload() {
+    public void prepareDownload(ActionEvent event) {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String id = params.get("download");
+        FileData filedata = null;
+        if (id != null) {
+            filedata = (FileData) helper.getObjectById(FileData.class, id);
+        } else {
+            filedata = curFileData;
+        }
+        try {
+            if (download != null) {
+                download.getStream().close();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FileDataManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         InputStream stream = null;
-        String filename = getFileNameFromUrl(curFileData.getUrl());
-        String path = getPath() + "\\" + filename;
+        String filename = getFileNameFromUrl(filedata.getUrl());
+        String path = getPath();
+        String ext = getExtension(filename);
+        if (ext.equals("gif") || ext.equals("png") || ext.equals("jpg") || ext.equals("jpe")) {
+            path += "\\images";
+        } else if (ext.equals("mp4") || ext.equals("flv")) {
+            path += "\\videos";
+        } else if (ext.equals("mp3")) {
+            path += "\\sounds";
+        }
+        path = path + "\\" + filename;
         try {
             stream = new FileInputStream(path);
         } catch (FileNotFoundException ex) {
@@ -240,16 +320,24 @@ public class FileDataManagedBean {
         }
 
         download = new DefaultStreamedContent(stream, FacesContext.getCurrentInstance().getExternalContext().getMimeType(filename), filename);
+    }
+
+    public DefaultStreamedContent getDownload() {
+
         return download;
     }
 
     private String getFileNameFromUrl(String url) {
-        int index = url.indexOf(URL_TO_FILE_FOLDER);
-        int length = URL_TO_FILE_FOLDER.length();
-        //+1 to remove "/"
-        String output = url.substring((index + URL_TO_FILE_FOLDER.length() + 1));
-        return output;
+        String filename = null;
+        String s = url;
+        int i = s.lastIndexOf('/');
+        if (i > 0 && i < s.length() - 1) {
+            filename = s.substring(i + 1);
+        }
+        return filename;
+
     }
+
     public Map<String, Object> getListType() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put(AppConstant.FILE_TYPE_SOUND, AppConstant.FILE_TYPE_SOUND);
@@ -262,10 +350,26 @@ public class FileDataManagedBean {
     public Map<String, Object> getListTypeSearch() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("All", null);
-        map.put(AppConstant.FILE_TYPE_SOUND, AppConstant.FILE_TYPE_SOUND);
-        map.put(AppConstant.FILE_TYPE_VIDEO, AppConstant.FILE_TYPE_VIDEO);
-        map.put(AppConstant.FILE_TYPE_SOUND_NET, AppConstant.FILE_TYPE_SOUND_NET);
-        map.put(AppConstant.FILE_TYPE_VIDEO_NET, AppConstant.FILE_TYPE_VIDEO_NET);
+        List<String> lst = helper.getSession().createSQLQuery("select distinct f.type from FileData f").list();
+        for (String string : lst) {
+            map.put(string.toUpperCase(), string);
+        }
         return map;
+    }
+
+    public String getType(String filename) {
+        String ext = getExtension(filename);
+        if (ext.equals("gif") || ext.equals("png") || ext.equals("jpg") || ext.equals("jpe")) {
+            return "image";
+        } else if (ext.equals("mp4") || ext.equals("flv")) {
+            return "video";
+        } else if (ext.equals("mp3")) {
+            return "sound";
+        }
+        return "link";
+    }
+     public FileData fileDataById(String id) {
+        FileData output = (FileData) helper.getObjectById(FileData.class, id);
+        return output;
     }
 }

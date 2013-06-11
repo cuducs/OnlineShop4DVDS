@@ -12,6 +12,7 @@ import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Expression;
 
 /**
  *
@@ -39,7 +40,6 @@ public class ArtistManagedHelper extends BaseHelper {
         return query.list();
     }
 
-
     List<Artist> getAllArtistsDeleted() {
         Transaction beginTransaction = session.beginTransaction();
         String hql = "FROM Artist g WHERE g.isDeleted=1";
@@ -50,16 +50,16 @@ public class ArtistManagedHelper extends BaseHelper {
 
     List<Artist> search(Artist searchArtist) {
         Criteria criteria = session.createCriteria(Artist.class);
-        if (searchArtist.getId() > 0) {
-            criteria.add(org.hibernate.criterion.Expression.eq("id", searchArtist.getId()));
-        }
         if (searchArtist.getTitle() != "") {
-            criteria.add(org.hibernate.criterion.Expression.ilike("title", "%" + searchArtist.getTitle() + "%"));
+            criteria.add(Expression.ilike("title", "%" + searchArtist.getTitle() + "%"));
         }
-//        if (searchArtist.getLyrics() != "") {
-//            criteria.add(org.hibernate.criterion.Expression.ilike("lyrics", "%" + searchArtist.getLyrics() + "%"));
-//        }
-//        criteria.add(org.hibernate.critersion.Expression.eq("isFree", searchArtist.isIsFree()));
+        if (searchArtist.getInfo() != "") {
+            criteria.add(Expression.ilike("info", "%" + searchArtist.getInfo() + "%"));
+        }
+        if (searchArtist.getWorkAs() != null && searchArtist.getWorkAs() != "") {
+            criteria.add(Expression.ilike("workAs", "%" + searchArtist.getWorkAs() + "%"));
+        }
+        criteria.add(Expression.eq("isDeleted", searchArtist.isIsDeleted()));
         return criteria.list();
     }
 }

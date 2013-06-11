@@ -47,9 +47,6 @@ public class FileDataManagedHelper extends BaseHelper {
 
     List<FileData> search(FileData searchFileData) {
         Criteria criteria = session.createCriteria(FileData.class);
-        if (searchFileData.getId() > 0) {
-            criteria.add(org.hibernate.criterion.Expression.eq("id", searchFileData.getId()));
-        }
         if (!"".equals(searchFileData.getTitle())) {
             criteria.add(org.hibernate.criterion.Expression.ilike("title", "%" + searchFileData.getTitle() + "%"));
         }

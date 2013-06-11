@@ -4,8 +4,10 @@
  */
 package g3.bean.utility;
 
-import g3.bean.utility.DvdStoreHibernateUtil;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
 
 /**
  *
@@ -14,7 +16,7 @@ import org.hibernate.Session;
 public class BaseHelper {
 
     protected Session session = null;
-    
+
     protected BaseHelper() {
         session = DvdStoreHibernateUtil.getSessionFactory().openSession();
     }
@@ -43,5 +45,12 @@ public class BaseHelper {
 
     public void update(Object item) {
         session.update(item);
+    }
+
+    public Object getObjectById(Class clss, String id) {
+        Query query=session.createQuery("From "+clss.getName()+" c where c.id="+id);
+        
+        Object test=query.uniqueResult();
+        return query.uniqueResult();
     }
 }

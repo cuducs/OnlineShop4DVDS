@@ -16,26 +16,70 @@
                 </p:dialog> 
                 <div class="full_w">
                     <h2 class="h_title">File Details</h2>
-                    <h:form>
-                        <div class="entry">
-                            <h:link class="button" value="Return List" outcome="show"></h:link>
-                            <h:link class="button" value="Recovery" outcome="recovery"></h:link>
-                            <h:commandLink class="button" value="Back" action="#{fileDataManagedBean.back}"></h:commandLink>
-                        </div>
 
-                        ID : #{fileDataManagedBean.curFileData.id}<br/>
-                        Title : #{fileDataManagedBean.curFileData.title}<br/>
-                        Url : <p:commandButton id="downloadLink" value="Download" ajax="false" 
-                                               onclick="PrimeFaces.monitorDownload(start, stop)" 
-                                               icon="ui-icon-arrowthichk-s">  
-                            <p:fileDownload value="#{fileDataManagedBean.download}" />  
-                        </p:commandButton>  <br/>
-                        Type : #{fileDataManagedBean.curFileData.type}<br/>
-                        View Count : #{fileDataManagedBean.curFileData.viewCount}<br/>
-                        Created Date : #{fileDataManagedBean.curFileData.createdDate}<br/>
-                        Modified Date : #{fileDataManagedBean.curFileData.modifiedDate}<br/>
-                        Is Deleted : #{fileDataManagedBean.curFileData.isDeleted}<br/>
-                    </h:form>
+                    <div class="entry">
+                        <h:link class="button" value="Return List" outcome="show"></h:link>
+                        <h:link class="button" value="Recovery" outcome="recovery"></h:link>
+                    </div>
+                    <table>
+                        <tr><td style="width:100px;">Title</td><td>#{fileDataManagedBean.detailFileData().title}</td></tr>
+                        <tr><td>Type</td><td>#{fileDataManagedBean.detailFileData().type}</td></tr>
+
+                        <tr><td>Download</td>
+                            <td>
+                                <h:form>
+                                    <h:commandLink value="Download Link" target="_blank" actionListener="#{fileDataManagedBean.prepareDownload}">
+                                        <f:param name="download" value="#{fileDataManagedBean.detailFileData().id}"></f:param>
+                                        <p:fileDownload value="#{fileDataManagedBean.download}"
+                                                        contentDisposition="inline"/>
+                                    </h:commandLink>
+                                </h:form>
+                            </td>
+                        </tr>
+                        <tr><td>View Count</td><td>#{fileDataManagedBean.detailFileData().viewCount}</td></tr>
+                        <tr><td>Created Date</td><td>
+                                <h:outputText value="#{fileDataManagedBean.detailFileData().createdDate}">
+                                    <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                </h:outputText>
+                            </td></tr>
+                        <tr><td>Modified Date</td><td>
+                                <h:outputText value="#{fileDataManagedBean.detailFileData().modifiedDate}">
+                                    <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                </h:outputText>
+                            </td></tr>
+                        <tr><td>Is Deleted</td><td>#{fileDataManagedBean.detailFileData().isDeleted}</td></tr>
+                        <tr><td>view</td><td>
+                                <h:panelGroup rendered="#{(fileDataManagedBean.detailFileData().type eq 'image')}">
+                                    <img src="#{fileDataManagedBean.detailFileData().url}" style="width:320px;height:100px;"/>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{(fileDataManagedBean.detailFileData().type eq 'video')}">
+                                    <div id="mediaplayer">Have not file to view trailer</div>
+                                    <script type="text/javascript" src="/ShopOnline4DVDS/resources/js/jwplayer.js"></script>
+                                    <script type="text/javascript">
+                                        jwplayer("mediaplayer").setup({
+                                            flashplayer: "/ShopOnline4DVDS/resources/js/player.swf",
+                                            height: 300 ,
+                                            width: 320,
+                                            file:"#{fileDataManagedBean.detailFileData().url}"
+                                        });
+                                    </script>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{(fileDataManagedBean.detailFileData().type eq 'sound')}">
+                                    <div id="mediaplayer">Have not file to view trailer</div>
+                                    <script type="text/javascript" src="/ShopOnline4DVDS/resources/js/jwplayer.js"></script>
+                                    <script type="text/javascript">
+                                        jwplayer("mediaplayer").setup({
+                                            flashplayer: "/ShopOnline4DVDS/resources/js/player.swf",
+                                            height: 300 ,
+                                            width: 320,
+                                            file:"#{fileDataManagedBean.detailFileData().url}"
+                                        });
+                                    </script>
+                                </h:panelGroup>
+                            </td>
+                        </tr>
+                    </table>
+
 
                 </div>
                 <script type="text/javascript">  

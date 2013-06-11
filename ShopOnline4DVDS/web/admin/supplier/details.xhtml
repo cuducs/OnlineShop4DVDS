@@ -17,12 +17,21 @@
                             <h:link class="button" value="Return List" outcome="show"></h:link>
                             <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                         </div>
-                        ID : #{supplierManagedBean.curSupplier.id}<br/>
-                        Title : #{supplierManagedBean.curSupplier.title}<br/>
-                        Info : #{supplierManagedBean.curSupplier.info}<br/>
-                        Created Date : #{supplierManagedBean.curSupplier.createdDate}<br/>
-                        Modified Date : #{supplierManagedBean.curSupplier.modifiedDate}<br/>
-                        Is Deleted : #{supplierManagedBean.curSupplier.isDeleted}<br/>
+                        <table>
+                            <tr><td style="width:100px;">Title</td><td>#{supplierManagedBean.detailSupplier().title}</td></tr>
+                            <tr><td>Info</td><td>#{supplierManagedBean.detailSupplier().info}</td></tr>
+                            <tr><td>Created Date</td><td>
+                                    <h:outputText value="#{supplierManagedBean.detailSupplier().createdDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Modified Date</td><td>
+                                    <h:outputText value="#{supplierManagedBean.detailSupplier().modifiedDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Is Deleted</td><td>#{supplierManagedBean.detailSupplier().isDeleted}</td></tr>
+                        </table>
                     </h:form>
                 </div>
             </ui:define>

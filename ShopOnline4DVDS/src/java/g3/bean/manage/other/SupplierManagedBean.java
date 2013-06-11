@@ -5,6 +5,7 @@
 package g3.bean.manage.other;
 
 import g3.bean.utility.AppConstant;
+import g3.hibernate.entity.Producer;
 import g3.hibernate.entity.Supplier;
 import java.util.Date;
 import java.util.List;
@@ -108,6 +109,15 @@ public class SupplierManagedBean {
         return "details";
     }
 
+    public Supplier detailSupplier() {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String id = params.get("detailid");
+        if (id != null) {
+            return (Supplier) helper.getObjectById(Supplier.class, id);
+        }
+        return curSupplier;
+    }
+
     public String save() {
         curSupplier.setCreatedDate(new Date());
         curSupplier.setModifiedDate(new Date());
@@ -147,5 +157,10 @@ public class SupplierManagedBean {
     public String cancel() {
         curSupplier = new Supplier();
         return "show";
+    }
+
+    public Supplier supplierById(String id) {
+        Supplier output = (Supplier) helper.getObjectById(Supplier.class, id);
+        return output;
     }
 }

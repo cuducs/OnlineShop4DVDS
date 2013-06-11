@@ -15,6 +15,7 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -170,7 +171,11 @@ public class AlbumManagedBean {
         return helper.getSongCanAdd(curAlbum);
     }
     public List<Song> searchSongCanAdd(){
-        return helper.searchSongCanAdd(curAlbum);
+        FacesContext context=FacesContext.getCurrentInstance();
+        HttpServletRequest request=(HttpServletRequest) context.getExternalContext().getRequest();
+        SongManagedBean bean = (SongManagedBean) request.getSession().getAttribute("songManagedBean");
+        List<Song> lstSong=bean.getResustSearch();
+        return helper.searchSongCanAdd(curAlbum,lstSong);
     }
     public List<Song> getSongAdded(){
         return helper.getSongAdded(curAlbum);

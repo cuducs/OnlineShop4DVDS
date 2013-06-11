@@ -155,22 +155,37 @@
             <to-view-id>/admin/album/addsong.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-     <navigation-rule>
+    <navigation-rule>
         <from-view-id>/admin/category/addcategory.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>show</from-outcome>
             <to-view-id>/admin/category/show.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-     <navigation-rule>
+    <navigation-rule>
         <from-view-id>/admin/category/show.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>create</from-outcome>
             <to-view-id>/admin/category/addcategory.xhtml</to-view-id>
         </navigation-case>
-         <navigation-case>
+        <navigation-case>
             <from-outcome>details</from-outcome>
             <to-view-id>/admin/category/detail.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/product/details.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>producerdetail</from-outcome>
+            <to-view-id>/admin/producer/details.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>supplierdetail</from-outcome>
+            <to-view-id>/admin/supplier/details.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>trailerdetail</from-outcome>
+            <to-view-id>/admin/file/details.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

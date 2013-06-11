@@ -108,6 +108,15 @@ public class ProducerManagedBean {
         return "details";
     }
 
+    public Producer detailProducer() {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String id = params.get("detailid");
+        if (id != null) {
+            return (Producer) helper.getObjectById(Producer.class, id);
+        }
+        return curProducer;
+    }
+
     public String save() {
         curProducer.setCreatedDate(new Date());
         curProducer.setModifiedDate(new Date());
@@ -147,5 +156,10 @@ public class ProducerManagedBean {
     public String cancel() {
         curProducer = new Producer();
         return "show";
+    }
+
+    public Producer producerById(String id) {
+        Producer output = (Producer) helper.getObjectById(Producer.class, id);
+        return output;
     }
 }

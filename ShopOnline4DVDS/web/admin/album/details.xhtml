@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -23,8 +24,16 @@
                             <tr><td>Number Item </td><td>#{albumManagedBean.curAlbum.numberItem}</td></tr>
                             <tr><td>Is Administrator Created</td><td>#{albumManagedBean.curAlbum.isAdminCreated}</td></tr>
                             <tr><td>Description</td><td>#{albumManagedBean.curAlbum.description}</td></tr>
-                            <tr><td>Created Date</td><td>#{albumManagedBean.curAlbum.createdDate}</td></tr>
-                            <tr><td>Modified Date</td><td>#{albumManagedBean.curAlbum.modifiedDate}</td></tr>
+                            <tr><td>Created Date</td><td>
+                                    <h:outputText value="#{albumManagedBean.curAlbum.createdDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Modified Date</td><td>
+                                    <h:outputText value="#{albumManagedBean.curAlbum.modifiedDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
                             <tr><td>Is Deleted</td><td>#{albumManagedBean.curAlbum.isDeleted}</td></tr>
                         </table>
                     </h:form>

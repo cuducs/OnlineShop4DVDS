@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:gct="http://g3.com/tags">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -16,32 +17,22 @@
                     <h:form>
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <div class="element">
-                            <label>Title</label>
-                            <p:inputText id="inputtitle" value="#{fileDataManagedBean.curFileData.title}" style="width:200px;"></p:inputText>
+                            <label>Title<span class="red">*</span></label>
+                            <p:inputText id="inputtitle" value="#{fileDataManagedBean.curFileData.title}" style="width:200px;" required="true" requiredMessage="Title is required"></p:inputText>
+                            <p:message for="inputtitle" display="text"></p:message>
                             <p:watermark for="inputtitle" value="Title"></p:watermark>
                         </div>
                         <div class="element">
                             <div class="split1">
-                                <label>File Url</label>
-                                <p:inputText id="inputurl" value="#{fileDataManagedBean.curFileData.url}" style="width:200px;"></p:inputText>
+                                <label>File Url<span class="red">*</span></label>
+                                <p:inputText id="inputurl" value="#{fileDataManagedBean.curFileData.url}" style="width:200px;" required="true" requiredMessage="Url is required"></p:inputText>
+                                <p:message for="inputurl" display="text"></p:message>
                                 <p:watermark for="inputurl" value="File Url"></p:watermark>
                             </div>
-                            <div class="split2">
-                                <label>Type</label>
-                                <h:selectOneMenu id="selecttype" value="#{fileDataManagedBean.curFileData.type}">  
-                                    <f:selectItems value="#{fileDataManagedBean.listType}" />  
-                                </h:selectOneMenu> 
-
-                            </div>
                             <div class="splitclear"></div>
-                        </div><label>Select File :</label>
-                        <p:fileUpload fileUploadListener="#{fileDataManagedBean.handleFileUpload}"  
-                                      mode="advanced"   
-                                      update="messages"  
-                                      sizeLimit="50000000"   
-                                      allowTypes="/(\.|\/)(gif|jpe?g|png|mp3)$/"/>  
-
-                        <p:messages id="messages" showDetail="true"/>
+                        </div>
+                        <label>Select File :</label>
+                        <gct:upload></gct:upload>
                         <div class="entry">
                             <h:panelGroup  rendered="#{fileDataManagedBean.mode eq appConstant.modeCreate}">
                                 <h:commandButton class="button add" value="Create" action="#{fileDataManagedBean.save()}"></h:commandButton>
@@ -49,7 +40,7 @@
                             <h:panelGroup rendered="#{fileDataManagedBean.mode eq appConstant.modeEdit}">
                                 <h:commandButton  class="button" value="Edit" action="#{fileDataManagedBean.update()}"></h:commandButton>
                             </h:panelGroup>
-                            <h:commandButton class="button cancel" value="Cancel" action="#{fileDataManagedBean.cancel()}"></h:commandButton>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{fileDataManagedBean.cancel()}" immediate="true"></h:commandButton>
                         </div>
 
                     </h:form>

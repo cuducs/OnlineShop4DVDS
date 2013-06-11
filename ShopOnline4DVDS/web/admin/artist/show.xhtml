@@ -12,15 +12,15 @@
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
                  <div class="full_w">
-                    <div class="h_title">Show Song</div>
+                    <div class="h_title">Show Artist</div>
                     <h:form>
                         <div class="entry">
-                            <h:commandButton class="button add" value="Create New" action="#{songManagedBean.create}"></h:commandButton>
+                            <h:commandButton class="button add" value="Create New" action="#{artistManagedBean.create}"></h:commandButton>
                             <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                             <h:link class="button" value="Search" outcome="search"></h:link>
                         </div>
 
-                        <gct:common-list controller="#{songManagedBean}" list="#{songManagedBean.allSongs}" from="show" for="show" target="song"></gct:common-list>
+                        <gct:common-list controller="#{artistManagedBean}" list="#{artistManagedBean.allArtists}" from="show" for="show"></gct:common-list>
 
                     </h:form>
                 </div>

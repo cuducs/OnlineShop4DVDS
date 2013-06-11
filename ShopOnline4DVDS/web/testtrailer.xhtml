@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+    </h:head>
+    <h:body>
+        <div id="mediaplayer">Have not file to view trailer</div>
+        <script type="text/javascript" src="/ShopOnline4DVDS/resources/js/jwplayer.js"></script>
+        <script type="text/javascript">
+            jwplayer("mediaplayer").setup({
+                flashplayer: "/ShopOnline4DVDS/resources/js/player.swf",
+                height: 100,
+                width: 320,
+                playlist: [{
+                        file: "/ShopOnline4DVDS/resources/js/Rolling In The Deep - Adele.mp3",
+                        image: "/uploads/sintel.jpg",
+                        title: "Sintel Trailer"
+                    },{
+                        file: "/ShopOnline4DVDS/resources/js/Set Fire To The Rain - Adele.mp3",
+                        image: "/uploads/tears.jpg",
+                        title: "Tears of Steel Trailer"
+                    },{
+                        file: "/ShopOnline4DVDS/resources/js/Someone Like You - Adele.mp3",
+                        image: "/uploads/bunny.jpg",
+                        title: "Big Buck Bunny Trailer"
+                    }]
+            });
+        </script>
+
+        <!-- Start of player controls
+        You can remove any of the controls if you do not
+        want to have them.  You can also remove information
+        window DIV's at the bottom such as songname or songtime -->
+        <script type="text/javascript" language="JavaScript" src="/ShopOnline4DVDS/resources/js/sound.js">
+        </script>
+        <div style="border: 1px solid black; width: 340px;
+             padding: 5px;">
+            <button onclick="play_song();" id="play_btn">Play</button>
+            <button onclick="pause_song();" id="pause_btn">Pause</button>
+            <button onclick="stop_song();" id="stop_btn">Stop</button>
+            <button onclick="fade();" id="fade_btn">Fade Out</button>
+            <span id="fade_display">: Off</span>
+            <br/>
+            <button onmousedown="volume(1);" onmouseout="volume(3);" onmouseup="volume(3)" id="vol_left">Previous</button>
+            Volume: <span id="vol_display"> </span>
+            <button onmousedown="volume(2);" onmouseout="volume(3);" onmouseup="volume(3)" id="vol_right">Next</button>
+            <button onclick="next_song(1);" id="next_btn">Prev Song</button>
+            <button onclick="next_song(2);" id="next_btn">Next Song</button>
+            <br/>
+            <button onclick="fast_reverse();">Rewind</button>
+            <button onclick="fast_forward();">Fast Forward</button>
+            <button onclick="shuffle();">Shuffle</button>
+            <!-- Comment out the following DIV if you don't want to
+            display the song filename -->
+            <div id="songname"><br/></div>
+            <div id="songtime" style="float: left;">Time:</div>
+            <div id="speed" style="float: right;">1X</div>
+            <div id="message" style="border: 1px solid black; height: 50px;
+                 width: 330px; padding: 5px; margin: 1px; clear: both"></div>
+        </div>
+        <!-- Playlist -->
+        <textarea id="songlist" style="visibility:visible"> 
+        /ShopOnline4DVDS/resources/js/Rolling In The Deep - Adele.mp3
+        /ShopOnline4DVDS/resources/js/Set Fire To The Rain - Adele.mp3
+        /ShopOnline4DVDS/resources/js/Someone Like You - Adele.mp3
+        </textarea>
+    </h:body>
+</html>
+

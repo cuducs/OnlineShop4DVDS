@@ -33,8 +33,16 @@
                                 </td>
                             </tr>
                             <tr><td> Info</td><td>#{songManagedBean.curSong.info}</td></tr>
-                            <tr><td>Created Date</td><td>#{songManagedBean.curSong.createdDate}</td></tr>
-                            <tr><td>Modified Date</td><td>#{songManagedBean.curSong.modifiedDate}</td></tr>
+                            <tr><td>Created Date</td><td>
+                                     <h:outputText value="#{songManagedBean.curSong.createdDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                     </td></tr>
+                            <tr><td>Modified Date</td><td>
+                                     <h:outputText value="#{songManagedBean.curSong.modifiedDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                     </td></tr>
                             <tr><td>Is Deleted</td><td>#{songManagedBean.curSong.isDeleted}</td></tr>
                             <tr><td>Lyrics</td><td>#{songManagedBean.curSong.lyrics}</td></tr>
                         </table>

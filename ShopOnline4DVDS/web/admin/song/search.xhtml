@@ -64,7 +64,7 @@
                             <h:commandButton class="button" value="Search" action="#{songManagedBean.search()}"></h:commandButton><br/>
                         </div>
                         Result :<br/>
-                        <gct:common-list controller="#{songManagedBean}" list="#{songManagedBean.resustSearch}" from="search" for="search"></gct:common-list>
+                        <gct:common-list controller="#{songManagedBean}" list="#{songManagedBean.resustSearch}" from="search" for="search" target="song"></gct:common-list>
 
                     </h:form>
                 </div>

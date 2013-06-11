@@ -13,45 +13,46 @@
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
                 <div class="full_w">
-                    <div class="h_title">File Filter</div>
+                    <div class="h_title">Artist Filter</div>
                     <h:form>
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <div class="element">
                             <div class="split1">
                                 <label>Title</label>
-                                <p:inputText id="inputtitle" value="#{fileDataManagedBean.searchFileData.title}" style="width:200px;"></p:inputText>
+                                <p:inputText id="inputtitle" value="#{artistManagedBean.searchArtist.title}" style="width:200px;"></p:inputText>
                                 <p:watermark for="inputtitle" value="Title"></p:watermark>
                             </div>
                             <div class="split2">
                                 <label>Is Deleted</label>
-                                <h:selectBooleanCheckbox value="#{fileDataManagedBean.searchFileData.isDeleted}"></h:selectBooleanCheckbox>
+                                <p:selectBooleanCheckbox value="#{artistManagedBean.searchArtist.isDeleted}"></p:selectBooleanCheckbox>
                             </div>
                             <div class="splitclear"></div>
-
                         </div>
                         <div class="element">
                             <div class="split1">
-                                <label>File Name</label>
-                                <p:inputText id="inputurl" value="#{fileDataManagedBean.searchFileData.url}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputurl" value="File Name"></p:watermark>
+                                <label>Info</label>
+                                <p:inputText id="inputinfo" value="#{artistManagedBean.searchArtist.info}" style="width:200px;"></p:inputText>
+                                <p:watermark for="inputinfo" value="Information"></p:watermark>
                             </div>
                             <div class="split2">
-                                <label>Type</label>
-                                <h:selectOneMenu id="selecttype" value="#{fileDataManagedBean.searchFileData.type}">  
-                                    <f:selectItems value="#{fileDataManagedBean.listTypeSearch}" />  
+                                <label>Work As</label>
+                                <h:selectOneMenu value="#{artistManagedBean.searchArtist.workAs}">  
+                                    <f:selectItem itemLabel="Select Work As" itemValue="#{null}" />  
+                                    <f:selectItems value="#{artistManagedBean.listSearchWorkAs}" />  
                                 </h:selectOneMenu> 
                             </div>
                             <div class="splitclear"></div>
                         </div>
-
                         <div class="entry">
-                            <h:commandButton class="button" value="Search" action="#{fileDataManagedBean.search()}"></h:commandButton><br/>
+                            <h:commandButton class="button" value="Search" action="#{artistManagedBean.search()}"></h:commandButton><br/>
                         </div>
                         Result :<br/>
-                        <gct:common-list controller="#{fileDataManagedBean}" list="#{fileDataManagedBean.resustSearch}" from="search" for="search"></gct:common-list>
+                        <gct:common-list controller="#{artistManagedBean}" list="#{artistManagedBean.resustSearch}" from="search" for="search"></gct:common-list>
 
                     </h:form>
                 </div>
+
+
             </ui:define>
         </ui:composition>
     </h:body>

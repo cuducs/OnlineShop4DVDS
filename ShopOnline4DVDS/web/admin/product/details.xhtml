@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -23,22 +24,37 @@
                             <tr><td>Genres</td><td>#{productManagedBean.curDvd.genres}</td></tr>
                             <tr><td>Number of Disc</td><td>#{productManagedBean.curDvd.discNumber}</td></tr>
                             <tr><td>Type</td><td>#{productManagedBean.curDvd.type}</td></tr>
-                            <tr><td>Rate Point</td><td>#{productManagedBean.curDvd.ratePoint}</td></tr>
-                            <tr><td>Rate Count</td><td>#{productManagedBean.curDvd.rateCount}</td></tr>
-                            <tr><td>Release Date</td><td>#{productManagedBean.curDvd.releaseDate}</td></tr>
-                            <tr><td>Created Date</td><td>#{productManagedBean.curDvd.createdDate}</td></tr>
-                            <tr><td>Modified Date</td><td>#{productManagedBean.curDvd.modifiedDate}</td></tr>
-                            <tr><td>Is Deleted</td><td>#{productManagedBean.curDvd.isDeleted}</td></tr>
-                            <tr><td>Description</td><td>#{productManagedBean.curDvd.description}</td></tr>
-                            <tr><td>Image Cover</td><td>#{productManagedBean.curDvd.imgCover}</td></tr>
-                            <tr><td>Producer</td><td>#{productManagedBean.curDvd.producerId}</td></tr>
-                            <tr><td>Supplier</td><td>#{productManagedBean.curDvd.supplierId}</td></tr>
+                            <tr><td>Producer</td><td>
+                                    <h:panelGroup rendered="#{not (productManagedBean.curDvd.producerId eq null)}">
+                                        <h:link outcome="producerdetail" value="#{producerManagedBean.producerById(productManagedBean.curDvd.producerId).title}" target="_blank">
+                                            <f:param name="detailid" value="#{productManagedBean.curDvd.producerId}"></f:param>
+                                        </h:link>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{productManagedBean.curDvd.producerId eq null}">
+                                        No Producer
+                                    </h:panelGroup>
+
+                                </td></tr>
+                            <tr><td>Supplier</td><td>
+                                    <h:panelGroup rendered="#{not (productManagedBean.curDvd.supplierId eq null)}">
+                                        <h:link outcome="supplierdetail" value="#{supplierManagedBean.supplierById(productManagedBean.curDvd.supplierId).title}" target="_blank">
+                                            <f:param name="detailid" value="#{productManagedBean.curDvd.supplierId}"></f:param>
+                                        </h:link>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{productManagedBean.curDvd.producerId eq null}">
+                                        No Suppliers
+                                    </h:panelGroup>
+                                </td></tr>
                             <tr><td>Trailer</td>
                                 <td><h:panelGroup rendered="#{not (productManagedBean.curDvd.trailerId eq null)}">
-                                        #{productManagedBean.curDvd.trailerId}
+                                        <h:link outcome="trailerdetail" value="#{fileDataManagedBean.fileDataById(productManagedBean.curDvd.trailerId).title}" target="_blank">
+                                            <f:param name="detailid" value=" #{productManagedBean.curDvd.trailerId}"></f:param>
+                                        </h:link>
+
                                         <h:commandLink class="button" value="Remove" action="#{productManagedBean.removeTrailerId()}"></h:commandLink>
                                     </h:panelGroup>
                                     <h:panelGroup rendered="#{productManagedBean.curDvd.trailerId eq null}" >
+                                        No Trailer
                                         <h:commandLink class="button" value="Map File" action="mappingtrailer"></h:commandLink>
                                     </h:panelGroup>
                                 </td>
@@ -54,6 +70,32 @@
                                     </h:panelGroup>
                                 </td>
                             </tr>
+                            <tr><td>Rate Point</td><td>#{productManagedBean.curDvd.ratePoint}</td></tr>
+                            <tr><td>Rate Count</td><td>#{productManagedBean.curDvd.rateCount}</td></tr>
+                            <tr><td>Release Date</td><td>
+                                    <h:outputText value="#{productManagedBean.curDvd.releaseDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Created Date</td><td>
+                                    <h:outputText value="#{productManagedBean.curDvd.createdDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Modified Date</td><td>
+                                    <h:outputText value="#{productManagedBean.curDvd.modifiedDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Is Deleted</td><td>#{productManagedBean.curDvd.isDeleted}</td></tr>
+                            <tr><td>Description</td><td>#{productManagedBean.curDvd.description}</td></tr>
+                            <tr><td>Image Cover</td><td>
+                                    <a href="#{productManagedBean.curDvd.imgCover}">
+                                        #{jsfUtilBean.shortString(productManagedBean.curDvd.imgCover)}
+                                    </a>
+
+                                </td></tr>
+
 
                         </table>
 

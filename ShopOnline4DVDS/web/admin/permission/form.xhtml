@@ -16,12 +16,12 @@
                     <h:form>
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <div class="element">
-                            <label>Title</label>
+                            <label>Title<span class="red">*</span></label>
                             <p:inputText id="inputtitle" value="#{permissionManagedBean.curPermission.title}" style="width:200px;"></p:inputText>
                             <p:watermark for="inputtitle" value="Title"></p:watermark>
                         </div>
                         <div class="element">
-                            <label>Url Pattern</label>
+                            <label>Url Pattern<span class="red">*</span></label>
                             <p:inputText id="inputpattern" value="#{permissionManagedBean.curPermission.urlPattern}" style="width:200px;"></p:inputText>
                             <p:watermark for="inputpattern" value="Url Pattern"></p:watermark>
                         </div>

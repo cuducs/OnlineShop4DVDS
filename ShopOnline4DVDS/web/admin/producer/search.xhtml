@@ -18,23 +18,19 @@
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <div class="element">
                             <div class="split1">
-                                <label>ID</label>
-                                <p:inputText id="inputid" value="#{producerManagedBean.searchProducer.id}" style="width:200px;">
-                                    <f:converter converterId="ZeroConverter"></f:converter>
-                                </p:inputText>
-                                <p:watermark for="inputid" value="ID"></p:watermark>
-                            </div>
-                            <div class="split2">
                                 <label>Title</label>
                                 <p:inputText id="inputtitle" value="#{producerManagedBean.searchProducer.title}" style="width:200px;"></p:inputText>
                                 <p:watermark for="inputtitle" value="Title"></p:watermark>
                             </div>
+                            <div class="split2">
+                                <label>Is Deleted</label>
+                                <p:selectBooleanCheckbox value="#{producerManagedBean.searchProducer.isDeleted}"></p:selectBooleanCheckbox>
+                            </div>
                             <div class="splitclear"></div>
                         </div>
                         <div class="element">
-
                             <label>Info</label>
-                            <p:inputTextarea id="inputinfo" value="#{producerManagedBean.curProducer.info}" style="width:100%;" rows="10"></p:inputTextarea>
+                            <p:inputText id="inputinfo" value="#{producerManagedBean.searchProducer.info}" style="width:200px;"></p:inputText>
                             <p:watermark for="inputinfo" value="Information"></p:watermark>
                         </div>
                         <div class="entry">

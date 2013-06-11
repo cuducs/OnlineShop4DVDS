@@ -11,26 +11,27 @@
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
                 <div class="full_w">
-                    <h2 class="h_title">Producer Details</h2>
+                    <h2 class="h_title">Artist Details</h2>
                     <h:form>
                         <div class="entry">
                             <h:link class="button" value="Return List" outcome="show"></h:link>
                             <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                         </div>
                         <table>
-                            <tr><td style="width:100px;">Title</td><td>#{producerManagedBean.detailProducer().title}</td></tr>
-                            <tr><td>Info</td><td>#{producerManagedBean.detailProducer().info}</td></tr>
+                            <tr><td style="width:100px;">Title</td><td>#{artistManagedBean.detailArtist().title}</td></tr>
+                            <tr><td>Info</td><td>#{artistManagedBean.detailArtist().info}</td></tr>
+                            <tr><td>Work As</td><td>#{artistManagedBean.detailArtist().workAs}</td></tr>
                             <tr><td>Created Date</td><td>
-                                    <h:outputText value="#{producerManagedBean.detailProducer().createdDate}">
+                                    <h:outputText value=" #{artistManagedBean.detailArtist().createdDate}">
                                         <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
                                     </h:outputText>
                                 </td></tr>
                             <tr><td>Modified Date</td><td>
-                                    <h:outputText value="#{producerManagedBean.detailProducer().modifiedDate}">
+                                    <h:outputText value="#{artistManagedBean.detailArtist().modifiedDate}">
                                         <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
                                     </h:outputText>
                                 </td></tr>
-                            <tr><td>Is Deleted</td><td>#{producerManagedBean.detailProducer().isDeleted}</td></tr>
+                            <tr><td>Is Deleted</td><td>#{artistManagedBean.detailArtist().isDeleted}</td></tr>
                         </table>
                     </h:form>
                 </div>

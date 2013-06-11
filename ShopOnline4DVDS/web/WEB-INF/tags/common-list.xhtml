@@ -47,6 +47,14 @@
                             <h:panelGroup rendered="#{target eq 'album'}">
                                 <h:commandButton class="button" value="+Song" action="#{albumManagedBean.prepareAddSong(item)}"></h:commandButton>
                             </h:panelGroup>
+                            <h:panelGroup rendered="#{target eq 'song'}">
+                                <h:panelGroup rendered="#{not (item.fileId eq 0)}">
+                                    <h:commandLink class="button" value="Remove" action="#{controller.removeFile(item)}"></h:commandLink>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{item.fileId eq 0}" >
+                                    <h:commandLink class="button" value="Map File" action="#{controller.prepareAddFile(item)}"></h:commandLink>
+                                </h:panelGroup>
+                            </h:panelGroup>
                             <h:panelGroup rendered="#{target eq 'addsong'}">
                                 <h:commandButton class="button" value="Add" action="#{albumManagedBean.addSong(item)}"></h:commandButton>
                             </h:panelGroup>

@@ -16,7 +16,7 @@
                     <h:form>
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <div class="element">
-                            <label>Title</label>
+                            <label>Title<span class="red">*</span></label>
                             <p:inputText id="inputtitle" value="#{promotionManagedBean.curPromotion.title}" style="width:200px;"></p:inputText>
                             <p:watermark for="inputtitle" value="Title"></p:watermark>
                         </div>

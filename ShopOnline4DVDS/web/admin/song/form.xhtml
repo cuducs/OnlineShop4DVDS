@@ -22,11 +22,11 @@
                             <h:panelGroup  rendered="#{songManagedBean.mode eq appConstant.modeEdit}">
                                 <h:commandButton class="button" value="Edit" action="#{songManagedBean.update()}"></h:commandButton>
                             </h:panelGroup>
-                            <h:commandButton class="button cancel" value="Cancel" action="#{songManagedBean.cancel()}"></h:commandButton>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{songManagedBean.cancel()}" immediate="true"></h:commandButton>
                         </div>
                         <div class="element">
                             <div class="split1">
-                                <label>Title</label>
+                                <label>Title<span class="red">*</span></label>
                                 <p:inputText id="inputtitle" value="#{songManagedBean.curSong.title}" style="width:200px;" required="true" requiredMessage="Title is required"></p:inputText>
                                 <p:message for="inputtitle" display="text"></p:message>
                                 <p:watermark for="inputtitle" value="Title"></p:watermark>

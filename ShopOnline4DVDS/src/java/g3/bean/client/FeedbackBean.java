@@ -144,8 +144,8 @@ public class FeedbackBean {
 
     public Feedback getDetail() {
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        Feedback b = (Feedback) ss.getAttribute("feedback");
-        return b;
+        detail = (Feedback) ss.getAttribute("feedback");
+        return detail;
     }
 
     public void setDetailId(String detailId) {
@@ -153,6 +153,9 @@ public class FeedbackBean {
     }
 
     public String getUpdateStatus() {
+        if (updateStatus==null) {
+            updateStatus="";
+        }
         return updateStatus;
     }
 

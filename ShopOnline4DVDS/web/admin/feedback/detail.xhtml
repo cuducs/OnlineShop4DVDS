@@ -13,10 +13,10 @@
                     <div class="h_title">Feedback detail</div>
 
                     <div>
-                        <c:if test="#{feebackBean.result!='1'}">
+                        <c:if test="#{feebackBean.result=='1'}">
                             <b style="color: Green">Reply successful!</b>
                         </c:if>
-                        <c:if test="#{feebackBean.result=='1'}">
+                        <c:if test="#{feebackBean.result=='0'}">
                             <b style="color: red">Reply Error!</b>
                         </c:if>
                         <h:form>
@@ -48,13 +48,13 @@
                                 <tr>
                                     <td>Reply date: </td><td>#{feedbackBean.detail.modifiedDate}<br/></td>
                                 </tr>
-                                <c:if test="#{feedbackBean.detail.isRead!=false}">
+                                <c:if test="#{feedbackBean.detail.isRead}">
                                     <tr>
                                         <td>Replied: </td>
                                         <td>#{feedbackBean.detail.replyText}</td>
                                     </tr>
                                 </c:if>
-                                <c:if test="#{feedbackBean.detail.isRead==false}">
+                                <c:if test="#{not feedbackBean.detail.isRead}">
                                     <tr><td>Reply: </td>
                                         <td><h:inputTextarea cols="50" rows="20" value="#{feedbackBean.updateStatus}"/></td>
                                     </tr>

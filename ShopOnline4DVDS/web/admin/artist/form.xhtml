@@ -6,35 +6,42 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <Title>Facelet Supplier</Title>
+        <Title>Facelet Producer</Title>
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
             <ui:define name="content">
                 <div class="full_w">
-                    <div class="h_Supplier">Supplier Form</div>
+                    <div class="h_title">Producer Form</div>
                     <h:form>
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <div class="element">
                             <label>Title<span class="red">*</span></label>
-                            <p:inputText id="inputtitle" value="#{supplierManagedBean.curSupplier.title}" style="width:200px;" required="true" requiredMessage="Title is required"></p:inputText>
+                            <p:inputText id="inputtitle" value="#{artistManagedBean.curArtist.title}" style="width:200px;" required="true" requiredMessage="Title is required"></p:inputText>
                             <p:message for="inputtitle" display="text"></p:message>
                             <p:watermark for="inputtitle" value="Title"></p:watermark>
                         </div>
                         <div class="element">
 
                             <label>Info</label>
-                            <p:inputTextarea id="inputinfo" value="#{supplierManagedBean.curSupplier.info}" style="width:100%;" rows="10"></p:inputTextarea>
+                            <p:inputTextarea id="inputinfo" value="#{artistManagedBean.curArtist.info}" style="width:100%;" rows="10"></p:inputTextarea>
                             <p:watermark for="inputinfo" value="Information"></p:watermark>
                         </div>
+                        <div class="element">
+
+                            <label>Work As<span class="red">*</span></label>
+                            <h:selectOneMenu value="#{artistManagedBean.curArtist.workAs}">
+                                <f:selectItems value="#{artistManagedBean.listWorkAs}" />  
+                            </h:selectOneMenu> 
+                        </div>
                         <div class="entry">
-                            <h:panelGroup  rendered="#{supplierManagedBean.mode eq appConstant.modeCreate}">
-                                <h:commandButton class="button add" value="Create" action="#{supplierManagedBean.save()}"></h:commandButton>
+                            <h:panelGroup  rendered="#{artistManagedBean.mode eq appConstant.modeCreate}">
+                                <h:commandButton class="button add" value="Create" action="#{artistManagedBean.save()}"></h:commandButton>
                             </h:panelGroup>
-                            <h:panelGroup  rendered="#{supplierManagedBean.mode eq appConstant.modeEdit}">
-                                <h:commandButton  class="button" value="Edit" action="#{supplierManagedBean.update()}"></h:commandButton>
+                            <h:panelGroup  rendered="#{artistManagedBean.mode eq appConstant.modeEdit}">
+                                <h:commandButton  class="button" value="Edit" action="#{artistManagedBean.update()}"></h:commandButton>
                             </h:panelGroup>
-                            <h:commandButton class="button cancel" value="Cancel" action="#{supplierManagedBean.cancel()}"></h:commandButton>
+                            <h:commandButton class="button cancel" value="Cancel" action="#{artistManagedBean.cancel()}" immediate="true"></h:commandButton>
                         </div>
 
                     </h:form>
