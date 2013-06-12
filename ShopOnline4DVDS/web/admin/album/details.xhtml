@@ -18,23 +18,23 @@
                             <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                         </div>
                         <table>
-                            <tr><td style="width: 100px;">Title</td><td>#{albumManagedBean.curAlbum.title}</td></tr>
-                            <tr><td>Owner</td><td>#{albumManagedBean.curAlbum.owner}</td></tr>
-                            <tr><td>View Count</td><td>#{albumManagedBean.curAlbum.viewCount}</td></tr>
-                            <tr><td>Number Item </td><td>#{albumManagedBean.curAlbum.numberItem}</td></tr>
-                            <tr><td>Is Administrator Created</td><td>#{albumManagedBean.curAlbum.isAdminCreated}</td></tr>
-                            <tr><td>Description</td><td>#{albumManagedBean.curAlbum.description}</td></tr>
+                            <tr><td style="width: 100px;">Title</td><td>#{albumManagedBean.detailAlbum().title}</td></tr>
+                            <tr><td>Owner</td><td>#{albumManagedBean.detailAlbum().owner}</td></tr>
+                            <tr><td>View Count</td><td>#{albumManagedBean.detailAlbum().viewCount}</td></tr>
+                            <tr><td>Number Item </td><td>#{albumManagedBean.detailAlbum().numberItem}</td></tr>
+                            <tr><td>Is Administrator Created</td><td>#{albumManagedBean.detailAlbum().isAdminCreated}</td></tr>
+                            <tr><td>Description</td><td>#{albumManagedBean.detailAlbum().description}</td></tr>
                             <tr><td>Created Date</td><td>
-                                    <h:outputText value="#{albumManagedBean.curAlbum.createdDate}">
+                                    <h:outputText value="#{albumManagedBean.detailAlbum().createdDate}">
                                         <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
                                     </h:outputText>
                                 </td></tr>
                             <tr><td>Modified Date</td><td>
-                                    <h:outputText value="#{albumManagedBean.curAlbum.modifiedDate}">
+                                    <h:outputText value="#{albumManagedBean.detailAlbum().modifiedDate}">
                                         <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
                                     </h:outputText>
                                 </td></tr>
-                            <tr><td>Is Deleted</td><td>#{albumManagedBean.curAlbum.isDeleted}</td></tr>
+                            <tr><td>Is Deleted</td><td>#{albumManagedBean.detailAlbum().isDeleted}</td></tr>
                         </table>
                     </h:form>
                 </div>

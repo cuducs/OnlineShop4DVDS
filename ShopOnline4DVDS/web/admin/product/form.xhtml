@@ -103,17 +103,13 @@
                         <div class="element">
                             <div class="split1">
                                 <label>Supplier</label>
-                                <h:selectOneMenu value="#{productManagedBean.curDvd.supplierId}">  
-                                    <f:selectItem itemLabel="Select Supplier" itemValue="" />  
-                                    <f:selectItems value="#{productManagedBean.listSupplier}" />  
-                                </h:selectOneMenu> 
+                                <p:autoComplete id="acSimple" value="#{productManagedBean.supplier}"   
+                                                completeMethod="#{productManagedBean.autoCompleteSupplier}"/>
                             </div>
                             <div class="split2">
                                 <label>Producer</label>
-                                <h:selectOneMenu value="#{productManagedBean.curDvd.producerId}">  
-                                    <f:selectItem itemLabel="Select Producer" itemValue="" />  
-                                    <f:selectItems value="#{productManagedBean.listProducer}" />  
-                                </h:selectOneMenu> 
+                                <p:autoComplete id="acSimple2" value="#{productManagedBean.producer}"   
+                                                completeMethod="#{productManagedBean.autoCompleteProducer(query)}"/>
                             </div>
                             <div class="splitclear"></div>
                         </div>

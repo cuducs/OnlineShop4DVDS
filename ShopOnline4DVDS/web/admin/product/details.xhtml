@@ -41,7 +41,7 @@
                                             <f:param name="detailid" value="#{productManagedBean.curDvd.supplierId}"></f:param>
                                         </h:link>
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{productManagedBean.curDvd.producerId eq null}">
+                                    <h:panelGroup rendered="#{productManagedBean.curDvd.supplierId eq null}">
                                         No Suppliers
                                     </h:panelGroup>
                                 </td></tr>
@@ -62,7 +62,10 @@
                             <tr><td>Album</td>
                                 <td>
                                     <h:panelGroup rendered="#{not (productManagedBean.curDvd.albumId eq null)}">
-                                        #{productManagedBean.curDvd.albumId}
+                                        <h:link outcome="albumdetail" value="#{albumManagedBean.albumById(productManagedBean.curDvd.albumId).title}" target="_blank">
+                                            <f:param name="detailid" value="#{productManagedBean.curDvd.albumId}"></f:param>
+                                        </h:link>
+                                        
                                         <h:commandLink class="button" value="Remove" action="#{productManagedBean.removeAlbumId()}"></h:commandLink>
                                     </h:panelGroup>
                                     <h:panelGroup rendered="#{productManagedBean.curDvd.albumId eq null}" >

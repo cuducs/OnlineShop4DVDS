@@ -40,17 +40,13 @@
                         <div class="element">
                             <div class="split1">
                                 <label>Singer</label>
-                                <h:selectOneMenu value="#{songManagedBean.curSong.singerId}">  
-                                    <f:selectItem itemLabel="Select Singer" itemValue="" />  
-                                    <f:selectItems value="#{artistManagedBean.listArtist}" />  
-                                </h:selectOneMenu> 
+                                <p:autoComplete id="acSimple" value="#{songManagedBean.singer}"   
+                                                completeMethod="#{songManagedBean.autoCompleteArtistSinger}"/>
                             </div>
                             <div class="split2">
                                 <label>Composer</label>
-                                <h:selectOneMenu value="#{songManagedBean.curSong.composerId}">  
-                                    <f:selectItem itemLabel="Select Composer" itemValue="" />  
-                                    <f:selectItems value="#{artistManagedBean.listArtist}" />  
-                                </h:selectOneMenu> 
+                                <p:autoComplete id="acSimple2" value="#{songManagedBean.composer}"   
+                                                completeMethod="#{songManagedBean.autoCompleteArtistComposer}"/>
                             </div>
                             <div class="splitclear"></div>
                         </div>

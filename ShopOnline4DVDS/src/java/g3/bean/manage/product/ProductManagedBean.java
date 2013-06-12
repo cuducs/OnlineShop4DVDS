@@ -10,6 +10,7 @@ import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.FileData;
 import g3.hibernate.entity.Producer;
 import g3.hibernate.entity.Supplier;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
 
 /**
  *
@@ -36,6 +39,8 @@ public class ProductManagedBean {
     private String returnFromDetails;
     private Dvd searchDvd;
     private List<Dvd> resustSearch;
+    private String supplier;
+    private String producer;
 
     /**
      * Creates a new instance of ProductManagedBean
@@ -51,6 +56,22 @@ public class ProductManagedBean {
     @PreDestroy
     public void end() {
         helper.close();
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
     }
 
     public List<Dvd> getResustSearch() {
@@ -99,12 +120,18 @@ public class ProductManagedBean {
 
     public String create() {
         curDvd = new Dvd();
+        supplier = "";
+        producer = "";
         formMode = AppConstant.FORM_MODE_CREATE;
-        return "productform";
+        return "form";
     }
 
     public String edit(Dvd item) {
         curDvd = item;
+        Supplier sup=(Supplier) helper.getSession().createCriteria(Supplier.class).add(Expression.eq("id", item.getSupplierId())).uniqueResult();
+        Producer pro=(Producer) helper.getSession().createCriteria(Producer.class).add(Expression.eq("id", item.getProducerId())).uniqueResult();
+        supplier = (sup==null?"":sup.getTitle());
+        producer = (pro==null?"":pro.getTitle());
         formMode = AppConstant.FORM_MODE_EDIT;
         return "form";
     }
@@ -128,6 +155,14 @@ public class ProductManagedBean {
 //    }
 
     public String save() {
+        if (supplier != null && !supplier.equals("")) {
+            Supplier inputSup = getOrCreateSupplier(supplier);
+            curDvd.setSupplierId(inputSup.getId());
+        }
+        if (producer != null && !producer.equals("")) {
+            Producer inputPro = getOrCreateProducer(producer);
+            curDvd.setProducerId(inputPro.getId());
+        }
         curDvd.setCreatedDate(new Date());
         curDvd.setModifiedDate(new Date());
         helper.save(curDvd);
@@ -143,6 +178,14 @@ public class ProductManagedBean {
     }
 
     public String update() {
+        if (supplier != null && !supplier.equals("")) {
+            Supplier inputSup = getOrCreateSupplier(supplier);
+            curDvd.setSupplierId(inputSup.getId());
+        }
+        if (producer != null && !producer.equals("")) {
+            Producer inputPro = getOrCreateProducer(producer);
+            curDvd.setProducerId(inputPro.getId());
+        }
         curDvd.setModifiedDate(new Date());
         helper.update(curDvd);
         return "show";
@@ -240,5 +283,63 @@ public class ProductManagedBean {
         curDvd.setModifiedDate(new Date());
         helper.update(curDvd);
         return "details";
+    }
+
+    public List<String> autoCompleteSupplier(String query) {
+        Session session = helper.getSession();
+        List<String> lst = new ArrayList<String>();
+        if (query.length() > 2) {
+            for (Object sup : session.createCriteria(Supplier.class).add(Expression.ilike("title", "%" + query + "%")).list()) {
+
+                lst.add(((Supplier) sup).getTitle());
+            }
+
+
+        }
+        return lst;
+    }
+
+    public Supplier getOrCreateSupplier(String title) {
+        Session session = helper.getSession();
+        Supplier getSup = (Supplier) session.createCriteria(Supplier.class).add(Expression.eq("title", title)).uniqueResult();
+        if (getSup != null) {
+            return getSup;
+        }
+        getSup = new Supplier();
+        getSup.setTitle(title);
+        getSup.setCreatedDate(new Date());
+        getSup.setModifiedDate(new Date());
+        getSup.setIsDeleted(false);
+        session.save(getSup);
+        return getSup;
+    }
+
+    public List<String> autoCompleteProducer(String query) {
+        Session session = helper.getSession();
+        List<String> lst = new ArrayList<String>();
+        if (query.length() > 2) {
+            for (Object pro : session.createCriteria(Producer.class).add(Expression.ilike("title", "%" + query + "%")).list()) {
+
+                lst.add(((Producer) pro).getTitle());
+            }
+
+
+        }
+        return lst;
+    }
+
+    public Producer getOrCreateProducer(String title) {
+        Session session = helper.getSession();
+        Producer getPro = (Producer) session.createCriteria(Producer.class).add(Expression.eq("title", title)).uniqueResult();
+        if (getPro != null) {
+            return getPro;
+        }
+        getPro = new Producer();
+        getPro.setTitle(title);
+        getPro.setCreatedDate(new Date());
+        getPro.setModifiedDate(new Date());
+        getPro.setIsDeleted(false);
+        session.save(getPro);
+        return getPro;
     }
 }

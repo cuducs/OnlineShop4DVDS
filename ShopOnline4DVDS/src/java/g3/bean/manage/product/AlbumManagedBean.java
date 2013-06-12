@@ -7,6 +7,7 @@ package g3.bean.manage.product;
 import g3.hibernate.entity.Album;
 import g3.hibernate.entity.Song;
 import g3.bean.utility.AppConstant;
+import g3.bean.utility.JsfUtilBean;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -94,7 +95,7 @@ public class AlbumManagedBean {
     public String create() {
         curAlbum = new Album();
         formMode = AppConstant.FORM_MODE_CREATE;
-        return "albumform";
+        return "form";
     }
 
     public String edit(Album item) {
@@ -110,11 +111,22 @@ public class AlbumManagedBean {
         return "details";
     }
 
+    public Album detailAlbum() {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String id = params.get("detailid");
+        if (id != null) {
+            return (Album) helper.getObjectById(Album.class, id);
+        }
+        return curAlbum;
+    }
+
     public String back() {
         return returnFromDetails;
     }
 
     public String save() {
+        curAlbum.setOwner(JsfUtilBean.getCurrentManageStatic().getName());
+        curAlbum.setIsAdminCreated(true);
         curAlbum.setCreatedDate(new Date());
         curAlbum.setModifiedDate(new Date());
         helper.save(curAlbum);
@@ -154,30 +166,40 @@ public class AlbumManagedBean {
         curAlbum = new Album();
         return "show";
     }
-    
-    public String prepareAddSong(Album item){
-        curAlbum=item;
+
+    public String prepareAddSong(Album item) {
+        curAlbum = item;
         return "addsong";
     }
-    public String addSong(Song item){
-        helper.addSong(curAlbum,item);
+
+    public String addSong(Song item) {
+        helper.addSong(curAlbum, item);
         return null;
     }
-    public String removeSong(Song item){
-        helper.removeSong(curAlbum,item);
+
+    public String removeSong(Song item) {
+        helper.removeSong(curAlbum, item);
         return null;
     }
-    public List<Song> getSongCanAdd(){
+
+    public List<Song> getSongCanAdd() {
         return helper.getSongCanAdd(curAlbum);
     }
-    public List<Song> searchSongCanAdd(){
-        FacesContext context=FacesContext.getCurrentInstance();
-        HttpServletRequest request=(HttpServletRequest) context.getExternalContext().getRequest();
+
+    public List<Song> searchSongCanAdd() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         SongManagedBean bean = (SongManagedBean) request.getSession().getAttribute("songManagedBean");
-        List<Song> lstSong=bean.getResustSearch();
-        return helper.searchSongCanAdd(curAlbum,lstSong);
+        List<Song> lstSong = bean.getResustSearch();
+        return helper.searchSongCanAdd(curAlbum, lstSong);
     }
-    public List<Song> getSongAdded(){
+
+    public List<Song> getSongAdded() {
         return helper.getSongAdded(curAlbum);
+    }
+
+    public Album albumById(String id) {
+        Album output = (Album) helper.getObjectById(Album.class, id);
+        return output;
     }
 }

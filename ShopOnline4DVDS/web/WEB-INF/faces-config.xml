@@ -170,5 +170,9 @@
             <from-outcome>trailerdetail</from-outcome>
             <to-view-id>/admin/file/details.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>albumdetail</from-outcome>
+            <to-view-id>/admin/album/details.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>

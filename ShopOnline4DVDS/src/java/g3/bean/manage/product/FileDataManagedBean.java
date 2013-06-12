@@ -118,7 +118,7 @@ public class FileDataManagedBean {
         curFileData = new FileData();
 
         formMode = AppConstant.FORM_MODE_CREATE;
-        return "fileform";
+        return "form";
     }
 
     public String edit(FileData item) {

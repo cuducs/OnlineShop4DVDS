@@ -23,7 +23,7 @@
       <column name="IsFree" not-null="true"/>
     </property>
     <property name="fileId" type="int">
-      <column name="FileID" not-null="true"/>
+      <column name="FileID" not-null="false"/>
     </property>
     <property name="info" type="string">
       <column name="Info"/>
