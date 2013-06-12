@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
  *
  * @author Administrator
  */
-class CategoryManagedHelper extends BaseHelper {
+public class CategoryManagedHelper extends BaseHelper {
       private static CategoryManagedHelper instance;
       
       private CategoryManagedHelper() {
@@ -66,7 +66,7 @@ class CategoryManagedHelper extends BaseHelper {
         return query.list();
     }
 
-    Category searchById(int id) {
+    public Category searchById(int id) {
          Transaction beginTransaction = session.beginTransaction();
         String hql = "FROM Category g WHERE g.isDeleted=0 and g.id=" + id;
         Query query = session.createQuery(hql);

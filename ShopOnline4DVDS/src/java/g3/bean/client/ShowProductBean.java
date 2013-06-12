@@ -20,6 +20,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import g3.bean.other.CategoryManagedHelper;
+import g3.hibernate.entity.Category;
 
 /**
  *
@@ -50,7 +52,12 @@ public class ShowProductBean {
     
     private int totalPage;
     
+    //DucVM-Add
+    private CategoryManagedHelper cate_helper;
+    //DucVM-End
+    
     public ShowProductBean() {
+        cate_helper = CategoryManagedHelper.getInstance();
     }
     
     public List<Dvd> getDvdvideo() {
@@ -221,16 +228,42 @@ public class ShowProductBean {
     }
     
     public List<Dvd> getProductList() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        Map<String, String> params =
+        //DucVM - Add
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        Map<String, String> params =
+//                context.getExternalContext().getRequestParameterMap();
+//        String type = params.get("type");
+//        String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
+//        if (!type.equals(AppConstant.DVD_TYPE_ALL)) {
+//            hqlQuery += " and d.type='" + type + "'";
+//        }
+//        Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
+//        return query.list();
+        
+        try
+        {
+            FacesContext context = FacesContext.getCurrentInstance();
+            Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
-        String type = params.get("type");
-        String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
-        if (!type.equals(AppConstant.DVD_TYPE_ALL)) {
-            hqlQuery += " and d.type='" + type + "'";
+            int currCateId = Integer.parseInt(params.get("cateId"));
+            System.out.printf("id = " + currCateId);
+            Category cate = cate_helper.searchById(currCateId);
+//            cate_helper.close();
+            return cate_helper.getProductsInCateDetail(cate);
         }
-        Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
-        return query.list();
+        catch(Exception ex)
+        {
+            //show all :
+            FacesContext context = FacesContext.getCurrentInstance();
+            Map<String, String> params =
+                    context.getExternalContext().getRequestParameterMap();
+            String type = params.get("type");
+            String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
+            Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
+            return query.list();
+        }
+        
+        //DucVM - End
     }
     public int getTotalPage() {
         FacesContext context = FacesContext.getCurrentInstance();
