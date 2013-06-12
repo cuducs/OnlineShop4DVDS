@@ -56,18 +56,18 @@
         </navigation-case>
         
         <navigation-case>
-            <from-outcome>productshow</from-outcome>
-            <to-view-id>/admin/product/show.xhtml</to-view-id>
+            <from-outcome>adminwelcome</from-outcome>
+            <to-view-id>/admin/common/welcome.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>error</from-outcome>
-            <to-view-id>/error.xhtml</to-view-id>
+            <from-outcome>adminerror</from-outcome>
+            <to-view-id>/admin/free/error.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>adminlogin</from-outcome>
-            <to-view-id>/login.xhtml</to-view-id>
+            <to-view-id>/admin/free/login.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

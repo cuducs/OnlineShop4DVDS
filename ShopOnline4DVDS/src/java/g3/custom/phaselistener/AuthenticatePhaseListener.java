@@ -28,7 +28,8 @@ public class AuthenticatePhaseListener implements PhaseListener {
     public static final int AREA_FREE = 0;
     public static final int AREA_MANAGE = 1;
     public static final int AREA_CUSTOMER = 2;
-    public static final String ERROR = "error";
+    public static final String ERROR_ADMIN = "adminerror";
+    public static final String ERROR_CUSTOMER = "customererror";
     public static final String LOGIN_ADMIN = "adminlogin";
     public static final String LOGIN_CUSTOMER = "customerlogin";
 
@@ -51,7 +52,7 @@ public class AuthenticatePhaseListener implements PhaseListener {
                         //to error page if not allow
                         context.responseComplete();
                         context.getApplication().
-                                getNavigationHandler().handleNavigation(context, null, ERROR);
+                                getNavigationHandler().handleNavigation(context, null, ERROR_ADMIN);
                     }
                 } else {
                     //user not login so to login page
@@ -85,6 +86,9 @@ public class AuthenticatePhaseListener implements PhaseListener {
 
     public int getAreaAccess(String url) {
         if (url.indexOf("admin") != -1) {
+            if (url.indexOf("free") != -1) {
+                return AREA_FREE;
+            }
             return AREA_MANAGE;
         } else if (url.indexOf("member") != -1) {
             return AREA_CUSTOMER;
@@ -106,6 +110,9 @@ public class AuthenticatePhaseListener implements PhaseListener {
 
     private boolean isAdminCanAccess(Manage manage, String requestPath) {
         boolean isAllow = false;
+        if (requestPath.indexOf("common") != -1) {
+            return true;
+        }
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         ManageManagedBean bean = (ManageManagedBean) request.getSession().getAttribute("manageManagedBean");

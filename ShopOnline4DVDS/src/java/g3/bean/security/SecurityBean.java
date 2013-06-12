@@ -67,7 +67,7 @@ public class SecurityBean {
                     ss.setAttribute(AuthenticatePhaseListener.ADMIN_SESSION_KEY, matchManage);
                     matchManage.setLastLogin(matchManage.getNewLogin());
                     matchManage.setNewLogin(new Date());
-                    return "productshow";
+                    return "adminwelcome";
                 } else {
                     FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong Password!", "Password does not match");
                     FacesContext.getCurrentInstance().addMessage(null, msg);

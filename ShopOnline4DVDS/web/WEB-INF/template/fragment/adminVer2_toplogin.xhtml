@@ -11,8 +11,8 @@
     <h:body>
         <ui:composition>
             <div id="top">
-                <div class="left">
-                    <p>Welcome, <strong>#{manageManagedBean.currentManage.name}</strong> [ <h:form><h:commandLink value="logout" action="#{securityBean.logout()}"></h:commandLink></h:form> ]</p>
+                <div class="left" >
+                    <h:form> <p style="width:300px;">Welcome, <strong>#{manageManagedBean.currentManage.name}</strong> [ <h:commandLink value="logout" action="#{securityBean.logout()}"></h:commandLink> ]</p></h:form>
                 </div>
                 <div class="right">
                     <div class="align-right">
