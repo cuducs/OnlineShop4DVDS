@@ -6,7 +6,6 @@ package g3.bean.other;
 
 
 import g3.bean.utility.AppConstant;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
@@ -14,10 +13,13 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import g3.hibernate.entity.Category;
 import g3.hibernate.entity.Dvd;
+import g3.hibernate.entity.Node;
 import g3.hibernate.entity.ObjectOfBrowsingRule;
 import g3.hibernate.entity.ValueOfBrowsingRule;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Stack;
 /**
  *
  * @author Administrator
@@ -31,7 +33,7 @@ public class CategoryManagedBean{
     private CategoryManagedHelper helper;
     private ObjectOfBrowsingRuleManagedHelper obj_helper;
     private MappingTableManagedHelper mapping_helper;
-    private Category curCate;
+    private Category curCate = new Category();
     private int formMode;    
     private int objectOfBrowsingRule;
     private String operaterOfBrowsingRule = "";
@@ -110,7 +112,7 @@ public class CategoryManagedBean{
   
     
     public String save() {
-        System.out.print("da vao ham save");
+        System.out.print("Da vao ham save");
         ObjectOfBrowsingRule obj = obj_helper.getObjectOfBrowsingRule(objectOfBrowsingRule);
         curCate.setCreatedDate(new Date());
         curCate.setModifiedDate(new Date());
@@ -368,5 +370,57 @@ public class CategoryManagedBean{
         catch(Exception ex){
             showHinting = false;
         }
+    }
+    
+//    public void changeCurrentCate(int id)
+//    {
+//        try
+//        {
+//            Category new_cate = helper.searchById(id);
+//            if(new_cate != null) {
+//                curCate = new_cate;
+//            }
+//        }
+//        catch(Exception ex)
+//        {
+//            System.out.printf(ex.toString());
+//        }
+//    }
+    
+    public List<Node> getListMenu()
+    {
+        List<Category> all = helper.getAllCategories();
+         
+        List<Node> lstMenu = new ArrayList<Node>();
+        Stack<Node> lstParent = new Stack<Node>();
+        Node prvNode = new Node(all.get(0));
+        for (int i = 1; i < all.size(); i++) {
+            Node currNode = new Node(all.get(i));
+            
+            if(currNode.getCateLevel() == 1)
+            {
+                lstMenu.add(currNode);
+            }
+            if(currNode.getCateLevel() > prvNode.getCateLevel())
+            { 
+                lstParent.push(prvNode);
+                lstParent.peek().getChildren().add(currNode);   
+                currNode.setOrder(lstParent.peek().getChildren().size());
+            }
+            else 
+            {
+               // System.out.print("name : " + currNode.getName());
+                while(currNode.getCateLevel() < lstParent.peek().getCateLevel() + 1)
+                {
+                    lstParent.pop();
+                }
+                currNode.setOrder(lstParent.peek().getChildren().size());
+                lstParent.peek().getChildren().add(currNode);
+            }
+            prvNode = currNode;
+        }
+        
+        
+        return lstMenu;
     }
 }
