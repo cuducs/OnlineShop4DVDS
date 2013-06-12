@@ -14,6 +14,7 @@ public class Manage implements java.io.Serializable {
     private String password;
     private String info;
     private int position;
+    private Date newLogin;
     private Date lastLogin;
     private Date createdDate;
     private Date modifiedDate;
@@ -32,12 +33,13 @@ public class Manage implements java.io.Serializable {
         this.isLock = isLock;
     }
 
-    public Manage(int id, String name, String password, String info, int position, Date lastLogin, Date createdDate, Date modifiedDate, boolean isLock) {
+    public Manage(int id, String name, String password, String info, int position, Date newLogin, Date lastLogin, Date createdDate, Date modifiedDate, boolean isLock) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.info = info;
         this.position = position;
+        this.newLogin = newLogin;
         this.lastLogin = lastLogin;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
@@ -82,6 +84,14 @@ public class Manage implements java.io.Serializable {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public Date getNewLogin() {
+        return newLogin;
+    }
+
+    public void setNewLogin(Date newLogin) {
+        this.newLogin = newLogin;
     }
 
     public Date getLastLogin() {

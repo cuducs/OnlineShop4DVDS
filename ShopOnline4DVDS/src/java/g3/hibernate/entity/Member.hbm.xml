@@ -16,6 +16,9 @@
     <property name="password" type="string">
       <column name="Password"/>
     </property>
+    <property name="newLogin" type="timestamp">
+            <column length="23" name="NewLogin"/>
+        </property>
     <property name="lastLogin" type="timestamp">
       <column length="23" name="LastLogin"/>
     </property>

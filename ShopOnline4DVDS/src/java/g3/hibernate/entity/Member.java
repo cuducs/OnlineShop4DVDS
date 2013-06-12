@@ -15,6 +15,7 @@ public class Member  implements java.io.Serializable {
      private String name;
      private String email;
      private String password;
+     private Date newLogin;
      private Date lastLogin;
      private Date joinedDate;
      private Date modifiedDate;
@@ -30,16 +31,19 @@ public class Member  implements java.io.Serializable {
         this.modifiedDate = modifiedDate;
         this.isLock = isLock;
     }
-    public Member(int id, String name, String email, String password,Date lastLogin, Date joinedDate, Date modifiedDate, boolean isLock) {
-       this.id = id;
-       this.name = name;
-       this.email = email;
-       this.password = password;
-       this.lastLogin=lastLogin;
-       this.joinedDate = joinedDate;
-       this.modifiedDate = modifiedDate;
-       this.isLock = isLock;
+
+    public Member(int id, String name, String email, String password, Date newLogin, Date lastLogin, Date joinedDate, Date modifiedDate, boolean isLock) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.newLogin = newLogin;
+        this.lastLogin = lastLogin;
+        this.joinedDate = joinedDate;
+        this.modifiedDate = modifiedDate;
+        this.isLock = isLock;
     }
+    
    
     public int getId() {
         return this.id;
@@ -68,6 +72,14 @@ public class Member  implements java.io.Serializable {
     
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getNewLogin() {
+        return newLogin;
+    }
+
+    public void setNewLogin(Date newLogin) {
+        this.newLogin = newLogin;
     }
 
     public Date getLastLogin() {
