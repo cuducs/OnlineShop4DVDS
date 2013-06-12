@@ -5,7 +5,10 @@
 package g3.bean.security;
 
 import g3.bean.utility.AppConstant;
+import g3.bean.utility.JsfUtilBean;
+import g3.custom.phaselistener.AuthenticatePhaseListener;
 import g3.hibernate.entity.Manage;
+import g3.hibernate.entity.Permission;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +17,9 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 /**
  *
@@ -23,6 +29,10 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class ManageManagedBean {
 
+    public static final int MANAGE_POSITION_ROOT = 0;
+    public static final int MANAGE_POSITION_SYSTEM = 1;
+    public static final int MANAGE_POSITION_SECURITY = 2;
+    public static final int MANAGE_POSITION_NORMAL = 3;
     private Manage curManage;
     private int formMode;
     private ManageManagedHelper helper;
@@ -109,6 +119,7 @@ public class ManageManagedBean {
     }
 
     public String save() {
+        curManage.setPosition(MANAGE_POSITION_NORMAL);
         curManage.setCreatedDate(new Date());
         curManage.setModifiedDate(new Date());
         helper.save(curManage);
@@ -147,5 +158,48 @@ public class ManageManagedBean {
     public String cancel() {
         curManage = new Manage();
         return "show";
+    }
+
+    public String mappingPer(Permission item) {
+        helper.mappingPer(curManage, item);
+        return null;
+    }
+
+    public String prepareAddPer(Manage manage) {
+        curManage = manage;
+        return "mappingpermission";
+    }
+
+    public List<Permission> getListPerAdded() {
+        return helper.getListPerAdded(curManage);
+    }
+
+    public List<Permission> getListPerCanAdd() {
+        return helper.getListPerCanAdd(curManage);
+    }
+
+    public String addPer(Permission item) {
+        helper.addPer(curManage, item);
+        return null;
+    }
+
+    public String removePer(Permission item) {
+        helper.removePer(curManage, item);
+        return null;
+    }
+
+    public List<Permission> getListPerAdded(Manage manage) {
+        return helper.getListPerAdded(manage);
+    }
+
+    public Manage findManageByName(String name) {
+        Session session = helper.getSession();
+        Query query = session.createQuery("From Manage m where m.isLock=0 and m.name='" + name + "'");
+        Manage output = (Manage) query.uniqueResult();
+        return output;
+    }
+
+    public Manage getCurrentManage() {
+        return JsfUtilBean.getCurrentManageStatic();
     }
 }

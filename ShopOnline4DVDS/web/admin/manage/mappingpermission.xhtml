@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:gct="http://g3.com/tags"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="content">
+                <div class="full_w">
+                    <div class="h_title">Assign Permission For Manage</div>
+                    <h:form>
+                        <div class="entry">
+                            <h:link clss="button" value="Return List" outcome="show"></h:link>
+                        </div>
+
+                        <div class="entry"><h:link class="button" value="Return List" outcome="show"></h:link></div>
+                        Permission Added:<br/>
+                        <gct:common-list controller="#{permissionManagedBean}" list="#{manageManagedBean.listPerAdded}" from="addpermission" for="addpermission" target="manageremoveper"></gct:common-list>
+                        <div class="entry"><div class="sep"></div></div>
+
+                        <div class="entry">
+                            <h:commandButton class="button" value="Search" action="#{permissionManagedBean.search()}"></h:commandButton>
+                        </div>
+                        <div class="entry"><div class="sep"></div></div>
+
+                        Permission Can Add:<br/>
+                        <gct:common-list controller="#{permissionManagedBean}" list="#{manageManagedBean.listPerCanAdd}" from="addpermission" for="addpermission" target="manageaddper"></gct:common-list>
+                        <br/>
+                        <br/>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

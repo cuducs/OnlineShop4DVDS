@@ -43,9 +43,11 @@
                             <h:panelGroup rendered="#{for eq 'mapfile'}">
                                 <h:commandButton class="button" value="Map File" action="#{objectmapfile.addFile(item)}"></h:commandButton>
                             </h:panelGroup>
-
                             <h:panelGroup rendered="#{target eq 'album'}">
                                 <h:commandButton class="button" value="+Song" action="#{albumManagedBean.prepareAddSong(item)}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{target eq 'per'}">
+                                <h:commandButton class="button" value="+Per" action="#{permissionManagedBean.prepareAddPer(item)}"></h:commandButton>
                             </h:panelGroup>
                             <h:panelGroup rendered="#{target eq 'song'}">
                                 <h:panelGroup rendered="#{not (item.fileId eq 0)}">
@@ -60,6 +62,18 @@
                             </h:panelGroup>
                             <h:panelGroup rendered="#{target eq 'removesong'}">
                                 <h:commandButton class="button" value="Remove" action="#{albumManagedBean.removeSong(item)}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{target eq 'addper'}">
+                                <h:commandButton class="button" value="Add" action="#{permissionManagedBean.addPer(item)}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{target eq 'removeper'}">
+                                <h:commandButton class="button" value="Remove" action="#{permissionManagedBean.removePer(item)}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{target eq 'manageaddper'}">
+                                <h:commandButton class="button" value="Add" action="#{manageManagedBean.addPer(item)}"></h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{target eq 'manageremoveper'}">
+                                <h:commandButton class="button" value="Remove" action="#{manageManagedBean.removePer(item)}"></h:commandButton>
                             </h:panelGroup>
 
 

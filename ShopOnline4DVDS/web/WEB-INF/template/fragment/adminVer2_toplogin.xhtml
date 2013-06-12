@@ -12,11 +12,11 @@
         <ui:composition>
             <div id="top">
                 <div class="left">
-                    <p>Welcome, <strong>Paweł B.</strong> [ <a href="">logout</a> ]</p>
+                    <p>Welcome, <strong>#{manageManagedBean.currentManage.name}</strong> [ <h:form><h:commandLink value="logout" action="#{securityBean.logout()}"></h:commandLink></h:form> ]</p>
                 </div>
                 <div class="right">
                     <div class="align-right">
-                        <p>Last login: <strong>23-04-2012 23:12</strong></p>
+                        <p>Last login: <strong>#{manageManagedBean.currentManage.lastLogin}</strong></p>
                     </div>
                 </div>
             </div>

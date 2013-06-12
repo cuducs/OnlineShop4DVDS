@@ -10,6 +10,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Expression;
 
 /**
  *
@@ -31,16 +32,13 @@ public class CustomerManagedHelper extends BaseHelper {
 
     List<Member> search(Member searchCustomer) {
         Criteria criteria = session.createCriteria(Member.class);
-        if (searchCustomer.getId() > 0) {
-            criteria.add(org.hibernate.criterion.Expression.eq("id", searchCustomer.getId()));
-        }
         if (searchCustomer.getName() != "") {
-            criteria.add(org.hibernate.criterion.Expression.ilike("name", "%" + searchCustomer.getName() + "%"));
+            criteria.add(Expression.ilike("name", "%" + searchCustomer.getName() + "%"));
         }
-//        if (searchCustomer.getLyrics() != "") {
-//            criteria.add(org.hibernate.criterion.Expression.ilike("lyrics", "%" + searchCustomer.getLyrics() + "%"));
-//        }
-//        criteria.add(org.hibernate.critersion.Expression.eq("isFree", searchCustomer.isIsFree()));
+        if (searchCustomer.getEmail() != "") {
+            criteria.add(Expression.ilike("email", "%" + searchCustomer.getEmail() + "%"));
+        }
+        criteria.add(Expression.eq("isLock", searchCustomer.isIsLock()));
         return criteria.list();
     }
 }

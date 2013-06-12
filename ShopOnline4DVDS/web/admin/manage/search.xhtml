@@ -17,19 +17,9 @@
                     <h:form>
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <div class="element">
-                            <div class="split1">
-                                <label>ID</label>
-                                <p:inputText id="inputid" value="#{manageManagedBean.searchManage.id}" style="width:200px;">
-                                    <f:converter converterId="ZeroConverter"></f:converter>
-                                </p:inputText>
-                                <p:watermark for="inputid" value="ID"></p:watermark>
-                            </div>
-                            <div class="split2">
-                                <label>Name</label>
-                                <p:inputText id="inputname" value="#{manageManagedBean.searchManage.name}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputname" value="Name"></p:watermark>
-                            </div>
-                            <div class="splitclear"></div>
+                            <label>Name</label>
+                            <p:inputText id="inputname" value="#{manageManagedBean.searchManage.name}" style="width:200px;"></p:inputText>
+                            <p:watermark for="inputname" value="Name"></p:watermark>
                         </div>
                         <div class="element">
                             <div class="split1">
@@ -50,7 +40,7 @@
                             <h:commandButton class="button" value="Search" action="#{manageManagedBean.search()}"></h:commandButton><br/>
                         </div>
                         Result :<br/>
-                        <gct:user-list controller="#{manageManagedBean}" list="#{manageManagedBean.resustSearch}" from="search" for="search"></gct:user-list>
+                        <gct:user-list controller="#{manageManagedBean}" list="#{manageManagedBean.resustSearch}" from="search" for="search" target="manage"></gct:user-list>
 
                     </h:form>
                 </div>

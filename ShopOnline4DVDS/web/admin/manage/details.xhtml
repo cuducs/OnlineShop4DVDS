@@ -17,14 +17,26 @@
                             <h:link class="button" value="Return List" outcome="show"></h:link>
                             <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                         </div>
-                        ID : #{manageManagedBean.curManage.id}<br/>
-                        Name : #{manageManagedBean.curManage.name}<br/>
-                        Password : #{manageManagedBean.curManage.password}<br/>
-                        Info : #{manageManagedBean.curManage.info}<br/>
-                        Last Login : #{manageManagedBean.curManage.lastLogin}<br/>
-                        Created Date : #{manageManagedBean.curManage.createdDate}<br/>
-                        Modified Date : #{manageManagedBean.curManage.modifiedDate}<br/>
-                        Is Deleted : #{manageManagedBean.curManage.isLock}<br/>
+                        <table>
+                            <tr><td style="width:100px;">Name</td><td>#{manageManagedBean.curManage.name}</td></tr>
+                            <tr><td>Info</td><td>#{manageManagedBean.curManage.info}</td></tr>
+                            <tr><td>Last Login</td><td>
+                                    <h:outputText value="#{manageManagedBean.curManage.lastLogin}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Created Date</td><td>
+                                    <h:outputText value="#{manageManagedBean.curManage.createdDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td> Modified Date</td><td>
+                                    <h:outputText value=" #{manageManagedBean.curManage.modifiedDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Is Locked</td><td>#{manageManagedBean.curManage.isLock}</td></tr>
+                        </table>
                     </h:form>
                 </div>
             </ui:define>

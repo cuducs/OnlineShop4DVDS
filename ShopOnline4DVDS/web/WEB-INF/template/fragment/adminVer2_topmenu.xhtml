@@ -14,10 +14,15 @@
                 <ul>
                     <li class="upp"><a href="#">Main control</a>
                         <ul>
-                            <li>&#8250; <a href="">Visit site</a></li>
+                            <li>&#8250; 
+                                <h:form>
+                                    <h:commandLink action="#{billBean.currentSort('1')}" value="Order Waiting(#{billBean.waiting})">
+
+                                    </h:commandLink>
+                                </h:form>
+                            </li>
+                            <li>&#8250; <a href="">Feedback</a></li>
                             <li>&#8250; <a href="">Reports</a></li>
-                            <li>&#8250; <a href="">Add new page</a></li>
-                            <li>&#8250; <a href="">Site config</a></li>
                         </ul>
                     </li>
                     <li class="upp"><a href="#">Manage content</a>
@@ -26,19 +31,31 @@
                             <li>&#8250; <h:link value="Albums" outcome="albumshow"></h:link></li>
                             <li>&#8250; <h:link value="Songs" outcome="songshow"></h:link></li>
                             <li>&#8250; <h:link value="Files" outcome="fileshow"></h:link></li>
+                            <li>&#8250; <h:link value="Producer" outcome="producershow"></h:link></li>
+                            <li>&#8250; <h:link value="Supplier" outcome="suppliershow"></h:link></li>
+                            <li>&#8250; <h:link value="Artist" outcome="artistshow"></h:link></li>
                         </ul>
                     </li>
-                    <li class="upp"><a href="#">Users</a>
+                    <li class="upp"><a href="#">Service</a>
                         <ul>
-                            <li>&#8250; <a href="">Show all uses</a></li>
-                            <li>&#8250; <a href="">Add new user</a></li>
-                            <li>&#8250; <a href="">Lock users</a></li>
+                            <li>&#8250; <a href="">Order</a></li>
+                            <li>&#8250; <a href="">Feedback</a></li>
+                            <li>&#8250; <a href="">News</a></li>
                         </ul>
                     </li>
-                    <li class="upp"><a href="#">Settings</a>
+                    <li class="upp"><a href="#">Account</a>
                         <ul>
-                            <li>&#8250; <a href="">Site configuration</a></li>
-                            <li>&#8250; <a href="">Contact Form</a></li>
+                            <li>&#8250; <a href="">User</a></li>
+                            <li>&#8250; <a href="">Manage</a></li>
+                            <li>&#8250; <a href="">Permission</a></li>
+                        </ul>
+                    </li>
+                    <li class="upp"><a href="#">Website Settings</a>
+                        <ul>
+                            <li>&#8250; <a href="">Promotion</a></li>
+                            <li>&#8250; <a href="">Advertising</a></li>
+                            <li>&#8250; <a href="">News</a></li>
+                            <li>&#8250; <a href="">Category</a></li>
                         </ul>
                     </li>
                 </ul>

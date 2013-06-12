@@ -5,6 +5,7 @@
 package g3.bean.security;
 
 import g3.bean.utility.AppConstant;
+import g3.hibernate.entity.Manage;
 import g3.hibernate.entity.Permission;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class PermissionManagedBean {
-private Permission curPermission;
+
+    private Permission curPermission;
     private int formMode;
     private PermissionManagedHelper helper;
     private String returnFromDetails;
@@ -108,6 +110,7 @@ private Permission curPermission;
     }
 
     public String save() {
+        curPermission.setPosition(ManageManagedBean.MANAGE_POSITION_NORMAL);
         curPermission.setCreatedDate(new Date());
         curPermission.setModifiedDate(new Date());
         helper.save(curPermission);
@@ -147,4 +150,28 @@ private Permission curPermission;
         curPermission = new Permission();
         return "show";
     }
+
+    public String prepareAddPer(Permission item) {
+        curPermission = item;
+        return "addpermission";
+    }
+
+    public String addPer(Permission item) {
+        helper.addPer(curPermission, item);
+        return null;
+    }
+
+    public String removePer(Permission item) {
+        helper.removePer(curPermission, item);
+        return null;
+    }
+
+    public List<Permission> getListPerAdded() {
+        return helper.getListPerAdded(curPermission);
+    }
+
+    public List<Permission> getListPerCanAdd() {
+        return helper.getListPerCanAdd(curPermission);
+    }
+
 }

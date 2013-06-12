@@ -409,6 +409,6 @@ public class BillBean {
     public String currentSort(String s) {
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         ss.setAttribute("currentSort", s);
-        return "sort.xhtml?faces-redirect=true";
+        return "sort";
     }
 }

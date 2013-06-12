@@ -17,16 +17,12 @@
                     <h:form>
                         <div class="element">
                             <div class="split1">
-                                <label>ID</label>
-                                <p:inputText id="inputid" value="#{customerManagedBean.searchCustomer.id}" style="width:200px;">
-                                    <f:converter converterId="ZeroConverter"></f:converter>
-                                </p:inputText>
-                                <p:watermark for="inputid" value="ID"></p:watermark>
-                            </div>
-                            <div class="split2">
                                 <label>Name</label>
                                 <p:inputText id="inputtitle" value="#{customerManagedBean.searchCustomer.name}" style="width:200px;"></p:inputText>
                                 <p:watermark for="inputtitle" value="Name"></p:watermark>
+                            </div>
+                            <div class="split2">
+
                             </div>
                             <div class="splitclear"></div>
                         </div>

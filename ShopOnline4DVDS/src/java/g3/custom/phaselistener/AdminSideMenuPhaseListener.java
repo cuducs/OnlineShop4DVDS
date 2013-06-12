@@ -29,24 +29,16 @@ public class AdminSideMenuPhaseListener implements PhaseListener {
 
     @Override
     public void afterPhase(PhaseEvent event) {
-        FacesContext context = event.getFacesContext();
-        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        HttpServletResponse res=(HttpServletResponse) context.getExternalContext().getResponse();
-        try {
-            request.setCharacterEncoding("UTF-8");
-            res.setContentType("text/html; charset=UTF-8");
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(AdminSideMenuPhaseListener.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        AdminNavigatorBean bean = (AdminNavigatorBean) request.getSession().getAttribute("adminNavigatorBean");
-        if(bean==null){
-            bean=new AdminNavigatorBean();
-            request.getSession().setAttribute("adminNavigatorBean", bean);
-        }
-        int menu = getTypeMenu(context);
-        if (bean.getCurMenu() != menu && menu!=-1) {
-            bean.setCurMenu(menu);
-        }
+//        FacesContext context = event.getFacesContext();
+//        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+//        HttpServletResponse res=(HttpServletResponse) context.getExternalContext().getResponse();
+//        try {
+//            request.setCharacterEncoding("UTF-8");
+//            res.setContentType("text/html; charset=UTF-8");
+//        } catch (UnsupportedEncodingException ex) {
+//            Logger.getLogger(AdminSideMenuPhaseListener.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
 
     }
 
@@ -58,32 +50,5 @@ public class AdminSideMenuPhaseListener implements PhaseListener {
     public PhaseId getPhaseId() {
         return PhaseId.RESTORE_VIEW;
 
-    }
-
-    public int getTypeMenu(FacesContext context) {
-        ExternalContext extContext = context.getExternalContext();
-        String path = extContext.getRequestPathInfo();
-        int output = -1;
-        for (String str : getUrlProduct()) {
-            if (path.indexOf(str) != -1) {
-                output = AdminNavigatorBean.PRODUCT;
-            }
-        }
-        return output;
-    }
-
-    public List<String> getUrlProduct() {
-        List<String> lst = new ArrayList<String>();
-        lst.add("admin/product/show");
-        lst.add("admin/product/search");
-        lst.add("admin/game/show");
-        lst.add("admin/game/search");
-        lst.add("admin/movie/show");
-        lst.add("admin/movie/search");
-        lst.add("admin/album/show");
-        lst.add("admin/album/search");
-        lst.add("admin/song/show");
-        lst.add("admin/song/search");
-        return lst;
     }
 }

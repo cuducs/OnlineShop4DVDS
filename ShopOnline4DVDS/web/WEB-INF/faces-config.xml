@@ -41,11 +41,6 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>adminlogin</from-outcome>
-            <to-view-id>/admin/login.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-        <navigation-case>
             <from-outcome>cuslistproduct</from-outcome>
             <to-view-id>/user/listproduct.xhtml</to-view-id>
         </navigation-case>
@@ -57,6 +52,22 @@
         <navigation-case>
             <from-outcome>profile</from-outcome>
             <to-view-id>/member/profile.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>productshow</from-outcome>
+            <to-view-id>/admin/product/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/error.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>adminlogin</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -72,18 +83,6 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>productform</from-outcome>
-            <to-view-id>/admin/product/form.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>productrecovery</from-outcome>
-            <to-view-id>/admin/product/recovery.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>productsearch</from-outcome>
-            <to-view-id>/admin/product/search.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
             <from-outcome>ordershow</from-outcome>
             <to-view-id>/admin/order/order.xhtml</to-view-id>
             <redirect/>
@@ -94,33 +93,9 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>fileform</from-outcome>
-            <to-view-id>/admin/file/form.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>filerecovery</from-outcome>
-            <to-view-id>/admin/file/recovery.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>filesearch</from-outcome>
-            <to-view-id>/admin/file/search.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
             <from-outcome>albumshow</from-outcome>
             <to-view-id>/admin/album/show.xhtml</to-view-id>
             <redirect/>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>albumform</from-outcome>
-            <to-view-id>/admin/album/form.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>albumrecovery</from-outcome>
-            <to-view-id>/admin/album/recovery.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>albumsearch</from-outcome>
-            <to-view-id>/admin/album/search.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>songshow</from-outcome>
@@ -128,16 +103,24 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>songform</from-outcome>
-            <to-view-id>/admin/song/form.xhtml</to-view-id>
+            <from-outcome>producershow</from-outcome>
+            <to-view-id>/admin/producer/show.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>songrecovery</from-outcome>
-            <to-view-id>/admin/song/recovery.xhtml</to-view-id>
+            <from-outcome>suppliershow</from-outcome>
+            <to-view-id>/admin/supplier/show.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>songsearch</from-outcome>
-            <to-view-id>/admin/song/search.xhtml</to-view-id>
+            <from-outcome>artistshow</from-outcome>
+            <to-view-id>/admin/artist/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>sort</from-outcome>
+            <to-view-id>/admin/order/sort.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
     

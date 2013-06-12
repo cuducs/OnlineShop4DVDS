@@ -4,13 +4,18 @@
  */
 package g3.custom.phaselistener;
 
+import g3.bean.security.ManageManagedBean;
+import g3.bean.security.PermissionManagedBean;
 import g3.hibernate.entity.Manage;
 import g3.hibernate.entity.Member;
+import g3.hibernate.entity.Permission;
+import java.util.List;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -35,39 +40,25 @@ public class AuthenticatePhaseListener implements PhaseListener {
         switch (areaAccess) {
             //area free can access free
             case AREA_FREE:
-                Manage manage = (Manage) isUserLogin(context, areaAccess);
-//                if (manage != null) {
-//                    //user login so check authority
-//                    if (!isAdminCanAccess(manage)) {
-//                        //to error page if not allow
-//                        context.responseComplete();
-//                        context.getApplication().
-//                                getNavigationHandler().handleNavigation(context, null, ERROR);
-//                    }
-//                } else {
-//                    //user not login so to login page
-//                    context.responseComplete();
-//                    context.getApplication().
-//                            getNavigationHandler().handleNavigation(context, null, LOGIN_ADMIN);
-//                }         return;
+                break;
             // area only for manage
             case AREA_MANAGE:
                 //check if user login a manage account
-//                Manage manage = (Manage) isUserLogin(context, areaAccess);
-//                if (manage != null) {
-//                    //user login so check authority
-//                    if (!isAdminCanAccess(manage)) {
-//                        //to error page if not allow
-//                        context.responseComplete();
-//                        context.getApplication().
-//                                getNavigationHandler().handleNavigation(context, null, ERROR);
-//                    }
-//                } else {
-//                    //user not login so to login page
-//                    context.responseComplete();
-//                    context.getApplication().
-//                            getNavigationHandler().handleNavigation(context, null, LOGIN_ADMIN);
-//                }
+                Manage manage = (Manage) isUserLogin(context, areaAccess);
+                if (manage != null) {
+                    //user login so check authority
+                    if (!isAdminCanAccess(manage, requestPath)) {
+                        //to error page if not allow
+                        context.responseComplete();
+                        context.getApplication().
+                                getNavigationHandler().handleNavigation(context, null, ERROR);
+                    }
+                } else {
+                    //user not login so to login page
+                    context.responseComplete();
+                    context.getApplication().
+                            getNavigationHandler().handleNavigation(context, null, LOGIN_ADMIN);
+                }
                 break;
             case AREA_CUSTOMER:
                 Member member = (Member) isUserLogin(context, areaAccess);
@@ -113,8 +104,25 @@ public class AuthenticatePhaseListener implements PhaseListener {
         }
     }
 
-    private boolean isAdminCanAccess(Manage manage) {
-        //haven't implement
-        return true;
+    private boolean isAdminCanAccess(Manage manage, String requestPath) {
+        boolean isAllow = false;
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        ManageManagedBean bean = (ManageManagedBean) request.getSession().getAttribute("manageManagedBean");
+        if (bean == null) {
+            bean = new ManageManagedBean();
+            request.getSession().setAttribute("manageManagedBean", bean);
+        }
+        List<Permission> lstPer = bean.getListPerAdded(manage);
+
+        for (Permission permission : lstPer) {
+            String urlPattern = permission.getUrlPattern();
+            String per = permission.getUrlPattern().substring(0, urlPattern.length() - 1);
+            if (requestPath.contains(per)) {
+                isAllow = true;
+                break;
+            }
+        }
+        return isAllow;
     }
 }

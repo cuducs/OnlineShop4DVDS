@@ -17,13 +17,22 @@
                             <h:link class="button" value="Return List" outcome="show"></h:link>
                             <h:link class="button" value="Recovery" outcome="recovery"></h:link>
                         </div>
-                        ID : #{permissionManagedBean.curPermission.id}<br/>
-                        Title : #{permissionManagedBean.curPermission.title}<br/>
-                        Url Pattern : #{permissionManagedBean.curPermission.urlPattern}<br/>
-                        Description : #{permissionManagedBean.curPermission.description}<br/>
-                        Created Date : #{permissionManagedBean.curPermission.createdDate}<br/>
-                        Modified Date : #{permissionManagedBean.curPermission.modifiedDate}<br/>
-                        Is Deleted : #{permissionManagedBean.curPermission.isDeleted}<br/>
+                        <table>
+                            <tr><td style="width:100px;">Title</td><td>#{permissionManagedBean.curPermission.title}</td></tr>
+                            <tr><td>Url Pattern</td><td>#{permissionManagedBean.curPermission.urlPattern}</td></tr>
+                            <tr><td>Description</td><td>#{permissionManagedBean.curPermission.description}</td></tr>
+                            <tr><td>Created Date</td><td>
+                                    <h:outputText value="#{permissionManagedBean.curPermission.createdDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Modified Date</td><td>
+                                    <h:outputText value="#{permissionManagedBean.curPermission.modifiedDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Is Deleted</td><td>#{permissionManagedBean.curPermission.isDeleted}</td></tr>
+                        </table>
                     </h:form>
                 </div>
             </ui:define>

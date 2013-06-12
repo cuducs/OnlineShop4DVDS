@@ -35,6 +35,10 @@
                                 <h:panelGroup rendered="#{not item.isLock}">
                                     <h:commandLink class="button" value="Lock" action="#{controller.del(item)}"></h:commandLink>
                                 </h:panelGroup>
+
+                                <h:panelGroup rendered="#{target eq 'manage'}">
+                                    <h:commandButton class="button" value="+Permission" action="#{manageManagedBean.prepareAddPer(item)}"></h:commandButton>
+                                </h:panelGroup>
                             </h:panelGroup>
 
 

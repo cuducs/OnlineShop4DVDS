@@ -4,11 +4,14 @@
  */
 package g3.bean.utility;
 
+import g3.custom.phaselistener.AuthenticatePhaseListener;
+import g3.hibernate.entity.Manage;
 import java.util.Arrays;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
-import org.hibernate.mapping.Collection;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -61,5 +64,10 @@ public class JsfUtilBean {
         } else {
             return source;
         }
+    }
+
+    public static Manage getCurrentManageStatic() {
+        HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        return (Manage) ss.getAttribute(AuthenticatePhaseListener.ADMIN_SESSION_KEY);
     }
 }
