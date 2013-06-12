@@ -249,15 +249,11 @@ public class ShowProductBean {
             System.out.printf("id = " + currCateId);
             Category cate = cate_helper.searchById(currCateId);
 //            cate_helper.close();
-            return cate_helper.getProductsInCateDetail(cate);
+             return cate_helper.getProductsInCateDetail(cate, getPage(), itemsPerPage);
         }
         catch(Exception ex)
         {
             //show all :
-            FacesContext context = FacesContext.getCurrentInstance();
-            Map<String, String> params =
-                    context.getExternalContext().getRequestParameterMap();
-            String type = params.get("type");
             String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
             Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
             return query.list();
