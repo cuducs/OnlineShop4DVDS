@@ -75,6 +75,7 @@
             global navigation rules of admin
         </description>
         <from-view-id>/admin/*</from-view-id>
+        
         <navigation-case>
             <from-outcome>productshow</from-outcome>
             <to-view-id>/admin/product/show.xhtml</to-view-id>
@@ -118,6 +119,16 @@
         <navigation-case>
             <from-outcome>sort</from-outcome>
             <to-view-id>/admin/order/sort.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>reportshow</from-outcome>
+            <to-view-id>/admin/report/overview.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>feedbackshow</from-outcome>
+            <to-view-id>/admin/feedback/show.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

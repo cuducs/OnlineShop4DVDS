@@ -5,12 +5,17 @@
 package g3.bean.client;
 
 import g3.bean.utility.DvdStoreHibernateUtil;
+import g3.bean.utility.JsfUtilBean;
 import g3.hibernate.entity.Bill;
 import g3.hibernate.entity.Member;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -124,10 +129,17 @@ public class MemberBean {
         boolean vemail = ValidateBean.validEmail(email);
         boolean vpass1 = ValidateBean.validEmpty(password);
         boolean vpass = ValidateBean.compare(password, repassword);
+        try {
+            password = JsfUtilBean.MD5(password);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(MemberBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(MemberBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (vname && vemail && vpass && !isExisted(email)) {
             try {
                 String joined = DvdStoreHibernateUtil.currenrTime();
-                String sql = "insert into Member values (N'" + name + "', '" + email + "', '" + password + "',null, '" + joined + "', '" + joined + "', 0)";
+                String sql = "insert into Member values (N'" + name + "', '" + email + "', '" + password + "',null, null,'" + joined + "', '" + joined + "', 0)";
                 getSession().createSQLQuery(sql).executeUpdate();
                 getSession().beginTransaction().commit();
                 page = "login";
@@ -171,10 +183,19 @@ public class MemberBean {
         boolean vemail = ValidateBean.validEmail(email);
         boolean vpass = ValidateBean.validEmpty(password);
         if (vemail && vpass) {
+            try {
+                password = JsfUtilBean.MD5(password);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(MemberBean.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(MemberBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Member mem = loginCode(email, password);
             if (mem != null) {
                 HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 ss.setAttribute("member", mem);
+                mem.setLastLogin(mem.getNewLogin());
+                mem.setNewLogin(new Date());
                 return "profile";
             } else {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("result", "Not exist this member or locked, please retry.");
@@ -198,6 +219,7 @@ public class MemberBean {
         boolean vpass = ValidateBean.compare(password, repassword);
         if (vname && vpass) {
             try {
+                password = JsfUtilBean.MD5(password);
                 HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 String mail = ((Member) ss.getAttribute("member")).getEmail();
                 String modified = DvdStoreHibernateUtil.currenrTime();

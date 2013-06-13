@@ -5,9 +5,14 @@
 package g3.bean.security;
 
 import g3.bean.utility.AppConstant;
+import g3.bean.utility.JsfUtilBean;
 import g3.custom.phaselistener.AuthenticatePhaseListener;
 import g3.hibernate.entity.Manage;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,7 +27,7 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 @RequestScoped
 public class SecurityBean {
-    
+
     private String username;
     private String password;
 
@@ -31,23 +36,23 @@ public class SecurityBean {
      */
     public SecurityBean() {
     }
-    
+
     public String getUsername() {
         return username;
     }
-    
+
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     public String getPassword() {
         return password;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String login() {
         if (username != null && password != null && !username.equals("") && !password.equals("")) {
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -62,7 +67,15 @@ public class SecurityBean {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong name!", "Cannot find manage");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
             } else {
-                if (matchManage.getPassword().equals(password)) {
+                String encrypt = null;
+                try {
+                    encrypt = JsfUtilBean.MD5(password);
+                } catch (NoSuchAlgorithmException ex) {
+                    Logger.getLogger(SecurityBean.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(SecurityBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (matchManage.getPassword().equals(encrypt)) {
                     HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                     ss.setAttribute(AuthenticatePhaseListener.ADMIN_SESSION_KEY, matchManage);
                     matchManage.setLastLogin(matchManage.getNewLogin());
@@ -79,7 +92,7 @@ public class SecurityBean {
         }
         return null;
     }
-    
+
     public String logout() {
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Manage manage = (Manage) ss.getAttribute(AuthenticatePhaseListener.ADMIN_SESSION_KEY);
