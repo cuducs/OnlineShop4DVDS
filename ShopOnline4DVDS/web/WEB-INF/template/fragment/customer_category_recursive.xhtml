@@ -13,7 +13,7 @@
             <li class="level#{node.cateLevel} item#{node.order} #{node.hasChild()?'parent':''}">
                  <h:link class="level#{node.cateLevel} item#{node.order}  #{node.hasChild()?'parent':''}"
                             value="#{node.name}" outcome="cuslistproduct" style="#{node.cateLevel == 1 ? 'padding-right: 23px;' : ''}">
-                    <c:if test="#{node.cateLevel == 1}">
+                    <c:if test="#{(node.cateLevel == 1) and (node.hasChild())}">
                         <img src="/ShopOnline4DVDS/resources/customerver2/all/down.gif" class="downarrowclass" style="border:0;"/>
                     </c:if>
                     <c:if test="#{node.cateLevel != 1}">

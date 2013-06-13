@@ -8,6 +8,10 @@
         <tag-name>example</tag-name>
         <source>tags/example.xhtml</source>
     </tag>
+    <tag>
+        <tag-name>product-detail-tabview</tag-name>
+        <source>tags/product-detail-tabview.xhtml</source>
+    </tag>
      <tag>
         <tag-name>upload</tag-name>
         <source>tags/upload.xhtml</source>

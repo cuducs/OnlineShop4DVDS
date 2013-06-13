@@ -87,21 +87,6 @@
                         </div>
                         <div class="element">
                             <div class="split1">
-                                <label>Genres</label>
-                                <p:inputText id="inputgenres" value="#{productManagedBean.curDvd.genres}" style="width:200px;"></p:inputText>
-                                <p:message for="inputgenres" display="text"></p:message>
-                                <p:watermark for="inputgenres" value="Genres Example(Rock, Country, Ballad..)"></p:watermark>
-                            </div>
-                            <div class="split2">
-                                <label>Details</label>
-                                <p:inputText id="inputdetails" value="#{productManagedBean.curDvd.details}" style="width:200px;"></p:inputText>
-                                <p:watermark for="inputdetails" value="Details"></p:watermark>
-
-                            </div>
-                            <div class="splitclear"></div>
-                        </div>
-                        <div class="element">
-                            <div class="split1">
                                 <label>Supplier</label>
                                 <p:autoComplete id="acSimple" value="#{productManagedBean.supplier}"   
                                                 completeMethod="#{productManagedBean.autoCompleteSupplier}"/>
@@ -112,24 +97,42 @@
                                                 completeMethod="#{productManagedBean.autoCompleteProducer(query)}"/>
                             </div>
                             <div class="splitclear"></div>
+
                         </div>
                         <div class="element">
-                            <label>Image Cover</label>
-                            <p:inputText id="inputimg" value="#{productManagedBean.curDvd.imgCover}" style="width:200px;">
+                            <div class="split1">
+                                <label>Genres</label>
+                                <p:inputText id="inputgenres" value="#{productManagedBean.curDvd.genres}" style="width:200px;"></p:inputText>
+                                <p:message for="inputgenres" display="text"></p:message>
+                                <p:watermark for="inputgenres" value="Genres Example(Rock, Country, Ballad..)"></p:watermark>
+                            </div>
+                            <div class="split2">
+                                <label>Image Cover</label>
+                                <p:inputText id="inputimg" value="#{productManagedBean.curDvd.imgCover}" style="width:200px;">
 
-                            </p:inputText>
-                            <p:watermark for="inputimg" value="Image Cover"></p:watermark>
+                                </p:inputText>
+                                <p:watermark for="inputimg" value="Image Cover"></p:watermark>
 
-
+                            </div>
+                            <div class="splitclear"></div>
                         </div>
                         <div class="element">
                             <label>Select File :</label>
                             <gct:upload ></gct:upload>
+
+
                         </div>
                         <div class="element">
                             <label>Description</label>
-                            <p:inputTextarea id="inputdes" value="#{productManagedBean.curDvd.description}" style="width:100%;" rows="10"></p:inputTextarea>
-                            <p:watermark for="inputdes" value="Description"></p:watermark>
+                            <p:inputTextarea id="inputdetails" value="#{productManagedBean.curDvd.description}" style="width:100%;height:100px;" ></p:inputTextarea>
+                            <p:watermark for="inputdetails" value="Description"></p:watermark>
+
+
+                        </div>
+                        <div class="element">
+                            <label>Details</label>
+                            <p:editor style="width:100%;" value="#{productManagedBean.curDvd.details}"></p:editor>
+
                         </div>
 
                     </h:form>
