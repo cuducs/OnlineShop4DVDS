@@ -9,6 +9,10 @@
         <source>tags/example.xhtml</source>
     </tag>
     <tag>
+        <tag-name>paging-navigator</tag-name>
+        <source>tags/paging-navigator.xhtml</source>
+    </tag>
+    <tag>
         <tag-name>product-detail-tabview</tag-name>
         <source>tags/product-detail-tabview.xhtml</source>
     </tag>

@@ -194,8 +194,11 @@ public class MemberBean {
             if (mem != null) {
                 HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 ss.setAttribute("member", mem);
-                mem.setLastLogin(mem.getNewLogin());
+                Date date=mem.getNewLogin();
+                mem.setLastLogin(date);
                 mem.setNewLogin(new Date());
+                getSession().update(mem);
+                getSession().beginTransaction().commit();
                 return "profile";
             } else {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("result", "Not exist this member or locked, please retry.");
@@ -245,6 +248,13 @@ public class MemberBean {
     public String logout() {
         HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         ss.setAttribute("member", null);
-        return "../index.xhtml?faces-redirect=true";
+        return "customerlogin";
+    }
+
+    public Member getMemberLogin() {
+        HttpSession ss = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Member mem = ((Member) ss.getAttribute("member"));
+        return mem;
+
     }
 }

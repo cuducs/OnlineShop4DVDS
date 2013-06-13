@@ -10,9 +10,12 @@
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="title">
+                <title>Permission</title>
+            </ui:define>
             <ui:define name="content">
                 <div class="full_w">
-                    <div class="h_title">Permission Recovery</div>
+                    <div class="h_title">Permission</div>
                     <h:form>
                         <h:link class="button" value="Return List" outcome="show"></h:link><br/>
                         <gct:common-list controller="#{permissionManagedBean}" list="#{permissionManagedBean.allPermissionsDeleted}" from="recovery" for="recovery"></gct:common-list>

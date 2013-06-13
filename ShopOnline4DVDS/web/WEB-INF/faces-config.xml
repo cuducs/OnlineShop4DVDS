@@ -68,6 +68,11 @@
             <to-view-id>/admin/free/login.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>checkout</from-outcome>
+            <to-view-id>/member/checkout.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>

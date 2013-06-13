@@ -3,50 +3,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition>
-            <table summary="DVD Store">
-                <thead>
-                    <tr>
-                        <th scope="col" class="rounded">Name</th>
-                        <th scope="col" class="rounded">Details</th>
-                        <th scope="col" class="rounded">Command</th>
-                    </tr>
-                </thead>
-                <ui:repeat var="item" varStatus="stt" value="#{list}">
-                    <tr>
-                        <td>#{item.name}</td>
-                        <td><h:commandButton class="button" value="Details" action="#{controller.details(item)}">
-                                <f:param name="from" value="#{from}"></f:param>
-                            </h:commandButton></td>
-                        <td>
-                            <h:panelGroup>
-                                <h:panelGroup rendered="#{controller eq manageManagedBean}">
-                                    <h:commandLink class="button" value="Change Profile" action="#{controller.edit(item)}"></h:commandLink>
-                                </h:panelGroup>
+            <p:dataTable id="dataTable" var="item" value="#{list}"  
+                         paginator="true" rows="5"  
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                         rowsPerPageTemplate="5,10,15">  
+                <f:facet name="header">  
 
-                                <h:panelGroup rendered="#{item.isLock}">
-                                    <h:commandLink class="button" value="Unlock" action="#{controller.recovery(item)}"></h:commandLink>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{not item.isLock}">
-                                    <h:commandLink class="button" value="Lock" action="#{controller.del(item)}"></h:commandLink>
-                                </h:panelGroup>
+                </f:facet>  
 
-                                <h:panelGroup rendered="#{target eq 'manage'}">
-                                    <h:commandButton class="button" value="+Permission" action="#{manageManagedBean.prepareAddPer(item)}"></h:commandButton>
-                                </h:panelGroup>
-                            </h:panelGroup>
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Name" />  
+                    </f:facet>  
+                    <h:outputText value="#{item.name}" />  
+                </p:column>  
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Details" />  
+                    </f:facet>   
+                    <h:commandButton class="button" value="Details" action="#{controller.details(item)}">
+                        <f:param name="from" value="#{from}"></f:param>
+                    </h:commandButton>
+                </p:column>  
+
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Command" />  
+                    </f:facet>  
+                    <h:panelGroup>
+                        <h:panelGroup rendered="#{controller eq manageManagedBean}">
+                            <h:commandLink class="button" value="Change Profile" action="#{controller.edit(item)}"></h:commandLink>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{item.isLock}">
+                            <h:commandLink class="button" value="Unlock" action="#{controller.recovery(item)}"></h:commandLink>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{not item.isLock}">
+                            <h:commandLink class="button" value="Lock" action="#{controller.del(item)}"></h:commandLink>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{target eq 'manage'}">
+                            <h:commandButton class="button" value="+Permission" action="#{manageManagedBean.prepareAddPer(item)}"></h:commandButton>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </p:column>  
+
+            </p:dataTable>
 
 
-
-                        </td>
-                    </tr>
-                </ui:repeat>
-            </table>
         </ui:composition>
     </h:body>
 </html>

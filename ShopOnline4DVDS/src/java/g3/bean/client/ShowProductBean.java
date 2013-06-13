@@ -38,7 +38,7 @@ public class ShowProductBean {
     private List<Dvd> dvdvideo;
     private List<Dvd> dvdmusic;
     private List<Dvd> dvdgame;
-    private int itemsPerPage = 10;//for paging
+    private int itemsPerPage = 1;//for paging
     private int page = 0; //offset = 2*10
     private int length = 0;
     private String sort;
@@ -49,32 +49,30 @@ public class ShowProductBean {
     private List<Dvd> others;
     private String query;
     private String trailerUrl;
-    
     private int totalPage;
-    
     //DucVM-Add
     private CategoryManagedHelper cate_helper;
     //DucVM-End
-    
+
     public ShowProductBean() {
         cate_helper = CategoryManagedHelper.getInstance();
     }
-    
+
     public List<Dvd> getDvdvideo() {
         String sqlQuery = "FROM Dvd d WHERE d.type = 'movie' and d.isDeleted = 0 ORDER BY d.id DESC";
         return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
     }
-    
+
     public List<Dvd> getDvdmusic() {
         String sqlQuery = "FROM Dvd d WHERE d.type = 'music' and d.isDeleted = 0 ORDER BY d.id DESC";
         return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
     }
-    
+
     public List<Dvd> getDvdgame() {
         String sqlQuery = "FROM Dvd d WHERE d.type = 'game' and d.isDeleted = 0 ORDER BY d.id DESC";
         return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
     }
-    
+
     public Session getSession() {
         return DvdStoreHibernateUtil.getSessionFactory().openSession();
     }
@@ -82,7 +80,7 @@ public class ShowProductBean {
     public void setTotalPage(int totalPage) {
         this.totalPage = totalPage;
     }
-    
+
     public int getPage() {
         HttpServletRequest rq = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         try {
@@ -95,11 +93,11 @@ public class ShowProductBean {
         }
         return page;
     }
-    
+
     public void setPage(int page) {
         this.page = page;
     }
-    
+
     public List<Page> getPageLinks() {
         HttpServletRequest rq = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String s = "";
@@ -116,15 +114,15 @@ public class ShowProductBean {
         }
         return pageLinks;
     }
-    
+
     public void setPageLinks(List<Page> pageLinks) {
         this.pageLinks = pageLinks;
     }
-    
+
     public int getLength(String type) {
         return getSession().createQuery("FROM Dvd d WHERE d.isDeleted = 0 and d.type = '" + type + "'").list().size();
     }
-    
+
     public String getSort() {
         HttpServletRequest rq = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String so = "";
@@ -138,7 +136,7 @@ public class ShowProductBean {
         }
         return sort;
     }
-    
+
     public String getDetailId() {
         HttpServletRequest rq = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String so = "";
@@ -157,31 +155,31 @@ public class ShowProductBean {
         }
         return detailId;
     }
-    
+
     public void setDetailId(String detailId) {
         this.detailId = detailId;
     }
-    
+
     public Dvd getDetail() {
         String q = "FROM Dvd d WHERE d.isDeleted = 0 and d.id = " + getDetailId();
         Dvd d = (Dvd) getSession().createQuery(q).uniqueResult();
         return d;
     }
-    
+
     public List<Dvd> getOthers() {
         String q = "FROM Dvd d WHERE d.isDeleted = 0 and d.type = '" + getDetailType() + "'";
         List<Dvd> d = getSession().createQuery(q).setMaxResults(4).list();
         return d;
     }
-    
+
     public String getDetailType() {
         return detailType;
     }
-    
+
     public void setDetailType(String detailType) {
         this.detailType = detailType;
     }
-    
+
     public String getTrailerUrl() {
         try {
             Dvd d = getDetail();
@@ -193,28 +191,28 @@ public class ShowProductBean {
         }
         return trailerUrl;
     }
-    
+
     public List<Dvd> getTop3Game() {
         String sqlQuery = "FROM Dvd d WHERE d.isDeleted = 0 and d.type='" + AppConstant.DVD_TYPE_GAME + "'";
         return getSession().createQuery(sqlQuery).setMaxResults(3).list();
     }
-    
+
     public List<Dvd> getTop3Movie() {
         String sqlQuery = "FROM Dvd d WHERE d.isDeleted = 0 and d.type='" + AppConstant.DVD_TYPE_MOVIE + "'";
         return getSession().createQuery(sqlQuery).setMaxResults(3).list();
     }
-    
+
     public List<Dvd> getTop3Music() {
         String sqlQuery = "FROM Dvd d WHERE d.isDeleted = 0 and d.type='" + AppConstant.DVD_TYPE_MUSIC + "'";
         return getSession().createQuery(sqlQuery).setMaxResults(3).list();
     }
-    
+
     public Dvd getProductDetails() {
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
         String id = params.get("productid");
-        
+
         if (id == null) {
             context.responseComplete();
             context.getApplication().
@@ -224,9 +222,9 @@ public class ShowProductBean {
             String hqlQuery = "From Dvd d Where d.id=" + id;
             return (Dvd) getSession().createQuery(hqlQuery).uniqueResult();
         }
-        
+
     }
-    
+
     public List<Dvd> getProductList() {
         //DucVM - Add
 //        FacesContext context = FacesContext.getCurrentInstance();
@@ -239,43 +237,44 @@ public class ShowProductBean {
 //        }
 //        Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
 //        return query.list();
-        
-        try
-        {
+
+        try {
             FacesContext context = FacesContext.getCurrentInstance();
             Map<String, String> params =
-                context.getExternalContext().getRequestParameterMap();
+                    context.getExternalContext().getRequestParameterMap();
             int currCateId = Integer.parseInt(params.get("cateId"));
             System.out.printf("id = " + currCateId);
             Category cate = cate_helper.searchById(currCateId);
 //            cate_helper.close();
-             return cate_helper.getProductsInCateDetail(cate, getPage(), itemsPerPage);
-        }
-        catch(Exception ex)
-        {
+            return cate_helper.getProductsInCateDetail(cate, getPage(), itemsPerPage);
+        } catch (Exception ex) {
             //show all :
             String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
             Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
             return query.list();
         }
-        
+
         //DucVM - End
     }
+
     public int getTotalPage() {
+
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
-        String type = params.get("type");
-        String hqlQuery = "SELECT COUNT(*) FROM Dvd d WHERE d.isDeleted=0 and d.type='"+type+"'";
-        int total = ((Long)getSession().createQuery(hqlQuery).uniqueResult()).intValue();
-        totalPage = (total%itemsPerPage ==0) ? (total/itemsPerPage) : ((total/itemsPerPage) +1);
-        return totalPage==0? 1 : totalPage;
+        int currCateId = Integer.parseInt(params.get("cateId"));
+        System.out.printf("id = " + currCateId);
+        Category cate = cate_helper.searchById(currCateId);
+//            cate_helper.close();
+        int total = cate_helper.getProductsInCateDetailTotal(cate);
+        totalPage = (total % itemsPerPage == 0) ? (total / itemsPerPage) : ((total / itemsPerPage) + 1);
+        return totalPage == 0 ? 1 : totalPage;
     }
-    public String getType(){
+
+    public String getType() {
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
         return params.get("type");
     }
-    
 }

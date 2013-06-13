@@ -6,6 +6,8 @@ package g3.bean.utility;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -101,5 +103,5 @@ public class AppConstant {
     public String getPRODUCT_IMAGE_PATH() {
         return PRODUCT_IMAGE_PATH;
     }
-    
+
 }

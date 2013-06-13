@@ -128,10 +128,10 @@ public class ProductManagedBean {
 
     public String edit(Dvd item) {
         curDvd = item;
-        Supplier sup=(Supplier) helper.getSession().createCriteria(Supplier.class).add(Expression.eq("id", item.getSupplierId())).uniqueResult();
-        Producer pro=(Producer) helper.getSession().createCriteria(Producer.class).add(Expression.eq("id", item.getProducerId())).uniqueResult();
-        supplier = (sup==null?"":sup.getTitle());
-        producer = (pro==null?"":pro.getTitle());
+        Supplier sup = (Supplier) helper.getSession().createCriteria(Supplier.class).add(Expression.eq("id", item.getSupplierId())).uniqueResult();
+        Producer pro = (Producer) helper.getSession().createCriteria(Producer.class).add(Expression.eq("id", item.getProducerId())).uniqueResult();
+        supplier = (sup == null ? "" : sup.getTitle());
+        producer = (pro == null ? "" : pro.getTitle());
         formMode = AppConstant.FORM_MODE_EDIT;
         return "form";
     }

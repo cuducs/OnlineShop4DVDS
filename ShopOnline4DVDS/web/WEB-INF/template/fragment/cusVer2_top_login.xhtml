@@ -12,9 +12,26 @@
 
             <div class="module_LoginForm">
                 <div class="boxIndent">
-                    <a href="#" class="login" title="Login" rel="{size: {x: 300, y: 325}, ajaxOptions: {method: &quot;get&quot;}}">
-                        Login</a>
+                    <h:link class="login" outcome="customerlogin" rendered="#{memberBean.memberLogin eq null}">Login</h:link>
+                    <h:panelGroup rendered="#{not (memberBean.memberLogin eq null)}">
+
+                    </h:panelGroup>
                 </div>
+            </div>
+            <div style="position:absolute;right:-20px;top:28px;" class="curreny">
+                <h:panelGroup rendered="#{not (memberBean.memberLogin eq null)}">
+                    <h:form>
+                        <h:commandLink action="#{memberBean.logout()}" class="button">
+                            Logout</h:commandLink>
+                    </h:form>
+                </h:panelGroup>
+            </div>
+            <div style="position:absolute;right:100px;top:28px;text-align: right;width:500px;" class="curreny">
+                <h:panelGroup rendered="#{not (memberBean.memberLogin eq null)}">
+                    <strong style="color:whitesmoke;font:bold 14px/20px Arial,Helvetica,sans-serif;">Welcome,#{memberBean.memberLogin.name}</strong>
+
+
+                </h:panelGroup>
             </div>
             <div class="header-splash"></div>
             <div id="logo">
@@ -22,24 +39,7 @@
                     <img alt="" src="/ShopOnline4DVDS/resources/customerver2/all/logo.png"/>
                 </h:link>
             </div>
-            <div class="currency">
-                <div class="moduletable">
-                    <h3>Currencies:</h3>
 
-                    <form id="select-form" action="/ShopOnline4DVDS/resources/customerver2/all/Welcome to the Frontpage.htm" method="post" class="jqtransformdone">
-                        <input type="hidden" name="option" value="com_content"/>
-                        <input type="hidden" name="view" value="frontpage"/>
-                        <input type="hidden" name="Itemid" value="1"/>
-                        <input type="hidden" name="limit" value="0"/>
-                        <div class="jqTransformSelectWrapper" style="z-index: 10; width: 140px;"><div><span style="width: 0px;">US Dollar</span><a href="http://livedemo00.template-help.com/virtuemart_36022/#" class="jqTransformSelectOpen"></a></div><ul style="width: 138px; display: none; visibility: visible;"><li><a href="#">Euro</a></li><li><a href="http://livedemo00.template-help.com/virtuemart_36022/#" class="selected">US Dollar</a></li></ul><select class="inputbox jqTransformHidden" name="product_currency" size="1" style="">
-                                <option value="EUR">Euro</option>
-                                <option value="USD" selected="selected">US Dollar</option>
-                            </select></div>
-                        <input type="hidden" name="do_coupon" value="yes"/>
-                        <button id="" name="submit" type="submit" class="button jqTransformButton"><span><span>Change</span></span></button>
-                    </form>
-                </div>
-            </div>
             <div class="cart">
                 <div class="moduletable">
                     <div class="vmCartModule">

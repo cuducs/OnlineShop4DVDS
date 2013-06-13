@@ -10,9 +10,12 @@
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="title">
+                <title>Manager</title>
+            </ui:define>
             <ui:define name="content">
                 <div class="full_w">
-                    <div class="h_title">Show Manage</div>
+                    <div class="h_title">Manager</div>
                     <h:form>
                         <div class="entry">
                             <h:commandButton class="button add" value="Create New" action="#{manageManagedBean.create}"></h:commandButton>

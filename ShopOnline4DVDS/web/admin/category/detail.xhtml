@@ -10,15 +10,18 @@
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="title">
+                <title>Category</title>
+            </ui:define>
             <ui:define name="content">
-                 <div class="full_w">
+                <div class="full_w">
                     <div class="h_title">Show Detail Category : </div>
                     <h:form>
                         <div class="entry">
-                         <h:link value="Return List" outcome="show"></h:link><br/>
-                         <p class="text">ID       : #{categoryManagedBean.curCate.id}</p>
-                         <p class="text">Title    : #{categoryManagedBean.curCate.name}</p>
-                         <p class="text">ParentID : #{categoryManagedBean.curCate.categoryParentId}</p>
+                            <h:link value="Return List" outcome="show"></h:link><br/>
+                            <p class="text">ID       : #{categoryManagedBean.curCate.id}</p>
+                            <p class="text">Title    : #{categoryManagedBean.curCate.name}</p>
+                            <p class="text">ParentID : #{categoryManagedBean.curCate.categoryParentId}</p>
                         </div>
                         <gct:product-list controller="#{productManagedBean}" list="#{categoryManagedBean.productsInCateDetail}" for="show" from="show"></gct:product-list>
 

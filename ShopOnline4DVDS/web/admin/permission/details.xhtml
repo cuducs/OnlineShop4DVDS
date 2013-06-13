@@ -9,9 +9,12 @@
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="title">
+                <title>Permission</title>
+            </ui:define>
             <ui:define name="content">
                 <div class="full_w">
-                    <h2 class="h_title">Permission Details</h2>
+                    <h2 class="h_title">Permission</h2>
                     <h:form>
                         <div class="entry">
                             <h:link class="button" value="Return List" outcome="show"></h:link>

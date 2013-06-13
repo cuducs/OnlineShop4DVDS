@@ -7,69 +7,72 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/customerTemplate_1.xhtml">
             <ui:define name="content">
-                <title>Feedback</title>
-                <c:if test="#{sessionScope.member==null}">
-                    <div id="basket-content">
-                        <h3><a href="login.xhtml" title="Login to send feedback" style="color: red">Login to send a feedback to Administrator.</a></h3>
-                    </div>
-                </c:if>
-                <c:if test="#{sessionScope.member!=null}">
-                    <div id="basket-content">
-                        <div id="divTitle" style="position: relative; margin-bottom: 25px;">
-                            <h3 id="h3Title"  style="margin-top: 5px;">
-                                Send a feedback to Administrator
-                            </h3>
-                            <c:if test="#{feedbackBean.result=='1'}">
-                                <h3 style="color: blue">Thank for your feedback!</h3>
-                            </c:if>
-                            <c:if test="#{feedbackBean.result!='1'}">
-                                <h3 style="color: red">#{feedbackBean.result}</h3>
-                            </c:if>
-                        </div>
-                        <p id="SubHead">
-                            Please tell to me your opinion to improve this website. Thank you!</p>
-                        <span id="lbMessage"></span>
-                        <div id="boxdatagrid">
-                            <div>
-                                <h:form>
-                                    <table class="order-sum">
-                                        <tbody>
-                                            <tr>
-                                                <th class="col-description">
-                                                    <b>Input your content:</b>
-                                                </th>
-                                                <th>
+                <div class="content-indent">
+                    <div id="vmMainPage">
+                        <c:if test="#{sessionScope.member==null}">
+                            <div id="basket-content">
+                                <h3><a href="login.xhtml" title="Login to send feedback" style="color: red">Login to send a feedback to Administrator.</a></h3>
+                            </div>
+                        </c:if>
+                        <c:if test="#{sessionScope.member!=null}">
+                            <div id="basket-content">
+                                <div id="divTitle" style="position: relative; margin-bottom: 25px;">
+                                    <h3 id="h3Title"  style="margin-top: 5px;">
+                                        Send a feedback to Administrator
+                                    </h3>
+                                    <c:if test="#{feedbackBean.result=='1'}">
+                                        <h3 style="color: blue">Thank for your feedback!</h3>
+                                    </c:if>
+                                    <c:if test="#{feedbackBean.result!='1'}">
+                                        <h3 style="color: red">#{feedbackBean.result}</h3>
+                                    </c:if>
+                                </div>
+                                <p id="SubHead">
+                                    Please tell to me your opinion to improve this website. Thank you!</p>
+                                <span id="lbMessage"></span>
+                                <div id="boxdatagrid">
+                                    <div>
+                                        <h:form>
+                                            <table class="order-sum">
+                                                <tbody>
+                                                    <tr>
+                                                        <th class="col-description">
+                                                            <b>Input your content:</b>
+                                                        </th>
+                                                        <th>
 
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="6" class="none">
-                                                    <h:inputTextarea cols="90" rows="20" value="#{feedbackBean.content}"/>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="order-sum">
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4" style="padding-top: 15px;">
-                                                    <a href="" onclick="" id="ibPlaceOrder" style="display: inline;"></a>
-                                                    <h:commandButton value="Send feedback" action="#{feedbackBean.send()}"/>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </h:form>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="none">
+                                                            <h:inputTextarea cols="90" rows="20" value="#{feedbackBean.content}"/>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="order-sum">
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="4" style="padding-top: 15px;">
+                                                            <a href="" onclick="" id="ibPlaceOrder" style="display: inline;"></a>
+                                                            <h:commandButton value="Send feedback" action="#{feedbackBean.send()}"/>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </h:form>
+                                    </div>
+                                    <div style="height: 20px;">
+                                    </div>
+                                    <div>
+                                        <p>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div style="height: 20px;">
-                            </div>
-                            <div>
-                                <p>
-                                </p>
-                            </div>
-                        </div>
+                        </c:if>
                     </div>
-                </c:if>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

@@ -11,9 +11,12 @@
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="title">
+                <title>Dvd</title>
+            </ui:define>
             <ui:define name="content">
                 <div class="full_w">
-                    <div class="h_title">Show Dvd</div>
+                    <div class="h_title">Dvd</div>
                     <h:form>
                         <div class="entry">
                         <h:commandButton class="button add" value="Create New" action="#{productManagedBean.create}"></h:commandButton>
@@ -21,7 +24,7 @@
                         <h:link class="button" value="Search" outcome="search"></h:link>
                         </div>
                         <gct:product-list controller="#{productManagedBean}" list="#{productManagedBean.allDvds}" for="show" from="show"></gct:product-list>
-
+                        
                     </h:form>
                 </div>
             </ui:define>

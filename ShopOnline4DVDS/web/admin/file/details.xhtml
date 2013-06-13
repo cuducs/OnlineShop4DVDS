@@ -10,12 +10,15 @@
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="title">
+                <title>File</title>
+            </ui:define>
             <ui:define name="content">
                 <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
                     <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
                 </p:dialog> 
                 <div class="full_w">
-                    <h2 class="h_title">File Details</h2>
+                    <h2 class="h_title">File</h2>
 
                     <div class="entry">
                         <h:link class="button" value="Return List" outcome="show"></h:link>

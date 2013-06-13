@@ -7,58 +7,63 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/customerTemplate_1.xhtml">
             <ui:define name="content">
-                <title>Profile</title>
-                <div id="basket-content">
-                    <div id="divTitle" style="position: relative; margin-bottom: 25px;">
-                        <h3 id="h3Title"  style="margin-top: 5px;">
-                            Profile
-                        </h3>
-                    </div>
-                    <span id="lbMessage"></span>
-                    <div id="boxdatagrid">
-                        <div>
-                            <table>
-                                <tr>
-                                    <th>Name</th><td>#{sessionScope.member.name}</td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th><td>#{sessionScope.member.email}</td>
-                                </tr>
-                                <tr>
-                                    <th>Join date</th><td>#{sessionScope.member.joinedDate}</td>
-                                </tr>
-                                <tr>
-                                    <th>Modify date</th><td>#{sessionScope.member.modifiedDate}</td>
-                                </tr>
-                            </table>
-                            <h:form>
-                                <table style="text-align: center; margin: 0 auto">
-                                    <caption>Change Info (#{memberBean.profileName})</caption>
-                                    <tr>
-                                        <th>Name</th><td><h:inputText value="#{memberBean.name}" /></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Password</th><td><h:inputSecret value="#{memberBean.password}"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Retype password</th><td><h:inputSecret value="#{memberBean.repassword}"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" style="color: red">#{requestScope.result}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" style="color: green">#{requestScope.resultok}</td>
-                                    </tr>
-                                    <tr><td colspan="2"><h:commandButton value="Change info" action="#{memberBean.modify()}"/></td></tr>
-                                </table>
-                            </h:form>
-                            <a href="history.xhtml">View History</a> | <a href="feedback.xhtml">Send a feedback</a>
-                        </div>
-                        <div style="height: 20px;">
-                        </div>
-                        <div>
-                            <p>
-                            </p>
+                <div class="content-indent">
+                    <div id="vmMainPage">
+                        <div id="basket-content">
+                            <div id="divTitle" style="position: relative; margin-bottom: 25px;">
+                                <h3 id="h3Title"  style="margin-top: 5px;">
+                                    Profile
+                                </h3>
+                            </div>
+                            <span id="lbMessage"></span>
+                            <div id="boxdatagrid">
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <th>Name</th><td>#{sessionScope.member.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Email</th><td>#{sessionScope.member.email}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Join date</th><td>#{sessionScope.member.joinedDate}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Modify date</th><td>#{sessionScope.member.modifiedDate}</td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <br/>
+                                    <h:form>
+                                        <table style="text-align: left; margin: 0 auto">
+                                            <caption>Change Info (#{memberBean.profileName})</caption>
+                                            <tr>
+                                                <th>Name</th><td><h:inputText value="#{memberBean.name}" /></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Password</th><td><h:inputSecret value="#{memberBean.password}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Retype password</th><td><h:inputSecret value="#{memberBean.repassword}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="color: red">#{requestScope.result}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="color: green">#{requestScope.resultok}</td>
+                                            </tr>
+                                            <tr><td colspan="2"><h:commandButton value="Change info" action="#{memberBean.modify()}"/></td></tr>
+                                        </table>
+                                    </h:form>
+                                    <a href="history.xhtml">View History</a> | <a href="feedback.xhtml">Send a feedback</a>
+                                </div>
+                                <div style="height: 20px;">
+                                </div>
+                                <div>
+                                    <p>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

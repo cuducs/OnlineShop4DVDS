@@ -9,15 +9,18 @@
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="title">
+                <title>Customer</title>
+            </ui:define>
             <ui:define name="content">
                 <div class="full_w">
-                    <h2 class="h_title">Customer Details</h2>
+                    <h2 class="h_title">Customer</h2>
                     <h:form>
                         <div class="entry">
                             <h:link class="button" value="Return List" outcome="show"></h:link>
                         </div>
                         <table>
-                            <tr><td style="width:100%">Name</td><td>#{customerManagedBean.curCustomer.name}</td></tr>
+                            <tr><td style="width:100px;">Name</td><td>#{customerManagedBean.curCustomer.name}</td></tr>
                             <tr><td>Email</td><td>#{customerManagedBean.curCustomer.email}</td></tr>
                             <tr><td>Last Login</td><td>
                                     <h:outputText value="#{customerManagedBean.curCustomer.lastLogin}">

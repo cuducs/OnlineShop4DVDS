@@ -3,84 +3,96 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition>
-            <table summary="DVD Store">
-                <thead>
-                    <tr>
-                        <th scope="col" class="rounded">Title</th>
-                        <th scope="col" class="rounded">Details</th>
-                        <th scope="col" class="rounded">Command</th>
-                    </tr>
-                </thead>
-                <ui:repeat var="item" varStatus="stt" value="#{list}">
-                    <tr>
-                        <td>#{item.title}</td>
-                        <td><h:commandButton class="button" value="Details" action="#{controller.details(item)}">
-                                <f:param name="from" value="#{from}"></f:param>
-                            </h:commandButton></td>
-                        <td>
-                            <h:panelGroup rendered="#{for eq 'show'}">
-                                <h:commandLink class="table-icon edit" title="Edit" action="#{controller.edit(item)}"></h:commandLink>
-                                <h:commandLink class="table-icon delete" title="Del" action="#{controller.del(item)}"></h:commandLink>
+            <p:dataTable id="dataTable" var="item" value="#{list}"  
+                         paginator="true" rows="5"  
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                         rowsPerPageTemplate="5,10,15">  
+                <f:facet name="header">  
+                      
+                </f:facet>  
 
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{for eq 'search'}">
-                                <h:commandLink class="table-icon edit" title="Edit" action="#{controller.edit(item)}"></h:commandLink>
-                                <h:commandLink class="table-icon delete" title="Del" action="#{controller.del(item)}" rendered="#{not item.isDeleted}"></h:commandLink>
-                                <h:commandButton class="button" value="Recovery" action="#{controller.recovery(item)}" rendered="#{item.isDeleted}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{for eq 'recovery'}">
-                                <h:commandButton class="button" value="Recovery" action="#{controller.recovery(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{for eq 'mappingalbum'}">
-                                <h:commandButton class="button" value="Mapping" action="#{productManagedBean.mappingAlbum(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{for eq 'mapfile'}">
-                                <h:commandButton class="button" value="Map File" action="#{objectmapfile.addFile(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{target eq 'album'}">
-                                <h:commandButton class="button" value="+Song" action="#{albumManagedBean.prepareAddSong(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{target eq 'per'}">
-                                <h:commandButton class="button" value="+Per" action="#{permissionManagedBean.prepareAddPer(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{target eq 'song'}">
-                                <h:panelGroup rendered="#{not (item.fileId eq 0)}">
-                                    <h:commandLink class="button" value="Remove" action="#{controller.removeFile(item)}"></h:commandLink>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{item.fileId eq 0}" >
-                                    <h:commandLink class="button" value="Map File" action="#{controller.prepareAddFile(item)}"></h:commandLink>
-                                </h:panelGroup>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{target eq 'addsong'}">
-                                <h:commandButton class="button" value="Add" action="#{albumManagedBean.addSong(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{target eq 'removesong'}">
-                                <h:commandButton class="button" value="Remove" action="#{albumManagedBean.removeSong(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{target eq 'addper'}">
-                                <h:commandButton class="button" value="Add" action="#{permissionManagedBean.addPer(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{target eq 'removeper'}">
-                                <h:commandButton class="button" value="Remove" action="#{permissionManagedBean.removePer(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{target eq 'manageaddper'}">
-                                <h:commandButton class="button" value="Add" action="#{manageManagedBean.addPer(item)}"></h:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{target eq 'manageremoveper'}">
-                                <h:commandButton class="button" value="Remove" action="#{manageManagedBean.removePer(item)}"></h:commandButton>
-                            </h:panelGroup>
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Title" />  
+                    </f:facet>  
+                    <h:outputText value="#{item.title}" />  
+                </p:column>  
 
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Details" />  
+                    </f:facet>   
+                    <h:commandButton class="button" value="Details" action="#{controller.details(item)}">
+                        <f:param name="from" value="#{from}"></f:param>
+                    </h:commandButton>
+                </p:column>  
 
-                        </td>
-                    </tr>
-                </ui:repeat>
-            </table>
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Command" />  
+                    </f:facet>  
+                    <h:panelGroup rendered="#{for eq 'show'}">
+                        <h:commandLink class="table-icon edit" title="Edit" action="#{controller.edit(item)}"></h:commandLink>
+                        <h:commandLink class="table-icon delete" title="Del" action="#{controller.del(item)}"></h:commandLink>
+
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{for eq 'search'}">
+                        <h:commandLink class="table-icon edit" title="Edit" action="#{controller.edit(item)}"></h:commandLink>
+                        <h:commandLink class="table-icon delete" title="Del" action="#{controller.del(item)}" rendered="#{not item.isDeleted}"></h:commandLink>
+                        <h:commandButton class="button" value="Recovery" action="#{controller.recovery(item)}" rendered="#{item.isDeleted}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{for eq 'recovery'}">
+                        <h:commandButton class="button" value="Recovery" action="#{controller.recovery(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{for eq 'mappingalbum'}">
+                        <h:commandButton class="button" value="Mapping" action="#{productManagedBean.mappingAlbum(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{for eq 'mapfile'}">
+                        <h:commandButton class="button" value="Map File" action="#{objectmapfile.addFile(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{target eq 'album'}">
+                        <h:commandButton class="button" value="+Song" action="#{albumManagedBean.prepareAddSong(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{target eq 'per'}">
+                        <h:commandButton class="button" value="+Per" action="#{permissionManagedBean.prepareAddPer(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{target eq 'song'}">
+                        <h:panelGroup rendered="#{not (item.fileId eq 0)}">
+                            <h:commandLink class="button" value="Remove" action="#{controller.removeFile(item)}"></h:commandLink>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{item.fileId eq 0}" >
+                            <h:commandLink class="button" value="Map File" action="#{controller.prepareAddFile(item)}"></h:commandLink>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{target eq 'addsong'}">
+                        <h:commandButton class="button" value="Add" action="#{albumManagedBean.addSong(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{target eq 'removesong'}">
+                        <h:commandButton class="button" value="Remove" action="#{albumManagedBean.removeSong(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{target eq 'addper'}">
+                        <h:commandButton class="button" value="Add" action="#{permissionManagedBean.addPer(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{target eq 'removeper'}">
+                        <h:commandButton class="button" value="Remove" action="#{permissionManagedBean.removePer(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{target eq 'manageaddper'}">
+                        <h:commandButton class="button" value="Add" action="#{manageManagedBean.addPer(item)}"></h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{target eq 'manageremoveper'}">
+                        <h:commandButton class="button" value="Remove" action="#{manageManagedBean.removePer(item)}"></h:commandButton>
+                    </h:panelGroup>  
+                </p:column>  
+
+            </p:dataTable>  
+            
         </ui:composition>
     </h:body>
 </html>
