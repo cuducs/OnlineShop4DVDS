@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:gct="http://g3.com/tags">
+      xmlns:gct="http://g3.com/tags"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -12,6 +14,7 @@
             <ui:define name="content">
                 <div class="module-new">
                     <h3><span><span>New Products</span></span></h3>
+
                     <div class="boxIndent">
                         <div class="anythingSlider">
                             <div class="wrapper-box">
@@ -20,6 +23,7 @@
                                     <li><div class="row-bg first">
                                             <!--a product-->
                                             <ui:repeat var="item" varStatus="stt" value="#{showProductBean.top3Game}">
+                                                
                                                 <gct:cus-ver2-aproduct product="${item}"></gct:cus-ver2-aproduct>
                                             </ui:repeat>
 
@@ -43,6 +47,7 @@
                             </div>
                         </div> </div>
                 </div>
+
             </ui:define>
         </ui:composition>
     </h:body>

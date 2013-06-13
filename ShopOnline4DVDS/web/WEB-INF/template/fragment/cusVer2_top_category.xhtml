@@ -11,25 +11,25 @@
     </h:head>
     <h:body>
         <ui:composition>
-                <div class="moduletable-categories">
-                    <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/ddsmoothmenu.js"></script>
-                    <div class="ddsmoothmenu" id="smoothmenu1"><div id="relative_div" style="position:relative;z-index:0"></div>
-                        <ul class="level1">
-                            <c:forEach items="#{categoryManagedBean.listMenu}" var="item">
-                                <ui:include src="customer_category_recursive.xhtml">
-                                    <ui:param name="node" value="#{item}" />
-                                </ui:include>
-                            </c:forEach>
-                            <li class="level1 item4">
-                                <h:link class="level1 item4 " value="Dvds" outcome="cuslistproduct">
-                                    <f:param name="type" value="#{appConstant.DVD_TYPE_ALL}"></f:param>
-                                </h:link>
-                            </li>
+            <div class="moduletable-categories">
 
-                        </ul>
-                    </div>
+                <div class="ddsmoothmenu" id="smoothmenu1"><div id="relative_div" style="position:relative;z-index:0"></div>
+                    <ul class="level1">
+                        <c:forEach items="#{categoryManagedBean.listMenu}" var="item">
+                            <ui:include src="customer_category_recursive.xhtml">
+                                <ui:param name="node" value="#{item}" />
+                            </ui:include>
+                        </c:forEach>
+                        <li class="level1 item4">
+                            <h:link class="level1 item4 " value="Dvds" outcome="cuslistproduct">
+                                <f:param name="type" value="#{appConstant.DVD_TYPE_ALL}"></f:param>
+                            </h:link>
+                        </li>
+
+                    </ul>
                 </div>
-       
+            </div>
+
         </ui:composition>
     </h:body>
 </html>

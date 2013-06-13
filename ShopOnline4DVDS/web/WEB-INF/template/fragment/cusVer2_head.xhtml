@@ -10,18 +10,13 @@
     <h:body>
         <ui:composition>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
+            <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
             <title>Welcome to the Frontpage</title>
             <link href="/ShopOnline4DVDS/resources/customerver2/all/fetchscript(1).php" type="text/css" rel="stylesheet"/>
             <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/constant.css" type="text/css"/>
             <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/template.css" type="text/css"/>
             <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/virtuemart.css" type="text/css"/>
             <link rel="stylesheet" href="/ShopOnline4DVDS/resources/customerver2/all/products.css" type="text/css"/>
-            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/mootools.js"></script>
-            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/modal.js"></script>
-            <h:outputScript library="primefaces" name="jquery/jquery.js"/>
-            <!--<script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/jquery-1.4.2.min.js"></script>-->
-            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/jqtransform.js"></script>
 
             <script type="text/javascript">
                 var $j=jQuery.noConflict();
@@ -31,6 +26,13 @@
                     });
                 });
             </script>
+            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/mootools.js"></script>
+            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/ddsmoothmenu.js"></script>
+
+            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/jqtransform.js"></script>
+
+
+            <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/modal.js"></script>
             <script type="text/javascript" src="/ShopOnline4DVDS/resources/customerver2/all/imagepreloader.js"></script>
             <script type="text/javascript">
                 $j(document).ready(function(){
@@ -80,6 +82,9 @@
                                     <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0"  alt="" /></a>
                             </div>
                     <![endif]-->
+            <script type="text/javascript">
+                var $=jQuery.noConflict();
+            </script>
         </ui:composition>
     </h:body>
 </html>
