@@ -4,8 +4,8 @@
   <session-factory>
     <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
     <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=DvdStoreVer2</property>
-    <property name="hibernate.connection.username">Loog</property>
-    <property name="hibernate.connection.password">thienhavodoi</property>
+    <property name="hibernate.connection.username">sa</property>
+    <property name="hibernate.connection.password">sa</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">managed</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>

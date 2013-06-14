@@ -24,13 +24,14 @@ import g3.bean.other.CategoryManagedHelper;
 import g3.hibernate.entity.Category;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author kiendv
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ShowProductBean {
 
     /**
@@ -223,6 +224,8 @@ public class ShowProductBean {
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
         String id = params.get("productid");
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        request.getSession().setAttribute("productid", id);
 
         if (id == null) {
             context.responseComplete();
@@ -248,17 +251,6 @@ public class ShowProductBean {
     }
 
     public List<Dvd> getProductList() {
-        //DucVM - Add
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        Map<String, String> params =
-//                context.getExternalContext().getRequestParameterMap();
-//        String type = params.get("type");
-//        String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
-//        if (!type.equals(AppConstant.DVD_TYPE_ALL)) {
-//            hqlQuery += " and d.type='" + type + "'";
-//        }
-//        Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
-//        return query.list();
 
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> params =
@@ -288,12 +280,10 @@ public class ShowProductBean {
                     + " or d.description like '%" + search + "%'"
                     + " or d.author like '%" + search + "%'"
                     + " or d.details like '%" + search + "%'";
+
             Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
             return query.list();
         }
-
-
-        //DucVM - End
     }
 
     public int getTotalPage() {
