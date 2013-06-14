@@ -113,6 +113,9 @@ public class AuthenticatePhaseListener implements PhaseListener {
         if (requestPath.indexOf("common") != -1) {
             return true;
         }
+        if (requestPath.indexOf("profile") != -1) {
+            return true;
+        }
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         ManageManagedBean bean = (ManageManagedBean) request.getSession().getAttribute("manageManagedBean");

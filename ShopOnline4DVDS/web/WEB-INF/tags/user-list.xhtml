@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
         <ui:composition>
-            <p:dataTable id="dataTable" var="item" value="#{list}"  
+            <p:dataTable var="item" value="#{list}"  
                          paginator="true" rows="5"  
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                          rowsPerPageTemplate="5,10,15">  
@@ -38,9 +38,6 @@
                         <h:outputText value="Command" />  
                     </f:facet>  
                     <h:panelGroup>
-                        <h:panelGroup rendered="#{controller eq manageManagedBean}">
-                            <h:commandLink class="button" value="Change Profile" action="#{controller.edit(item)}"></h:commandLink>
-                        </h:panelGroup>
 
                         <h:panelGroup rendered="#{item.isLock}">
                             <h:commandLink class="button" value="Unlock" action="#{controller.recovery(item)}"></h:commandLink>

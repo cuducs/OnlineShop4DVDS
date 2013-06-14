@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/adminTemplate_1.xhtml">
+            <ui:define name="title">
+                <title>Manager</title>
+            </ui:define>
+            <ui:define name="content">
+                <div class="full_w">
+                    <h2 class="h_title">Manager</h2>
+                    <div class="entry">
+                        <h:form>
+                            <h:commandButton class="button" action="#{manageManagedBean.edit(manageManagedBean.currentManage)}" value="Change Profile"></h:commandButton>
+                        </h:form>
+                    </div>
+                    <h:form>
+                        <table>
+                            <tr><td style="width:100px;">Name</td><td>#{manageManagedBean.currentManage.name}</td></tr>
+                            <tr><td>Info</td><td>#{manageManagedBean.curManage.info}</td></tr>
+                            <tr><td>Last Login</td><td>
+                                    <h:outputText value="#{manageManagedBean.currentManage.lastLogin}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Created Date</td><td>
+                                    <h:outputText value="#{manageManagedBean.currentManage.createdDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td> Modified Date</td><td>
+                                    <h:outputText value=" #{manageManagedBean.currentManage.modifiedDate}">
+                                        <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                                    </h:outputText>
+                                </td></tr>
+                            <tr><td>Is Locked</td><td>#{manageManagedBean.currentManage.isLock}</td></tr>
+                            <tr><td>Permission</td><td><ui:repeat var="item" varStatus="stt" value="#{permissionManagedBean.perToString()}">
+                                        #{item}<br/>
+                                    </ui:repeat></td></tr>
+                        </table>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

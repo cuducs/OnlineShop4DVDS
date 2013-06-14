@@ -5,8 +5,10 @@
 package g3.bean.security;
 
 import g3.bean.utility.AppConstant;
+import g3.bean.utility.JsfUtilBean;
 import g3.hibernate.entity.Manage;
 import g3.hibernate.entity.Permission;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,7 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -174,4 +177,31 @@ public class PermissionManagedBean {
         return helper.getListPerCanAdd(curPermission);
     }
 
+    public List<Permission> searchPerCanAdd() {
+        List<Permission> lstPer = getResustSearch();
+        return helper.searchPerCanAdd(curPermission, lstPer);
+    }
+
+    public List<String> perToString() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        ManageManagedBean bean = (ManageManagedBean) request.getSession().getAttribute("manageManagedBean");
+        List<Permission> listPer = bean.getListPerAdded(JsfUtilBean.getCurrentManageStatic());
+        List<String> lst = new ArrayList<String>() {
+        };
+        for (Permission permission : listPer) {
+            if (permission.getUrlPattern().equals("/admin/*")) {
+                lst.clear();
+                lst.add("You can manage all.");
+                return lst;
+            }
+            String url = permission.getUrlPattern();
+            int index = url.indexOf("/admin/");
+            String temp = url.substring(index + "/admin/".length());
+            index = temp.indexOf("*");
+            lst.add("You can manage " + temp.substring(0, index - 1).toUpperCase());
+        }
+        return lst;
+
+    }
 }

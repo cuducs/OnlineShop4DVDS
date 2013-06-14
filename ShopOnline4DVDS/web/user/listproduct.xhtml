@@ -51,12 +51,14 @@
                                             <h:link class="pagenav" outcome="listproduct" value="«« First" title="First Page">
                                                 <f:param value="1" name="page"></f:param>
                                                 <f:param value="#{param['cateId']}" name="cateId"></f:param>
+                                                <f:param value="#{(param['search']!=null?param['search']:(showProductBean.txtSearch))}" name="search"></f:param>
                                             </h:link>
                                         </li>
                                         <li>
                                             <h:link class="pagenav" outcome="listproduct" value="« Prev" title="Pre Page">
                                                 <f:param value="${showProductBean.page -1}" name="page"></f:param>
                                                 <f:param value="#{param['cateId']}" name="cateId"></f:param>
+                                                <f:param value="#{(param['search']!=null?param['search']:(showProductBean.txtSearch))}" name="search"></f:param>
                                             </h:link>
                                         </li>
                                     </c:if>
@@ -69,6 +71,7 @@
                                                 <h:link class="pagenav" outcome="listproduct" value="${idx}">
                                                     <f:param value="${idx}" name="page"></f:param>
                                                     <f:param value="#{param['cateId']}" name="cateId"></f:param>
+                                                    <f:param value="#{(param['search']!=null?param['search']:(showProductBean.txtSearch))}" name="search"></f:param>
                                                 </h:link>
                                             </li>
                                         </c:if>
@@ -82,12 +85,14 @@
                                             <h:link class="pagenav" outcome="listproduct" value="Next »" title="Next Page">
                                                 <f:param value="${showProductBean.page + 1}" name="page"></f:param>
                                                 <f:param value="#{param['cateId']}" name="cateId"></f:param>
+                                                <f:param value="#{(param['search']!=null?param['search']:(showProductBean.txtSearch))}" name="search"></f:param>
                                             </h:link>
                                         </li>
                                         <li>
                                             <h:link class="pagenav" outcome="listproduct" value="End »»" title="Last Page">
                                                 <f:param value="${showProductBean.totalPage}" name="page"></f:param>
                                                 <f:param value="#{param['cateId']}" name="cateId"></f:param>
+                                                <f:param value="#{(param['search']!=null?param['search']:(showProductBean.txtSearch))}" name="search"></f:param>
                                             </h:link>
                                         </li>
                                     </c:if>

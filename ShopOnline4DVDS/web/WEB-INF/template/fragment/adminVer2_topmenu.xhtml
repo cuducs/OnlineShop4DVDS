@@ -38,25 +38,27 @@
                     </li>
                     <li class="upp"><a href="#">Service</a>
                         <ul>
-                            <li>&#8250; <a href="">Order</a></li>
-                            <li>&#8250; <a href="">Feedback</a></li>
+                            <li>&#8250;<h:link value="Order" outcome="ordershow"></h:link></li>
+                            <li>&#8250;<h:link outcome="feedbackshow" value="Feedbacks"></h:link></li>
                             <li>&#8250; <a href="">News</a></li>
                         </ul>
                     </li>
                     <li class="upp"><a href="#">Account</a>
                         <ul>
-                            <li>&#8250; <a href="">User</a></li>
-                            <li>&#8250; <a href="">Manage</a></li>
-                            <li>&#8250; <a href="">Permission</a></li>
+                            <li>&#8250; <h:link value="Member" outcome="customershow"></h:link></li>
+                            <li>&#8250; <h:link value="Manager" outcome="manageshow"></h:link></li>
+                            <li>&#8250; <h:link value="Permission" outcome="permissionshow"></h:link></li>
                         </ul>
                     </li>
                     <li class="upp"><a href="#">Website Settings</a>
                         <ul>
                             <li>&#8250; <a href="">Promotion</a></li>
                             <li>&#8250; <a href="">Advertising</a></li>
-                            <li>&#8250; <a href="">News</a></li>
-                            <li>&#8250; <a href="">Category</a></li>
+                            <li>&#8250; <h:link value="Category" outcome="categoryshow"></h:link></li>
                         </ul>
+                    </li>
+                    <li class="upp"><h:link value="Your Profile" outcome="managerprofile"></h:link>
+
                     </li>
                 </ul>
             </div>

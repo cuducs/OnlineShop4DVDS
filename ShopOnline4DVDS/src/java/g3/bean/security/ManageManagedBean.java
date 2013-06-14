@@ -9,14 +9,19 @@ import g3.bean.utility.JsfUtilBean;
 import g3.custom.phaselistener.AuthenticatePhaseListener;
 import g3.hibernate.entity.Manage;
 import g3.hibernate.entity.Permission;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -39,6 +44,8 @@ public class ManageManagedBean {
     private String returnFromDetails;
     private Manage searchManage;
     private List<Manage> resustSearch;
+    private String password;
+    private String verifyPassword;
 
     /**
      * Creates a new instance of MusicManagedBean
@@ -54,6 +61,22 @@ public class ManageManagedBean {
     @PreDestroy
     public void end() {
         helper.close();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getVerifyPassword() {
+        return verifyPassword;
+    }
+
+    public void setVerifyPassword(String verifyPassword) {
+        this.verifyPassword = verifyPassword;
     }
 
     public List<Manage> getResustSearch() {
@@ -101,6 +124,8 @@ public class ManageManagedBean {
 
     public String create() {
         curManage = new Manage();
+        password = "";
+        verifyPassword = "";
         formMode = AppConstant.FORM_MODE_CREATE;
         return "form";
     }
@@ -119,6 +144,17 @@ public class ManageManagedBean {
     }
 
     public String save() {
+        if (!password.equals(verifyPassword)) {
+            return null;
+        }
+        try {
+            password = JsfUtilBean.MD5(password);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ManageManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ManageManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        curManage.setPassword(password);
         curManage.setPosition(MANAGE_POSITION_NORMAL);
         curManage.setCreatedDate(new Date());
         curManage.setModifiedDate(new Date());
@@ -135,9 +171,20 @@ public class ManageManagedBean {
     }
 
     public String update() {
+        if (!password.equals(verifyPassword)) {
+            return null;
+        }
+        try {
+            password = JsfUtilBean.MD5(password);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ManageManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ManageManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        curManage.setPassword(password);
         curManage.setModifiedDate(new Date());
         helper.update(curManage);
-        return "show";
+        return "details";
     }
 
     public List<Manage> getAllManages() {
@@ -178,6 +225,14 @@ public class ManageManagedBean {
         return helper.getListPerCanAdd(curManage);
     }
 
+    public List<Permission> searchPerCanAdd() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        PermissionManagedBean bean = (PermissionManagedBean) request.getSession().getAttribute("permissionManagedBean");
+        List<Permission> lstPer = bean.getResustSearch();
+        return helper.searchPerCanAdd(curManage, lstPer);
+    }
+
     public String addPer(Permission item) {
         helper.addPer(curManage, item);
         return null;
@@ -201,5 +256,10 @@ public class ManageManagedBean {
 
     public Manage getCurrentManage() {
         return JsfUtilBean.getCurrentManageStatic();
+    }
+
+    public String changeProfile() {
+        curManage = JsfUtilBean.getCurrentManageStatic();
+        return "form";
     }
 }

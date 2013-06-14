@@ -136,6 +136,31 @@
             <to-view-id>/admin/feedback/show.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>customershow</from-outcome>
+            <to-view-id>/admin/customer/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>manageshow</from-outcome>
+            <to-view-id>/admin/manage/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>permissionshow</from-outcome>
+            <to-view-id>/admin/permission/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>categoryshow</from-outcome>
+            <to-view-id>/admin/category/show.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>managerprofile</from-outcome>
+            <to-view-id>/admin/profile/details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>

@@ -22,6 +22,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import g3.bean.other.CategoryManagedHelper;
 import g3.hibernate.entity.Category;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -50,12 +52,21 @@ public class ShowProductBean {
     private String query;
     private String trailerUrl;
     private int totalPage;
+    private String txtSearch;
     //DucVM-Add
     private CategoryManagedHelper cate_helper;
     //DucVM-End
 
     public ShowProductBean() {
         cate_helper = CategoryManagedHelper.getInstance();
+    }
+
+    public String getTxtSearch() {
+        return txtSearch;
+    }
+
+    public void setTxtSearch(String txtSearch) {
+        this.txtSearch = txtSearch;
     }
 
     public List<Dvd> getDvdvideo() {
@@ -225,6 +236,17 @@ public class ShowProductBean {
 
     }
 
+    public String execSearch() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params =
+                context.getExternalContext().getRequestParameterMap();
+        String search = params.get("search");
+        if (search.equals("begin")) {
+            context.getExternalContext().getSessionMap().put("search", txtSearch);
+        }
+        return "cuslistproduct";
+    }
+
     public List<Dvd> getProductList() {
         //DucVM - Add
 //        FacesContext context = FacesContext.getCurrentInstance();
@@ -238,21 +260,38 @@ public class ShowProductBean {
 //        Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
 //        return query.list();
 
-        try {
-            FacesContext context = FacesContext.getCurrentInstance();
-            Map<String, String> params =
-                    context.getExternalContext().getRequestParameterMap();
-            int currCateId = Integer.parseInt(params.get("cateId"));
-            System.out.printf("id = " + currCateId);
-            Category cate = cate_helper.searchById(currCateId);
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params =
+                context.getExternalContext().getRequestParameterMap();
+        String search = params.get("search");
+        if (search == null) {
+
+            try {
+
+                int currCateId = Integer.parseInt(params.get("cateId"));
+                System.out.printf("id = " + currCateId);
+                Category cate = cate_helper.searchById(currCateId);
 //            cate_helper.close();
-            return cate_helper.getProductsInCateDetail(cate, getPage(), itemsPerPage);
-        } catch (Exception ex) {
-            //show all :
-            String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
+                return cate_helper.getProductsInCateDetail(cate, getPage(), itemsPerPage);
+            } catch (Exception ex) {
+                //show all :
+                String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
+                Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
+                return query.list();
+            }
+        } else {
+            if ("begin".equals(search)) {
+                search = (String) context.getExternalContext().getSessionMap().get("search");
+            }
+            String hqlQuery = "From Dvd d where d.title like '%" + search + "%'"
+                    + " or d.genres like '%" + search + "%'"
+                    + " or d.description like '%" + search + "%'"
+                    + " or d.author like '%" + search + "%'"
+                    + " or d.details like '%" + search + "%'";
             Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
             return query.list();
         }
+
 
         //DucVM - End
     }
@@ -262,13 +301,30 @@ public class ShowProductBean {
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
-        int currCateId = Integer.parseInt(params.get("cateId"));
-        System.out.printf("id = " + currCateId);
-        Category cate = cate_helper.searchById(currCateId);
+
+        String search = params.get("search");
+        if (search == null && txtSearch == null) {
+            int currCateId = Integer.parseInt(params.get("cateId"));
+            System.out.printf("id = " + currCateId);
+            Category cate = cate_helper.searchById(currCateId);
 //            cate_helper.close();
-        int total = cate_helper.getProductsInCateDetailTotal(cate);
-        totalPage = (total % itemsPerPage == 0) ? (total / itemsPerPage) : ((total / itemsPerPage) + 1);
-        return totalPage == 0 ? 1 : totalPage;
+            int total = cate_helper.getProductsInCateDetailTotal(cate);
+            totalPage = (total % itemsPerPage == 0) ? (total / itemsPerPage) : ((total / itemsPerPage) + 1);
+            return totalPage == 0 ? 1 : totalPage;
+        } else {
+            if ("begin".equals(search)) {
+                search = (String) context.getExternalContext().getSessionMap().get("search");
+            }
+            String hqlQuery = "From Dvd d where d.title like '%" + search + "%'"
+                    + " or d.genres like '%" + search + "%'"
+                    + " or d.description like '%" + search + "%'"
+                    + " or d.author like '%" + search + "%'"
+                    + " or d.details like '%" + search + "%'";
+            Query query = getSession().createQuery(hqlQuery);
+            int total = query.list().size();
+            totalPage = (total % itemsPerPage == 0) ? (total / itemsPerPage) : ((total / itemsPerPage) + 1);
+            return totalPage == 0 ? 1 : totalPage;
+        }
     }
 
     public String getType() {

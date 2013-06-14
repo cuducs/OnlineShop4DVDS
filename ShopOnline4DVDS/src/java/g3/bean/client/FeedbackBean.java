@@ -315,8 +315,8 @@ public class FeedbackBean {
             x = b.getId();
         }
         try {
-            final String username = "thelionasia@gmail.com";
-            final String password = "xxx";
+            final String username = "gameguu@gmail.com";
+            final String password = "gameguu123";
             String to = getCustomer().getEmail();
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");

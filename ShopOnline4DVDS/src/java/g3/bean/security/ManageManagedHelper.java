@@ -10,6 +10,7 @@ import g3.hibernate.entity.Manage;
 import g3.hibernate.entity.ManagePermissionMapping;
 import g3.hibernate.entity.ManagePermissionMappingId;
 import g3.hibernate.entity.Permission;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -109,7 +110,7 @@ public class ManageManagedHelper extends BaseHelper {
         mapping.setId(mappingId);
         session.save(mapping);
         checkAndUpdateDegree(curManage);
-        
+
     }
 
     void removePer(Manage curManage, Permission item) {
@@ -117,7 +118,7 @@ public class ManageManagedHelper extends BaseHelper {
         ManagePermissionMapping mapping = (ManagePermissionMapping) session.get(ManagePermissionMapping.class, mappingId);
         session.delete(mapping);
         checkAndUpdateDegree(curManage);
-        
+
     }
 
     public void checkAndUpdateDegree(Manage manage) {
@@ -129,5 +130,29 @@ public class ManageManagedHelper extends BaseHelper {
             }
         }
         manage.setPosition(lv);
+    }
+
+    List<Permission> searchPerCanAdd(Manage curManage, List<Permission> lstPer) {
+        Transaction beginTransaction = session.beginTransaction();
+        List lstCannotAddId = session.createQuery("Select a.id.permissionId From ManagePermissionMapping a Where a.id.manageId=" + curManage.getId()).list();
+        Criteria lstCanAdd = session.createCriteria(Permission.class);
+        if (lstCannotAddId.size() > 0) {
+            lstCanAdd.add(Restrictions.not(Restrictions.in("id", lstCannotAddId)));
+        }
+        if (lstPer != null) {
+            List<Integer> lstInt = new ArrayList<Integer>();
+            for (Permission per : lstPer) {
+                lstInt.add(per.getId());
+            }
+            if (lstInt.size() > 0) {
+                lstCanAdd.add(Restrictions.in("id", lstInt));
+            }
+        }
+        Manage manage = JsfUtilBean.getCurrentManageStatic();
+        lstCanAdd.add(Expression.gt("position", manage.getPosition()));
+        lstCanAdd.add(Expression.eq("isDeleted", false));
+        beginTransaction.commit();
+
+        return lstCanAdd.list();
     }
 }

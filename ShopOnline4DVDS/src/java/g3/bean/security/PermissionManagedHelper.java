@@ -6,6 +6,7 @@ package g3.bean.security;
 
 import g3.bean.utility.BaseHelper;
 import g3.hibernate.entity.Permission;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -65,7 +66,7 @@ public class PermissionManagedHelper extends BaseHelper {
 
     List<Permission> getListPerAdded(Permission curPermission) {
         Criteria criteria = session.createCriteria(Permission.class);
-        if (null != curPermission.getUrlPattern() ) {
+        if (null != curPermission.getUrlPattern()) {
             List<String> lstStr = Arrays.asList(curPermission.getUrlPattern().split(","));
             if (lstStr.size() > 0) {
                 criteria.add(Restrictions.in("urlPattern", lstStr));
@@ -80,7 +81,7 @@ public class PermissionManagedHelper extends BaseHelper {
 
     List<Permission> getListPerCanAdd(Permission curPermission) {
         Criteria criteria = session.createCriteria(Permission.class);
-        if (null != curPermission.getUrlPattern() ) {
+        if (null != curPermission.getUrlPattern()) {
             List<String> lstStr = Arrays.asList(curPermission.getUrlPattern().split(","));
 
             if (lstStr.size() > 0) {
@@ -118,5 +119,33 @@ public class PermissionManagedHelper extends BaseHelper {
                 }
             }
         }
+    }
+
+    List<Permission> searchPerCanAdd(Permission curPermission, List<Permission> lstPer) {
+        Transaction beginTransaction = session.beginTransaction();
+        Criteria criteria = session.createCriteria(Permission.class);
+        if (null != curPermission.getUrlPattern()) {
+            List<String> lstStr = Arrays.asList(curPermission.getUrlPattern().split(","));
+
+            if (lstStr.size() > 0) {
+                criteria.add(Restrictions.not(Restrictions.in("urlPattern", lstStr)));
+            }
+        }
+
+        if (lstPer != null) {
+            List<Integer> lstInt = new ArrayList<Integer>();
+            for (Permission per : lstPer) {
+                lstInt.add(per.getId());
+            }
+            if (lstInt.size() > 0) {
+                criteria.add(Restrictions.in("id", lstInt));
+            }
+        }
+
+        criteria.add(Expression.eq("isBase", true));
+        criteria.add(Expression.eq("isDeleted", false));
+        beginTransaction.commit();
+
+        return criteria.list();
     }
 }
