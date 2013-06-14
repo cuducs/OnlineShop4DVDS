@@ -164,4 +164,11 @@ public class ProductManagedHelper extends BaseHelper {
     List<Supplier> getListSupplier() {
         return session.createQuery("From Supplier s where s.isDeleted=0").list();
     }
+    
+    public void updateRateing(Dvd product)
+    {
+       Transaction beginTransaction = session.beginTransaction();
+       session.update(product);
+       beginTransaction.commit();
+    }
 }

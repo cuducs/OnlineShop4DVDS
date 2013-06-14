@@ -5,6 +5,7 @@
 package g3.bean.manage.other;
 
 import g3.bean.utility.BaseHelper;
+import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.Producer;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -56,5 +57,11 @@ public class ProducerManagedHelper extends BaseHelper {
         }
         criteria.add(Expression.eq("isDeleted", searchProducer.isIsDeleted()));
         return criteria.list();
+    }
+
+    public void updateRateing(Dvd product) {
+        Transaction beginTransaction = session.beginTransaction();
+        session.update(product);
+        beginTransaction.commit();
     }
 }

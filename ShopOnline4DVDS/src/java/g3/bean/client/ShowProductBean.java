@@ -22,13 +22,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import g3.bean.other.CategoryManagedHelper;
 import g3.hibernate.entity.Category;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author kiendv
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ShowProductBean {
 
     /**
@@ -55,7 +56,7 @@ public class ShowProductBean {
     //DucVM-End
 
     public ShowProductBean() {
-        cate_helper = CategoryManagedHelper.getInstance();
+       
     }
 
     public List<Dvd> getDvdvideo() {
@@ -212,7 +213,9 @@ public class ShowProductBean {
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
         String id = params.get("productid");
-
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        request.getSession().setAttribute("productid", id);
+            
         if (id == null) {
             context.responseComplete();
             context.getApplication().
@@ -237,17 +240,22 @@ public class ShowProductBean {
 //        }
 //        Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
 //        return query.list();
-
-        try {
+        
+        try
+        {
+             cate_helper = CategoryManagedHelper.getInstance();
             FacesContext context = FacesContext.getCurrentInstance();
             Map<String, String> params =
-                    context.getExternalContext().getRequestParameterMap();
+                context.getExternalContext().getRequestParameterMap();
             int currCateId = Integer.parseInt(params.get("cateId"));
-            System.out.printf("id = " + currCateId);
+//            System.out.printf("id = " + currCateId);
             Category cate = cate_helper.searchById(currCateId);
-//            cate_helper.close();
-            return cate_helper.getProductsInCateDetail(cate, getPage(), itemsPerPage);
-        } catch (Exception ex) {
+            List results = cate_helper.getProductsInCateDetail(cate, getPage(), itemsPerPage);
+            cate_helper.close();
+             return results;
+        }
+        catch(Exception ex)
+        {
             //show all :
             String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
             Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);

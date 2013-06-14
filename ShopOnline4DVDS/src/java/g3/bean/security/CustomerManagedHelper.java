@@ -41,4 +41,13 @@ public class CustomerManagedHelper extends BaseHelper {
         criteria.add(Expression.eq("isLock", searchCustomer.isIsLock()));
         return criteria.list();
     }
+    
+    public Member getMember(int id)
+    {
+        Transaction beginTransaction = session.beginTransaction();
+        String hql = "FROM Member g Where id =" + id;
+        Query query = session.createQuery(hql);
+        beginTransaction.commit();
+        return (Member) query.list().get(0);
+    }
 }

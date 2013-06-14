@@ -51,7 +51,14 @@
                                         </div>
                                         <div class="clear"></div>
                                         <div class="description">
-                                            <p:rating value="4" />
+                                            <h:form id="rating_form"> 
+                                                <p:rating value="#{ratingBean.ratePoint}" immediate="true">
+                                                </p:rating>
+                                                 <h:commandButton class="addtocart_button" action="#{ratingBean.onrate()}" value="Rate">
+                                                    <f:param value="#{param['productid']}" name="productid"></f:param>
+                                                </h:commandButton>
+                                            </h:form>
+                                           
                                             <br/>
                                             <br/>
                                             Genres : #{showProductBean.productDetails.genres}

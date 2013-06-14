@@ -90,24 +90,30 @@ public class CategoryManagedHelper extends BaseHelper {
         beginTransaction.commit();
         return ((Category) query.list().get(0)).getId();
     }
-    
-    public List<Dvd> getProductsInCateDetail(Category cate) {
-        try {
+     
+    public List<Dvd> getProductsInCateDetail(Category cate) {        
+        try
+        {
             Query query = session.createSQLQuery(cate.getQuery()).addEntity(Dvd.class);
             List results = query.list();
             return results;
-        } catch (Exception ex) {
+        }
+        catch(Exception ex)
+        {
             System.out.printf(ex.toString());
         }
         return null;
     }
-    
-    public List<Dvd> getProductsInCateDetail(Category cate, int page, int itemsPerPage) {
-        try {
+      
+    public List<Dvd> getProductsInCateDetail(Category cate, int page, int itemsPerPage) {        
+        try
+        {
             Query query = session.createSQLQuery(cate.getQuery()).addEntity(Dvd.class).setFirstResult(itemsPerPage * ((page) - 1)).setMaxResults(itemsPerPage);
             List results = query.list();
             return results;
-        } catch (Exception ex) {
+        }
+        catch(Exception ex)
+        {
             System.out.printf(ex.toString());
         }
         return null;
