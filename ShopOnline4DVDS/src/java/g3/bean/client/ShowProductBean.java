@@ -21,7 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import g3.bean.other.CategoryManagedHelper;
+import g3.bean.utility.AlbumObject;
 import g3.hibernate.entity.Category;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import javax.faces.bean.SessionScoped;
@@ -53,6 +56,7 @@ public class ShowProductBean {
     private String query;
     private String trailerUrl;
     private int totalPage;
+    private List<AlbumObject> albumOfdvd;
     private String txtSearch;
     //DucVM-Add
     private CategoryManagedHelper cate_helper;
@@ -322,5 +326,34 @@ public class ShowProductBean {
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
         return params.get("type");
+    }
+    public List<AlbumObject> getAlbumOfdvd() {
+        String sql = "select s.Title, at.Title, f.Url from DVD d join AlbumMusicMapping a on d.AlbumId = a.AlbumId join Song s on a.SongId = s.Id join FileData f on s.FileID = f.Id join Artist at on s.SingerId = at.Id where f.IsDeleted = 0 and d.AlbumId = "+getProductDetails().getAlbumId();
+        List<AlbumObject> l = new ArrayList<AlbumObject>();
+        try {
+            Statement stm = getSession().connection().createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            int i=0;
+            while(rs.next()){
+                i++;
+                AlbumObject al = new AlbumObject(i, rs.getString(1), rs.getString(2), rs.getString(3));
+                if(!albumHadSong(al.getTitle(), al.getSinger(), l)){
+                    l.add(al);
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ShowProductBean.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return l;
+    }
+    public boolean albumHadSong(String name, String singer, List<AlbumObject> l){
+        boolean flag = false;
+        for (AlbumObject ab : l) {
+            if(ab.getTitle().equals(name)&&ab.getSinger().equals(singer)){
+                flag = true;
+            }
+        }
+        return flag;
     }
 }

@@ -17,24 +17,89 @@
 
                 <p:tab id="tab1" title="Info">  
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText id="tab1Text"  
-                                      value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.  
-                                      His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. T  
-                                      hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,  
-                                      but given to ruthless violence whenever anything stands against the good of the family." />  
+                        <h:outputText value="#{product.author}" />
                     </h:panelGrid>  
                 </p:tab>  
 
                 <p:tab id="tab2" title="More Details">  
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText id="tab2Text" value="#{product.details}" escape="false"/>  
+                        <h:outputText id="tab2Text" value="#{product.description}" escape="false"/>  
                     </h:panelGrid>  
                 </p:tab>  
 
-                <p:tab id="tab3" title="Trailer">  
+                <p:tab id="tab3" title="Trailer"> 
+                    <script type="text/javascript" src="/ShopOnline4DVDS/resources/js/jwplayer.js"></script>
                     <h:panelGrid columns="2" cellpadding="10">    
-                        <h:outputText id="tab3Text" value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.  
-                                      Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>  
+                        <c:if test="#{product.type=='music'}">
+                            <c:if test="#{product.albumId!=null}">
+                                <table>
+                                    <tr style="text-align: center; font-weight: bold; padding: 20px; font-size: 24px; color: #02aefe">
+                                        <th>Play</th><th>Song name</th><th>Singer</th><th>Download</th>
+                                    </tr>
+                                    <c:if test="#{sessionScope.member!=null}">
+                                        <c:forEach var="al" items="#{showProductBean.albumOfdvd}">
+                                            <tr>
+                                                <td valign="middle" style="padding-top: 10px">
+                                                    <div id="media#{al.id}"></div>
+                                                    <script type="text/javascript">
+                                                        jwplayer("media#{al.id}").setup({
+                                                            flashplayer: "/ShopOnline4DVDS/resources/js/player.swf",
+                                                            height: 30,
+                                                            width: 30,
+                                                            file: "#{al.url}"
+                                                        });
+                                                    </script>
+                                                </td>
+                                                <td valign="middle">#{al.title}</td>
+                                                <td valign="middle">#{al.singer}</td>
+                                                <td valign="middle"><a href="#{al.url}" title="Download trailer for free" target="_blank">Download</a></td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="#{sessionScope.member==null}">
+                                        <c:forEach var="al" items="#{showProductBean.albumOfdvd}">
+                                            <tr>
+                                                <td valign="middle" style="padding-top: 10px">
+                                                    <div id="media#{al.id}"></div>
+                                                    <script type="text/javascript">
+                                                        jwplayer("media#{al.id}").setup({
+                                                            flashplayer: "/ShopOnline4DVDS/resources/js/player.swf",
+                                                            height: 30,
+                                                            width: 30,
+                                                            file: "#{al.url}"
+                                                        });
+                                                    </script>
+                                                </td>
+                                                <td valign="middle">#{al.title}</td>
+                                                <td valign="middle">#{al.singer}</td>
+                                                <td valign="middle"><a href="/ShopOnline4DVDS/faces/user/register.xhtml" title="Sign up to download trailer.">Sign up to download</a></td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:if>
+
+                                </table>
+                            </c:if>
+                        </c:if>
+                        <c:if test="#{product.type=='movie' or product.type=='game'}">
+                            <div id="trailerplayer">Have not file to view trailer for this DVD</div>
+                            <c:if test="#{product.trailerId!=null}">
+                                <script type="text/javascript">
+                                    jwplayer("trailerplayer").setup({
+                                        flashplayer: "/ShopOnline4DVDS/resources/js/player.swf",
+                                        height: 300,
+                                        width: 564,
+                                        file: "#{showProductBean.trailerUrl}",
+                                        image: "#{showProductBean.productDetails.imgCover}"
+                                    });
+                                </script>
+                                <c:if test="#{sessionScope.member!=null}">
+                                    <a href="#{showProductBean.trailerUrl}" title="Download" target="_blank">Download trailer</a>
+                                </c:if>
+                                <c:if test="#{sessionScope.member==null}">
+                                    <a href="/ShopOnline4DVDS/faces/user/register.xhtml">Sign up to download trailer.</a>
+                                </c:if>
+                            </c:if>
+                        </c:if>
                     </h:panelGrid>  
                 </p:tab>  
                 <p:tab id="tab4" title="Reviews">  
@@ -42,8 +107,8 @@
                         <h5 class="title">
                             <span>Customer Reviews:</span>
                         </h5>
-                         <c:if test="#{sessionScope.member==null}">
-                             There are yet no reviews for this product. <br/>Please log in to write a review.
+                        <c:if test="#{sessionScope.member==null}">
+                            There are yet no reviews for this product. <br/>Please log in to write a review.
                         </c:if>
                         <c:if test="#{sessionScope.member!=null}">
                             <ui:repeat var="item" varStatus="stt" value="#{commentBean.commentsByProduct(showProductBean.productDetails.id)}">
