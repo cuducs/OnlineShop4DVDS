@@ -288,8 +288,13 @@ public class ProductManagedBean {
     public List<String> autoCompleteSupplier(String query) {
         Session session = helper.getSession();
         List<String> lst = new ArrayList<String>();
-        if (query.length() > 2) {
-            for (Object sup : session.createCriteria(Supplier.class).add(Expression.ilike("title", "%" + query + "%")).list()) {
+        if (query.length() > 0 && query.length() < 2) {
+            for (Object sup : session.createCriteria(Supplier.class).add(Expression.eq("isDeleted", false)).list()) {
+
+                lst.add(((Supplier) sup).getTitle());
+            }
+        } else if (query.length() > 1) {
+            for (Object sup : session.createCriteria(Supplier.class).add(Expression.ilike("title", "%" + query + "%")).add(Expression.eq("isDeleted", false)).list()) {
 
                 lst.add(((Supplier) sup).getTitle());
             }
@@ -317,8 +322,13 @@ public class ProductManagedBean {
     public List<String> autoCompleteProducer(String query) {
         Session session = helper.getSession();
         List<String> lst = new ArrayList<String>();
-        if (query.length() > 2) {
-            for (Object pro : session.createCriteria(Producer.class).add(Expression.ilike("title", "%" + query + "%")).list()) {
+        if (query.length() > 0 && query.length() < 2) {
+            for (Object pro : session.createCriteria(Producer.class).add(Expression.eq("isDeleted", false)).list()) {
+
+                lst.add(((Producer) pro).getTitle());
+            }
+        } else if (query.length() > 1) {
+            for (Object pro : session.createCriteria(Producer.class).add(Expression.ilike("title", "%" + query + "%")).add(Expression.eq("isDeleted", false)).list()) {
 
                 lst.add(((Producer) pro).getTitle());
             }

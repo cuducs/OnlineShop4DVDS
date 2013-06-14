@@ -25,6 +25,14 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+    <context-param>
+        <param-name>webemail</param-name>
+        <param-value>gameguu@gmail.com</param-value>
+    </context-param>
+    <context-param>
+        <param-name>webpassword</param-name>
+        <param-value>gameguu123</param-value>
+    </context-param>
     <filter>
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
@@ -39,6 +47,10 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>user/welcome.xhtml</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/admin/free/error.xhtml</location>
+    </error-page>
 </web-app>

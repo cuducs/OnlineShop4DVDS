@@ -139,7 +139,7 @@ public class MemberBean {
         if (vname && vemail && vpass && !isExisted(email)) {
             try {
                 String joined = DvdStoreHibernateUtil.currenrTime();
-                String sql = "insert into Member values (N'" + name + "', '" + email + "', '" + password + "',null, null,'" + joined + "', '" + joined + "', 0)";
+                String sql = "insert into Member values (N'" + name + "', '" + email + "',null, '" + password + "',null, null,'" + joined + "', '" + joined + "', 0)";
                 getSession().createSQLQuery(sql).executeUpdate();
                 getSession().beginTransaction().commit();
                 page = "login";

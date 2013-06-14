@@ -229,11 +229,20 @@ public class SongManagedBean {
     public List<String> autoCompleteArtistComposer(String query) {
         Session session = helper.getSession();
         List<String> lst = new ArrayList<String>();
-        if (query.length() > 2) {
+        if (query.length() > 0 && query.length() < 2) {
+            for (Object sger : session.createCriteria(Artist.class).
+                    add(Restrictions.in("workAs", Arrays.asList(AppConstant.ARTIST_COMPOSER, AppConstant.ARTIST_BOTH))).
+                    add(Expression.eq("isDeleted",false)).
+                    list()) {
+
+                lst.add(((Artist) sger).getTitle());
+            }
+        } else if (query.length() > 2) {
             for (Object sger : session.createCriteria(Artist.class).
                     add(Expression.ilike("title", "%" + query + "%")).
-                    add(Restrictions.in("workAs", Arrays.asList(AppConstant.ARTIST_COMPOSER, AppConstant.ARTIST_BOTH)))
-                    .list()) {
+                    add(Restrictions.in("workAs", Arrays.asList(AppConstant.ARTIST_COMPOSER, AppConstant.ARTIST_BOTH))).
+                    add(Expression.eq("isDeleted", false)).
+                    list()) {
 
                 lst.add(((Artist) sger).getTitle());
             }
@@ -246,11 +255,20 @@ public class SongManagedBean {
     public List<String> autoCompleteArtistSinger(String query) {
         Session session = helper.getSession();
         List<String> lst = new ArrayList<String>();
-        if (query.length() > 2) {
+        if (query.length() > 0 && query.length() < 2) {
+            for (Object sger : session.createCriteria(Artist.class).
+                    add(Restrictions.in("workAs", Arrays.asList(AppConstant.ARTIST_SINGER, AppConstant.ARTIST_BOTH))).
+                    add(Expression.eq("isDeleted", false)).
+                    list()) {
+
+                lst.add(((Artist) sger).getTitle());
+            }
+        } else if (query.length() > 2) {
             for (Object sger : session.createCriteria(Artist.class).
                     add(Expression.ilike("title", "%" + query + "%")).
-                    add(Restrictions.in("workAs", Arrays.asList(AppConstant.ARTIST_SINGER, AppConstant.ARTIST_BOTH)))
-                    .list()) {
+                    add(Restrictions.in("workAs", Arrays.asList(AppConstant.ARTIST_SINGER, AppConstant.ARTIST_BOTH))).
+                    add(Expression.eq("isDeleted", false)).
+                    list()) {
 
                 lst.add(((Artist) sger).getTitle());
             }

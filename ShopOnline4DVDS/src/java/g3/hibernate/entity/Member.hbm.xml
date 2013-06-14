@@ -13,6 +13,9 @@
     <property name="email" type="string">
       <column name="Email"/>
     </property>
+    <property name="avatarUrl" type="string">
+      <column name="AvatarUrl"/>
+    </property>
     <property name="password" type="string">
       <column name="Password"/>
     </property>

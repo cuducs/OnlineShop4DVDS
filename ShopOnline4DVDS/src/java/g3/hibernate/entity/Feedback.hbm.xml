@@ -10,6 +10,9 @@
     <property name="memberId" type="java.lang.Integer">
       <column name="MemberId"/>
     </property>
+    <property name="title" type="string">
+        <column name="Title"/>
+    </property>
     <property name="feedbackText" type="string">
       <column name="FeedbackText"/>
     </property>

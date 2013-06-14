@@ -8,23 +8,18 @@ import g3.bean.utility.DvdStoreHibernateUtil;
 import g3.hibernate.entity.Dvd;
 import g3.hibernate.entity.FileData;
 import g3.bean.utility.AppConstant;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import g3.bean.other.CategoryManagedHelper;
 import g3.hibernate.entity.Category;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ValueChangeEvent;
 
 /**
  *
@@ -41,7 +36,6 @@ public class ShowProductBean {
     private List<Dvd> dvdvideo;
     private List<Dvd> dvdmusic;
     private List<Dvd> dvdgame;
-    private int itemsPerPage = 1;//for paging
     private int page = 0; //offset = 2*10
     private int length = 0;
     private String sort;
@@ -54,12 +48,39 @@ public class ShowProductBean {
     private String trailerUrl;
     private int totalPage;
     private String txtSearch;
+    private String changeIPP = "5";
+    private String orderBy = "ModifiedDate";
+    private String orderType = "ASC";
     //DucVM-Add
     private CategoryManagedHelper cate_helper;
     //DucVM-End
 
     public ShowProductBean() {
         cate_helper = CategoryManagedHelper.getInstance();
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public String getChangeIPP() {
+        return changeIPP;
+    }
+
+    public void setChangeIPP(String changeIPP) {
+        this.changeIPP = changeIPP;
     }
 
     public String getTxtSearch() {
@@ -72,17 +93,18 @@ public class ShowProductBean {
 
     public List<Dvd> getDvdvideo() {
         String sqlQuery = "FROM Dvd d WHERE d.type = 'movie' and d.isDeleted = 0 ORDER BY d.id DESC";
-        return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
+        return getSession().createQuery(sqlQuery).setFirstResult(getItemPerPage() * ((getPage()) - 1)).setMaxResults(getItemPerPage()).list();
     }
 
     public List<Dvd> getDvdmusic() {
         String sqlQuery = "FROM Dvd d WHERE d.type = 'music' and d.isDeleted = 0 ORDER BY d.id DESC";
-        return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
+        return getSession().createQuery(sqlQuery).setFirstResult(getItemPerPage() * ((getPage()) - 1)).setMaxResults(getItemPerPage()).list();
     }
 
     public List<Dvd> getDvdgame() {
+
         String sqlQuery = "FROM Dvd d WHERE d.type = 'game' and d.isDeleted = 0 ORDER BY d.id DESC";
-        return getSession().createQuery(sqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
+        return getSession().createQuery(sqlQuery).setFirstResult(getItemPerPage() * ((getPage()) - 1)).setMaxResults(getItemPerPage()).list();
     }
 
     public Session getSession() {
@@ -91,6 +113,17 @@ public class ShowProductBean {
 
     public void setTotalPage(int totalPage) {
         this.totalPage = totalPage;
+    }
+
+    public int getItemPerPage() {
+//        FacesContext context = FacesContext.getCurrentInstance();
+//
+//        int itemsPerPage = AppConstant.ITEM_PER_PAGE;
+//        Object temp = context.getExternalContext().getSessionMap().get(AppConstant.SESSION_KEY_IPP);
+//        if (temp != null) {
+//            itemsPerPage = Integer.parseInt(String.valueOf(temp));
+//        }
+        return Integer.parseInt(changeIPP);
     }
 
     public int getPage() {
@@ -116,7 +149,7 @@ public class ShowProductBean {
         if (rq.getParameter("type") != null) {
             s = rq.getParameter("type");
         }
-        int number = getLength(s) / itemsPerPage;
+        int number = getLength(s) / getItemPerPage();
         if (number == 0) {
             number = 1;
         }
@@ -246,75 +279,97 @@ public class ShowProductBean {
         String search = params.get("search");
         if (search.equals("begin")) {
             context.getExternalContext().getSessionMap().put("search", txtSearch);
+            txtSearch = null;
         }
         return "cuslistproduct";
     }
 
     public List<Dvd> getProductList() {
-
+        String outputQuery = null;
+        boolean isCate = false;
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
         String search = params.get("search");
+        int itemsPerPage = getItemPerPage();
+        Category cate = null;
         if (search == null) {
 
-            try {
-
-                int currCateId = Integer.parseInt(params.get("cateId"));
-                System.out.printf("id = " + currCateId);
-                Category cate = cate_helper.searchById(currCateId);
+            int currCateId = Integer.parseInt(params.get("cateId"));
+            System.out.printf("id = " + currCateId);
+            cate = cate_helper.searchById(currCateId);
 //            cate_helper.close();
-                return cate_helper.getProductsInCateDetail(cate, getPage(), itemsPerPage);
-            } catch (Exception ex) {
-                //show all :
-                String hqlQuery = "From Dvd d Where d.isDeleted=0 ";
-                Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
-                return query.list();
-            }
+            outputQuery = cate.getQuery();
+            isCate = true;
         } else {
             if ("begin".equals(search)) {
                 search = (String) context.getExternalContext().getSessionMap().get("search");
             }
-            String hqlQuery = "From Dvd d where d.title like '%" + search + "%'"
-                    + " or d.genres like '%" + search + "%'"
-                    + " or d.description like '%" + search + "%'"
-                    + " or d.author like '%" + search + "%'"
-                    + " or d.details like '%" + search + "%'";
+            outputQuery = "From Dvd d where d.title LIKE :search"
+                    + " or d.genres LIKE  :search"
+                    + " or d.author LIKE  :search";
 
-            Query query = getSession().createQuery(hqlQuery).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage);
-            return query.list();
+        }
+        if (isCate) {
+            if (cate.getId() == 1) {
+                outputQuery += " where DVD.IsDeleted=0";
+            } else {
+                outputQuery += " and DVD.IsDeleted=0";
+            }
+
+
+            return getSession().createSQLQuery(outputQuery).addEntity(Dvd.class).setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
+        } else {
+            outputQuery += " and d.isDeleted=0";
+            return getSession().createQuery(outputQuery).setString("search", '%' + search + '%').setFirstResult(itemsPerPage * ((getPage()) - 1)).setMaxResults(itemsPerPage).list();
         }
     }
 
-    public int getTotalPage() {
+    public String toLowerCaseFisrtLetter(String source) {
+        return Character.toLowerCase(source.charAt(0)) + (source.length() > 1 ? source.substring(1) : "");
+    }
 
+    public int getTotalPage() {
+        String outputQuery = null;
+        boolean isCate = false;
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
-
+        int itemsPerPage = getItemPerPage();
         String search = params.get("search");
-        if (search == null && txtSearch == null) {
+        Category cate = null;
+        if (search == null) {
             int currCateId = Integer.parseInt(params.get("cateId"));
             System.out.printf("id = " + currCateId);
-            Category cate = cate_helper.searchById(currCateId);
+            cate = cate_helper.searchById(currCateId);
 //            cate_helper.close();
-            int total = cate_helper.getProductsInCateDetailTotal(cate);
-            totalPage = (total % itemsPerPage == 0) ? (total / itemsPerPage) : ((total / itemsPerPage) + 1);
-            return totalPage == 0 ? 1 : totalPage;
+            outputQuery = cate.getQuery();
+            isCate = true;
         } else {
             if ("begin".equals(search)) {
                 search = (String) context.getExternalContext().getSessionMap().get("search");
             }
-            String hqlQuery = "From Dvd d where d.title like '%" + search + "%'"
-                    + " or d.genres like '%" + search + "%'"
-                    + " or d.description like '%" + search + "%'"
-                    + " or d.author like '%" + search + "%'"
-                    + " or d.details like '%" + search + "%'";
-            Query query = getSession().createQuery(hqlQuery);
-            int total = query.list().size();
-            totalPage = (total % itemsPerPage == 0) ? (total / itemsPerPage) : ((total / itemsPerPage) + 1);
-            return totalPage == 0 ? 1 : totalPage;
+            outputQuery = "From Dvd d where d.title LIKE :search"
+                    + " or d.genres LIKE  :search"
+                    + " or d.author LIKE  :search";
+
         }
+        int total = 0;
+        if (isCate) {
+
+            if (cate.getId() == 1) {
+                outputQuery += " where DVD.IsDeleted=0";
+            } else {
+                outputQuery += " and DVD.IsDeleted=0";
+            }
+
+            total = getSession().createSQLQuery(outputQuery).addEntity(Dvd.class).list().size();
+        } else {
+            outputQuery += " and d.isDeleted=0";
+            total = getSession().createQuery(outputQuery).setString("search", '%' + search + '%').list().size();
+        }
+        totalPage = (total % itemsPerPage == 0) ? (total / itemsPerPage) : ((total / itemsPerPage) + 1);
+        return totalPage == 0 ? 1 : totalPage;
     }
 
     public String getType() {
@@ -322,5 +377,15 @@ public class ShowProductBean {
         Map<String, String> params =
                 context.getExternalContext().getRequestParameterMap();
         return params.get("type");
+    }
+
+    public void valueChangeMethod(ValueChangeEvent e) {
+    }
+
+    public String changeItemPerPage() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        String temp = changeIPP;
+        context.getExternalContext().getSessionMap().put(AppConstant.SESSION_KEY_IPP, temp);
+        return null;
     }
 }

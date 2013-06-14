@@ -43,7 +43,8 @@ public class AppConstant {
     public static final String OPERATOR_BETWEEN = "between";
     public static final String OPERATOR_CONTAIN = "like";
     public static final String OPERATOR_NONE = "none";
-
+    public static final int ITEM_PER_PAGE=5;
+    public static final String SESSION_KEY_IPP="itemperpage";
     public int getModeCreate() {
         return FORM_MODE_CREATE;
     }

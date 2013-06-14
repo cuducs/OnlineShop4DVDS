@@ -20,6 +20,7 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
@@ -50,8 +51,17 @@ public class FeedbackBean {
     private String searchQuery;//for search
     private List<Page> sortLinks;//paging links sorted
     private Member customer;
+    private String title;
 
     public FeedbackBean() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -153,8 +163,8 @@ public class FeedbackBean {
     }
 
     public String getUpdateStatus() {
-        if (updateStatus==null) {
-            updateStatus="";
+        if (updateStatus == null) {
+            updateStatus = "";
         }
         return updateStatus;
     }
@@ -254,7 +264,7 @@ public class FeedbackBean {
                     result = "Invalid content, content must be larger 10 chars.";
                 } else {
                     int customerId = ((Member) ss.getAttribute("member")).getId();
-                    String sql = "insert into Feedback values (" + customerId + ", N'" + content + "', 0, N'', '" + DvdStoreHibernateUtil.currenrTime() + "', '" + DvdStoreHibernateUtil.currenrTime() + "', 0)";
+                    String sql = "insert into Feedback values (" + customerId + ",N'" + title + "', N'" + content + "', 0, N'', '" + DvdStoreHibernateUtil.currenrTime() + "', '" + DvdStoreHibernateUtil.currenrTime() + "', 0)";
                     getSession().createSQLQuery(sql).executeUpdate();
                     getSession().beginTransaction().commit();
                     result = "1";//Thank for your feedback!";
@@ -306,6 +316,7 @@ public class FeedbackBean {
     }
 
     public String reply() {
+        FacesContext context = FacesContext.getCurrentInstance();
         int x = 0;
         String returnPage = "";
         Feedback b = null;
@@ -315,6 +326,8 @@ public class FeedbackBean {
             x = b.getId();
         }
         try {
+            final String email = ((ServletContext) context.getExternalContext().getContext()).getInitParameter("webemail");
+            final String pass = ((ServletContext) context.getExternalContext().getContext()).getInitParameter("webpassword");
             final String username = "gameguu@gmail.com";
             final String password = "gameguu123";
             String to = getCustomer().getEmail();
@@ -327,7 +340,7 @@ public class FeedbackBean {
             javax.mail.Session ssmail = javax.mail.Session.getInstance(props,
                     new javax.mail.Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(username, password);
+                            return new PasswordAuthentication(email, pass);
                         }
                     });
             Message message = new MimeMessage(ssmail);

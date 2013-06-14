@@ -118,7 +118,6 @@ public class CategoryManagedHelper extends BaseHelper {
         }
         return null;
     }
-    
     public int getProductsInCateDetailTotal(Category cate) {
         Query query = session.createSQLQuery(cate.getQuery()).addEntity(Dvd.class);
         List results = query.list();
