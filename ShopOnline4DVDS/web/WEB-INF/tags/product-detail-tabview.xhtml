@@ -17,7 +17,35 @@
 
                 <p:tab id="tab1" title="Info">  
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText value="#{product.author}" />
+                        <tr><td>Release Date</td>
+                            <h:outputText value="#{product.releaseDate}">
+                                <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm:ss"></f:convertDateTime>
+                            </h:outputText></tr>
+                        <tr><td>Author</td><td>#{product.author}</td></tr>
+                        <tr><td>Genres</td><td>#{product.genres}</td></tr>
+                        <tr><td>Number of Disc</td><td>#{product.discNumber}</td></tr>
+                        <tr><td>Type</td><td>#{product.type}</td></tr>
+                        <tr><td>Producer</td>
+                            <h:panelGroup rendered="#{not (product.producerId eq null)}">
+                                <h:link outcome="producerdetail" value="#{producerManagedBean.producerById(product.producerId).title}" target="_blank">
+                                    <f:param name="detailid" value="#{product.producerId}"></f:param>
+                                </h:link>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{product.producerId eq null}">
+                                No Producer
+                            </h:panelGroup>
+
+                        </tr>
+                        <tr><td>Supplier</td>
+                            <h:panelGroup rendered="#{not (product.supplierId eq null)}">
+                                <h:link outcome="supplierdetail" value="#{supplierManagedBean.supplierById(product.supplierId).title}" target="_blank">
+                                    <f:param name="detailid" value="#{product.supplierId}"></f:param>
+                                </h:link>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{product.supplierId eq null}">
+                                No Suppliers
+                            </h:panelGroup>
+                        </tr>
                     </h:panelGrid>  
                 </p:tab>  
 
@@ -108,9 +136,6 @@
                             <span>Customer Reviews:</span>
                         </h5>
                         <c:if test="#{sessionScope.member==null}">
-                            There are yet no reviews for this product. <br/>Please log in to write a review.
-                        </c:if>
-                        <c:if test="#{sessionScope.member!=null}">
                             <ui:repeat var="item" varStatus="stt" value="#{commentBean.commentsByProduct(showProductBean.productDetails.id)}">
                                 <div class="doc-review">
                                     <span class="doc-review-author" data-userid="">
@@ -125,7 +150,24 @@
                                     <hr/>
                                 </div>
                             </ui:repeat>
+                            <br/>Please log in to write a review.
+                        </c:if>
+                        <c:if test="#{sessionScope.member!=null}">
 
+                            <ui:repeat var="item" varStatus="stt" value="#{commentBean.commentsByProduct(showProductBean.productDetails.id)}">
+                                <div class="doc-review">
+                                    <span class="doc-review-author" data-userid="">
+                                        <a href="" target="_blank">
+                                            <strong>#{commentBean.commentMemberName(item.memberId)}</strong>
+                                        </a>
+                                    </span>
+                                    <span class="doc-review-date">#{item.createdDate}</span>
+                                    <p class="review-text">
+                                        #{item.commentText}
+                                    </p>
+                                    <hr/>
+                                </div>
+                            </ui:repeat>
                             <h:form>
                                 <h:inputTextarea cols="120" rows="8" value="#{commentBean.commentText}">
                                 </h:inputTextarea>

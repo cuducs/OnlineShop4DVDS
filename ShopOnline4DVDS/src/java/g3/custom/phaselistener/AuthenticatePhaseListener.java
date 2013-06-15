@@ -9,6 +9,7 @@ import g3.bean.security.PermissionManagedBean;
 import g3.hibernate.entity.Manage;
 import g3.hibernate.entity.Member;
 import g3.hibernate.entity.Permission;
+import java.util.Arrays;
 import java.util.List;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -127,6 +128,17 @@ public class AuthenticatePhaseListener implements PhaseListener {
 
         for (Permission permission : lstPer) {
             String urlPattern = permission.getUrlPattern();
+            if (urlPattern.contains(",")) {
+                String[] split = permission.getUrlPattern().split(",");
+                List<String> lstUrl = Arrays.asList(split);
+                for (String string : lstUrl) {
+                    String getUrlToCheck = string.substring(0, string.length() - 1);
+                    if (requestPath.contains(getUrlToCheck)) {
+                        isAllow = true;
+                        break;
+                    }
+                }
+            }
             String per = permission.getUrlPattern().substring(0, urlPattern.length() - 1);
             if (requestPath.contains(per)) {
                 isAllow = true;

@@ -53,7 +53,7 @@ public class FileDataManagedHelper extends BaseHelper {
         if (!"".equals(searchFileData.getUrl())) {
             criteria.add(org.hibernate.criterion.Expression.ilike("url", "%" + searchFileData.getUrl() + "%"));
         }
-        if (!"".equals(searchFileData.getType())) {
+        if (!"".equals(searchFileData.getType()) && searchFileData.getType() != null) {
             criteria.add(org.hibernate.criterion.Expression.ilike("type", "%" + searchFileData.getType() + "%"));
         }
         return criteria.list();

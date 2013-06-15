@@ -21,19 +21,6 @@
                         </div>
                         <div class="orderby_form">
                             <form class="orderby_form">
-                                Sort By :
-                                <h:selectOneMenu  class="inputbox" value="#{showProductBean.orderBy}">
-                                    <f:selectItem itemLabel="Product Name" itemValue="Title"/>
-                                    <f:selectItem itemLabel="Price" itemValue="Price"/>
-                                    <f:selectItem itemLabel="Latest Products" itemValue="ModifiedDate"/>
-                                </h:selectOneMenu>
-                                <h:panelGroup rendered="#{showProductBean.orderType eq 'ASC'}">
-                                    <img src="/ShopOnline4DVDS/resources/customerver2/images/sort_desc.png" border="0" width="17" height="16" alt="" title="Descending order"/>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{showProductBean.orderType eq 'DESC'}">
-                                    <img src="/ShopOnline4DVDS/resources/customerver2/images/sort_asc.png" border="0" width="17" height="16" alt=""  title="Ascending order"/>
-                                </h:panelGroup>
-
 
                             </form>
                         </div>

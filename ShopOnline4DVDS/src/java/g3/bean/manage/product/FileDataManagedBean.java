@@ -349,7 +349,7 @@ public class FileDataManagedBean {
 
     public Map<String, Object> getListTypeSearch() {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("All", null);
+        map.put("All", "");
         List<String> lst = helper.getSession().createSQLQuery("select distinct f.type from FileData f").list();
         for (String string : lst) {
             map.put(string.toUpperCase(), string);

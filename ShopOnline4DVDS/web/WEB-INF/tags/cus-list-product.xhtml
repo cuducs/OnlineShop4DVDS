@@ -24,8 +24,9 @@
                                 <div class="browseAddToCartContainer">
                                     <h:form>
                                         <h:commandButton class="addtocart_button" action="#{cartManagedBean.add(product.id)}" value="Add to Cart">
-                                            <f:param value="#{param['type']}" name="type"></f:param>
                                             <f:param value="#{param['page']}" name="page"></f:param>
+                                            <f:param value="#{param['cateId']}" name="cateId"></f:param>
+                                            <f:param value="#{(param['search'] eq 'begin'?sessionScope.search:param['search'])}" name="search"></f:param>
                                         </h:commandButton>
                                     </h:form>
                                 </div>

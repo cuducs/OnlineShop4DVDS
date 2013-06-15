@@ -30,13 +30,20 @@
 
                         <tr><td>Download</td>
                             <td>
-                                <h:form>
-                                    <h:commandLink value="Download Link" target="_blank" actionListener="#{fileDataManagedBean.prepareDownload}">
-                                        <f:param name="download" value="#{fileDataManagedBean.detailFileData().id}"></f:param>
-                                        <p:fileDownload value="#{fileDataManagedBean.download}"
-                                                        contentDisposition="inline"/>
-                                    </h:commandLink>
-                                </h:form>
+                                <h:panelGroup rendered="#{(fileDataManagedBean.detailFileData().type eq 'link')}">
+                                    This is external link.<br/>
+                                    <a href="#{fileDataManagedBean.detailFileData().url}">View</a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{not (fileDataManagedBean.detailFileData().type eq 'link')}">
+                                    <h:form>
+                                        <h:commandLink value="Download Link" target="_blank" actionListener="#{fileDataManagedBean.prepareDownload}">
+                                            <f:param name="download" value="#{fileDataManagedBean.detailFileData().id}"></f:param>
+                                            <p:fileDownload value="#{fileDataManagedBean.download}"
+                                                            contentDisposition="inline"/>
+                                        </h:commandLink>
+                                    </h:form>
+                                </h:panelGroup>
+
                             </td>
                         </tr>
                         <tr><td>View Count</td><td>#{fileDataManagedBean.detailFileData().viewCount}</td></tr>
@@ -79,7 +86,7 @@
                                         });
                                     </script>
                                 </h:panelGroup>
-                                 <h:panelGroup rendered="#{(fileDataManagedBean.detailFileData().type eq 'link')}">
+                                <h:panelGroup rendered="#{(fileDataManagedBean.detailFileData().type eq 'link')}">
                                     <div id="mediaplayer">Have not file to view trailer</div>
                                     <script type="text/javascript" src="/ShopOnline4DVDS/resources/js/jwplayer.js"></script>
                                     <script type="text/javascript">

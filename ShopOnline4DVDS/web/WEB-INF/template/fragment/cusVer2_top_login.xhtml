@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -21,8 +22,12 @@
             <div style="position:absolute;right:-20px;top:28px;" class="curreny">
                 <h:panelGroup rendered="#{not (memberBean.memberLogin eq null)}">
                     <h:form>
-                        <h:commandLink action="#{memberBean.logout()}" class="button">
-                            Logout</h:commandLink>
+                        <h:commandLink action="#{memberBean.logout()}" class="button" value="Logout">
+                            <f:param value="#{param['page']}" name="page"></f:param>
+                            <f:param value="#{param['cateId']}" name="cateId"></f:param>
+                            <f:param value="#{(param['search'] eq 'begin'?sessionScope.search:param['search'])}" name="search"></f:param>
+                            <f:param value="#{param['productid']}" name="productid"></f:param>
+                        </h:commandLink>
                     </h:form>
                 </h:panelGroup>
             </div>
